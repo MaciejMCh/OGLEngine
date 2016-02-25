@@ -60,6 +60,8 @@
 		521A3CBA1C7F956F00F19832 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				521A3CC11C7FA0F000F19832 /* Xcode */,
+				521A3CC01C7FA0D600F19832 /* Shaders */,
 				521A3CBC1C7F957D00F19832 /* Textures */,
 				521A3CBB1C7F957900F19832 /* OBJs */,
 			);
@@ -81,6 +83,60 @@
 			name = Textures;
 			sourceTree = "<group>";
 		};
+		521A3CBF1C7FA0A400F19832 /* VertexDataBasic */ = {
+			isa = PBXGroup;
+			children = (
+				521A3CB81C7F91A300F19832 /* Texture.m */,
+				521A3CB71C7F91A300F19832 /* Texture.h */,
+				521A3CAB1C7F804500F19832 /* VAO.h */,
+				521A3CAC1C7F804500F19832 /* VAO.m */,
+				521A3CAE1C7F80B300F19832 /* OBJ.h */,
+				521A3CAF1C7F80B300F19832 /* OBJ.m */,
+				521A3CB41C7F8E4500F19832 /* OBJ+samples.h */,
+				521A3CB51C7F8E4500F19832 /* OBJ+samples.m */,
+			);
+			name = VertexDataBasic;
+			sourceTree = "<group>";
+		};
+		521A3CC01C7FA0D600F19832 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				526FD7631C7E600700C22AD9 /* Shader.fsh */,
+				526FD7651C7E600700C22AD9 /* Shader.vsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
+		521A3CC11C7FA0F000F19832 /* Xcode */ = {
+			isa = PBXGroup;
+			children = (
+				526FD76A1C7E600700C22AD9 /* Main.storyboard */,
+				526FD76D1C7E600700C22AD9 /* Assets.xcassets */,
+				526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */,
+			);
+			name = Xcode;
+			sourceTree = "<group>";
+		};
+		521A3CC21C7FA10000F19832 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				526FD75E1C7E600700C22AD9 /* main.m */,
+				526FD7721C7E600700C22AD9 /* Info.plist */,
+				526FD7601C7E600700C22AD9 /* AppDelegate.h */,
+				526FD7611C7E600700C22AD9 /* AppDelegate.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		521A3CC31C7FA12300F19832 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				526FD7671C7E600700C22AD9 /* GameViewController.h */,
+				526FD7681C7E600700C22AD9 /* GameViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		526FD7511C7E600700C22AD9 = {
 			isa = PBXGroup;
 			children = (
@@ -100,36 +156,12 @@
 		526FD75C1C7E600700C22AD9 /* OGLEngine */ = {
 			isa = PBXGroup;
 			children = (
+				521A3CC31C7FA12300F19832 /* Controllers */,
+				521A3CC21C7FA10000F19832 /* Application */,
+				521A3CBF1C7FA0A400F19832 /* VertexDataBasic */,
 				521A3CBA1C7F956F00F19832 /* Resources */,
-				521A3CB71C7F91A300F19832 /* Texture.h */,
-				521A3CB81C7F91A300F19832 /* Texture.m */,
-				526FD7601C7E600700C22AD9 /* AppDelegate.h */,
-				526FD7611C7E600700C22AD9 /* AppDelegate.m */,
-				526FD7631C7E600700C22AD9 /* Shader.fsh */,
-				526FD7651C7E600700C22AD9 /* Shader.vsh */,
-				526FD7671C7E600700C22AD9 /* GameViewController.h */,
-				526FD7681C7E600700C22AD9 /* GameViewController.m */,
-				526FD76A1C7E600700C22AD9 /* Main.storyboard */,
-				526FD76D1C7E600700C22AD9 /* Assets.xcassets */,
-				526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */,
-				526FD7721C7E600700C22AD9 /* Info.plist */,
-				526FD75D1C7E600700C22AD9 /* Supporting Files */,
-				521A3CAB1C7F804500F19832 /* VAO.h */,
-				521A3CAC1C7F804500F19832 /* VAO.m */,
-				521A3CAE1C7F80B300F19832 /* OBJ.h */,
-				521A3CAF1C7F80B300F19832 /* OBJ.m */,
-				521A3CB41C7F8E4500F19832 /* OBJ+samples.h */,
-				521A3CB51C7F8E4500F19832 /* OBJ+samples.m */,
 			);
 			path = OGLEngine;
-			sourceTree = "<group>";
-		};
-		526FD75D1C7E600700C22AD9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				526FD75E1C7E600700C22AD9 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
