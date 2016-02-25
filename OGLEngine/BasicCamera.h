@@ -12,8 +12,11 @@
 @interface BasicCamera : NSObject<Camera>
 
 @property (nonatomic, assign) GLKVector3 position;
-@property (nonatomic, assign) GLKVector3 eyeNormal;
 
-- (instancetype)initWithPosition:(GLKVector3)position eyeNormal:(GLKVector3)eyeNormal;
+- (instancetype)initWithPosition:(GLKVector3)position;
+
+@end
+
+@interface TestCamera : BasicCamera
 
 @end

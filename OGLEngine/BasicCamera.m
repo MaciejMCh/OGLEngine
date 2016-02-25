@@ -8,13 +8,21 @@
 
 #import "BasicCamera.h"
 
+@interface BasicCamera ()
+
+@property (nonatomic, assign) GLKMatrix4 projectionMatrix;
+
+@end
+
 @implementation BasicCamera
 
-- (instancetype)initWithPosition:(GLKVector3)position eyeNormal:(GLKVector3)eyeNormal {
+- (instancetype)initWithPosition:(GLKVector3)position {
     self = [super init];
     if (self) {
         self.position = position;
-        self.eyeNormal = eyeNormal;
+        
+        float aspect = fabs([UIScreen mainScreen].bounds.size.width / [UIScreen mainScreen].bounds.size.height);
+        self.projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     }
     return self;
 }
@@ -23,20 +31,18 @@
     return self.position;
 }
 
-- (GLKVector3)cameraEyeNormal {
-    return self.cameraEyeNormal;
+- (GLKMatrix4)viewProjectionMatrix {
+    return GLKMatrix4Translate(self.projectionMatrix, self.position.x, self.position.y, self.position.z);
 }
 
-- (GLKMatrix4)projectionMatrix {
-    float aspect = fabs([UIScreen mainScreen].bounds.size.width / [UIScreen mainScreen].bounds.size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
-    
-//    projectionMatrix = GLKMatrix4Rotate(projectionMatrix, 1.0, 0, 0, 0);
-    projectionMatrix = GLKMatrix4Rotate(projectionMatrix, self.position.x / 10, 0, 1, 0);
+@end
+
+
+@implementation TestCamera
+
+- (GLKMatrix4)viewProjectionMatrix {
+    GLKMatrix4 projectionMatrix = GLKMatrix4Rotate(self.projectionMatrix, self.position.x / 10, 0, 1, 0);
     projectionMatrix = GLKMatrix4Translate(projectionMatrix, self.position.x, self.position.y, self.position.z);
-    
-    
-    
     return projectionMatrix;
 }
 
