@@ -11,6 +11,7 @@
 #import "OBJ+samples.h"
 #import "VAO.h"
 #import "Texture.h"
+#import "SpinningGeometryModel.h"
 
 @interface GameViewController () {
     GLuint _program;
@@ -19,6 +20,7 @@
 
 @property (nonatomic, strong) VAO *vao;
 @property (nonatomic, strong) Texture *texture;
+@property (nonatomic, strong) id<GeometryModel> geometryModel;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -31,6 +33,7 @@
 
 enum {
     uniformTexture,
+    uniformModelViewProjectionMatrix,
     uniformsCount
 };
 GLint uniforms[uniformsCount];
@@ -48,15 +51,7 @@ GLint uniforms[uniformsCount];
     
     self.texture = [[Texture alloc] initWithImageNamed:@"Texture.png"];
     [self.texture bind];
-}
-
-- (void)tearDownGL {
-    [EAGLContext setCurrentContext:self.context];
-    
-    if (_program) {
-        glDeleteProgram(_program);
-        _program = 0;
-    }
+    self.geometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -79,6 +74,9 @@ GLint uniforms[uniformsCount];
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, self.texture.glName);
     glUniform1i(uniformTexture, 0);
+    
+    // Bind modelViewProjection matrix
+    glUniformMatrix4fv(uniforms[uniformModelViewProjectionMatrix], 1, 0, [self.geometryModel modelMatrix].m);
     
     // Draw
     glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
@@ -146,6 +144,8 @@ GLint uniforms[uniformsCount];
     
     // Get uniform locations.
     uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
+    uniforms[uniformModelViewProjectionMatrix] = glGetUniformLocation(_program, "uModelViewProjectionMatrix");
+    
     
     // Release vertex and fragment shaders.
     if (vertShader) {
@@ -279,6 +279,15 @@ GLint uniforms[uniformsCount];
     }
     
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tearDownGL {
+    [EAGLContext setCurrentContext:self.context];
+    
+    if (_program) {
+        glDeleteProgram(_program);
+        _program = 0;
+    }
 }
 
 - (BOOL)prefersStatusBarHidden {
