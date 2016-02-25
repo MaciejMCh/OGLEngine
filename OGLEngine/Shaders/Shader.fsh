@@ -6,9 +6,9 @@
 //  Copyright © 2016 MaciejCh. All rights reserved.
 //
 
-varying lowp vec4 colorVarying;
+uniform sampler2D uTexture;
 
 void main()
 {
-    gl_FragColor = colorVarying;
+    gl_FragColor = texture2D(uTexture, vec2(0.0, 0.0));
 }

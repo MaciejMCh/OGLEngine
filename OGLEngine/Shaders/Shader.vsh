@@ -6,10 +6,8 @@
 //  Copyright © 2016 MaciejCh. All rights reserved.
 //
 
-attribute vec4 position;
+attribute vec4 aPosition;
 //attribute vec3 normal;
-
-varying lowp vec4 colorVarying;
 
 //uniform mat4 modelViewProjectionMatrix;
 //uniform mat3 normalMatrix;
@@ -22,7 +20,6 @@ void main()
 //    
 //    float nDotVP = max(0.0, dot(eyeNormal, normalize(lightPosition)));
 //                 
-    colorVarying = vec4(0.0, 1.0, 0.0, 1.0);
     
-    gl_Position = position;
+    gl_Position = aPosition;
 }

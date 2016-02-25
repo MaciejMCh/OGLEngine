@@ -10,6 +10,7 @@
 #import <OpenGLES/ES2/glext.h>
 #import "OBJ+samples.h"
 #import "VAO.h"
+#import "Texture.h"
 
 @interface GameViewController () {
     GLuint _program;
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) EAGLContext *context;
 
 @property (nonatomic, strong) VAO *vao;
+@property (nonatomic, strong) Texture *texture;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -26,6 +28,12 @@
 - (BOOL)linkProgram:(GLuint)prog;
 - (BOOL)validateProgram:(GLuint)prog;
 @end
+
+enum {
+    UNIFORM_TEXTURE,
+    NUM_UNIFORMS
+};
+GLint uniforms[NUM_UNIFORMS];
 
 @implementation GameViewController
 
@@ -77,23 +85,20 @@
     return YES;
 }
 
-- (void)setupGL
-{
+- (void)setupGL {
     [EAGLContext setCurrentContext:self.context];
-    
     [self loadShaders];
-    
-    
     glUseProgram(_program);
-    
     glEnable(GL_DEPTH_TEST);
     
     OBJ *obj = [OBJ square];
     self.vao = [[VAO alloc] initWithOBJ:obj];
+    
+    self.texture = [[Texture alloc] initWithColor:[UIColor redColor]];
+    [self.texture bind];
 }
 
-- (void)tearDownGL
-{
+- (void)tearDownGL {
     [EAGLContext setCurrentContext:self.context];
     
     if (_program) {
@@ -113,14 +118,19 @@
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
+    // Bind vao
     glBindVertexArrayOES(self.vao.vaoGLName);
     glEnableVertexAttribArray(VboIndexPositions);
     
+    // Bind texture
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, self.texture.glName);
+    glUniform1i(UNIFORM_TEXTURE, 0);
     
-    // 3
+    // Draw
     glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
     
-    
+    // Unbind vao
     glDisableVertexAttribArray(VboIndexPositions);
     glBindVertexArrayOES(0);
 
@@ -160,7 +170,7 @@
     
     // Bind attribute locations.
     // This needs to be done prior to linking.
-    glBindAttribLocation(_program, VboIndexPositions, "position");
+    glBindAttribLocation(_program, VboIndexPositions, "aPosition");
     
     // Link program.
     if (![self linkProgram:_program]) {
@@ -183,6 +193,7 @@
     }
     
     // Get uniform locations.
+    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(_program, "uTexture");
     
     // Release vertex and fragment shaders.
     if (vertShader) {
