@@ -11,6 +11,7 @@
 		521A3CB01C7F80B300F19832 /* OBJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CAF1C7F80B300F19832 /* OBJ.m */; };
 		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
 		521A3CB91C7F91A300F19832 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB81C7F91A300F19832 /* Texture.m */; };
+		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
 		526FD75F1C7E600700C22AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD75E1C7E600700C22AD9 /* main.m */; };
 		526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD7611C7E600700C22AD9 /* AppDelegate.m */; };
 		526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7631C7E600700C22AD9 /* Shader.fsh */; };
@@ -30,6 +31,7 @@
 		521A3CB51C7F8E4500F19832 /* OBJ+samples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OBJ+samples.m"; sourceTree = "<group>"; };
 		521A3CB71C7F91A300F19832 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		521A3CB81C7F91A300F19832 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
+		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
 		526FD75A1C7E600700C22AD9 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526FD75E1C7E600700C22AD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		526FD7601C7E600700C22AD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,6 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521A3CBA1C7F956F00F19832 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				521A3CBC1C7F957D00F19832 /* Textures */,
+				521A3CBB1C7F957900F19832 /* OBJs */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		521A3CBB1C7F957900F19832 /* OBJs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = OBJs;
+			sourceTree = "<group>";
+		};
+		521A3CBC1C7F957D00F19832 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				521A3CBD1C7F958D00F19832 /* Texture.png */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
 		526FD7511C7E600700C22AD9 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +100,7 @@
 		526FD75C1C7E600700C22AD9 /* OGLEngine */ = {
 			isa = PBXGroup;
 			children = (
+				521A3CBA1C7F956F00F19832 /* Resources */,
 				521A3CB71C7F91A300F19832 /* Texture.h */,
 				521A3CB81C7F91A300F19832 /* Texture.m */,
 				526FD7601C7E600700C22AD9 /* AppDelegate.h */,
@@ -165,6 +192,7 @@
 				526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */,
 				526FD7661C7E600700C22AD9 /* Shader.vsh in Resources */,
 				526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */,
+				521A3CBE1C7F958D00F19832 /* Texture.png in Resources */,
 				526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */,
 				526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */,
 			);

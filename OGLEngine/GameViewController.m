@@ -94,7 +94,7 @@ GLint uniforms[NUM_UNIFORMS];
     OBJ *obj = [OBJ square];
     self.vao = [[VAO alloc] initWithOBJ:obj];
     
-    self.texture = [[Texture alloc] initWithColor:[UIColor redColor]];
+    self.texture = [[Texture alloc] initWithImageNamed:@"Texture.png"];
     [self.texture bind];
 }
 
