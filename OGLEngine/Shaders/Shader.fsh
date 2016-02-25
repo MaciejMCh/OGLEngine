@@ -7,8 +7,8 @@
 //
 
 uniform sampler2D uTexture;
+varying lowp vec2 vTexel;
 
-void main()
-{
-    gl_FragColor = texture2D(uTexture, vec2(0.0, 0.0));
+void main() {
+    gl_FragColor = texture2D(uTexture, vTexel);
 }

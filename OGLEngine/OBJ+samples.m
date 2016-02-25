@@ -23,6 +23,14 @@
         2, 3, 0
     };
     
+    GLuint Texels[] = {
+        0,0,
+        0,1,
+        1,1,
+        1,0
+    };
+    
+    
     GLFloatArray *positions = [GLFloatArray new];
     positions.count = 12;
     positions.data = malloc(12 * sizeof(GLfloat));
@@ -37,7 +45,14 @@
         indices.data[i] = Indices[i];
     }
     
-    OBJ *obj = [[OBJ alloc] initWithIndices:indices positions:positions];
+    GLFloatArray *texels = [GLFloatArray new];
+    texels.count = 8;
+    texels.data = malloc(8 * sizeof(GLfloat));
+    for (int i=0; i<8; i++) {
+        texels.data[i] = Texels[i];
+    }
+    
+    OBJ *obj = [[OBJ alloc] initWithIndices:indices positions:positions texels:texels];
     return obj;
 }
 

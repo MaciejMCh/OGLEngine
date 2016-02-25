@@ -30,10 +30,10 @@
 @end
 
 enum {
-    UNIFORM_TEXTURE,
-    NUM_UNIFORMS
+    uniformTexture,
+    uniformsCount
 };
-GLint uniforms[NUM_UNIFORMS];
+GLint uniforms[uniformsCount];
 
 @implementation GameViewController
 
@@ -121,21 +121,21 @@ GLint uniforms[NUM_UNIFORMS];
     // Bind vao
     glBindVertexArrayOES(self.vao.vaoGLName);
     glEnableVertexAttribArray(VboIndexPositions);
+    glEnableVertexAttribArray(VboIndexTexels);
     
     // Bind texture
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, self.texture.glName);
-    glUniform1i(UNIFORM_TEXTURE, 0);
+    glUniform1i(uniformTexture, 0);
     
     // Draw
     glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
     
     // Unbind vao
     glDisableVertexAttribArray(VboIndexPositions);
+    glDisableVertexAttribArray(VboIndexTexels);
     glBindVertexArrayOES(0);
 
-    
-//    glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
@@ -171,6 +171,7 @@ GLint uniforms[NUM_UNIFORMS];
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(_program, VboIndexPositions, "aPosition");
+    glBindAttribLocation(_program, VboIndexTexels, "aTexel");
     
     // Link program.
     if (![self linkProgram:_program]) {
@@ -193,7 +194,7 @@ GLint uniforms[NUM_UNIFORMS];
     }
     
     // Get uniform locations.
-    uniforms[UNIFORM_TEXTURE] = glGetUniformLocation(_program, "uTexture");
+    uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
     
     // Release vertex and fragment shaders.
     if (vertShader) {

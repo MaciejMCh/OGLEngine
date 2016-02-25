@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         
-        self.vertexCount = obj.indices.count / VbosCount;
+        self.vertexCount = obj.indices.count;
         
         GLuint vaoGLName = 0;
         glGenVertexArraysOES(1, &vaoGLName);
@@ -27,6 +27,7 @@
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, obj.indices.count * sizeof(GLuint), obj.indices.data, GL_STATIC_DRAW);
         
         self.positionsVboGLName = [self generateVboAtIndex:VboIndexPositions data:obj.positions perVertexCount:3];
+        self.texelsVboGLName = [self generateVboAtIndex:VboIndexTexels data:obj.texels perVertexCount:2];
         
         glBindVertexArrayOES(0);
     }
@@ -38,7 +39,7 @@
     glGenBuffers(1, &vboGLName);
     glBindBuffer(GL_ARRAY_BUFFER, vboGLName);
     glBufferData(GL_ARRAY_BUFFER, data.count * sizeof(GLfloat), data.data, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, perVertexCount, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(index, perVertexCount, GL_FLOAT, GL_FALSE, 0, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     return vboGLName;
 }
