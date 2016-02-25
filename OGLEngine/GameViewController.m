@@ -13,11 +13,10 @@
 
 @interface GameViewController () {
     GLuint _program;
-    GLuint _vertexArray;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
-@property (nonatomic, strong) OBJ *obj;
+@property (nonatomic, strong) VAO *vao;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -89,10 +88,8 @@
     
     glEnable(GL_DEPTH_TEST);
     
-    self.obj = [OBJ square];
-    VAO *vao = [[VAO alloc] initWithOBJ:self.obj];
-    
-    _vertexArray = vao.vaoGLName;
+    OBJ *obj = [OBJ square];
+    self.vao = [[VAO alloc] initWithOBJ:obj];
 }
 
 - (void)tearDownGL
@@ -113,20 +110,18 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
-//    glUseProgram(_program);
-    
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glBindVertexArrayOES(_vertexArray);
-    glEnableVertexAttribArray(Positions);
+    glBindVertexArrayOES(self.vao.vaoGLName);
+    glEnableVertexAttribArray(VboIndexPositions);
     
     
     // 3
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
     
     
-    glDisableVertexAttribArray(Positions);
+    glDisableVertexAttribArray(VboIndexPositions);
     glBindVertexArrayOES(0);
 
     
@@ -165,7 +160,7 @@
     
     // Bind attribute locations.
     // This needs to be done prior to linking.
-    glBindAttribLocation(_program, Positions, "position");
+    glBindAttribLocation(_program, VboIndexPositions, "position");
     
     // Link program.
     if (![self linkProgram:_program]) {

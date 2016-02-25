@@ -10,7 +10,8 @@
 #import "OBJ.h"
 
 typedef NS_ENUM(NSUInteger, VboIndex) {
-    Positions
+    VboIndexPositions = 0,
+    VbosCount
 };
 
 @interface VAO : NSObject
