@@ -12,6 +12,10 @@
 		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
 		521A3CB91C7F91A300F19832 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB81C7F91A300F19832 /* Texture.m */; };
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
+		521A3CC71C7FA19100F19832 /* Drawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CC61C7FA19100F19832 /* Drawable.m */; };
+		521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */; };
+		521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */; };
+		521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CD31C7FA24700F19832 /* BasicCamera.m */; };
 		526FD75F1C7E600700C22AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD75E1C7E600700C22AD9 /* main.m */; };
 		526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD7611C7E600700C22AD9 /* AppDelegate.m */; };
 		526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7631C7E600700C22AD9 /* Shader.fsh */; };
@@ -32,6 +36,16 @@
 		521A3CB71C7F91A300F19832 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		521A3CB81C7F91A300F19832 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
+		521A3CC51C7FA19100F19832 /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawable.h; sourceTree = "<group>"; };
+		521A3CC61C7FA19100F19832 /* Drawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drawable.m; sourceTree = "<group>"; };
+		521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningGeometryModel.h; sourceTree = "<group>"; };
+		521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningGeometryModel.m; sourceTree = "<group>"; };
+		521A3CCB1C7FA1BD00F19832 /* StaticGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticGeometryModel.h; sourceTree = "<group>"; };
+		521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticGeometryModel.m; sourceTree = "<group>"; };
+		521A3CCF1C7FA1D400F19832 /* GeometryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeometryModel.h; sourceTree = "<group>"; };
+		521A3CD11C7FA23C00F19832 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		521A3CD21C7FA24700F19832 /* BasicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCamera.h; sourceTree = "<group>"; };
+		521A3CD31C7FA24700F19832 /* BasicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCamera.m; sourceTree = "<group>"; };
 		526FD75A1C7E600700C22AD9 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526FD75E1C7E600700C22AD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		526FD7601C7E600700C22AD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,9 +97,12 @@
 			name = Textures;
 			sourceTree = "<group>";
 		};
-		521A3CBF1C7FA0A400F19832 /* VertexDataBasic */ = {
+		521A3CBF1C7FA0A400F19832 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				521A3CD01C7FA21B00F19832 /* Camera */,
+				521A3CC81C7FA1AB00F19832 /* GeometryModel */,
+				521A3CC41C7FA16800F19832 /* Drawable */,
 				521A3CB81C7F91A300F19832 /* Texture.m */,
 				521A3CB71C7F91A300F19832 /* Texture.h */,
 				521A3CAB1C7F804500F19832 /* VAO.h */,
@@ -95,7 +112,7 @@
 				521A3CB41C7F8E4500F19832 /* OBJ+samples.h */,
 				521A3CB51C7F8E4500F19832 /* OBJ+samples.m */,
 			);
-			name = VertexDataBasic;
+			name = Rendering;
 			sourceTree = "<group>";
 		};
 		521A3CC01C7FA0D600F19832 /* Shaders */ = {
@@ -137,6 +154,37 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		521A3CC41C7FA16800F19832 /* Drawable */ = {
+			isa = PBXGroup;
+			children = (
+				521A3CC51C7FA19100F19832 /* Drawable.h */,
+				521A3CC61C7FA19100F19832 /* Drawable.m */,
+			);
+			name = Drawable;
+			sourceTree = "<group>";
+		};
+		521A3CC81C7FA1AB00F19832 /* GeometryModel */ = {
+			isa = PBXGroup;
+			children = (
+				521A3CCF1C7FA1D400F19832 /* GeometryModel.h */,
+				521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */,
+				521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */,
+				521A3CCB1C7FA1BD00F19832 /* StaticGeometryModel.h */,
+				521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */,
+			);
+			name = GeometryModel;
+			sourceTree = "<group>";
+		};
+		521A3CD01C7FA21B00F19832 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				521A3CD11C7FA23C00F19832 /* Camera.h */,
+				521A3CD21C7FA24700F19832 /* BasicCamera.h */,
+				521A3CD31C7FA24700F19832 /* BasicCamera.m */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
 		526FD7511C7E600700C22AD9 = {
 			isa = PBXGroup;
 			children = (
@@ -157,9 +205,9 @@
 			isa = PBXGroup;
 			children = (
 				521A3CC31C7FA12300F19832 /* Controllers */,
-				521A3CC21C7FA10000F19832 /* Application */,
-				521A3CBF1C7FA0A400F19832 /* VertexDataBasic */,
+				521A3CBF1C7FA0A400F19832 /* Rendering */,
 				521A3CBA1C7F956F00F19832 /* Resources */,
+				521A3CC21C7FA10000F19832 /* Application */,
 			);
 			path = OGLEngine;
 			sourceTree = "<group>";
@@ -243,7 +291,11 @@
 				521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */,
 				521A3CAD1C7F804500F19832 /* VAO.m in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
+				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,
+				521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */,
+				521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */,
 				521A3CB91C7F91A300F19832 /* Texture.m in Sources */,
+				521A3CC71C7FA19100F19832 /* Drawable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
