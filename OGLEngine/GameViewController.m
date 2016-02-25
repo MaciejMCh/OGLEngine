@@ -36,6 +36,7 @@
 enum {
     uniformTexture,
     uniformModelViewProjectionMatrix,
+    uniformNormalMatrix,
     uniformsCount
 };
 GLint uniforms[uniformsCount];
@@ -80,9 +81,12 @@ GLint uniforms[uniformsCount];
     glBindTexture(GL_TEXTURE_2D, self.texture.glName);
     glUniform1i(uniformTexture, 0);
     
-    // Pass modelViewProjection matrix
+    // Pass matrices
     GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply([self.camera viewProjectionMatrix], [self.geometryModel modelMatrix]);
     glUniformMatrix4fv(uniforms[uniformModelViewProjectionMatrix], 1, 0, modelViewProjectionMatrix.m);
+    
+    GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([self.geometryModel modelMatrix]), NULL);
+    glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
     
     // Draw
     glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
@@ -153,6 +157,7 @@ GLint uniforms[uniformsCount];
     // Get uniform locations.
     uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
     uniforms[uniformModelViewProjectionMatrix] = glGetUniformLocation(_program, "uModelViewProjectionMatrix");
+    uniforms[uniformNormalMatrix] = glGetUniformLocation(_program, "uNormalMatrix");
     
     
     // Release vertex and fragment shaders.
