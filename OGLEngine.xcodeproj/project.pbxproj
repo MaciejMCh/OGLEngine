@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521A3CAD1C7F804500F19832 /* VAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CAC1C7F804500F19832 /* VAO.m */; };
+		521A3CB01C7F80B300F19832 /* OBJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CAF1C7F80B300F19832 /* OBJ.m */; };
 		526FD75F1C7E600700C22AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD75E1C7E600700C22AD9 /* main.m */; };
 		526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD7611C7E600700C22AD9 /* AppDelegate.m */; };
 		526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7631C7E600700C22AD9 /* Shader.fsh */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		521A3CAB1C7F804500F19832 /* VAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAO.h; sourceTree = "<group>"; };
+		521A3CAC1C7F804500F19832 /* VAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAO.m; sourceTree = "<group>"; };
+		521A3CAE1C7F80B300F19832 /* OBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJ.h; sourceTree = "<group>"; };
+		521A3CAF1C7F80B300F19832 /* OBJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJ.m; sourceTree = "<group>"; };
 		526FD75A1C7E600700C22AD9 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526FD75E1C7E600700C22AD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		526FD7601C7E600700C22AD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,6 +79,10 @@
 				526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */,
 				526FD7721C7E600700C22AD9 /* Info.plist */,
 				526FD75D1C7E600700C22AD9 /* Supporting Files */,
+				521A3CAB1C7F804500F19832 /* VAO.h */,
+				521A3CAC1C7F804500F19832 /* VAO.m */,
+				521A3CAE1C7F80B300F19832 /* OBJ.h */,
+				521A3CAF1C7F80B300F19832 /* OBJ.m */,
 			);
 			path = OGLEngine;
 			sourceTree = "<group>";
@@ -159,6 +169,8 @@
 			files = (
 				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
+				521A3CB01C7F80B300F19832 /* OBJ.m in Sources */,
+				521A3CAD1C7F804500F19832 /* VAO.m in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +318,7 @@
 				526FD7771C7E600700C22AD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,8 @@
 
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
+#import "OBJ.h"
+#import "VAO.h"
 
 @interface GameViewController () {
     GLuint _program;
@@ -85,46 +87,35 @@
     
     glEnable(GL_DEPTH_TEST);
     
-    float Vertices[] = {
+    GLfloat Vertices[] = {
         .5, -.5, 0,
         .5, .5, 0,
         -.5, .5, 0,
         -.5, -.5, 0
     };
     
-    const GLubyte Indices[] = {
+    GLuint Indices[] = {
         0, 1, 2,
         2, 3, 0
     };
+
+    struct GLFloatArray positions;
+    positions.data = Vertices;
+    positions.count = 12;
     
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
+    struct GLIntArray indices;
+    indices.data = Indices;
+    indices.count = 6;
+
+    OBJ *obj = [[OBJ alloc] initWithIndices:indices positions:positions];
+    VAO *vao = [[VAO alloc] initWithOBJ:obj];
     
-    
-    GLuint indexBuffer;
-    glGenBuffers(1, &indexBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
-    
-    GLuint vertexBuffer;
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    
-    
-    glBindVertexArrayOES(0);
-    
+    _vertexArray = vao.vaoGLName;
 }
 
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
-    
-//    glDeleteBuffers(1, &_vertexBuffer);
-//    glDeleteVertexArraysOES(1, &_vertexArray);
-    
     
     if (_program) {
         glDeleteProgram(_program);
@@ -146,14 +137,14 @@
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glBindVertexArrayOES(_vertexArray);
-    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(Positions);
     
     
     // 3
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     
     
-    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(Positions);
     glBindVertexArrayOES(0);
 
     
@@ -192,7 +183,7 @@
     
     // Bind attribute locations.
     // This needs to be done prior to linking.
-    glBindAttribLocation(_program, 0, "position");
+    glBindAttribLocation(_program, Positions, "position");
 //    glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
     
     // Link program.
