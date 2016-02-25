@@ -9,21 +9,27 @@
 #import <Foundation/Foundation.h>
 #import <OpenGLES/ES2/glext.h>
 
-struct GLFloatArray {
-    GLfloat *data;
-    unsigned int count;
-};
+@interface GLFloatArray : NSObject
 
-struct GLIntArray {
-    GLuint *data;
-    unsigned int count;
-};
+@property (nonatomic, assign) GLfloat *data;
+@property (nonatomic, assign) unsigned int count;
+
+@end
+
+
+@interface GLIntArray : NSObject
+
+@property (nonatomic, assign) GLuint *data;
+@property (nonatomic, assign) unsigned int count;
+
+@end
+
 
 @interface OBJ : NSObject
 
-@property (nonatomic, assign) struct GLIntArray indices;
-@property (nonatomic, assign) struct GLFloatArray positions;
+@property (nonatomic, strong) GLIntArray *indices;
+@property (nonatomic, strong) GLFloatArray *positions;
 
-- (instancetype)initWithIndices:(struct GLIntArray)indices positions:(struct GLFloatArray)positions;
+- (instancetype)initWithIndices:(GLIntArray *)indices positions:(GLFloatArray *)positions;
 
 @end

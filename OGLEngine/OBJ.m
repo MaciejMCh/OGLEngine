@@ -10,7 +10,7 @@
 
 @implementation OBJ
 
-- (instancetype)initWithIndices:(struct GLIntArray)indices positions:(struct GLFloatArray)positions {
+- (instancetype)initWithIndices:(GLIntArray *)indices positions:(GLFloatArray *)positions {
     self = [super init];
     if (self) {
         self.indices = indices;
@@ -18,5 +18,15 @@
     }
     return self;
 }
+
+@end
+
+
+@implementation GLFloatArray
+
+@end
+
+
+@implementation GLIntArray
 
 @end

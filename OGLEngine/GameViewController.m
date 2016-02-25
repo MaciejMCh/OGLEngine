@@ -8,7 +8,7 @@
 
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
-#import "OBJ.h"
+#import "OBJ+samples.h"
 #import "VAO.h"
 
 @interface GameViewController () {
@@ -16,6 +16,8 @@
     GLuint _vertexArray;
 }
 @property (strong, nonatomic) EAGLContext *context;
+
+@property (nonatomic, strong) OBJ *obj;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -87,28 +89,8 @@
     
     glEnable(GL_DEPTH_TEST);
     
-    GLfloat Vertices[] = {
-        .5, -.5, 0,
-        .5, .5, 0,
-        -.5, .5, 0,
-        -.5, -.5, 0
-    };
-    
-    GLuint Indices[] = {
-        0, 1, 2,
-        2, 3, 0
-    };
-
-    struct GLFloatArray positions;
-    positions.data = Vertices;
-    positions.count = 12;
-    
-    struct GLIntArray indices;
-    indices.data = Indices;
-    indices.count = 6;
-
-    OBJ *obj = [[OBJ alloc] initWithIndices:indices positions:positions];
-    VAO *vao = [[VAO alloc] initWithOBJ:obj];
+    self.obj = [OBJ square];
+    VAO *vao = [[VAO alloc] initWithOBJ:self.obj];
     
     _vertexArray = vao.vaoGLName;
 }
@@ -184,7 +166,6 @@
     // Bind attribute locations.
     // This needs to be done prior to linking.
     glBindAttribLocation(_program, Positions, "position");
-//    glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
     
     // Link program.
     if (![self linkProgram:_program]) {

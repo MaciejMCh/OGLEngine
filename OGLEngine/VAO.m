@@ -31,7 +31,7 @@
     return self;
 }
 
-- (GLuint)generateVboAtIndex:(VboIndex)index data:(struct GLFloatArray)data perVertexCount:(unsigned int)perVertexCount {
+- (GLuint)generateVboAtIndex:(VboIndex)index data:(GLFloatArray *)data perVertexCount:(unsigned int)perVertexCount {
     GLuint vboGLName;
     glGenBuffers(1, &vboGLName);
     glBindBuffer(GL_ARRAY_BUFFER, vboGLName);
