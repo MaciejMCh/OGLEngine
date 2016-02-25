@@ -12,6 +12,7 @@
 #import "VAO.h"
 #import "Texture.h"
 #import "SpinningGeometryModel.h"
+#import "BasicCamera.h"
 
 @interface GameViewController () {
     GLuint _program;
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) VAO *vao;
 @property (nonatomic, strong) Texture *texture;
 @property (nonatomic, strong) id<GeometryModel> geometryModel;
+@property (nonatomic, strong) id<Camera> camera;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -51,7 +53,9 @@ GLint uniforms[uniformsCount];
     
     self.texture = [[Texture alloc] initWithImageNamed:@"Texture.png"];
     [self.texture bind];
+    
     self.geometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
+    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 0, -3)];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -70,13 +74,14 @@ GLint uniforms[uniformsCount];
     glEnableVertexAttribArray(VboIndexPositions);
     glEnableVertexAttribArray(VboIndexTexels);
     
-    // Bind texture
+    // Pass texture
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, self.texture.glName);
     glUniform1i(uniformTexture, 0);
     
-    // Bind modelViewProjection matrix
-    glUniformMatrix4fv(uniforms[uniformModelViewProjectionMatrix], 1, 0, [self.geometryModel modelMatrix].m);
+    // Pass modelViewProjection matrix
+    GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply([self.camera viewProjectionMatrix], [self.geometryModel modelMatrix]);
+    glUniformMatrix4fv(uniforms[uniformModelViewProjectionMatrix], 1, 0, modelViewProjectionMatrix.m);
     
     // Draw
     glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
