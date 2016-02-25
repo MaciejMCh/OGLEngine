@@ -73,6 +73,7 @@ GLint uniforms[uniformsCount];
     glBindVertexArrayOES(self.vao.vaoGLName);
     glEnableVertexAttribArray(VboIndexPositions);
     glEnableVertexAttribArray(VboIndexTexels);
+    glEnableVertexAttribArray(VboIndexNormals);
     
     // Pass texture
     glActiveTexture(GL_TEXTURE0);
@@ -89,6 +90,7 @@ GLint uniforms[uniformsCount];
     // Unbind vao
     glDisableVertexAttribArray(VboIndexPositions);
     glDisableVertexAttribArray(VboIndexTexels);
+    glDisableVertexAttribArray(VboIndexNormals);
     glBindVertexArrayOES(0);
 
 }
@@ -126,6 +128,7 @@ GLint uniforms[uniformsCount];
     // This needs to be done prior to linking.
     glBindAttribLocation(_program, VboIndexPositions, "aPosition");
     glBindAttribLocation(_program, VboIndexTexels, "aTexel");
+    glBindAttribLocation(_program, VboIndexNormals, "aNormal");
     
     // Link program.
     if (![self linkProgram:_program]) {

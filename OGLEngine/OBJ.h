@@ -30,7 +30,11 @@
 @property (nonatomic, strong) GLIntArray *indices;
 @property (nonatomic, strong) GLFloatArray *positions;
 @property (nonatomic, strong) GLFloatArray *texels;
+@property (nonatomic, strong) GLFloatArray *normals;
 
-- (instancetype)initWithIndices:(GLIntArray *)indices positions:(GLFloatArray *)positions texels:(GLFloatArray *)texels;
+- (instancetype)initWithIndices:(GLIntArray *)indices
+                      positions:(GLFloatArray *)positions
+                         texels:(GLFloatArray *)texels
+                        normals:(GLFloatArray *)normals;
 
 @end

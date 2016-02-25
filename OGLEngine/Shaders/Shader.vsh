@@ -8,12 +8,15 @@
 
 attribute vec4 aPosition;
 attribute vec2 aTexel;
+attribute vec3 aNormal;
 
 uniform mat4 uModelViewProjectionMatrix;
 
 varying lowp vec2 vTexel;
+varying lowp vec3 vEyeSpaceNormalizedNormal;
 
 void main() {
     vTexel = aTexel;
+    vEyeSpaceNormalizedNormal = aNormal;
     gl_Position = uModelViewProjectionMatrix * aPosition;
 }

@@ -28,6 +28,7 @@
         
         self.positionsVboGLName = [self generateVboAtIndex:VboIndexPositions data:obj.positions perVertexCount:3];
         self.texelsVboGLName = [self generateVboAtIndex:VboIndexTexels data:obj.texels perVertexCount:2];
+        self.normalsVboGLName = [self generateVboAtIndex:VboIndexNormals data:obj.normals perVertexCount:3];
         
         glBindVertexArrayOES(0);
     }

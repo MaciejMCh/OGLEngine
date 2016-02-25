@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSUInteger, VboIndex) {
     VboIndexPositions = 0,
     VboIndexTexels,
+    VboIndexNormals,
     VbosCount
 };
 
@@ -22,6 +23,7 @@ typedef NS_ENUM(NSUInteger, VboIndex) {
 @property (nonatomic, assign) GLuint indicesVboGLName;
 @property (nonatomic, assign) GLuint positionsVboGLName;
 @property (nonatomic, assign) GLuint texelsVboGLName;
+@property (nonatomic, assign) GLuint normalsVboGLName;
 
 - (instancetype)initWithOBJ:(OBJ *)obj;
 

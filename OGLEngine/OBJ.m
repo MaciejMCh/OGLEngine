@@ -10,12 +10,16 @@
 
 @implementation OBJ
 
-- (instancetype)initWithIndices:(GLIntArray *)indices positions:(GLFloatArray *)positions texels:(GLFloatArray *)texels {
+- (instancetype)initWithIndices:(GLIntArray *)indices
+                      positions:(GLFloatArray *)positions
+                         texels:(GLFloatArray *)texels
+                        normals:(GLFloatArray *)normals {
     self = [super init];
     if (self) {
         self.indices = indices;
         self.positions = positions;
         self.texels = texels;
+        self.normals = normals;
     }
     return self;
 }

@@ -30,6 +30,13 @@
         1,0
     };
     
+    GLuint Normals[] = {
+        0,0,1,
+        0,0,1,
+        0,0,1,
+        0,0,1
+    };
+    
     
     GLFloatArray *positions = [GLFloatArray new];
     positions.count = 12;
@@ -52,7 +59,14 @@
         texels.data[i] = Texels[i];
     }
     
-    OBJ *obj = [[OBJ alloc] initWithIndices:indices positions:positions texels:texels];
+    GLFloatArray *normals = [GLFloatArray new];
+    normals.count = 12;
+    normals.data = malloc(12 * sizeof(GLfloat));
+    for (int i=0; i<12; i++) {
+        normals.data[i] = Normals[i];
+    }
+    
+    OBJ *obj = [[OBJ alloc] initWithIndices:indices positions:positions texels:texels normals:normals];
     return obj;
 }
 
