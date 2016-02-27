@@ -24,6 +24,8 @@
 		526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76A1C7E600700C22AD9 /* Main.storyboard */; };
 		526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76D1C7E600700C22AD9 /* Assets.xcassets */; };
 		526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */; };
+		52C9C9861C8222E2009F2FBF /* OBJLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C9851C8222E2009F2FBF /* OBJLoader.m */; };
+		52C9C9881C822315009F2FBF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9871C822315009F2FBF /* cube.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,9 @@
 		526FD76D1C7E600700C22AD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		526FD7701C7E600700C22AD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		526FD7721C7E600700C22AD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52C9C9841C8222E2009F2FBF /* OBJLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJLoader.h; sourceTree = "<group>"; };
+		52C9C9851C8222E2009F2FBF /* OBJLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJLoader.m; sourceTree = "<group>"; };
+		52C9C9871C822315009F2FBF /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +90,7 @@
 		521A3CBB1C7F957900F19832 /* OBJs */ = {
 			isa = PBXGroup;
 			children = (
+				52C9C9871C822315009F2FBF /* cube.obj */,
 			);
 			name = OBJs;
 			sourceTree = "<group>";
@@ -204,6 +210,8 @@
 		526FD75C1C7E600700C22AD9 /* OGLEngine */ = {
 			isa = PBXGroup;
 			children = (
+				52C9C9841C8222E2009F2FBF /* OBJLoader.h */,
+				52C9C9851C8222E2009F2FBF /* OBJLoader.m */,
 				521A3CC31C7FA12300F19832 /* Controllers */,
 				521A3CBF1C7FA0A400F19832 /* Rendering */,
 				521A3CBA1C7F956F00F19832 /* Resources */,
@@ -275,6 +283,7 @@
 				521A3CBE1C7F958D00F19832 /* Texture.png in Resources */,
 				526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */,
 				526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */,
+				52C9C9881C822315009F2FBF /* cube.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +298,7 @@
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
 				521A3CB01C7F80B300F19832 /* OBJ.m in Sources */,
 				521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */,
+				52C9C9861C8222E2009F2FBF /* OBJLoader.m in Sources */,
 				521A3CAD1C7F804500F19832 /* VAO.m in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,
