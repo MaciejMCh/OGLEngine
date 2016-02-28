@@ -60,6 +60,8 @@
         normals[structIterator.normals ++] = stride.normals[2];
     }
     
+    return nil;
+    
     GLFloatArray *positionsArray = [GLFloatArray new];
     positionsArray.data = positions;
     positionsArray.count = structIterator.positions;
@@ -70,9 +72,9 @@
     
     GLFloatArray *normalsArray = [GLFloatArray new];
     normalsArray.data = normals;
-    normalsArray.count = structIterator.normals;
+    positionsArray.count = structIterator.positions;
     
-    return [[OBJ alloc] initWithIndices:indicesArray positions:positionsArray texels:texelsArray normals:normalsArray];
+    
 }
 
 + (StrideCollection *)strideDataFromOBJLoadingResult:(OBJLoadingResult *)objLoadingResult {

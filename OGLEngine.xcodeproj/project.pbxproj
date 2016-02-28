@@ -16,6 +16,8 @@
 		521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */; };
 		521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */; };
 		521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CD31C7FA24700F19832 /* BasicCamera.m */; };
+		524BD4F21C83747F0067DB36 /* OGLEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F11C83747F0067DB36 /* OGLEngineTests.m */; };
+		524BD4FA1C8374A00067DB36 /* OBJLoaderTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */; };
 		526FD75F1C7E600700C22AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD75E1C7E600700C22AD9 /* main.m */; };
 		526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD7611C7E600700C22AD9 /* AppDelegate.m */; };
 		526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7631C7E600700C22AD9 /* Shader.fsh */; };
@@ -27,6 +29,16 @@
 		52C9C9881C822315009F2FBF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9871C822315009F2FBF /* cube.obj */; };
 		52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98A1C8226F7009F2FBF /* OBJLoader.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		524BD4F41C83747F0067DB36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 526FD7521C7E600700C22AD9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 526FD7591C7E600700C22AD9;
+			remoteInfo = OGLEngine;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		521A3CAB1C7F804500F19832 /* VAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAO.h; sourceTree = "<group>"; };
@@ -48,6 +60,10 @@
 		521A3CD11C7FA23C00F19832 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		521A3CD21C7FA24700F19832 /* BasicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCamera.h; sourceTree = "<group>"; };
 		521A3CD31C7FA24700F19832 /* BasicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCamera.m; sourceTree = "<group>"; };
+		524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OGLEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		524BD4F11C83747F0067DB36 /* OGLEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGLEngineTests.m; sourceTree = "<group>"; };
+		524BD4F31C83747F0067DB36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJLoaderTestCase.m; sourceTree = "<group>"; };
 		526FD75A1C7E600700C22AD9 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526FD75E1C7E600700C22AD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		526FD7601C7E600700C22AD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,6 +82,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		524BD4EC1C83747E0067DB36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		526FD7571C7E600700C22AD9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -191,10 +214,21 @@
 			name = Camera;
 			sourceTree = "<group>";
 		};
+		524BD4F01C83747F0067DB36 /* OGLEngineTests */ = {
+			isa = PBXGroup;
+			children = (
+				524BD4F11C83747F0067DB36 /* OGLEngineTests.m */,
+				524BD4F31C83747F0067DB36 /* Info.plist */,
+				524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */,
+			);
+			path = OGLEngineTests;
+			sourceTree = "<group>";
+		};
 		526FD7511C7E600700C22AD9 = {
 			isa = PBXGroup;
 			children = (
 				526FD75C1C7E600700C22AD9 /* OGLEngine */,
+				524BD4F01C83747F0067DB36 /* OGLEngineTests */,
 				526FD75B1C7E600700C22AD9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -203,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				526FD75A1C7E600700C22AD9 /* OGLEngine.app */,
+				524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -223,6 +258,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		524BD4EE1C83747E0067DB36 /* OGLEngineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 524BD4F81C83747F0067DB36 /* Build configuration list for PBXNativeTarget "OGLEngineTests" */;
+			buildPhases = (
+				524BD4EB1C83747E0067DB36 /* Sources */,
+				524BD4EC1C83747E0067DB36 /* Frameworks */,
+				524BD4ED1C83747E0067DB36 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				524BD4F51C83747F0067DB36 /* PBXTargetDependency */,
+			);
+			name = OGLEngineTests;
+			productName = OGLEngineTests;
+			productReference = 524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		526FD7591C7E600700C22AD9 /* OGLEngine */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 526FD7751C7E600700C22AD9 /* Build configuration list for PBXNativeTarget "OGLEngine" */;
@@ -249,6 +302,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = MaciejCh;
 				TargetAttributes = {
+					524BD4EE1C83747E0067DB36 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 526FD7591C7E600700C22AD9;
+					};
 					526FD7591C7E600700C22AD9 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -268,11 +325,19 @@
 			projectRoot = "";
 			targets = (
 				526FD7591C7E600700C22AD9 /* OGLEngine */,
+				524BD4EE1C83747E0067DB36 /* OGLEngineTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		524BD4ED1C83747E0067DB36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		526FD7581C7E600700C22AD9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -290,6 +355,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		524BD4EB1C83747E0067DB36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				524BD4FA1C8374A00067DB36 /* OBJLoaderTestCase.m in Sources */,
+				524BD4F21C83747F0067DB36 /* OGLEngineTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		526FD7561C7E600700C22AD9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +385,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		524BD4F51C83747F0067DB36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 526FD7591C7E600700C22AD9 /* OGLEngine */;
+			targetProxy = 524BD4F41C83747F0067DB36 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		526FD76A1C7E600700C22AD9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -331,6 +413,31 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		524BD4F61C83747F0067DB36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = OGLEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mch.OGLEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OGLEngine.app/OGLEngine";
+			};
+			name = Debug;
+		};
+		524BD4F71C83747F0067DB36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OGLEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mch.OGLEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OGLEngine.app/OGLEngine";
+			};
+			name = Release;
+		};
 		526FD7731C7E600700C22AD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -436,6 +543,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		524BD4F81C83747F0067DB36 /* Build configuration list for PBXNativeTarget "OGLEngineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524BD4F61C83747F0067DB36 /* Debug */,
+				524BD4F71C83747F0067DB36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		526FD7551C7E600700C22AD9 /* Build configuration list for PBXProject "OGLEngine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
