@@ -221,16 +221,16 @@
     XCTAssertEqual(obj.normals.count, 72);
     
     // Indices
-    XCTAssertEqual(obj.indices.data[0], 1);
-    XCTAssertEqual(obj.indices.data[1], 2);
-    XCTAssertEqual(obj.indices.data[2], 3);
-    XCTAssertEqual(obj.indices.data[3], 1);
-    XCTAssertEqual(obj.indices.data[4], 3);
-    XCTAssertEqual(obj.indices.data[5], 4);
-    XCTAssertEqual(obj.indices.data[6], 5);
-    XCTAssertEqual(obj.indices.data[7], 6);
-    XCTAssertEqual(obj.indices.data[8], 7);
-    XCTAssertEqual(obj.indices.data[35], 24);
+    XCTAssertEqual(obj.indices.data[0], 0);
+    XCTAssertEqual(obj.indices.data[1], 1);
+    XCTAssertEqual(obj.indices.data[2], 2);
+    XCTAssertEqual(obj.indices.data[3], 0);
+    XCTAssertEqual(obj.indices.data[4], 2);
+    XCTAssertEqual(obj.indices.data[5], 3);
+    XCTAssertEqual(obj.indices.data[6], 4);
+    XCTAssertEqual(obj.indices.data[7], 5);
+    XCTAssertEqual(obj.indices.data[8], 6);
+    XCTAssertEqual(obj.indices.data[35], 23);
     
     // Positions
     XCTAssertEqualWithAccuracy(obj.positions.data[0], 1, FLT_EPSILON);

@@ -35,7 +35,7 @@
     // Indices
     GLuint *indices = malloc(strideCollection.indices.count * sizeof(GLuint));
     for (int i=0; i<strideCollection.indices.count; i++) {
-        indices[i] = [strideCollection.indices[i] unsignedIntValue];
+        indices[i] = [strideCollection.indices[i] unsignedIntValue] - 1;
     }
     GLIntArray *indicesArray = [GLIntArray new];
     indicesArray.data = indices;
