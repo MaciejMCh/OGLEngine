@@ -13,6 +13,7 @@
 #import "Texture.h"
 #import "SpinningGeometryModel.h"
 #import "BasicCamera.h"
+#import "OBJLoader.h"
 
 @interface GameViewController () {
     GLuint _program;
@@ -90,7 +91,6 @@ GLint uniforms[uniformsCount];
     
     // Draw
     glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
-    
     // Unbind vao
     glDisableVertexAttribArray(VboIndexPositions);
     glDisableVertexAttribArray(VboIndexTexels);
