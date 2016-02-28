@@ -13,7 +13,7 @@
 - (instancetype)initWithOBJ:(OBJ *)obj {
     self = [super init];
     if (self) {
-        
+        self.obj = obj;
         self.vertexCount = obj.indices.count;
         
         GLuint vaoGLName = 0;

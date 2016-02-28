@@ -18,6 +18,8 @@ typedef NS_ENUM(NSUInteger, VboIndex) {
 
 @interface VAO : NSObject
 
+@property (nonatomic, strong) OBJ *obj;
+
 @property (nonatomic, assign) unsigned int vertexCount;
 @property (nonatomic, assign) GLuint vaoGLName;
 @property (nonatomic, assign) GLuint indicesVboGLName;

@@ -214,6 +214,25 @@
     StrideCollection *strideCollection = [OBJLoader strideDataFromOBJLoadingResult:objLoadingResult];
     OBJ *obj = [OBJLoader objFromStrideCollection:strideCollection objLoadingResult:objLoadingResult];
     
+    // Counts
+    XCTAssertEqual(obj.indices.count, 36);
+    XCTAssertEqual(obj.positions.count, 72);
+    XCTAssertEqual(obj.texels.count, 48);
+    XCTAssertEqual(obj.normals.count, 72);
+    
+    // Indices
+    XCTAssertEqual(obj.indices.data[0], 1);
+    XCTAssertEqual(obj.indices.data[1], 2);
+    XCTAssertEqual(obj.indices.data[2], 3);
+    XCTAssertEqual(obj.indices.data[3], 1);
+    XCTAssertEqual(obj.indices.data[4], 3);
+    XCTAssertEqual(obj.indices.data[5], 4);
+    XCTAssertEqual(obj.indices.data[6], 5);
+    XCTAssertEqual(obj.indices.data[7], 6);
+    XCTAssertEqual(obj.indices.data[8], 7);
+    XCTAssertEqual(obj.indices.data[35], 24);
+    
+    // Positions
     XCTAssertEqualWithAccuracy(obj.positions.data[0], 1, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.positions.data[1], -1, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.positions.data[2], -1, FLT_EPSILON);
@@ -227,6 +246,7 @@
     XCTAssertEqualWithAccuracy(obj.positions.data[70], 1, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.positions.data[71], -1, FLT_EPSILON);
     
+    // Texels
     XCTAssertEqualWithAccuracy(obj.texels.data[0], 0.375624, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.texels.data[1], 0.500625, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.texels.data[6], 0.375625, FLT_EPSILON);
@@ -234,6 +254,7 @@
     XCTAssertEqualWithAccuracy(obj.texels.data[46], 0.375625, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.texels.data[47], 0.998126, FLT_EPSILON);
     
+    // Normals
     XCTAssertEqualWithAccuracy(obj.normals.data[0], 0, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.normals.data[1], -1, FLT_EPSILON);
     XCTAssertEqualWithAccuracy(obj.normals.data[2], 0, FLT_EPSILON);

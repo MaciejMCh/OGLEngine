@@ -69,7 +69,7 @@
     
     GLFloatArray *normalsArray = [GLFloatArray new];
     normalsArray.data = normals;
-    positionsArray.count = structIterator.positions;
+    normalsArray.count = structIterator.normals;
     
     return [[OBJ alloc] initWithIndices:indicesArray
                               positions:positionsArray

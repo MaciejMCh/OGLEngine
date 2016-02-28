@@ -50,7 +50,8 @@ GLint uniforms[uniformsCount];
     glUseProgram(_program);
     glEnable(GL_DEPTH_TEST);
     
-    OBJ *obj = [OBJ square];
+    OBJ *obj = [OBJLoader objFromFileNamed:@"cube"];
+    
     self.vao = [[VAO alloc] initWithOBJ:obj];
     
     self.texture = [[Texture alloc] initWithImageNamed:@"Texture.png"];
