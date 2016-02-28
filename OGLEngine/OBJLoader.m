@@ -46,8 +46,7 @@
     GLfloat *texels = malloc(strideCollection.array.count * 2 * sizeof(GLfloat));
     GLfloat *normals = malloc(strideCollection.array.count * 3 * sizeof(GLfloat));
     OBJInfo structIterator = {0};
-    for (NSNumber *index in strideCollection.indices) {
-        StrideData *stride = strideCollection.array[[index unsignedIntValue] - 1];
+    for (StrideData *stride in strideCollection.array) {
         positions[structIterator.positions ++] = stride.positions[0];
         positions[structIterator.positions ++] = stride.positions[1];
         positions[structIterator.positions ++] = stride.positions[2];
@@ -59,8 +58,6 @@
         normals[structIterator.normals ++] = stride.normals[1];
         normals[structIterator.normals ++] = stride.normals[2];
     }
-    
-    return nil;
     
     GLFloatArray *positionsArray = [GLFloatArray new];
     positionsArray.data = positions;
@@ -74,7 +71,10 @@
     normalsArray.data = normals;
     positionsArray.count = structIterator.positions;
     
-    
+    return [[OBJ alloc] initWithIndices:indicesArray
+                              positions:positionsArray
+                                 texels:texelsArray
+                                normals:normalsArray];
 }
 
 + (StrideCollection *)strideDataFromOBJLoadingResult:(OBJLoadingResult *)objLoadingResult {
