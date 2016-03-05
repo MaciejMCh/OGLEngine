@@ -18,16 +18,15 @@
 #import "FocusingCamera.h"
 #import "Drawable.h"
 #import "FocusingCamera.h"
+#import "DirectionalLight.h"
 
 @interface GameViewController () {
     GLuint _program;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
-//@property (nonatomic, strong) VAO *vao;
-//@property (nonatomic, strong) Texture *texture;
-//@property (nonatomic, strong) id<GeometryModel> geometryModel;
 @property (nonatomic, strong) id<Camera> camera;
+@property (nonatomic, strong) DirectionalLight *directionalLight;
 @property (nonatomic, strong) NSMutableArray<Drawable *> *drawables;
 
 - (void)setupGL;
@@ -43,6 +42,8 @@ enum {
     uniformTexture,
     uniformModelViewProjectionMatrix,
     uniformNormalMatrix,
+    uniformDirectionalLightHalfVector,
+    uniformDirectionalLightDirection,
     uniformsCount
 };
 GLint uniforms[uniformsCount];
@@ -88,6 +89,9 @@ GLint uniforms[uniformsCount];
         [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
     }
     
+    // Light
+    self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, 8, 1)];
+    
     // Camera
     self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
     [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.camera action:@selector(handlePanGesture:)]];
@@ -123,8 +127,18 @@ GLint uniforms[uniformsCount];
         GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([drawable.geometryModel modelMatrix]), NULL);
         glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
         
+        // Pass lights
+        GLKVector3 directionalLightHalfVector = [self.directionalLight halfVectorWithCamera:self.camera];
+        float vectorArray[3] = {directionalLightHalfVector.x, directionalLightHalfVector.y, directionalLightHalfVector.z};
+        glUniform3fv(uniforms[uniformDirectionalLightHalfVector], 1, vectorArray);
+        
+        GLKVector3 directionalLightDirection = self.directionalLight.direction;
+        float vectorArray2[3] = {directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z};
+        glUniform3fv(uniforms[uniformDirectionalLightDirection], 1, vectorArray2);
+        
         // Draw
         glDrawElements(GL_TRIANGLES, drawable.vao.vertexCount, GL_UNSIGNED_INT, 0);
+        
         // Unbind vao
         glDisableVertexAttribArray(VboIndexPositions);
         glDisableVertexAttribArray(VboIndexTexels);
@@ -193,7 +207,8 @@ GLint uniforms[uniformsCount];
     uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
     uniforms[uniformModelViewProjectionMatrix] = glGetUniformLocation(_program, "uModelViewProjectionMatrix");
     uniforms[uniformNormalMatrix] = glGetUniformLocation(_program, "uNormalMatrix");
-    
+    uniforms[uniformDirectionalLightHalfVector] = glGetUniformLocation(_program, "uDirectionalLightHalfVector");
+    uniforms[uniformDirectionalLightDirection] = glGetUniformLocation(_program, "uDirectionalLightDirection");
     
     // Release vertex and fragment shaders.
     if (vertShader) {

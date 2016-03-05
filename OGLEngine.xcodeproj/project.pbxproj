@@ -30,6 +30,7 @@
 		52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98A1C8226F7009F2FBF /* OBJLoader.m */; };
 		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
 		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
+		C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BFB1C8B254300F4897C /* DirectionalLight.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		C2069BF51C8ADF7100F4897C /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
 		C2069BF71C8AE36000F4897C /* FocusingCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusingCamera.h; sourceTree = "<group>"; };
 		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
+		C2069BFA1C8B254300F4897C /* DirectionalLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirectionalLight.h; path = ../../jj/jj/DirectionalLight.h; sourceTree = "<group>"; };
+		C2069BFB1C8B254300F4897C /* DirectionalLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirectionalLight.m; path = ../../jj/jj/DirectionalLight.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,7 @@
 		521A3CBF1C7FA0A400F19832 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				C2069BFD1C8B255100F4897C /* Light */,
 				521A3CD01C7FA21B00F19832 /* Camera */,
 				521A3CC81C7FA1AB00F19832 /* GeometryModel */,
 				521A3CC41C7FA16800F19832 /* Drawable */,
@@ -261,6 +265,15 @@
 				521A3CC21C7FA10000F19832 /* Application */,
 			);
 			path = OGLEngine;
+			sourceTree = "<group>";
+		};
+		C2069BFD1C8B255100F4897C /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				C2069BFA1C8B254300F4897C /* DirectionalLight.h */,
+				C2069BFB1C8B254300F4897C /* DirectionalLight.m */,
+			);
+			name = Light;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +403,7 @@
 				521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */,
 				521A3CB91C7F91A300F19832 /* Texture.m in Sources */,
 				521A3CC71C7FA19100F19832 /* Drawable.m in Sources */,
+				C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
