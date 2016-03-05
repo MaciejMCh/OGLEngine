@@ -28,6 +28,8 @@
 		526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */; };
 		52C9C9881C822315009F2FBF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9871C822315009F2FBF /* cube.obj */; };
 		52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C9C98A1C8226F7009F2FBF /* OBJLoader.m */; };
+		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
+		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,9 @@
 		52C9C9871C822315009F2FBF /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		52C9C9891C8226F7009F2FBF /* OBJLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJLoader.h; sourceTree = "<group>"; };
 		52C9C98A1C8226F7009F2FBF /* OBJLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJLoader.m; sourceTree = "<group>"; };
+		C2069BF51C8ADF7100F4897C /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
+		C2069BF71C8AE36000F4897C /* FocusingCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusingCamera.h; sourceTree = "<group>"; };
+		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +118,7 @@
 		521A3CBB1C7F957900F19832 /* OBJs */ = {
 			isa = PBXGroup;
 			children = (
+				C2069BF51C8ADF7100F4897C /* paczek.obj */,
 				52C9C9871C822315009F2FBF /* cube.obj */,
 			);
 			name = OBJs;
@@ -210,6 +216,8 @@
 				521A3CD11C7FA23C00F19832 /* Camera.h */,
 				521A3CD21C7FA24700F19832 /* BasicCamera.h */,
 				521A3CD31C7FA24700F19832 /* BasicCamera.m */,
+				C2069BF71C8AE36000F4897C /* FocusingCamera.h */,
+				C2069BF81C8AE36000F4897C /* FocusingCamera.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -343,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */,
+				C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */,
 				526FD7661C7E600700C22AD9 /* Shader.vsh in Resources */,
 				526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */,
 				521A3CBE1C7F958D00F19832 /* Texture.png in Resources */,
@@ -369,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
+				C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */,
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
 				521A3CB01C7F80B300F19832 /* OBJ.m in Sources */,
 				521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */,
@@ -550,6 +560,7 @@
 				524BD4F71C83747F0067DB36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		526FD7551C7E600700C22AD9 /* Build configuration list for PBXProject "OGLEngine" */ = {
 			isa = XCConfigurationList;

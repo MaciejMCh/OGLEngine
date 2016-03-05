@@ -14,16 +14,20 @@
 #import "SpinningGeometryModel.h"
 #import "BasicCamera.h"
 #import "OBJLoader.h"
+#import "StaticGeometryModel.h"
+#import "FocusingCamera.h"
+#import "Drawable.h"
 
 @interface GameViewController () {
     GLuint _program;
 }
 @property (strong, nonatomic) EAGLContext *context;
 
-@property (nonatomic, strong) VAO *vao;
-@property (nonatomic, strong) Texture *texture;
-@property (nonatomic, strong) id<GeometryModel> geometryModel;
+//@property (nonatomic, strong) VAO *vao;
+//@property (nonatomic, strong) Texture *texture;
+//@property (nonatomic, strong) id<GeometryModel> geometryModel;
 @property (nonatomic, strong) id<Camera> camera;
+@property (nonatomic, strong) NSMutableArray<Drawable *> *drawables;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -50,15 +54,41 @@ GLint uniforms[uniformsCount];
     glUseProgram(_program);
     glEnable(GL_DEPTH_TEST);
     
-    OBJ *obj = [OBJLoader objFromFileNamed:@"cube"];
+    self.drawables = [NSMutableArray new];
     
-    self.vao = [[VAO alloc] initWithOBJ:obj];
+    // Vaos
+    VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
+    VAO *cubeVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube"]];
     
-    self.texture = [[Texture alloc] initWithImageNamed:@"Texture.png"];
-    [self.texture bind];
+    // Textures
+    Texture *orangeTexture = [[Texture alloc] initWithColor:[UIColor orangeColor]];
+    Texture *grayTexture = [[Texture alloc] initWithColor:[UIColor grayColor]];
+    [orangeTexture bind];
     
-    self.geometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
-    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 0, -3)];
+    // Geometry models
+    SpinningGeometryModel *spinningGeometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
+    StaticGeometryModel *originGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4Identity];
+    
+    // Drawables
+    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:originGeometryModel texture:orangeTexture]];
+    
+    int gridRadius = 5;
+    for (int i=-gridRadius; i<gridRadius; i++) {
+            GLKMatrix4 model = GLKMatrix4MakeScale(.01, 10, .01);
+            model = GLKMatrix4Translate(model, i * 100, 0, 0);
+            StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
+            [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
+    }
+    for (int i=-gridRadius; i<gridRadius; i++) {
+        GLKMatrix4 model = GLKMatrix4MakeScale(10, .01, .01);
+        model = GLKMatrix4Translate(model, 0, i * 100, 0);
+        StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
+        [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
+    }
+    
+    // Camera
+    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 1, -3)];
+    
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -72,32 +102,34 @@ GLint uniforms[uniformsCount];
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    // Bind vao
-    glBindVertexArrayOES(self.vao.vaoGLName);
-    glEnableVertexAttribArray(VboIndexPositions);
-    glEnableVertexAttribArray(VboIndexTexels);
-    glEnableVertexAttribArray(VboIndexNormals);
+    for (Drawable *drawable in self.drawables) {
+        // Bind vao
+        glBindVertexArrayOES(drawable.vao.vaoGLName);
+        glEnableVertexAttribArray(VboIndexPositions);
+        glEnableVertexAttribArray(VboIndexTexels);
+        glEnableVertexAttribArray(VboIndexNormals);
+        
+        // Pass texture
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, drawable.texture.glName);
+        glUniform1i(uniformTexture, 0);
+        
+        // Pass matrices
+        GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply([self.camera viewProjectionMatrix], [drawable.geometryModel modelMatrix]);
+        glUniformMatrix4fv(uniforms[uniformModelViewProjectionMatrix], 1, 0, modelViewProjectionMatrix.m);
+        
+        GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([drawable.geometryModel modelMatrix]), NULL);
+        glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
+        
+        // Draw
+        glDrawElements(GL_TRIANGLES, drawable.vao.vertexCount, GL_UNSIGNED_INT, 0);
+        // Unbind vao
+        glDisableVertexAttribArray(VboIndexPositions);
+        glDisableVertexAttribArray(VboIndexTexels);
+        glDisableVertexAttribArray(VboIndexNormals);
+        glBindVertexArrayOES(0);
+    }
     
-    // Pass texture
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, self.texture.glName);
-    glUniform1i(uniformTexture, 0);
-    
-    // Pass matrices
-    GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply([self.camera viewProjectionMatrix], [self.geometryModel modelMatrix]);
-    glUniformMatrix4fv(uniforms[uniformModelViewProjectionMatrix], 1, 0, modelViewProjectionMatrix.m);
-    
-    GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([self.geometryModel modelMatrix]), NULL);
-    glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
-    
-    // Draw
-    glDrawElements(GL_TRIANGLES, self.vao.vertexCount, GL_UNSIGNED_INT, 0);
-    // Unbind vao
-    glDisableVertexAttribArray(VboIndexPositions);
-    glDisableVertexAttribArray(VboIndexTexels);
-    glDisableVertexAttribArray(VboIndexNormals);
-    glBindVertexArrayOES(0);
-
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
