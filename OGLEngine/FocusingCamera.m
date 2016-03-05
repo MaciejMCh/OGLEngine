@@ -8,14 +8,10 @@
 
 #import "FocusingCamera.h"
 
-@implementation FocusingCamera
+@interface FocusingCamera ()
 
-- (GLKMatrix4)viewProjectionMatrix {
-    
-    self.position = GLKVector3Make(self.distance * sinf(self.hAngle), self.distance * cosf(self.hAngle), 0);
-    
-    
-    return [super viewProjectionMatrix];
-}
+@end
+
+@implementation FocusingCamera
 
 @end

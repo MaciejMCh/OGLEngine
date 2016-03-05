@@ -17,6 +17,7 @@
 #import "StaticGeometryModel.h"
 #import "FocusingCamera.h"
 #import "Drawable.h"
+#import "FocusingCamera.h"
 
 @interface GameViewController () {
     GLuint _program;
@@ -68,6 +69,7 @@ GLint uniforms[uniformsCount];
     // Geometry models
     SpinningGeometryModel *spinningGeometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
     StaticGeometryModel *originGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4Identity];
+    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 1)];
     
     // Drawables
     [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:originGeometryModel texture:orangeTexture]];
@@ -87,18 +89,23 @@ GLint uniforms[uniformsCount];
     }
     
     // Camera
-    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 1, -13)];
+    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 0, 1) orientation:GLKVector3Make(M_PI_2, 0, 0)];
     
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
+
+- (void)handlePan:(UIPanGestureRecognizer *)panGesture {
+    
+}
 
 - (void)update {
     GLfloat angle = CACurrentMediaTime();
     GLfloat distance = 5;
     GLfloat x = distance * cos(CACurrentMediaTime());
     GLfloat y = distance * sin(CACurrentMediaTime());
-    ((BasicCamera *)self.camera).position = GLKVector3Make(x, y, -4);
+    ((BasicCamera *)self.camera).position = GLKVector3Make(x, y, 1);
+    ((BasicCamera *)self.camera).orientation = GLKVector3Make(M_PI_2, 0, -angle + -M_PI_2);
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {

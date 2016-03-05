@@ -12,8 +12,9 @@
 @interface BasicCamera : NSObject<Camera>
 
 @property (nonatomic, assign) GLKVector3 position;
+@property (nonatomic, assign) GLKVector3 orientation;
 
-- (instancetype)initWithPosition:(GLKVector3)position;
+- (instancetype)initWithPosition:(GLKVector3)position orientation:(GLKVector3)orientation ;
 
 @end
 
