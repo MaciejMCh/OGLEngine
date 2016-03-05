@@ -41,4 +41,9 @@
                           );
 }
 
+- (void)handlePanGesture:(UIPanGestureRecognizer *)panGestureRecognizer {
+    self.hAngle = [panGestureRecognizer locationInView:panGestureRecognizer.view].x / 100;
+    self.vAngle = [panGestureRecognizer locationInView:panGestureRecognizer.view].y / 100;
+}
+
 @end

@@ -16,4 +16,6 @@
 
 - (instancetype)initWithPosition:(GLKVector3)position hAngle:(float)hAngle vAngle:(float)vAngle distance:(float)distance;
 
+- (void)handlePanGesture:(UIPanGestureRecognizer *)panGestureRecognizer;
+
 @end

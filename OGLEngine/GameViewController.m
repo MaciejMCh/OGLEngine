@@ -90,14 +90,10 @@ GLint uniforms[uniformsCount];
     
     // Camera
     self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
+    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.camera action:@selector(handlePanGesture:)]];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
-
-- (void)handlePan:(UIPanGestureRecognizer *)panGesture {
-    ((FocusingCamera *)self.camera).hAngle = [panGesture locationInView:self.view].x / 100;
-    ((FocusingCamera *)self.camera).vAngle = [panGesture locationInView:self.view].y / 100;
-}
 
 - (void)update {
     
@@ -304,8 +300,6 @@ GLint uniforms[uniformsCount];
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    
-    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     
     [self setupGL];
 }
