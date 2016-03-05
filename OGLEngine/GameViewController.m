@@ -72,7 +72,7 @@ GLint uniforms[uniformsCount];
     StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 1)];
     
     // Drawables
-    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:originGeometryModel texture:orangeTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
     
     int gridRadius = 5;
     for (int i=-gridRadius; i<gridRadius; i++) {
