@@ -89,21 +89,15 @@ GLint uniforms[uniformsCount];
     }
     
     // Camera
-    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 0, 1) orientation:GLKVector3Make(M_PI_2, 0, 0)];
-    
+    self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 1) orientation:GLKVector3Make(M_PI_2, 0, 0)];
+    ((FocusingCamera *)self.camera).distance = 5;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)handlePan:(UIPanGestureRecognizer *)panGesture {
-    GLfloat hAngle = [panGesture locationInView:self.view].x / 100;
-    GLfloat vAngle = [panGesture locationInView:self.view].y / 100;
-    GLfloat distance = 5;
-    GLfloat x = distance * cos(hAngle) * sin(vAngle);
-    GLfloat y = distance * sin(hAngle) * sin(vAngle);;
-    GLfloat z = distance * cos(vAngle);
-    ((BasicCamera *)self.camera).position = GLKVector3Make(x, y, z);
-    ((BasicCamera *)self.camera).orientation = GLKVector3Make(M_PI - vAngle, 0, -hAngle - M_PI_2);
+    ((FocusingCamera *)self.camera).hAngle = [panGesture locationInView:self.view].x / 100;
+    ((FocusingCamera *)self.camera).vAngle = [panGesture locationInView:self.view].y / 100;
 }
 
 - (void)update {

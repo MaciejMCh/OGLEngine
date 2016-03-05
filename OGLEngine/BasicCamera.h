@@ -17,7 +17,3 @@
 - (instancetype)initWithPosition:(GLKVector3)position orientation:(GLKVector3)orientation ;
 
 @end
-
-@interface TestCamera : BasicCamera
-
-@end
