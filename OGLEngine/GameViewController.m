@@ -87,14 +87,18 @@ GLint uniforms[uniformsCount];
     }
     
     // Camera
-    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 1, -3)];
+    self.camera = [[BasicCamera alloc] initWithPosition:GLKVector3Make(0, 1, -13)];
     
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update {
-    
+    GLfloat angle = CACurrentMediaTime();
+    GLfloat distance = 5;
+    GLfloat x = distance * cos(CACurrentMediaTime());
+    GLfloat y = distance * sin(CACurrentMediaTime());
+    ((BasicCamera *)self.camera).position = GLKVector3Make(x, y, -4);
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
