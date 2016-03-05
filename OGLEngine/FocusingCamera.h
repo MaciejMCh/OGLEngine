@@ -14,4 +14,6 @@
 @property (nonatomic, assign) float hAngle;
 @property (nonatomic, assign) float distance;
 
+- (instancetype)initWithPosition:(GLKVector3)position hAngle:(float)hAngle vAngle:(float)vAngle distance:(float)distance;
+
 @end

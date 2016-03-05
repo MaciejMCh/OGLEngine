@@ -89,8 +89,7 @@ GLint uniforms[uniformsCount];
     }
     
     // Camera
-    self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 1) orientation:GLKVector3Make(M_PI_2, 0, 0)];
-    ((FocusingCamera *)self.camera).distance = 5;
+    self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

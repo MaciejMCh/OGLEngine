@@ -14,6 +14,17 @@
 
 @implementation FocusingCamera
 
+- (instancetype)initWithPosition:(GLKVector3)position hAngle:(float)hAngle vAngle:(float)vAngle distance:(float)distance {
+    self = [super init];
+    if (self) {
+        self.position = position;
+        self.hAngle = hAngle;
+        self.vAngle = vAngle;
+        self.distance = distance;
+    }
+    return self;
+}
+
 - (GLKVector3)position {
     return GLKVector3Make(
                           self.distance * cos(self.hAngle) * sin(self.vAngle),

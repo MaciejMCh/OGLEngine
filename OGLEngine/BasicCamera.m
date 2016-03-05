@@ -17,11 +17,17 @@
 @implementation BasicCamera
 
 - (instancetype)initWithPosition:(GLKVector3)position orientation:(GLKVector3)orientation {
-    self = [super init];
+    self = [self init];
     if (self) {
         self.position = position;
         self.orientation = orientation;
-        
+    }
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
         float aspect = fabs([UIScreen mainScreen].bounds.size.width / [UIScreen mainScreen].bounds.size.height);
         self.projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     }
