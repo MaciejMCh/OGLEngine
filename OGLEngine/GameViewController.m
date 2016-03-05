@@ -96,16 +96,18 @@ GLint uniforms[uniformsCount];
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)handlePan:(UIPanGestureRecognizer *)panGesture {
-    
+    GLfloat hAngle = [panGesture locationInView:self.view].x / 100;
+    GLfloat vAngle = [panGesture locationInView:self.view].y / 100;
+    GLfloat distance = 5;
+    GLfloat x = distance * cos(hAngle) * sin(vAngle);
+    GLfloat y = distance * sin(hAngle) * sin(vAngle);;
+    GLfloat z = distance * cos(vAngle);
+    ((BasicCamera *)self.camera).position = GLKVector3Make(x, y, z);
+    ((BasicCamera *)self.camera).orientation = GLKVector3Make(M_PI_2, 0, -hAngle - M_PI_2);
 }
 
 - (void)update {
-    GLfloat angle = CACurrentMediaTime();
-    GLfloat distance = 5;
-    GLfloat x = distance * cos(CACurrentMediaTime());
-    GLfloat y = distance * sin(CACurrentMediaTime());
-    ((BasicCamera *)self.camera).position = GLKVector3Make(x, y, 1);
-    ((BasicCamera *)self.camera).orientation = GLKVector3Make(M_PI_2, 0, -angle + -M_PI_2);
+    
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
@@ -309,6 +311,8 @@ GLint uniforms[uniformsCount];
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    
+    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)]];
     
     [self setupGL];
 }
