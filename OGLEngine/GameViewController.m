@@ -103,7 +103,7 @@ GLint uniforms[uniformsCount];
     GLfloat y = distance * sin(hAngle) * sin(vAngle);;
     GLfloat z = distance * cos(vAngle);
     ((BasicCamera *)self.camera).position = GLKVector3Make(x, y, z);
-    ((BasicCamera *)self.camera).orientation = GLKVector3Make(M_PI_2, 0, -hAngle - M_PI_2);
+    ((BasicCamera *)self.camera).orientation = GLKVector3Make(M_PI - vAngle, 0, -hAngle - M_PI_2);
 }
 
 - (void)update {
