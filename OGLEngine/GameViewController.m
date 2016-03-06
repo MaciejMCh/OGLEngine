@@ -62,22 +62,37 @@ GLint uniforms[uniformsCount];
     VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
     VAO *cubeVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube"]];
     VAO *axesVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"axes"]];
+    VAO *groundVao = [[VAO alloc] initWithOBJ:[OBJ square]];
     
     // Textures
     Texture *orangeTexture = [[Texture alloc] initWithColor:[UIColor orangeColor]];
     Texture *grayTexture = [[Texture alloc] initWithColor:[UIColor grayColor]];
     Texture *axesTexture = [[Texture alloc] initWithImageNamed:@"axes_rgb"];
+    Texture *groundTexture = [[Texture alloc] initWithColor:[UIColor brownColor]];
     
     [orangeTexture bind];
+    [grayTexture bind];
+    [axesTexture bind];
+    [groundTexture bind];
     
     // Geometry models
     SpinningGeometryModel *spinningGeometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
     StaticGeometryModel *originGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4Identity];
-    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 1)];
+    StaticGeometryModel *xGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(1, 0, 0)];
+    StaticGeometryModel *yGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 1, 0)];
+    StaticGeometryModel *zGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 1)];
+    
+    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(1, 1, 1)];
+    StaticGeometryModel *groundGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeScale(100, 100, 0.01)];
+    
     
     // Drawables
-    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:axesTexture]];
+//    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:orangeTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
+//    [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:groundGeometryModel texture:groundTexture]];
     
     int gridRadius = 5;
     for (int i=-gridRadius; i<gridRadius; i++) {
@@ -94,7 +109,7 @@ GLint uniforms[uniformsCount];
     }
     
     // Light
-    self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, 0, 1)];
+    self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, -1, -1)];
     
     // Camera
     self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
@@ -133,11 +148,9 @@ GLint uniforms[uniformsCount];
         
         // Pass lighting data
         GLKVector3 eyePosition = [self.camera cameraPosition];
-//        eyePosition = GLKMatrix4MultiplyVector3(modelViewProjectionMatrix, eyePosition);
-        float vectorArray[3] = {eyePosition.x, eyePosition.y, eyePosition.z};
+        float vectorArray[3] = {eyePosition.x, eyePosition.y, -eyePosition.z};
         glUniform3fv(uniforms[uniformEyePosition], 1, vectorArray);
-        
-//        NSLog(@"%.1f %.1f %.1f", eyePosition.x, eyePosition.y, eyePosition.z);
+//        NSLog(@"%.1f %.1f %.1f", vectorArray[0], vectorArray[1], vectorArray[2]);
         
         GLKVector3 directionalLightDirection = self.directionalLight.direction;
         float vectorArray2[3] = {directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z};
