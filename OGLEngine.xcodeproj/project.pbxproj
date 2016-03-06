@@ -31,6 +31,8 @@
 		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
 		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
 		C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BFB1C8B254300F4897C /* DirectionalLight.m */; };
+		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
+		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
 		C2069BFA1C8B254300F4897C /* DirectionalLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirectionalLight.h; path = ../../jj/jj/DirectionalLight.h; sourceTree = "<group>"; };
 		C2069BFB1C8B254300F4897C /* DirectionalLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirectionalLight.m; path = ../../jj/jj/DirectionalLight.m; sourceTree = "<group>"; };
+		C25382A21C8C5A3800ADF443 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
+		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 		521A3CBB1C7F957900F19832 /* OBJs */ = {
 			isa = PBXGroup;
 			children = (
+				C25382A21C8C5A3800ADF443 /* axes.obj */,
 				C2069BF51C8ADF7100F4897C /* paczek.obj */,
 				52C9C9871C822315009F2FBF /* cube.obj */,
 			);
@@ -130,6 +135,7 @@
 		521A3CBC1C7F957D00F19832 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				C25382A61C8C67CE00ADF443 /* axes_rgb.png */,
 				521A3CBD1C7F958D00F19832 /* Texture.png */,
 			);
 			name = Textures;
@@ -365,10 +371,12 @@
 			files = (
 				526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */,
 				C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */,
+				C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */,
 				526FD7661C7E600700C22AD9 /* Shader.vsh in Resources */,
 				526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */,
 				521A3CBE1C7F958D00F19832 /* Texture.png in Resources */,
 				526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */,
+				C25382A31C8C5A3800ADF443 /* axes.obj in Resources */,
 				526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */,
 				52C9C9881C822315009F2FBF /* cube.obj in Resources */,
 			);

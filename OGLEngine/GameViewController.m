@@ -42,7 +42,7 @@ enum {
     uniformTexture,
     uniformModelViewProjectionMatrix,
     uniformNormalMatrix,
-    uniformDirectionalLightHalfVector,
+    uniformEyePosition,
     uniformDirectionalLightDirection,
     uniformsCount
 };
@@ -61,10 +61,13 @@ GLint uniforms[uniformsCount];
     // Vaos
     VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
     VAO *cubeVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube"]];
+    VAO *axesVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"axes"]];
     
     // Textures
     Texture *orangeTexture = [[Texture alloc] initWithColor:[UIColor orangeColor]];
     Texture *grayTexture = [[Texture alloc] initWithColor:[UIColor grayColor]];
+    Texture *axesTexture = [[Texture alloc] initWithImageNamed:@"axes_rgb"];
+    
     [orangeTexture bind];
     
     // Geometry models
@@ -74,6 +77,7 @@ GLint uniforms[uniformsCount];
     
     // Drawables
     [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:axesTexture]];
     
     int gridRadius = 5;
     for (int i=-gridRadius; i<gridRadius; i++) {
@@ -90,7 +94,7 @@ GLint uniforms[uniformsCount];
     }
     
     // Light
-    self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, 8, 1)];
+    self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, 0, 1)];
     
     // Camera
     self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
@@ -127,10 +131,13 @@ GLint uniforms[uniformsCount];
         GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([drawable.geometryModel modelMatrix]), NULL);
         glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
         
-        // Pass lights
-        GLKVector3 directionalLightHalfVector = [self.directionalLight halfVectorWithCamera:self.camera];
-        float vectorArray[3] = {directionalLightHalfVector.x, directionalLightHalfVector.y, directionalLightHalfVector.z};
-        glUniform3fv(uniforms[uniformDirectionalLightHalfVector], 1, vectorArray);
+        // Pass lighting data
+        GLKVector3 eyePosition = [self.camera cameraPosition];
+//        eyePosition = GLKMatrix4MultiplyVector3(modelViewProjectionMatrix, eyePosition);
+        float vectorArray[3] = {eyePosition.x, eyePosition.y, eyePosition.z};
+        glUniform3fv(uniforms[uniformEyePosition], 1, vectorArray);
+        
+//        NSLog(@"%.1f %.1f %.1f", eyePosition.x, eyePosition.y, eyePosition.z);
         
         GLKVector3 directionalLightDirection = self.directionalLight.direction;
         float vectorArray2[3] = {directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z};
@@ -207,7 +214,7 @@ GLint uniforms[uniformsCount];
     uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
     uniforms[uniformModelViewProjectionMatrix] = glGetUniformLocation(_program, "uModelViewProjectionMatrix");
     uniforms[uniformNormalMatrix] = glGetUniformLocation(_program, "uNormalMatrix");
-    uniforms[uniformDirectionalLightHalfVector] = glGetUniformLocation(_program, "uDirectionalLightHalfVector");
+    uniforms[uniformEyePosition] = glGetUniformLocation(_program, "uEyePosition");
     uniforms[uniformDirectionalLightDirection] = glGetUniformLocation(_program, "uDirectionalLightDirection");
     
     // Release vertex and fragment shaders.
