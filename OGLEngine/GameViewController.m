@@ -82,16 +82,16 @@ GLint uniforms[uniformsCount];
     StaticGeometryModel *yGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 1, 0)];
     StaticGeometryModel *zGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 1)];
     
-    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(1, 1, 1)];
+    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 0)];
     StaticGeometryModel *groundGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeScale(100, 100, 0.01)];
     
     
     // Drawables
-//    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:orangeTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:axesTexture]];
+//    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
+//    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
+//    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
 //    [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:groundGeometryModel texture:groundTexture]];
     
     int gridRadius = 5;
@@ -148,7 +148,7 @@ GLint uniforms[uniformsCount];
         
         // Pass lighting data
         GLKVector3 eyePosition = [self.camera cameraPosition];
-        float vectorArray[3] = {eyePosition.x, eyePosition.y, -eyePosition.z};
+        float vectorArray[3] = {-eyePosition.x, -eyePosition.y, -eyePosition.z};
         glUniform3fv(uniforms[uniformEyePosition], 1, vectorArray);
 //        NSLog(@"%.1f %.1f %.1f", vectorArray[0], vectorArray[1], vectorArray[2]);
         

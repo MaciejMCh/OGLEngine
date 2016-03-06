@@ -15,15 +15,12 @@ varying lowp vec3 vPosition;
 
 void main() {
     // Diffuse light
-    lowp float diffuse = max(0.0, dot(vDirectionalLightDirection, vEyeSpaceNormalizedNormal));
+    lowp float diffuse = max(0.0, dot(-vDirectionalLightDirection, vEyeSpaceNormalizedNormal));
     
     // Specular light
-    lowp vec4 specular = vec4(0.0, 0.0, 0.0, 1.0);
-    if (diffuse >= 0.0) {
-        lowp vec3 eyeVector = normalize(vPosition - vEyePosition);
-        lowp float NdotHV = max(dot(eyeVector, vEyeSpaceNormalizedNormal),0.0);
-        specular = vec4(1.0 , 1.0 , 1.0 , 1.0) * pow(NdotHV,100.0);
-    }
+    lowp vec3 halfVector = normalize(vEyePosition + vPosition);
+    lowp float NdotHV = max(dot(vEyeSpaceNormalizedNormal, halfVector),0.0);
+    lowp vec4 specular = vec4(1.0 , 1.0 , 1.0 , 1.0) * pow(NdotHV,100.0);
     
     gl_FragColor = texture2D(uTexture, vTexel) * diffuse + specular;
 }
