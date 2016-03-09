@@ -30,7 +30,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.webSocketClient = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:6001"]];
+        NSString *ipAddress = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"IPAddress" ofType:@""]];
+        self.webSocketClient = [[SRWebSocket alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"ws://%@:6001", ipAddress]]];
         [self.webSocketClient open];
         self.webSocketClient.delegate = self;
     }

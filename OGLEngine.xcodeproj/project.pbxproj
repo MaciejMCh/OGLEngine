@@ -399,6 +399,7 @@
 					};
 					526FD7591C7E600700C22AD9 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 76RXF4V6NR;
 					};
 				};
 			};
@@ -685,9 +686,10 @@
 			baseConfigurationReference = AE96C1A1A6C2269789EB970B /* Pods-OGLEngine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mch.OGLEngine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -697,9 +699,10 @@
 			baseConfigurationReference = B9BDF39F0C38FDF98D576B75 /* Pods-OGLEngine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mch.OGLEngine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
