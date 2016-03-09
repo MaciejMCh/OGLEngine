@@ -32,6 +32,7 @@
 		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
 		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
 		C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BFB1C8B254300F4897C /* DirectionalLight.m */; };
+		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
 		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
 		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
 		C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B8D271C8E48CA004B9EED /* RemoteController.m */; };
@@ -96,6 +97,7 @@
 		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
 		C2069BFA1C8B254300F4897C /* DirectionalLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirectionalLight.h; path = ../../jj/jj/DirectionalLight.h; sourceTree = "<group>"; };
 		C2069BFB1C8B254300F4897C /* DirectionalLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirectionalLight.m; path = ../../jj/jj/DirectionalLight.m; sourceTree = "<group>"; };
+		C22115331C90C28000DB3C72 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C25382A21C8C5A3800ADF443 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
 		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
 		C26B8D261C8E48CA004B9EED /* RemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteController.h; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		521A3CBA1C7F956F00F19832 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C22115321C90C27200DB3C72 /* Other */,
 				521A3CC11C7FA0F000F19832 /* Xcode */,
 				521A3CC01C7FA0D600F19832 /* Shaders */,
 				521A3CBC1C7F957D00F19832 /* Textures */,
@@ -319,6 +322,14 @@
 			name = Light;
 			sourceTree = "<group>";
 		};
+		C22115321C90C27200DB3C72 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C22115331C90C28000DB3C72 /* IPAddress */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 		C26B8D251C8E48B0004B9EED /* RemoteController */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +370,7 @@
 				B3512063FAC059E2539CEF48 /* Check Pods Manifest.lock */,
 				526FD7561C7E600700C22AD9 /* Sources */,
 				526FD7571C7E600700C22AD9 /* Frameworks */,
+				C22115311C90BA0B00DB3C72 /* IP Address */,
 				526FD7581C7E600700C22AD9 /* Resources */,
 				A9451F010AA7C30048644CC9 /* Embed Pods Frameworks */,
 				DF378EED88E135F38945284E /* Copy Pods Resources */,
@@ -423,6 +435,7 @@
 			files = (
 				526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */,
 				C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */,
+				C22115341C90C28000DB3C72 /* IPAddress in Resources */,
 				C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */,
 				526FD7661C7E600700C22AD9 /* Shader.vsh in Resources */,
 				526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */,
@@ -466,6 +479,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		C22115311C90BA0B00DB3C72 /* IP Address */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "IP Address";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/IPAddress.sh\"";
 		};
 		DF378EED88E135F38945284E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
