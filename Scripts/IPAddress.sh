@@ -1,1 +1,1 @@
-python /Users/maciejchmielewski/Desktop/OGLEngine/Scripts/IPAddress.py
+python Scripts/IPAddress.py
