@@ -35,6 +35,8 @@
 		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
 		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
 		C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B8D271C8E48CA004B9EED /* RemoteController.m */; };
+		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
+		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,11 @@
 		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
 		C26B8D261C8E48CA004B9EED /* RemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteController.h; sourceTree = "<group>"; };
 		C26B8D271C8E48CA004B9EED /* RemoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteController.m; sourceTree = "<group>"; };
+		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
+		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
+		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
+		C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllerModels.h; sourceTree = "<group>"; };
+		C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControllerModels.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +261,8 @@
 				521A3CD31C7FA24700F19832 /* BasicCamera.m */,
 				C2069BF71C8AE36000F4897C /* FocusingCamera.h */,
 				C2069BF81C8AE36000F4897C /* FocusingCamera.m */,
+				C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */,
+				C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -315,6 +324,9 @@
 			children = (
 				C26B8D261C8E48CA004B9EED /* RemoteController.h */,
 				C26B8D271C8E48CA004B9EED /* RemoteController.m */,
+				C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */,
+				C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */,
+				C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */,
 			);
 			name = RemoteController;
 			sourceTree = "<group>";
@@ -495,11 +507,13 @@
 				521A3CAD1C7F804500F19832 /* VAO.m in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,
+				C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */,
 				521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */,
 				521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */,
 				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
 				521A3CB91C7F91A300F19832 /* Texture.m in Sources */,
 				521A3CC71C7FA19100F19832 /* Drawable.m in Sources */,
+				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
 				C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

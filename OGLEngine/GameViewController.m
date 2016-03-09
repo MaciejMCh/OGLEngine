@@ -18,6 +18,7 @@
 #import "FocusingCamera.h"
 #import "Drawable.h"
 #import "FocusingCamera.h"
+#import "RemoteControlledCamera.h"
 #import "DirectionalLight.h"
 
 @interface GameViewController () {
@@ -112,8 +113,9 @@ GLint uniforms[uniformsCount];
     self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, -1, -1)];
     
     // Camera
-    self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
-    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.camera action:@selector(handlePanGesture:)]];
+//    self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
+//    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.camera action:@selector(handlePanGesture:)]];
+    self.camera = [RemoteControlledCamera new];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

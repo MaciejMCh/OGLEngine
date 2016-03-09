@@ -7,9 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RemoteControllerModels.h"
+
+typedef void (^EventHandler)(id eventSubject);
 
 @interface RemoteController : NSObject
 
 + (instancetype)controller;
+
+- (void)addEventHandler:(EventHandler)eventHandler;
+- (void)removeEventHandler:(EventHandler)eventHandler;
 
 @end
