@@ -374,6 +374,7 @@
 				526FD7581C7E600700C22AD9 /* Resources */,
 				A9451F010AA7C30048644CC9 /* Embed Pods Frameworks */,
 				DF378EED88E135F38945284E /* Copy Pods Resources */,
+				C222BDEE1C91DDEF00549D93 /* Run Controller */,
 			);
 			buildRules = (
 			);
@@ -494,6 +495,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/IPAddress.sh\"";
+		};
+		C222BDEE1C91DDEF00549D93 /* Run Controller */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Controller";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/Controller.sh\"";
 		};
 		DF378EED88E135F38945284E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
