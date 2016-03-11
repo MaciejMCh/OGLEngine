@@ -115,7 +115,13 @@ GLint uniforms[uniformsCount];
     // Camera
 //    self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
 //    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.camera action:@selector(handlePanGesture:)]];
-    self.camera = [RemoteControlledCamera new];
+    
+    RemoteControlledCamera *camera = [RemoteControlledCamera new];
+    camera.yOffset = -2;
+    camera.zOffset = -1;
+    camera.xMouse = M_PI_2;
+    camera.yMouse = M_PI_4;
+    self.camera = camera;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

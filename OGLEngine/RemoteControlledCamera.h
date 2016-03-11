@@ -11,6 +11,13 @@
 
 @interface RemoteControlledCamera : BasicCamera
 
+@property (nonatomic, assign) float xOffset;
+@property (nonatomic, assign) float yOffset;
+@property (nonatomic, assign) float zOffset;
+
+@property (nonatomic, assign) float xMouse;
+@property (nonatomic, assign) float yMouse;
+
 @end
 
 

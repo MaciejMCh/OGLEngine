@@ -13,13 +13,6 @@
 @property (nonatomic, copy) EventHandler eventHandler;
 @property (nonatomic, strong) NSMutableArray<KeyToggle *> *toggles;
 
-@property (nonatomic, assign) float xOffset;
-@property (nonatomic, assign) float yOffset;
-@property (nonatomic, assign) float zOffset;
-
-@property (nonatomic, assign) float xMouse;
-@property (nonatomic, assign) float yMouse;
-
 @end
 
 @implementation RemoteControlledCamera
