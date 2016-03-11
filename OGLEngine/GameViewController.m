@@ -66,6 +66,7 @@ GLint uniforms[uniformsCount];
     // Vaos
     VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
     VAO *cubeVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube"]];
+    VAO *cubeTexVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube_tex"]];
     VAO *axesVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"axes"]];
     VAO *groundVao = [[VAO alloc] initWithOBJ:[OBJ square]];
     
@@ -97,7 +98,8 @@ GLint uniforms[uniformsCount];
 //    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
 //    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
 //    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:groundVao geometryModel:originGeometryModel texture:groundTexture]];
+//    [self.drawables addObject:[[Drawable alloc] initWithVao:groundVao geometryModel:originGeometryModel texture:groundTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:cubeTexVao geometryModel:originGeometryModel texture:orangeTexture]];
     
     int gridRadius = 5;
     for (int i=-gridRadius; i<gridRadius; i++) {

@@ -37,6 +37,7 @@
 		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
 		C25A90C51C932124009EFF5F /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C25A90C41C932124009EFF5F /* normalMap.png */; };
 		C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B8D271C8E48CA004B9EED /* RemoteController.m */; };
+		C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2962FAF1C933DC9001188C9 /* cube_tex.obj */; };
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		C25A90C41C932124009EFF5F /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
 		C26B8D261C8E48CA004B9EED /* RemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteController.h; sourceTree = "<group>"; };
 		C26B8D271C8E48CA004B9EED /* RemoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteController.m; sourceTree = "<group>"; };
+		C2962FAF1C933DC9001188C9 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
 		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
 		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
 		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		521A3CBB1C7F957900F19832 /* OBJs */ = {
 			isa = PBXGroup;
 			children = (
+				C2962FAF1C933DC9001188C9 /* cube_tex.obj */,
 				C25382A21C8C5A3800ADF443 /* axes.obj */,
 				C2069BF51C8ADF7100F4897C /* paczek.obj */,
 				52C9C9871C822315009F2FBF /* cube.obj */,
@@ -439,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */,
+				C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */,
 				C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */,
 				C22115341C90C28000DB3C72 /* IPAddress in Resources */,
 				C25A90C51C932124009EFF5F /* normalMap.png in Resources */,
