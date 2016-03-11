@@ -11,7 +11,8 @@
 
 @protocol Camera <NSObject>
 
-- (GLKMatrix4)viewProjectionMatrix;
+- (GLKMatrix4)viewMatrix;
+- (GLKMatrix4)projectionMatrix;
 - (GLKVector3)cameraPosition;
 
 @end

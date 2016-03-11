@@ -38,10 +38,10 @@
     return self.position;
 }
 
-- (GLKMatrix4)viewProjectionMatrix {
+- (GLKMatrix4)viewMatrix {
     GLKVector3 orientation = self.orientation;
     GLKVector3 position = self.position;
-    GLKMatrix4 viewProjectionMatrix = self.projectionMatrix;
+    GLKMatrix4 viewProjectionMatrix = GLKMatrix4Identity;
     viewProjectionMatrix = GLKMatrix4Rotate(viewProjectionMatrix, orientation.x, 1, 0, 0);
     viewProjectionMatrix = GLKMatrix4Rotate(viewProjectionMatrix, orientation.y, 0, 1, 0);
     viewProjectionMatrix = GLKMatrix4Rotate(viewProjectionMatrix, orientation.z, 0, 0, 1);

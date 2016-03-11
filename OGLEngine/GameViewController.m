@@ -41,7 +41,9 @@
 
 enum {
     uniformTexture,
-    uniformModelViewProjectionMatrix,
+    uniformModelMatrix,
+    uniformViewMatrix,
+    uniformProjectionMatrix,
     uniformNormalMatrix,
     uniformEyePosition,
     uniformDirectionalLightDirection,
@@ -148,8 +150,13 @@ GLint uniforms[uniformsCount];
         glUniform1i(uniformTexture, 0);
         
         // Pass matrices
-        GLKMatrix4 modelViewProjectionMatrix = GLKMatrix4Multiply([self.camera viewProjectionMatrix], [drawable.geometryModel modelMatrix]);
-        glUniformMatrix4fv(uniforms[uniformModelViewProjectionMatrix], 1, 0, modelViewProjectionMatrix.m);
+        GLKMatrix4 modelMatrix = [drawable.geometryModel modelMatrix];
+        GLKMatrix4 viewMatrix = [self.camera viewMatrix];
+        GLKMatrix4 projectionMatrix = [self.camera projectionMatrix];
+        
+        glUniformMatrix4fv(uniforms[uniformModelMatrix], 1, 0, modelMatrix.m);
+        glUniformMatrix4fv(uniforms[uniformViewMatrix], 1, 0, viewMatrix.m);
+        glUniformMatrix4fv(uniforms[uniformProjectionMatrix], 1, 0, projectionMatrix.m);
         
         GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([drawable.geometryModel modelMatrix]), NULL);
         glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
@@ -233,7 +240,11 @@ GLint uniforms[uniformsCount];
     
     // Get uniform locations.
     uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
-    uniforms[uniformModelViewProjectionMatrix] = glGetUniformLocation(_program, "uModelViewProjectionMatrix");
+    
+    uniforms[uniformModelMatrix] = glGetUniformLocation(_program, "uModelMatrix");
+    uniforms[uniformViewMatrix] = glGetUniformLocation(_program, "uViewMatrix");
+    uniforms[uniformProjectionMatrix] = glGetUniformLocation(_program, "uProjectionMatrix");
+    
     uniforms[uniformNormalMatrix] = glGetUniformLocation(_program, "uNormalMatrix");
     uniforms[uniformEyePosition] = glGetUniformLocation(_program, "uEyePosition");
     uniforms[uniformDirectionalLightDirection] = glGetUniformLocation(_program, "uDirectionalLightDirection");

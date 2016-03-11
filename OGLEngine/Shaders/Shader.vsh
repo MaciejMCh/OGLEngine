@@ -10,7 +10,10 @@ attribute vec4 aPosition;
 attribute vec2 aTexel;
 attribute vec3 aNormal;
 
-uniform mat4 uModelViewProjectionMatrix;
+uniform mat4 uModelMatrix;
+uniform mat4 uViewMatrix;
+uniform mat4 uProjectionMatrix;
+
 uniform mat3 uNormalMatrix;
 uniform vec3 uEyePosition;
 uniform vec3 uDirectionalLightDirection;
@@ -26,7 +29,8 @@ void main() {
     vDirectionalLightDirection = normalize(uDirectionalLightDirection);
     vEyePosition = uEyePosition;
     vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);
-    vec4 position = uModelViewProjectionMatrix * aPosition;
-    vPosition = vec3(position);
+    
+    vec4 position = uProjectionMatrix * uViewMatrix * uModelMatrix * aPosition;
+    vPosition = vec3(uModelMatrix * aPosition);
     gl_Position = position;
 }
