@@ -29,6 +29,7 @@
 @property (nonatomic, strong) id<Camera> camera;
 @property (nonatomic, strong) DirectionalLight *directionalLight;
 @property (nonatomic, strong) NSMutableArray<Drawable *> *drawables;
+@property (nonatomic, strong) Texture *normalMap;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -41,6 +42,7 @@
 
 enum {
     uniformTexture,
+    uniformNormalMap,
     uniformModelMatrix,
     uniformViewMatrix,
     uniformProjectionMatrix,
@@ -114,10 +116,11 @@ GLint uniforms[uniformsCount];
     // Light
     self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, -1, -1)];
     
-    // Camera
-//    self.camera = [[FocusingCamera alloc] initWithPosition:GLKVector3Make(0, 0, 0) hAngle:0 vAngle:0 distance:5];
-//    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.camera action:@selector(handlePanGesture:)]];
+    // Normal map
+    self.normalMap = [[Texture alloc] initWithImageNamed:@"normalMap"];
+    [self.normalMap bind];
     
+    // Camera
     RemoteControlledCamera *camera = [RemoteControlledCamera new];
     camera.yOffset = -2;
     camera.zOffset = -1;
@@ -240,6 +243,7 @@ GLint uniforms[uniformsCount];
     
     // Get uniform locations.
     uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
+    uniforms[uniformNormalMap] = glGetUniformLocation(_program, "uNormalMap");
     
     uniforms[uniformModelMatrix] = glGetUniformLocation(_program, "uModelMatrix");
     uniforms[uniformViewMatrix] = glGetUniformLocation(_program, "uViewMatrix");
