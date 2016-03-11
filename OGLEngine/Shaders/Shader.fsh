@@ -15,6 +15,8 @@ varying lowp vec3 vDirectionalLightDirection;
 varying lowp vec3 vPosition;
 
 void main() {
+    lowp vec3 normalChangeVector = vec3(texture2D(uNormalMap, vTexel));
+    
     // Calculate vectors
     lowp vec3 lightVector = -vDirectionalLightDirection;
     lowp vec3 viewVector = normalize(vEyePosition - vPosition);
@@ -28,7 +30,5 @@ void main() {
     lowp float NdotH = max(dot(normalVector, halfVector),0.0);
     lowp vec4 specular = vec4(1.0 , 1.0 , 1.0 , 1.0) * pow(NdotH,100.0);
     
-    lowp vec4 normalColor = texture2D(uNormalMap, vTexel);
-    
-    gl_FragColor = texture2D(uNormalMap, vTexel) * NdotL + specular;
+    gl_FragColor = texture2D(uTexture, vTexel) * NdotL + specular;
 }

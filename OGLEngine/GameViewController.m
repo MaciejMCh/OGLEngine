@@ -150,7 +150,10 @@ GLint uniforms[uniformsCount];
         // Pass texture
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, drawable.texture.glName);
-        glUniform1i(uniformTexture, 0);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, self.normalMap.glName);
+        glUniform1i(uniforms[uniformTexture], 0);
+        glUniform1i(uniforms[uniformNormalMap], 1);
         
         // Pass matrices
         GLKMatrix4 modelMatrix = [drawable.geometryModel modelMatrix];
