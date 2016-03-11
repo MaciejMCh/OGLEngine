@@ -21,7 +21,7 @@ void main() {
     lowp vec3 lightVector = -vDirectionalLightDirection;
     lowp vec3 viewVector = normalize(vEyePosition - vPosition);
     lowp vec3 halfVector = normalize(lightVector + viewVector);
-    lowp vec3 normalVector = vEyeSpaceNormalizedNormal;
+    lowp vec3 normalVector = normalize(vEyeSpaceNormalizedNormal + normalize(normalChangeVector));
     
     // Diffuse light
     lowp float NdotL = max(0.0, dot(normalVector, lightVector));
