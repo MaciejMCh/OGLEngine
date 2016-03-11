@@ -30,7 +30,11 @@ void main() {
     vEyePosition = uEyePosition;
     vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);
     
-    vec4 position = uProjectionMatrix * uViewMatrix * uModelMatrix * aPosition;
-    vPosition = vec3(uModelMatrix * aPosition);
+    mat4 viewProjectionMatrix = uProjectionMatrix * uViewMatrix;
+    vec4 modelSpacePosition = uModelMatrix * aPosition;
+    
+    vPosition = vec3(modelSpacePosition);
+    vec4 position = viewProjectionMatrix * modelSpacePosition;
+    
     gl_Position = position;
 }

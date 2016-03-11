@@ -95,7 +95,7 @@ GLint uniforms[uniformsCount];
 //    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
 //    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
 //    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
-//    [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:groundGeometryModel texture:groundTexture]];
+    [self.drawables addObject:[[Drawable alloc] initWithVao:groundVao geometryModel:originGeometryModel texture:groundTexture]];
     
     int gridRadius = 5;
     for (int i=-gridRadius; i<gridRadius; i++) {
