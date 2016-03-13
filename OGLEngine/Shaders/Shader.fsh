@@ -16,6 +16,7 @@ varying lowp vec3 vPosition;
 
 void main() {
     lowp vec3 normalChangeVector = vec3(texture2D(uNormalMap, vTexel));
+    normalChangeVector = normalize(normalChangeVector * 2.0 - 1.0); 
     
     // Calculate vectors
     lowp vec3 lightVector = -vDirectionalLightDirection;

@@ -16,7 +16,7 @@
 #import "OBJLoader.h"
 #import "StaticGeometryModel.h"
 #import "FocusingCamera.h"
-#import "Drawable.h"
+#import "Renderable.h"
 #import "FocusingCamera.h"
 #import "RemoteControlledCamera.h"
 #import "DirectionalLight.h"
@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) id<Camera> camera;
 @property (nonatomic, strong) DirectionalLight *directionalLight;
-@property (nonatomic, strong) NSMutableArray<Drawable *> *drawables;
+@property (nonatomic, strong) NSMutableArray<Renderable *> *renderables;
 @property (nonatomic, strong) Texture *normalMap;
 
 - (void)setupGL;
@@ -61,7 +61,7 @@ GLint uniforms[uniformsCount];
     glUseProgram(_program);
     glEnable(GL_DEPTH_TEST);
     
-    self.drawables = [NSMutableArray new];
+    self.renderables = [NSMutableArray new];
     
     // Vaos
     VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
@@ -92,27 +92,27 @@ GLint uniforms[uniformsCount];
     StaticGeometryModel *groundGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeScale(100, 100, 0.01)];
     
     
-    // Drawables
-    [self.drawables addObject:[[Drawable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:axesTexture]];
-//    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
-//    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
-//    [self.drawables addObject:[[Drawable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
-//    [self.drawables addObject:[[Drawable alloc] initWithVao:groundVao geometryModel:originGeometryModel texture:groundTexture]];
-    [self.drawables addObject:[[Drawable alloc] initWithVao:cubeTexVao geometryModel:originGeometryModel texture:orangeTexture]];
+    // Renderables
+    [self.renderables addObject:[[Renderable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
+    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:axesTexture]];
+//    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
+//    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
+//    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
+//    [self.renderables addObject:[[Renderable alloc] initWithVao:groundVao geometryModel:originGeometryModel texture:groundTexture]];
+    [self.renderables addObject:[[Renderable alloc] initWithVao:cubeTexVao geometryModel:originGeometryModel texture:orangeTexture]];
     
     int gridRadius = 5;
     for (int i=-gridRadius; i<gridRadius; i++) {
             GLKMatrix4 model = GLKMatrix4MakeScale(.01, 10, .01);
             model = GLKMatrix4Translate(model, i * 100, 0, 0);
             StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
-            [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
+            [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
     }
     for (int i=-gridRadius; i<gridRadius; i++) {
         GLKMatrix4 model = GLKMatrix4MakeScale(10, .01, .01);
         model = GLKMatrix4Translate(model, 0, i * 100, 0);
         StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
-        [self.drawables addObject:[[Drawable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
+        [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
     }
     
     // Light
@@ -142,23 +142,23 @@ GLint uniforms[uniformsCount];
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    for (Drawable *drawable in self.drawables) {
+    for (Renderable *renderable in self.renderables) {
         // Bind vao
-        glBindVertexArrayOES(drawable.vao.vaoGLName);
+        glBindVertexArrayOES(renderable.vao.vaoGLName);
         glEnableVertexAttribArray(VboIndexPositions);
         glEnableVertexAttribArray(VboIndexTexels);
         glEnableVertexAttribArray(VboIndexNormals);
         
         // Pass texture
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, drawable.texture.glName);
+        glBindTexture(GL_TEXTURE_2D, renderable.texture.glName);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, self.normalMap.glName);
         glUniform1i(uniforms[uniformTexture], 0);
         glUniform1i(uniforms[uniformNormalMap], 1);
         
         // Pass matrices
-        GLKMatrix4 modelMatrix = [drawable.geometryModel modelMatrix];
+        GLKMatrix4 modelMatrix = [renderable.geometryModel modelMatrix];
         GLKMatrix4 viewMatrix = [self.camera viewMatrix];
         GLKMatrix4 projectionMatrix = [self.camera projectionMatrix];
         
@@ -166,7 +166,7 @@ GLint uniforms[uniformsCount];
         glUniformMatrix4fv(uniforms[uniformViewMatrix], 1, 0, viewMatrix.m);
         glUniformMatrix4fv(uniforms[uniformProjectionMatrix], 1, 0, projectionMatrix.m);
         
-        GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([drawable.geometryModel modelMatrix]), NULL);
+        GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([renderable.geometryModel modelMatrix]), NULL);
         glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
         
         // Pass lighting data
@@ -180,7 +180,7 @@ GLint uniforms[uniformsCount];
         glUniform3fv(uniforms[uniformDirectionalLightDirection], 1, vectorArray2);
         
         // Draw
-        glDrawElements(GL_TRIANGLES, drawable.vao.vertexCount, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, renderable.vao.vertexCount, GL_UNSIGNED_INT, 0);
         
         // Unbind vao
         glDisableVertexAttribArray(VboIndexPositions);

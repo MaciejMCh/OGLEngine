@@ -1,14 +1,14 @@
 //
-//  Drawable.m
+//  Renderable.m
 //  jj
 //
 //  Created by Maciej Chmielewski on 14.02.2016.
 //  Copyright © 2016 AppUnite. All rights reserved.
 //
 
-#import "Drawable.h"
+#import "Renderable.h"
 
-@interface Drawable ()
+@interface Renderable ()
 
 @property (nonatomic, strong, readwrite) VAO *vao;
 @property (nonatomic, strong, readwrite) id<GeometryModel> geometryModel;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation Drawable
+@implementation Renderable
 
 - (instancetype)initWithVao:(VAO *)vao
               geometryModel:(id<GeometryModel>)geometryModel

@@ -1,5 +1,5 @@
 //
-//  Drawable.h
+//  Renderable.h
 //  jj
 //
 //  Created by Maciej Chmielewski on 14.02.2016.
@@ -11,7 +11,7 @@
 #import "GeometryModel.h"
 #import "Texture.h"
 
-@interface Drawable : NSObject
+@interface Renderable : NSObject
 
 @property (nonatomic, strong, readonly) VAO *vao;
 @property (nonatomic, strong, readonly) id<GeometryModel> geometryModel;

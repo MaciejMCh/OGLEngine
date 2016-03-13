@@ -12,7 +12,7 @@
 		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
 		521A3CB91C7F91A300F19832 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB81C7F91A300F19832 /* Texture.m */; };
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
-		521A3CC71C7FA19100F19832 /* Drawable.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CC61C7FA19100F19832 /* Drawable.m */; };
+		521A3CC71C7FA19100F19832 /* Renderable.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CC61C7FA19100F19832 /* Renderable.m */; };
 		521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */; };
 		521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */; };
 		521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CD31C7FA24700F19832 /* BasicCamera.m */; };
@@ -62,8 +62,8 @@
 		521A3CB71C7F91A300F19832 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		521A3CB81C7F91A300F19832 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
-		521A3CC51C7FA19100F19832 /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Drawable.h; sourceTree = "<group>"; };
-		521A3CC61C7FA19100F19832 /* Drawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Drawable.m; sourceTree = "<group>"; };
+		521A3CC51C7FA19100F19832 /* Renderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
+		521A3CC61C7FA19100F19832 /* Renderable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Renderable.m; sourceTree = "<group>"; };
 		521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningGeometryModel.h; sourceTree = "<group>"; };
 		521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningGeometryModel.m; sourceTree = "<group>"; };
 		521A3CCB1C7FA1BD00F19832 /* StaticGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticGeometryModel.h; sourceTree = "<group>"; };
@@ -185,10 +185,11 @@
 		521A3CBF1C7FA0A400F19832 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				C21AF2BE1C9609FD004635CB /* Core */,
+				521A3CC41C7FA16800F19832 /* Renderable */,
 				C2069BFD1C8B255100F4897C /* Light */,
 				521A3CD01C7FA21B00F19832 /* Camera */,
 				521A3CC81C7FA1AB00F19832 /* GeometryModel */,
-				521A3CC41C7FA16800F19832 /* Drawable */,
 				521A3CB81C7F91A300F19832 /* Texture.m */,
 				521A3CB71C7F91A300F19832 /* Texture.h */,
 				521A3CAB1C7F804500F19832 /* VAO.h */,
@@ -241,13 +242,13 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		521A3CC41C7FA16800F19832 /* Drawable */ = {
+		521A3CC41C7FA16800F19832 /* Renderable */ = {
 			isa = PBXGroup;
 			children = (
-				521A3CC51C7FA19100F19832 /* Drawable.h */,
-				521A3CC61C7FA19100F19832 /* Drawable.m */,
+				521A3CC51C7FA19100F19832 /* Renderable.h */,
+				521A3CC61C7FA19100F19832 /* Renderable.m */,
 			);
-			name = Drawable;
+			name = Renderable;
 			sourceTree = "<group>";
 		};
 		521A3CC81C7FA1AB00F19832 /* GeometryModel */ = {
@@ -326,6 +327,13 @@
 				C2069BFB1C8B254300F4897C /* DirectionalLight.m */,
 			);
 			name = Light;
+			sourceTree = "<group>";
+		};
+		C21AF2BE1C9609FD004635CB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 		C22115321C90C27200DB3C72 /* Other */ = {
@@ -563,7 +571,7 @@
 				521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */,
 				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
 				521A3CB91C7F91A300F19832 /* Texture.m in Sources */,
-				521A3CC71C7FA19100F19832 /* Drawable.m in Sources */,
+				521A3CC71C7FA19100F19832 /* Renderable.m in Sources */,
 				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
 				C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */,
 			);
