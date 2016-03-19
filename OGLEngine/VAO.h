@@ -13,6 +13,8 @@ typedef NS_ENUM(NSUInteger, VboIndex) {
     VboIndexPositions = 0,
     VboIndexTexels,
     VboIndexNormals,
+    VboIndexTangents,
+    VboIndexBitangents,
     VbosCount
 };
 
@@ -26,6 +28,8 @@ typedef NS_ENUM(NSUInteger, VboIndex) {
 @property (nonatomic, assign) GLuint positionsVboGLName;
 @property (nonatomic, assign) GLuint texelsVboGLName;
 @property (nonatomic, assign) GLuint normalsVboGLName;
+@property (nonatomic, assign) GLuint tangentsVboGLName;
+@property (nonatomic, assign) GLuint bitangentsVboGLName;
 
 - (instancetype)initWithOBJ:(OBJ *)obj;
 

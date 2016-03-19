@@ -31,6 +31,8 @@
 @property (nonatomic, strong) GLFloatArray *positions;
 @property (nonatomic, strong) GLFloatArray *texels;
 @property (nonatomic, strong) GLFloatArray *normals;
+@property (nonatomic, strong) GLFloatArray *tangents;
+@property (nonatomic, strong) GLFloatArray *bitangents;
 
 - (instancetype)initWithIndices:(GLIntArray *)indices
                       positions:(GLFloatArray *)positions

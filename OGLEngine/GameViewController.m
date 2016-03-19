@@ -148,6 +148,8 @@ GLint uniforms[uniformsCount];
         glEnableVertexAttribArray(VboIndexPositions);
         glEnableVertexAttribArray(VboIndexTexels);
         glEnableVertexAttribArray(VboIndexNormals);
+        glEnableVertexAttribArray(VboIndexTangents);
+        glEnableVertexAttribArray(VboIndexBitangents);
         
         // Pass texture
         glActiveTexture(GL_TEXTURE0);
@@ -186,6 +188,9 @@ GLint uniforms[uniformsCount];
         glDisableVertexAttribArray(VboIndexPositions);
         glDisableVertexAttribArray(VboIndexTexels);
         glDisableVertexAttribArray(VboIndexNormals);
+        glDisableVertexAttribArray(VboIndexTangents);
+        glDisableVertexAttribArray(VboIndexBitangents);
+        
         glBindVertexArrayOES(0);
     }
     
@@ -225,6 +230,8 @@ GLint uniforms[uniformsCount];
     glBindAttribLocation(_program, VboIndexPositions, "aPosition");
     glBindAttribLocation(_program, VboIndexTexels, "aTexel");
     glBindAttribLocation(_program, VboIndexNormals, "aNormal");
+    glBindAttribLocation(_program, VboIndexTangents, "aTangent");
+    glBindAttribLocation(_program, VboIndexBitangents, "aBitangent");
     
     // Link program.
     if (![self linkProgram:_program]) {
