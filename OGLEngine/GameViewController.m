@@ -8,13 +8,13 @@
 
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
-#import "OBJ+samples.h"
+//#import "OBJ+samples.h"
 //#import "VAO.h"
 //#import "Texture.h"
-#import "SpinningGeometryModel.h"
+//#import "SpinningGeometryModel.h"
 #import "BasicCamera.h"
 #import "OBJLoader.h"
-#import "StaticGeometryModel.h"
+//#import "StaticGeometryModel.h"
 #import "FocusingCamera.h"
 //#import "Renderable.h"
 #import "FocusingCamera.h"
@@ -84,13 +84,15 @@ GLint uniforms[uniformsCount];
     
     // Geometry models
     SpinningGeometryModel *spinningGeometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
-    StaticGeometryModel *originGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4Identity];
-    StaticGeometryModel *xGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(1, 0, 0)];
-    StaticGeometryModel *yGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 1, 0)];
-    StaticGeometryModel *zGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 1)];
+    StaticGeometryModel *originGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
+    GLKMatrix4 mat = [originGeometryModel modelMatrix];
+//    [originGeometryModel wtf:GLKMatrix4Identity];
+    StaticGeometryModel *xGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(1, 0, 0)];
+    StaticGeometryModel *yGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(0, 1, 0)];
+    StaticGeometryModel *zGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 1)];
     
-    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeTranslation(0, 0, 0)];
-    StaticGeometryModel *groundGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeScale(100, 100, 0.01)];
+    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(5, 0, 0)];
+//    StaticGeometryModel *groundGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeScale(100, 100, 0.01)];
     
     
     // Renderables
@@ -106,14 +108,14 @@ GLint uniforms[uniformsCount];
     for (int i=-gridRadius; i<gridRadius; i++) {
             GLKMatrix4 model = GLKMatrix4MakeScale(.01, 10, .01);
             model = GLKMatrix4Translate(model, i * 100, 0, 0);
-            StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
-            [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
+//        StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(i * 100, 0, 0) scale:GLKVector3Make(.01, 10, .01)];
+//            [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
     }
     for (int i=-gridRadius; i<gridRadius; i++) {
         GLKMatrix4 model = GLKMatrix4MakeScale(10, .01, .01);
         model = GLKMatrix4Translate(model, 0, i * 100, 0);
-        StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
-        [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
+//        StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
+//        [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
     }
     
     // Light

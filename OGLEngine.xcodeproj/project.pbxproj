@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
-		521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */; };
 		521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CD31C7FA24700F19832 /* BasicCamera.m */; };
 		524BD4F21C83747F0067DB36 /* OGLEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F11C83747F0067DB36 /* OGLEngineTests.m */; };
 		524BD4FA1C8374A00067DB36 /* OBJLoaderTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */; };
@@ -27,6 +25,7 @@
 		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
 		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
 		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
+		C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */; };
 		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
 		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
 		C25A90C51C932124009EFF5F /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C25A90C41C932124009EFF5F /* normalMap.png */; };
@@ -54,11 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		521A3CB41C7F8E4500F19832 /* OBJ+samples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OBJ+samples.h"; sourceTree = "<group>"; };
-		521A3CB51C7F8E4500F19832 /* OBJ+samples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OBJ+samples.m"; sourceTree = "<group>"; };
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
-		521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningGeometryModel.h; sourceTree = "<group>"; };
-		521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningGeometryModel.m; sourceTree = "<group>"; };
 		521A3CD11C7FA23C00F19832 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		521A3CD21C7FA24700F19832 /* BasicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCamera.h; sourceTree = "<group>"; };
 		521A3CD31C7FA24700F19832 /* BasicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCamera.m; sourceTree = "<group>"; };
@@ -88,6 +83,7 @@
 		C2069BF71C8AE36000F4897C /* FocusingCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusingCamera.h; sourceTree = "<group>"; };
 		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
 		C22115331C90C28000DB3C72 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
+		C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningGeometryModel.swift; sourceTree = "<group>"; };
 		C25382A21C8C5A3800ADF443 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
 		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
 		C25A90C41C932124009EFF5F /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
@@ -189,8 +185,6 @@
 				C2C8307E1CA024590064C2FE /* Texture.swift */,
 				C2C830821CA02ADB0064C2FE /* VAO.swift */,
 				C2C830841CA030F30064C2FE /* OBJ.swift */,
-				521A3CB41C7F8E4500F19832 /* OBJ+samples.h */,
-				521A3CB51C7F8E4500F19832 /* OBJ+samples.m */,
 			);
 			name = Rendering;
 			sourceTree = "<group>";
@@ -247,10 +241,9 @@
 		521A3CC81C7FA1AB00F19832 /* GeometryModel */ = {
 			isa = PBXGroup;
 			children = (
-				521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */,
-				521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */,
 				C2C830881CA060E00064C2FE /* GeometryModel.swift */,
 				C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */,
+				C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */,
 			);
 			name = GeometryModel;
 			sourceTree = "<group>";
@@ -554,15 +547,14 @@
 				C2C830851CA030F30064C2FE /* OBJ.swift in Sources */,
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
 				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
-				521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */,
 				52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */,
 				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
 				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,
+				C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */,
 				C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */,
 				C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */,
-				521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */,
 				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
 				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
 				C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */,
