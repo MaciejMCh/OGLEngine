@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GeometryModel.h"
+#import "OGLEngine-Swift.h"
 
 @interface StaticGeometryModel : NSObject<GeometryModel>
 
