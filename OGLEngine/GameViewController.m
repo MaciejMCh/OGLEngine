@@ -19,7 +19,7 @@
 //#import "Renderable.h"
 #import "FocusingCamera.h"
 #import "RemoteControlledCamera.h"
-#import "DirectionalLight.h"
+//#import "DirectionalLight.h"
 #import "OGLEngine-Swift.h"
 
 @interface GameViewController () {

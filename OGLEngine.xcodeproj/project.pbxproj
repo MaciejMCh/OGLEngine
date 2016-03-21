@@ -30,7 +30,6 @@
 		8028C08A433B5B0C1E697AEC /* libPods-OGLEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61104443A1882E4CEF047F8D /* libPods-OGLEngine.a */; };
 		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
 		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
-		C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BFB1C8B254300F4897C /* DirectionalLight.m */; };
 		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
 		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
 		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
@@ -38,6 +37,7 @@
 		C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B8D271C8E48CA004B9EED /* RemoteController.m */; };
 		C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2962FAF1C933DC9001188C9 /* cube_tex.obj */; };
 		C2C830711CA019A60064C2FE /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830701CA019A60064C2FE /* Renderable.swift */; };
+		C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8307A1CA022150064C2FE /* DirectionalLight.swift */; };
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 /* End PBXBuildFile section */
@@ -95,8 +95,6 @@
 		C2069BF51C8ADF7100F4897C /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
 		C2069BF71C8AE36000F4897C /* FocusingCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusingCamera.h; sourceTree = "<group>"; };
 		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
-		C2069BFA1C8B254300F4897C /* DirectionalLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirectionalLight.h; path = ../../jj/jj/DirectionalLight.h; sourceTree = "<group>"; };
-		C2069BFB1C8B254300F4897C /* DirectionalLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirectionalLight.m; path = ../../jj/jj/DirectionalLight.m; sourceTree = "<group>"; };
 		C22115331C90C28000DB3C72 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C25382A21C8C5A3800ADF443 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
 		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
@@ -106,6 +104,7 @@
 		C2962FAF1C933DC9001188C9 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
 		C2C8306F1CA019A50064C2FE /* OGLEngine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGLEngine-Bridging-Header.h"; sourceTree = "<group>"; };
 		C2C830701CA019A60064C2FE /* Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		C2C8307A1CA022150064C2FE /* DirectionalLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
 		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
 		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
@@ -323,8 +322,7 @@
 		C2069BFD1C8B255100F4897C /* Light */ = {
 			isa = PBXGroup;
 			children = (
-				C2069BFA1C8B254300F4897C /* DirectionalLight.h */,
-				C2069BFB1C8B254300F4897C /* DirectionalLight.m */,
+				C2C8307A1CA022150064C2FE /* DirectionalLight.swift */,
 			);
 			name = Light;
 			sourceTree = "<group>";
@@ -564,6 +562,7 @@
 				521A3CB01C7F80B300F19832 /* OBJ.m in Sources */,
 				521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */,
 				52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */,
+				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
 				521A3CAD1C7F804500F19832 /* VAO.m in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,
@@ -573,7 +572,6 @@
 				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
 				521A3CB91C7F91A300F19832 /* Texture.m in Sources */,
 				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
-				C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
