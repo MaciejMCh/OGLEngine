@@ -12,7 +12,6 @@
 		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
 		521A3CB91C7F91A300F19832 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB81C7F91A300F19832 /* Texture.m */; };
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
-		521A3CC71C7FA19100F19832 /* Renderable.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CC61C7FA19100F19832 /* Renderable.m */; };
 		521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */; };
 		521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */; };
 		521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CD31C7FA24700F19832 /* BasicCamera.m */; };
@@ -38,6 +37,7 @@
 		C25A90C51C932124009EFF5F /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C25A90C41C932124009EFF5F /* normalMap.png */; };
 		C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B8D271C8E48CA004B9EED /* RemoteController.m */; };
 		C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2962FAF1C933DC9001188C9 /* cube_tex.obj */; };
+		C2C830711CA019A60064C2FE /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830701CA019A60064C2FE /* Renderable.swift */; };
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 /* End PBXBuildFile section */
@@ -62,8 +62,6 @@
 		521A3CB71C7F91A300F19832 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
 		521A3CB81C7F91A300F19832 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
-		521A3CC51C7FA19100F19832 /* Renderable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
-		521A3CC61C7FA19100F19832 /* Renderable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Renderable.m; sourceTree = "<group>"; };
 		521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningGeometryModel.h; sourceTree = "<group>"; };
 		521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningGeometryModel.m; sourceTree = "<group>"; };
 		521A3CCB1C7FA1BD00F19832 /* StaticGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticGeometryModel.h; sourceTree = "<group>"; };
@@ -106,6 +104,8 @@
 		C26B8D261C8E48CA004B9EED /* RemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteController.h; sourceTree = "<group>"; };
 		C26B8D271C8E48CA004B9EED /* RemoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteController.m; sourceTree = "<group>"; };
 		C2962FAF1C933DC9001188C9 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
+		C2C8306F1CA019A50064C2FE /* OGLEngine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGLEngine-Bridging-Header.h"; sourceTree = "<group>"; };
+		C2C830701CA019A60064C2FE /* Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
 		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
 		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
@@ -214,6 +214,7 @@
 		521A3CC11C7FA0F000F19832 /* Xcode */ = {
 			isa = PBXGroup;
 			children = (
+				C2C8306F1CA019A50064C2FE /* OGLEngine-Bridging-Header.h */,
 				526FD76A1C7E600700C22AD9 /* Main.storyboard */,
 				526FD76D1C7E600700C22AD9 /* Assets.xcassets */,
 				526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */,
@@ -245,8 +246,7 @@
 		521A3CC41C7FA16800F19832 /* Renderable */ = {
 			isa = PBXGroup;
 			children = (
-				521A3CC51C7FA19100F19832 /* Renderable.h */,
-				521A3CC61C7FA19100F19832 /* Renderable.m */,
+				C2C830701CA019A60064C2FE /* Renderable.swift */,
 			);
 			name = Renderable;
 			sourceTree = "<group>";
@@ -560,6 +560,7 @@
 				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
 				C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */,
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
+				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
 				521A3CB01C7F80B300F19832 /* OBJ.m in Sources */,
 				521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */,
 				52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */,
@@ -571,7 +572,6 @@
 				521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */,
 				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
 				521A3CB91C7F91A300F19832 /* Texture.m in Sources */,
-				521A3CC71C7FA19100F19832 /* Renderable.m in Sources */,
 				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
 				C2069BFC1C8B254300F4897C /* DirectionalLight.m in Sources */,
 			);
@@ -717,11 +717,14 @@
 			baseConfigurationReference = AE96C1A1A6C2269789EB970B /* Pods-OGLEngine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OGLEngine/OGLEngine-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -730,11 +733,13 @@
 			baseConfigurationReference = B9BDF39F0C38FDF98D576B75 /* Pods-OGLEngine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OGLEngine/OGLEngine-Bridging-Header.h";
 			};
 			name = Release;
 		};

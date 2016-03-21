@@ -16,10 +16,11 @@
 #import "OBJLoader.h"
 #import "StaticGeometryModel.h"
 #import "FocusingCamera.h"
-#import "Renderable.h"
+//#import "Renderable.h"
 #import "FocusingCamera.h"
 #import "RemoteControlledCamera.h"
 #import "DirectionalLight.h"
+#import "OGLEngine-Swift.h"
 
 @interface GameViewController () {
     GLuint _program;
