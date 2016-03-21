@@ -10,7 +10,6 @@
 		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
 		521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */; };
-		521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */; };
 		521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CD31C7FA24700F19832 /* BasicCamera.m */; };
 		524BD4F21C83747F0067DB36 /* OGLEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F11C83747F0067DB36 /* OGLEngineTests.m */; };
 		524BD4FA1C8374A00067DB36 /* OBJLoaderTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */; };
@@ -39,6 +38,7 @@
 		C2C830831CA02ADB0064C2FE /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830821CA02ADB0064C2FE /* VAO.swift */; };
 		C2C830851CA030F30064C2FE /* OBJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830841CA030F30064C2FE /* OBJ.swift */; };
 		C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830881CA060E00064C2FE /* GeometryModel.swift */; };
+		C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */; };
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 /* End PBXBuildFile section */
@@ -59,8 +59,6 @@
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
 		521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningGeometryModel.h; sourceTree = "<group>"; };
 		521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningGeometryModel.m; sourceTree = "<group>"; };
-		521A3CCB1C7FA1BD00F19832 /* StaticGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticGeometryModel.h; sourceTree = "<group>"; };
-		521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticGeometryModel.m; sourceTree = "<group>"; };
 		521A3CD11C7FA23C00F19832 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		521A3CD21C7FA24700F19832 /* BasicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCamera.h; sourceTree = "<group>"; };
 		521A3CD31C7FA24700F19832 /* BasicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCamera.m; sourceTree = "<group>"; };
@@ -103,6 +101,7 @@
 		C2C830821CA02ADB0064C2FE /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 		C2C830841CA030F30064C2FE /* OBJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJ.swift; sourceTree = "<group>"; };
 		C2C830881CA060E00064C2FE /* GeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryModel.swift; sourceTree = "<group>"; };
+		C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
 		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
 		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
 		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
@@ -250,9 +249,8 @@
 			children = (
 				521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */,
 				521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */,
-				521A3CCB1C7FA1BD00F19832 /* StaticGeometryModel.h */,
-				521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */,
 				C2C830881CA060E00064C2FE /* GeometryModel.swift */,
+				C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */,
 			);
 			name = GeometryModel;
 			sourceTree = "<group>";
@@ -565,9 +563,9 @@
 				C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */,
 				C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */,
 				521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */,
-				521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */,
 				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
 				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
+				C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
