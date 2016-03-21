@@ -26,6 +26,7 @@
 		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
 		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
 		C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */; };
+		C2319C3F1CA077A30023767E /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2319C3E1CA077A30023767E /* Camera.swift */; };
 		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
 		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
 		C25A90C51C932124009EFF5F /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C25A90C41C932124009EFF5F /* normalMap.png */; };
@@ -54,7 +55,6 @@
 
 /* Begin PBXFileReference section */
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
-		521A3CD11C7FA23C00F19832 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		521A3CD21C7FA24700F19832 /* BasicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCamera.h; sourceTree = "<group>"; };
 		521A3CD31C7FA24700F19832 /* BasicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCamera.m; sourceTree = "<group>"; };
 		524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OGLEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +84,7 @@
 		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
 		C22115331C90C28000DB3C72 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningGeometryModel.swift; sourceTree = "<group>"; };
+		C2319C3E1CA077A30023767E /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		C25382A21C8C5A3800ADF443 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
 		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
 		C25A90C41C932124009EFF5F /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
@@ -251,13 +252,13 @@
 		521A3CD01C7FA21B00F19832 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				521A3CD11C7FA23C00F19832 /* Camera.h */,
 				521A3CD21C7FA24700F19832 /* BasicCamera.h */,
 				521A3CD31C7FA24700F19832 /* BasicCamera.m */,
 				C2069BF71C8AE36000F4897C /* FocusingCamera.h */,
 				C2069BF81C8AE36000F4897C /* FocusingCamera.m */,
 				C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */,
 				C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */,
+				C2319C3E1CA077A30023767E /* Camera.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -549,6 +550,7 @@
 				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
 				52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */,
 				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
+				C2319C3F1CA077A30023767E /* Camera.swift in Sources */,
 				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,

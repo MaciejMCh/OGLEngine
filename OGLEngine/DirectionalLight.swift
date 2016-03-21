@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 class DirectionalLight : NSObject {
     

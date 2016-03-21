@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 class OBJ : NSObject {
     

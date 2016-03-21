@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 @objc enum VboIndex : Int {
     case Positions = 0

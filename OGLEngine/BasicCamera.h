@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Camera.h"
+#import "OGLEngine-Swift.h"
 
 @interface BasicCamera : NSObject<Camera>
 

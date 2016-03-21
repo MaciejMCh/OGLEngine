@@ -1,5 +1,5 @@
 //
-//  GeometryModel.swift
+//  Camera.swift
 //  OGLEngine
 //
 //  Created by Maciej Chmielewski on 21.03.2016.
@@ -9,8 +9,10 @@
 import Foundation
 import GLKit
 
-@objc protocol GeometryModel {
+@objc protocol Camera {
     
-    func modelMatrix() -> GLKMatrix4
+    func viewMatrix() -> GLKMatrix4
+    func projectionMatrix() -> GLKMatrix4
+    func cameraPosition() -> GLKVector3
     
 }
