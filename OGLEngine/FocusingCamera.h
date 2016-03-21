@@ -6,9 +6,11 @@
 //  Copyright © 2016 MaciejCh. All rights reserved.
 //
 
-#import "BasicCamera.h"
+//#import "BasicCamera.h"
+#import "OGLEngine-Swift.h"
 
-@interface FocusingCamera : BasicCamera
+//@interface FocusingCamera : BasicCamera
+@interface FocusingCamera : NSObject
 
 @property (nonatomic, assign) float vAngle;
 @property (nonatomic, assign) float hAngle;

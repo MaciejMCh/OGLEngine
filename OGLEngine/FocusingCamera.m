@@ -17,7 +17,7 @@
 - (instancetype)initWithPosition:(GLKVector3)position hAngle:(float)hAngle vAngle:(float)vAngle distance:(float)distance {
     self = [super init];
     if (self) {
-        self.position = position;
+//        self.position = position;
         self.hAngle = hAngle;
         self.vAngle = vAngle;
         self.distance = distance;

@@ -12,7 +12,7 @@
 //#import "VAO.h"
 //#import "Texture.h"
 //#import "SpinningGeometryModel.h"
-#import "BasicCamera.h"
+//#import "BasicCamera.h"
 #import "OBJLoader.h"
 //#import "StaticGeometryModel.h"
 #import "FocusingCamera.h"
