@@ -64,8 +64,8 @@ GLint uniforms[uniformsCount];
     self.renderables = [NSMutableArray new];
     
     // Vaos
-    VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
     VAO *cubeVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube"]];
+    VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
     VAO *cubeTexVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube_tex"]];
     VAO *axesVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"axes"]];
     VAO *groundVao = [[VAO alloc] initWithOBJ:[OBJ square]];
