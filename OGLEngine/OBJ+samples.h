@@ -1,15 +1,16 @@
+////
+////  OBJ+samples.h
+////  OGLEngine
+////
+////  Created by Maciej Chmielewski on 25.02.2016.
+////  Copyright © 2016 MaciejCh. All rights reserved.
+////
 //
-//  OBJ+samples.h
-//  OGLEngine
+//#import "OBJ.h"
+//#import "OGLEngine-Swift.h"
 //
-//  Created by Maciej Chmielewski on 25.02.2016.
-//  Copyright © 2016 MaciejCh. All rights reserved.
+//@interface OBJ (samples)
 //
-
-#import "OBJ.h"
-
-@interface OBJ (samples)
-
-+ (OBJ *)square;
-
-@end
+//+ (OBJ *)square;
+//
+//@end

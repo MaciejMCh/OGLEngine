@@ -4,4 +4,3 @@
 
 #import "GeometryModel.h"
 #import "Camera.h"
-#import "OBJ.h"

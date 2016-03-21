@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <OpenGLES/ES2/glext.h>
-#import "OBJ.h"
+//#import "OBJ.h"
+#import "OGLEngine-Swift.h"
 
 typedef struct OBJInfo {
     int vertices;

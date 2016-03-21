@@ -33,30 +33,36 @@
 
 + (OBJ *)objFromStrideCollection:(StrideCollection *)strideCollection objLoadingResult:(OBJLoadingResult *)objLoadingResult {
     // Indices
-    GLuint *indices = malloc(strideCollection.indices.count * sizeof(GLuint));
+    NSMutableArray<NSNumber *> *indices = [NSMutableArray new];
+//    GLuint *indices = malloc(strideCollection.indices.count * sizeof(GLuint));
     for (int i=0; i<strideCollection.indices.count; i++) {
-        indices[i] = [strideCollection.indices[i] unsignedIntValue] - 1;
+        [indices addObject:@([strideCollection.indices[i] unsignedIntValue] - 1)];
+//        indices[i] = [strideCollection.indices[i] unsignedIntValue] - 1;
     }
     GLIntArray *indicesArray = [GLIntArray new];
     indicesArray.data = indices;
     indicesArray.count = strideCollection.indices.count;
     
     // Vertex data
-    GLfloat *positions = malloc(strideCollection.array.count * 3 * sizeof(GLfloat));
-    GLfloat *texels = malloc(strideCollection.array.count * 2 * sizeof(GLfloat));
-    GLfloat *normals = malloc(strideCollection.array.count * 3 * sizeof(GLfloat));
+    NSMutableArray<NSNumber *> *positions = [[NSMutableArray alloc] initWithCapacity:strideCollection.array.count * 3];
+//    GLfloat *positions = malloc(strideCollection.array.count * 3 * sizeof(GLfloat));
+    NSMutableArray<NSNumber *> *texels = [[NSMutableArray alloc] initWithCapacity:strideCollection.array.count * 2];
+//    GLfloat *texels = malloc(strideCollection.array.count * 2 * sizeof(GLfloat));
+//    GLfloat *normals = malloc(strideCollection.array.count * 3 * sizeof(GLfloat));
+    NSMutableArray<NSNumber *> *normals = [[NSMutableArray alloc] initWithCapacity:strideCollection.array.count * 3];
+    
     OBJInfo structIterator = {0};
     for (StrideData *stride in strideCollection.array) {
-        positions[structIterator.positions ++] = stride.positions[0];
-        positions[structIterator.positions ++] = stride.positions[1];
-        positions[structIterator.positions ++] = stride.positions[2];
+        positions[structIterator.positions ++] = @(stride.positions[0]);
+        positions[structIterator.positions ++] = @(stride.positions[1]);
+        positions[structIterator.positions ++] = @(stride.positions[2]);
         
-        texels[structIterator.texels ++] = stride.texels[0];
-        texels[structIterator.texels ++] = stride.texels[1];
+        texels[structIterator.texels ++] = @(stride.texels[0]);
+        texels[structIterator.texels ++] = @(stride.texels[1]);
         
-        normals[structIterator.normals ++] = stride.normals[0];
-        normals[structIterator.normals ++] = stride.normals[1];
-        normals[structIterator.normals ++] = stride.normals[2];
+        normals[structIterator.normals ++] = @(stride.normals[0]);
+        normals[structIterator.normals ++] = @(stride.normals[1]);
+        normals[structIterator.normals ++] = @(stride.normals[2]);
     }
     
     GLFloatArray *positionsArray = [GLFloatArray new];

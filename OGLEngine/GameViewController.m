@@ -69,7 +69,7 @@ GLint uniforms[uniformsCount];
     VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
     VAO *cubeTexVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube_tex"]];
     VAO *axesVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"axes"]];
-    VAO *groundVao = [[VAO alloc] initWithOBJ:[OBJ square]];
+//    VAO *groundVao = [[VAO alloc] initWithOBJ:[OBJ square]];
     
     // Textures
     Texture *orangeTexture = [[Texture alloc] initWithColor:[UIColor orangeColor]];
