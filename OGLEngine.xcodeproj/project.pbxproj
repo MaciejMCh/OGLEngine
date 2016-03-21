@@ -10,7 +10,6 @@
 		521A3CAD1C7F804500F19832 /* VAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CAC1C7F804500F19832 /* VAO.m */; };
 		521A3CB01C7F80B300F19832 /* OBJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CAF1C7F80B300F19832 /* OBJ.m */; };
 		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
-		521A3CB91C7F91A300F19832 /* Texture.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB81C7F91A300F19832 /* Texture.m */; };
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
 		521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */; };
 		521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CCC1C7FA1BD00F19832 /* StaticGeometryModel.m */; };
@@ -38,6 +37,7 @@
 		C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2962FAF1C933DC9001188C9 /* cube_tex.obj */; };
 		C2C830711CA019A60064C2FE /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830701CA019A60064C2FE /* Renderable.swift */; };
 		C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8307A1CA022150064C2FE /* DirectionalLight.swift */; };
+		C2C8307F1CA024590064C2FE /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8307E1CA024590064C2FE /* Texture.swift */; };
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 /* End PBXBuildFile section */
@@ -59,8 +59,6 @@
 		521A3CAF1C7F80B300F19832 /* OBJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJ.m; sourceTree = "<group>"; };
 		521A3CB41C7F8E4500F19832 /* OBJ+samples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OBJ+samples.h"; sourceTree = "<group>"; };
 		521A3CB51C7F8E4500F19832 /* OBJ+samples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OBJ+samples.m"; sourceTree = "<group>"; };
-		521A3CB71C7F91A300F19832 /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
-		521A3CB81C7F91A300F19832 /* Texture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture.m; sourceTree = "<group>"; };
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
 		521A3CC91C7FA1BD00F19832 /* SpinningGeometryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinningGeometryModel.h; sourceTree = "<group>"; };
 		521A3CCA1C7FA1BD00F19832 /* SpinningGeometryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinningGeometryModel.m; sourceTree = "<group>"; };
@@ -105,6 +103,7 @@
 		C2C8306F1CA019A50064C2FE /* OGLEngine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGLEngine-Bridging-Header.h"; sourceTree = "<group>"; };
 		C2C830701CA019A60064C2FE /* Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		C2C8307A1CA022150064C2FE /* DirectionalLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
+		C2C8307E1CA024590064C2FE /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
 		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
 		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
@@ -189,8 +188,7 @@
 				C2069BFD1C8B255100F4897C /* Light */,
 				521A3CD01C7FA21B00F19832 /* Camera */,
 				521A3CC81C7FA1AB00F19832 /* GeometryModel */,
-				521A3CB81C7F91A300F19832 /* Texture.m */,
-				521A3CB71C7F91A300F19832 /* Texture.h */,
+				C2C8307E1CA024590064C2FE /* Texture.swift */,
 				521A3CAB1C7F804500F19832 /* VAO.h */,
 				521A3CAC1C7F804500F19832 /* VAO.m */,
 				521A3CAE1C7F80B300F19832 /* OBJ.h */,
@@ -562,6 +560,7 @@
 				521A3CB01C7F80B300F19832 /* OBJ.m in Sources */,
 				521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */,
 				52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */,
+				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
 				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
 				521A3CAD1C7F804500F19832 /* VAO.m in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
@@ -570,7 +569,6 @@
 				521A3CCD1C7FA1BD00F19832 /* SpinningGeometryModel.m in Sources */,
 				521A3CCE1C7FA1BD00F19832 /* StaticGeometryModel.m in Sources */,
 				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
-				521A3CB91C7F91A300F19832 /* Texture.m in Sources */,
 				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

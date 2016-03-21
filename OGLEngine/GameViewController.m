@@ -10,7 +10,7 @@
 #import <OpenGLES/ES2/glext.h>
 #import "OBJ+samples.h"
 #import "VAO.h"
-#import "Texture.h"
+//#import "Texture.h"
 #import "SpinningGeometryModel.h"
 #import "BasicCamera.h"
 #import "OBJLoader.h"
