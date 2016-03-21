@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		521A3CAD1C7F804500F19832 /* VAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CAC1C7F804500F19832 /* VAO.m */; };
 		521A3CB01C7F80B300F19832 /* OBJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CAF1C7F80B300F19832 /* OBJ.m */; };
 		521A3CB61C7F8E4500F19832 /* OBJ+samples.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CB51C7F8E4500F19832 /* OBJ+samples.m */; };
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
@@ -38,6 +37,7 @@
 		C2C830711CA019A60064C2FE /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830701CA019A60064C2FE /* Renderable.swift */; };
 		C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8307A1CA022150064C2FE /* DirectionalLight.swift */; };
 		C2C8307F1CA024590064C2FE /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8307E1CA024590064C2FE /* Texture.swift */; };
+		C2C830831CA02ADB0064C2FE /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830821CA02ADB0064C2FE /* VAO.swift */; };
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 /* End PBXBuildFile section */
@@ -53,8 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		521A3CAB1C7F804500F19832 /* VAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAO.h; sourceTree = "<group>"; };
-		521A3CAC1C7F804500F19832 /* VAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAO.m; sourceTree = "<group>"; };
 		521A3CAE1C7F80B300F19832 /* OBJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBJ.h; sourceTree = "<group>"; };
 		521A3CAF1C7F80B300F19832 /* OBJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJ.m; sourceTree = "<group>"; };
 		521A3CB41C7F8E4500F19832 /* OBJ+samples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OBJ+samples.h"; sourceTree = "<group>"; };
@@ -104,6 +102,7 @@
 		C2C830701CA019A60064C2FE /* Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		C2C8307A1CA022150064C2FE /* DirectionalLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		C2C8307E1CA024590064C2FE /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		C2C830821CA02ADB0064C2FE /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
 		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
 		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
@@ -189,8 +188,7 @@
 				521A3CD01C7FA21B00F19832 /* Camera */,
 				521A3CC81C7FA1AB00F19832 /* GeometryModel */,
 				C2C8307E1CA024590064C2FE /* Texture.swift */,
-				521A3CAB1C7F804500F19832 /* VAO.h */,
-				521A3CAC1C7F804500F19832 /* VAO.m */,
+				C2C830821CA02ADB0064C2FE /* VAO.swift */,
 				521A3CAE1C7F80B300F19832 /* OBJ.h */,
 				521A3CAF1C7F80B300F19832 /* OBJ.m */,
 				521A3CB41C7F8E4500F19832 /* OBJ+samples.h */,
@@ -553,6 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2C830831CA02ADB0064C2FE /* VAO.swift in Sources */,
 				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
 				C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */,
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
@@ -562,7 +561,6 @@
 				52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */,
 				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
 				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
-				521A3CAD1C7F804500F19832 /* VAO.m in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,
 				C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */,
