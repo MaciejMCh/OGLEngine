@@ -155,13 +155,15 @@
     float vectorArray2[3] = {directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z};
     glUniform3fv([Program ProgramUniformDirectionalLightDirection], 1, vectorArray2);
     
-    for (Renderable *renderable in self.renderables) {
-        [Renderer bind:renderable];
-        [Renderer bindTexture:renderable normalMap:self.normalMap];
-        [Renderer passMatrices:renderable camera:self.camera];
-        [Renderer draw:renderable];
-        [Renderer unbind:renderable];
-    }
+    [Renderer render:self.renderables camera:self.camera normalMap:self.normalMap];
+    
+//    for (Renderable *renderable in self.renderables) {
+//        [Renderer bind:renderable];
+//        [Renderer bindTexture:renderable normalMap:self.normalMap];
+//        [Renderer passMatrices:renderable camera:self.camera];
+//        [Renderer draw:renderable];
+//        [Renderer unbind:renderable];
+//    }
     
 }
 
