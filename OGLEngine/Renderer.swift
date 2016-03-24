@@ -11,6 +11,26 @@ import GLKit
 
 class Renderer : NSObject {
     
+    class func prepareBuffer() {
+        glClearColor(0.65, 0.65, 0.65, 1.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+    }
+    
+    class func passData(camera: Camera, light: DirectionalLight ) {
+        // Pass lighting data
+        var eyePosition = camera.cameraPosition()
+        eyePosition = GLKVector3MultiplyScalar(eyePosition, -1)
+        var vectorArray = [-eyePosition.x, -eyePosition.y, -eyePosition.z]
+        withUnsafePointer(&eyePosition, {
+            glUniform3fv(Program.ProgramUniformEyePosition, 1, UnsafePointer($0))
+        })
+        
+        var directionalLightDirection: GLKVector3 = light.direction()
+        var vectorArray2 = [directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z]
+        withUnsafePointer(&directionalLightDirection, {
+            glUniform3fv(Program.ProgramUniformDirectionalLightDirection, 1, UnsafePointer($0))
+        })
+    }
     
     class func bind(renderable: Renderable) {
         glBindVertexArrayOES(renderable.vao.vaoGLName)

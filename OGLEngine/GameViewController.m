@@ -141,30 +141,9 @@
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    
-    glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
-    
-    // Pass lighting data
-    GLKVector3 eyePosition = [self.camera cameraPosition];
-    float vectorArray[3] = {-eyePosition.x, -eyePosition.y, -eyePosition.z};
-    glUniform3fv([Program ProgramUniformEyePosition], 1, vectorArray);
-    
-    GLKVector3 directionalLightDirection = self.directionalLight.direction;
-    float vectorArray2[3] = {directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z};
-    glUniform3fv([Program ProgramUniformDirectionalLightDirection], 1, vectorArray2);
-    
+    [Renderer prepareBuffer];
+    [Renderer passData:self.camera light:self.directionalLight];
     [Renderer render:self.renderables camera:self.camera normalMap:self.normalMap];
-    
-//    for (Renderable *renderable in self.renderables) {
-//        [Renderer bind:renderable];
-//        [Renderer bindTexture:renderable normalMap:self.normalMap];
-//        [Renderer passMatrices:renderable camera:self.camera];
-//        [Renderer draw:renderable];
-//        [Renderer unbind:renderable];
-//    }
-    
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation
