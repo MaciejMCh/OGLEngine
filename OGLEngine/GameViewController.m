@@ -41,18 +41,18 @@
 - (BOOL)validateProgram:(GLuint)prog;
 @end
 
-enum {
-    uniformTexture,
-    uniformNormalMap,
-    uniformModelMatrix,
-    uniformViewMatrix,
-    uniformProjectionMatrix,
-    uniformNormalMatrix,
-    uniformEyePosition,
-    uniformDirectionalLightDirection,
-    uniformsCount
-};
-GLint uniforms[uniformsCount];
+//enum {
+//    uniformTexture,
+//    uniformNormalMap,
+//    uniformModelMatrix,
+//    uniformViewMatrix,
+//    uniformProjectionMatrix,
+//    uniformNormalMatrix,
+//    uniformEyePosition,
+//    uniformDirectionalLightDirection,
+//    uniformsCount
+//};
+//GLint uniforms[uniformsCount];
 
 @implementation GameViewController
 
@@ -145,6 +145,19 @@ GLint uniforms[uniformsCount];
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
+    
+    // Pass lighting data
+    GLKVector3 eyePosition = [self.camera cameraPosition];
+    float vectorArray[3] = {-eyePosition.x, -eyePosition.y, -eyePosition.z};
+    glUniform3fv([Program ProgramUniformEyePosition], 1, vectorArray);
+    
+    GLKVector3 directionalLightDirection = self.directionalLight.direction;
+    float vectorArray2[3] = {directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z};
+    glUniform3fv([Program ProgramUniformDirectionalLightDirection], 1, vectorArray2);
+    
+    
+//    [Renderer render:self.renderables];
+    
     for (Renderable *renderable in self.renderables) {
         // Bind vao
         glBindVertexArrayOES(renderable.vao.vaoGLName);
@@ -159,30 +172,20 @@ GLint uniforms[uniformsCount];
         glBindTexture(GL_TEXTURE_2D, renderable.texture.glName);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, self.normalMap.glName);
-        glUniform1i(uniforms[uniformTexture], 0);
-        glUniform1i(uniforms[uniformNormalMap], 1);
+        glUniform1i([Program ProgramUniformTexture], 0);
+        glUniform1i([Program ProgramUniformNormalMap], 1);
         
         // Pass matrices
         GLKMatrix4 modelMatrix = [renderable.geometryModel modelMatrix];
         GLKMatrix4 viewMatrix = [self.camera viewMatrix];
         GLKMatrix4 projectionMatrix = [self.camera projectionMatrix];
         
-        glUniformMatrix4fv(uniforms[uniformModelMatrix], 1, 0, modelMatrix.m);
-        glUniformMatrix4fv(uniforms[uniformViewMatrix], 1, 0, viewMatrix.m);
-        glUniformMatrix4fv(uniforms[uniformProjectionMatrix], 1, 0, projectionMatrix.m);
+        glUniformMatrix4fv([Program ProgramUniformModelMatrix], 1, 0, modelMatrix.m);
+        glUniformMatrix4fv([Program ProgramUniformViewMatrix], 1, 0, viewMatrix.m);
+        glUniformMatrix4fv([Program ProgramUniformProjectionMatrix], 1, 0, projectionMatrix.m);
         
         GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([renderable.geometryModel modelMatrix]), NULL);
-        glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
-        
-        // Pass lighting data
-        GLKVector3 eyePosition = [self.camera cameraPosition];
-        float vectorArray[3] = {-eyePosition.x, -eyePosition.y, -eyePosition.z};
-        glUniform3fv(uniforms[uniformEyePosition], 1, vectorArray);
-//        NSLog(@"%.1f %.1f %.1f", vectorArray[0], vectorArray[1], vectorArray[2]);
-        
-        GLKVector3 directionalLightDirection = self.directionalLight.direction;
-        float vectorArray2[3] = {directionalLightDirection.x, directionalLightDirection.y, directionalLightDirection.z};
-        glUniform3fv(uniforms[uniformDirectionalLightDirection], 1, vectorArray2);
+        glUniformMatrix3fv([Program ProgramUniformNormalMatrix], 1, 0, normalMatrix.m);
         
         // Draw
         glDrawElements(GL_TRIANGLES, renderable.vao.vertexCount, GL_UNSIGNED_INT, 0);
@@ -257,16 +260,16 @@ GLint uniforms[uniformsCount];
     }
     
     // Get uniform locations.
-    uniforms[uniformTexture] = glGetUniformLocation(_program, "uTexture");
-    uniforms[uniformNormalMap] = glGetUniformLocation(_program, "uNormalMap");
+    [Program setProgramUniformTexture:glGetUniformLocation(_program, "uTexture")];
+    [Program setProgramUniformNormalMap:glGetUniformLocation(_program, "uNormalMap")];
     
-    uniforms[uniformModelMatrix] = glGetUniformLocation(_program, "uModelMatrix");
-    uniforms[uniformViewMatrix] = glGetUniformLocation(_program, "uViewMatrix");
-    uniforms[uniformProjectionMatrix] = glGetUniformLocation(_program, "uProjectionMatrix");
+    [Program setProgramUniformModelMatrix:glGetUniformLocation(_program, "uModelMatrix")];
+    [Program setProgramUniformViewMatrix:glGetUniformLocation(_program, "uViewMatrix")];
+    [Program setProgramUniformProjectionMatrix:glGetUniformLocation(_program, "uProjectionMatrix")];
     
-    uniforms[uniformNormalMatrix] = glGetUniformLocation(_program, "uNormalMatrix");
-    uniforms[uniformEyePosition] = glGetUniformLocation(_program, "uEyePosition");
-    uniforms[uniformDirectionalLightDirection] = glGetUniformLocation(_program, "uDirectionalLightDirection");
+    [Program setProgramUniformNormalMatrix:glGetUniformLocation(_program, "uNormalMatrix")];
+    [Program setProgramUniformEyePosition:glGetUniformLocation(_program, "uEyePosition")];
+    [Program setProgramUniformDirectionalLightDirection:glGetUniformLocation(_program, "uDirectionalLightDirection")];
     
     // Release vertex and fragment shaders.
     if (vertShader) {

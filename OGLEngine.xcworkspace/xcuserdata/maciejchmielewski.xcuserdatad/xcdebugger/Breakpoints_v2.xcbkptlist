@@ -10,28 +10,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OGLEngine/GameViewController.m"
-            timestampString = "480276644.162223"
+            timestampString = "480292844.125293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-setupGL"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-update"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OGLEngine/GameViewController.m"
-            timestampString = "480276644.162223"
+            filePath = "OGLEngine/BasicCamera.swift"
+            timestampString = "480294092.212154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-setupGL"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "viewMatrix()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
