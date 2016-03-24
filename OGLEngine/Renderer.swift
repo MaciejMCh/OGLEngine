@@ -11,7 +11,7 @@ import GLKit
 
 class Renderer : NSObject {
     
-    class func render(renderables: [Renderable]) {
+    class func render(renderables: [Renderable], camera: Camera, normalMap: Texture) {
         for renderable in renderables {
             // Bind vao
             glBindVertexArrayOES(renderable.vao.vaoGLName)
@@ -23,35 +23,44 @@ class Renderer : NSObject {
 
             // Pass texture
             glActiveTexture(GLenum(GL_TEXTURE0));
-            glBindTexture(GLenum(GL_TEXTURE_2D), renderable.texture.glName);
+            glBindTexture(GLenum(GL_TEXTURE_2D), renderable.texture.glName)
             glActiveTexture(GLenum(GL_TEXTURE1));
-//            glBindTexture(GLenum(GL_TEXTURE_2D), self.normalMap.glName);
-//            glUniform1i(uniforms[uniformTexture], 0);
-//            glUniform1i(uniforms[uniformNormalMap], 1);
+            glBindTexture(GLenum(GL_TEXTURE_2D), normalMap.glName);
+            glUniform1i(Program.ProgramUniformTexture, 0);
+            glUniform1i(Program.ProgramUniformNormalMap, 1);
 
             // Pass matrices
-//            let modelMatrix = [renderable.geometryModel modelMatrix];
-//            GLKMatrix4 viewMatrix = [self.camera viewMatrix];
-//            GLKMatrix4 projectionMatrix = [self.camera projectionMatrix];
-//
-//            glUniformMatrix4fv(uniforms[uniformModelMatrix], 1, 0, modelMatrix.m);
-//            glUniformMatrix4fv(uniforms[uniformViewMatrix], 1, 0, viewMatrix.m);
-//            glUniformMatrix4fv(uniforms[uniformProjectionMatrix], 1, 0, projectionMatrix.m);
-//            
-//            GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([renderable.geometryModel modelMatrix]), NULL);
-//            glUniformMatrix3fv(uniforms[uniformNormalMatrix], 1, 0, normalMatrix.m);
-//            
-//            // Draw
-//            glDrawElements(GL_TRIANGLES, renderable.vao.vertexCount, GL_UNSIGNED_INT, 0);
-//            
-//            // Unbind vao
-//            glDisableVertexAttribArray(VboIndexPositions);
-//            glDisableVertexAttribArray(VboIndexTexels);
-//            glDisableVertexAttribArray(VboIndexNormals);
-//            glDisableVertexAttribArray(VboIndexTangents);
-//            glDisableVertexAttribArray(VboIndexBitangents);
-//            
-//            glBindVertexArrayOES(0);
+            var modelMatrix = renderable.geometryModel.modelMatrix()
+            var viewMatrix = camera.viewMatrix()
+            var projectionMatrix = camera.projectionMatrix()
+            
+            
+            withUnsafePointer(&modelMatrix, {
+                glUniformMatrix4fv(Program.ProgramUniformModelMatrix, 1, 0, UnsafePointer($0))
+            })
+            withUnsafePointer(&viewMatrix, {
+                glUniformMatrix4fv(Program.ProgramUniformViewMatrix, 1, 0, UnsafePointer($0))
+            })
+            withUnsafePointer(&projectionMatrix, {
+                glUniformMatrix4fv(Program.ProgramUniformProjectionMatrix, 1, 0, UnsafePointer($0))
+            })
+            
+            var normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(renderable.geometryModel.modelMatrix()), nil);
+            withUnsafePointer(&normalMatrix, {
+                glUniformMatrix4fv(Program.ProgramUniformNormalMatrix, 1, 0, UnsafePointer($0))
+            })
+            
+            // Draw
+            glDrawElements(GLenum(GL_TRIANGLES), GLsizei(renderable.vao.vertexCount), GLenum(GL_UNSIGNED_INT), nil);
+            
+            // Unbind vao
+            glDisableVertexAttribArray(GLuint(VboIndex.Positions.rawValue))
+            glDisableVertexAttribArray(GLuint(VboIndex.Texels.rawValue))
+            glDisableVertexAttribArray(GLuint(VboIndex.Normals.rawValue))
+            glDisableVertexAttribArray(GLuint(VboIndex.Tangents.rawValue))
+            glDisableVertexAttribArray(GLuint(VboIndex.Bitangents.rawValue))
+            
+            glBindVertexArrayOES(0);
         }
     }
     

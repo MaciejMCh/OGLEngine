@@ -156,49 +156,49 @@
     glUniform3fv([Program ProgramUniformDirectionalLightDirection], 1, vectorArray2);
     
     
-//    [Renderer render:self.renderables];
+    [Renderer render:self.renderables camera:self.camera normalMap:self.normalMap];
     
-    for (Renderable *renderable in self.renderables) {
-        // Bind vao
-        glBindVertexArrayOES(renderable.vao.vaoGLName);
-        glEnableVertexAttribArray(VboIndexPositions);
-        glEnableVertexAttribArray(VboIndexTexels);
-        glEnableVertexAttribArray(VboIndexNormals);
-        glEnableVertexAttribArray(VboIndexTangents);
-        glEnableVertexAttribArray(VboIndexBitangents);
-        
-        // Pass texture
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, renderable.texture.glName);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, self.normalMap.glName);
-        glUniform1i([Program ProgramUniformTexture], 0);
-        glUniform1i([Program ProgramUniformNormalMap], 1);
-        
-        // Pass matrices
-        GLKMatrix4 modelMatrix = [renderable.geometryModel modelMatrix];
-        GLKMatrix4 viewMatrix = [self.camera viewMatrix];
-        GLKMatrix4 projectionMatrix = [self.camera projectionMatrix];
-        
-        glUniformMatrix4fv([Program ProgramUniformModelMatrix], 1, 0, modelMatrix.m);
-        glUniformMatrix4fv([Program ProgramUniformViewMatrix], 1, 0, viewMatrix.m);
-        glUniformMatrix4fv([Program ProgramUniformProjectionMatrix], 1, 0, projectionMatrix.m);
-        
-        GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([renderable.geometryModel modelMatrix]), NULL);
-        glUniformMatrix3fv([Program ProgramUniformNormalMatrix], 1, 0, normalMatrix.m);
-        
-        // Draw
-        glDrawElements(GL_TRIANGLES, renderable.vao.vertexCount, GL_UNSIGNED_INT, 0);
-        
-        // Unbind vao
-        glDisableVertexAttribArray(VboIndexPositions);
-        glDisableVertexAttribArray(VboIndexTexels);
-        glDisableVertexAttribArray(VboIndexNormals);
-        glDisableVertexAttribArray(VboIndexTangents);
-        glDisableVertexAttribArray(VboIndexBitangents);
-        
-        glBindVertexArrayOES(0);
-    }
+//    for (Renderable *renderable in self.renderables) {
+//        // Bind vao
+//        glBindVertexArrayOES(renderable.vao.vaoGLName);
+//        glEnableVertexAttribArray(VboIndexPositions);
+//        glEnableVertexAttribArray(VboIndexTexels);
+//        glEnableVertexAttribArray(VboIndexNormals);
+//        glEnableVertexAttribArray(VboIndexTangents);
+//        glEnableVertexAttribArray(VboIndexBitangents);
+//        
+//        // Pass texture
+//        glActiveTexture(GL_TEXTURE0);
+//        glBindTexture(GL_TEXTURE_2D, renderable.texture.glName);
+//        glActiveTexture(GL_TEXTURE1);
+//        glBindTexture(GL_TEXTURE_2D, self.normalMap.glName);
+//        glUniform1i([Program ProgramUniformTexture], 0);
+//        glUniform1i([Program ProgramUniformNormalMap], 1);
+//        
+//        // Pass matrices
+//        GLKMatrix4 modelMatrix = [renderable.geometryModel modelMatrix];
+//        GLKMatrix4 viewMatrix = [self.camera viewMatrix];
+//        GLKMatrix4 projectionMatrix = [self.camera projectionMatrix];
+//        
+//        glUniformMatrix4fv([Program ProgramUniformModelMatrix], 1, 0, modelMatrix.m);
+//        glUniformMatrix4fv([Program ProgramUniformViewMatrix], 1, 0, viewMatrix.m);
+//        glUniformMatrix4fv([Program ProgramUniformProjectionMatrix], 1, 0, projectionMatrix.m);
+//        
+//        GLKMatrix3 normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3([renderable.geometryModel modelMatrix]), NULL);
+//        glUniformMatrix3fv([Program ProgramUniformNormalMatrix], 1, 0, normalMatrix.m);
+//        
+//        // Draw
+//        glDrawElements(GL_TRIANGLES, renderable.vao.vertexCount, GL_UNSIGNED_INT, 0);
+//        
+//        // Unbind vao
+//        glDisableVertexAttribArray(VboIndexPositions);
+//        glDisableVertexAttribArray(VboIndexTexels);
+//        glDisableVertexAttribArray(VboIndexNormals);
+//        glDisableVertexAttribArray(VboIndexTangents);
+//        glDisableVertexAttribArray(VboIndexBitangents);
+//        
+//        glBindVertexArrayOES(0);
+//    }
     
 }
 
