@@ -43,6 +43,7 @@
 		C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */; };
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
+		C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2951CA428E600C64BAA /* OBJLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
 		C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllerModels.h; sourceTree = "<group>"; };
 		C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControllerModels.m; sourceTree = "<group>"; };
+		C2EEB2951CA428E600C64BAA /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 		526FD75C1C7E600700C22AD9 /* OGLEngine */ = {
 			isa = PBXGroup;
 			children = (
+				C2EEB2951CA428E600C64BAA /* OBJLoader.swift */,
 				52C9C9891C8226F7009F2FBF /* OBJLoader.h */,
 				52C9C98A1C8226F7009F2FBF /* OBJLoader.m */,
 				521A3CC31C7FA12300F19832 /* Controllers */,
@@ -553,6 +556,7 @@
 				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
 				C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */,
 				C2C830851CA030F30064C2FE /* OBJ.swift in Sources */,
+				C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */,
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
 				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
 				52C9C98B1C8226F7009F2FBF /* OBJLoader.m in Sources */,
