@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
-		521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 521A3CD31C7FA24700F19832 /* BasicCamera.m */; };
 		524BD4F21C83747F0067DB36 /* OGLEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F11C83747F0067DB36 /* OGLEngineTests.m */; };
 		524BD4FA1C8374A00067DB36 /* OBJLoaderTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */; };
 		526FD75F1C7E600700C22AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD75E1C7E600700C22AD9 /* main.m */; };
@@ -42,7 +41,6 @@
 		C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830881CA060E00064C2FE /* GeometryModel.swift */; };
 		C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */; };
 		C2EA81D01CA87F3C003DA172 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */; };
-		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 		C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2951CA428E600C64BAA /* OBJLoader.swift */; };
 		D1BC74E972C2E18677C5A5B2 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */; };
@@ -60,8 +58,6 @@
 
 /* Begin PBXFileReference section */
 		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
-		521A3CD21C7FA24700F19832 /* BasicCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicCamera.h; sourceTree = "<group>"; };
-		521A3CD31C7FA24700F19832 /* BasicCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicCamera.m; sourceTree = "<group>"; };
 		524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OGLEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		524BD4F11C83747F0067DB36 /* OGLEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGLEngineTests.m; sourceTree = "<group>"; };
 		524BD4F31C83747F0067DB36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -105,8 +101,6 @@
 		C2C830881CA060E00064C2FE /* GeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryModel.swift; sourceTree = "<group>"; };
 		C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
 		C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
-		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
-		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
 		C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllerModels.h; sourceTree = "<group>"; };
 		C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControllerModels.m; sourceTree = "<group>"; };
 		C2EEB2951CA428E600C64BAA /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
@@ -259,11 +253,7 @@
 		521A3CD01C7FA21B00F19832 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				521A3CD21C7FA24700F19832 /* BasicCamera.h */,
-				521A3CD31C7FA24700F19832 /* BasicCamera.m */,
 				C22EB0291CA84E1200E920EA /* BasicCamera.swift */,
-				C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */,
-				C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */,
 				C2319C3E1CA077A30023767E /* Camera.swift */,
 				C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */,
 			);
@@ -565,12 +555,10 @@
 				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
 				C22EB0281CA847F000E920EA /* Scene.swift in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
-				521A3CD41C7FA24700F19832 /* BasicCamera.m in Sources */,
 				C2AE35B81CA0BA4C00F75151 /* Renderer.swift in Sources */,
 				C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */,
 				C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */,
 				C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */,
-				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
 				C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -70,13 +70,13 @@ class Scene : NSObject {
         self.normalMap = Texture(imageNamed: "normalMap")
         self.normalMap.bind()
         // Camera
-//        var camera: RemoteControlledCamera = RemoteControlledCamera()
-//        camera.yOffset = -2
-//        camera.zOffset = -1
-//        camera.xMouse = M_PI_2
-//        camera.yMouse = M_PI_4
-//        self.camera = camera
-        self.camera = BasicCamera2(position: GLKVector3Make(0, 0, -3), orientation:GLKVector3Make(0, 0, 0))
+        var camera: RemoteControlledCamera = RemoteControlledCamera()
+        camera.yOffset = -2
+        camera.zOffset = -1
+        camera.xMouse = Float(M_PI_2)
+        camera.yMouse = Float(M_PI_4)
+        self.camera = camera
+//        self.camera = BasicCamera2(position: GLKVector3Make(0, 0, -3), orientation:GLKVector3Make(0, 0, 0))
     }
     
 }

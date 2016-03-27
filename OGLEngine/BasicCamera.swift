@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-class BasicCamera2: NSObject, Camera {
+class BasicCamera: NSObject, Camera {
     
     var position: GLKVector3! = GLKVector3Make(0, 0, 0)
     var orientation: GLKVector3! = GLKVector3Make(0, 0, 0)

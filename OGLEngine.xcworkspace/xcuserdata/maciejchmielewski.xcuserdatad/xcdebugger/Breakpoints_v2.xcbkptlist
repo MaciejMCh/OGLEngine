@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OGLEngine/BasicCamera.swift"
-            timestampString = "480792271.936141"
+            timestampString = "480807516.8263"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "BasicCamera2"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "BasicCamera"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OGLEngine/GameViewController.m"
-            timestampString = "480806901.135049"
+            timestampString = "480807949.846273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "-setupGL"
             landmarkType = "5">
          </BreakpointContent>

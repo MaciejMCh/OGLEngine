@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-class RemoteControlledCamera : BasicCamera2 {
+class RemoteControlledCamera : BasicCamera {
     override init() {
         super.init()
         
