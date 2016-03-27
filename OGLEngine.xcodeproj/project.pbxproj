@@ -355,9 +355,11 @@
 				EB7080C0096C1D6652CFFEA6 /* Check Pods Manifest.lock */,
 				C269D5861CA8981D00E56E67 /* Sources */,
 				C269D5871CA8981D00E56E67 /* Frameworks */,
+				C269D5F71CA89C8500E56E67 /* IP Address */,
 				C269D5881CA8981D00E56E67 /* Resources */,
 				644EE979ED6EF0C8A7F888F9 /* Embed Pods Frameworks */,
 				5CDDE341E376FF8FA5A6ACE8 /* Copy Pods Resources */,
+				C269D5F81CA89CA300E56E67 /* Run Remote Controller */,
 			);
 			buildRules = (
 			);
@@ -398,6 +400,7 @@
 				TargetAttributes = {
 					C269D5891CA8981D00E56E67 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 76RXF4V6NR;
 					};
 					C269D5A11CA8981D00E56E67 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -484,6 +487,34 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C269D5F71CA89C8500E56E67 /* IP Address */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "IP Address";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/IPAddress.sh\"";
+		};
+		C269D5F81CA89CA300E56E67 /* Run Remote Controller */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Remote Controller";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/Controller.sh\"";
 		};
 		EB7080C0096C1D6652CFFEA6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -655,9 +686,10 @@
 			baseConfigurationReference = 9205D7DBFBB1CE1C1FCD90A2 /* Pods-OGLEngine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mch.OGLEngine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -667,9 +699,10 @@
 			baseConfigurationReference = 7F43FA214889814B7067DBE2 /* Pods-OGLEngine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = mch.OGLEngine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
