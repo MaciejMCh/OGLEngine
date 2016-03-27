@@ -26,6 +26,7 @@
 		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
 		C22EB0261CA71FA600E920EA /* cubeLoadingResult.json in Resources */ = {isa = PBXBuildFile; fileRef = C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */; };
 		C22EB0281CA847F000E920EA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB0271CA847F000E920EA /* Scene.swift */; };
+		C22EB02A1CA84E1200E920EA /* BasicCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB0291CA84E1200E920EA /* BasicCamera.swift */; };
 		C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */; };
 		C2319C3F1CA077A30023767E /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2319C3E1CA077A30023767E /* Camera.swift */; };
 		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
@@ -87,6 +88,7 @@
 		C22115331C90C28000DB3C72 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cubeLoadingResult.json; sourceTree = "<group>"; };
 		C22EB0271CA847F000E920EA /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		C22EB0291CA84E1200E920EA /* BasicCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCamera.swift; sourceTree = "<group>"; };
 		C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningGeometryModel.swift; sourceTree = "<group>"; };
 		C2319C3E1CA077A30023767E /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		C25382A21C8C5A3800ADF443 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				521A3CD21C7FA24700F19832 /* BasicCamera.h */,
 				521A3CD31C7FA24700F19832 /* BasicCamera.m */,
+				C22EB0291CA84E1200E920EA /* BasicCamera.swift */,
 				C2069BF71C8AE36000F4897C /* FocusingCamera.h */,
 				C2069BF81C8AE36000F4897C /* FocusingCamera.m */,
 				C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */,
@@ -562,6 +565,7 @@
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
 				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
 				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
+				C22EB02A1CA84E1200E920EA /* BasicCamera.swift in Sources */,
 				C2319C3F1CA077A30023767E /* Camera.swift in Sources */,
 				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
 				C22EB0281CA847F000E920EA /* Scene.swift in Sources */,

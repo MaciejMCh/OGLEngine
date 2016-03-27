@@ -14,7 +14,7 @@ class Scene : NSObject {
     var renderables: [Renderable] = []
     var directionalLight: DirectionalLight! = nil
     var normalMap: Texture! = nil
-//    var camera: Camera = setupCamera()
+    var camera: Camera! = nil
     
     
     override init() {
@@ -76,6 +76,7 @@ class Scene : NSObject {
 //        camera.xMouse = M_PI_2
 //        camera.yMouse = M_PI_4
 //        self.camera = camera
+//        self.camera = BasicCamera2(position: GLKVector3Make(0, 0, -3), orientation:GLKVector3Make(1, 1, 1.5))
     }
     
 }

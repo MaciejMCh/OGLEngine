@@ -63,12 +63,18 @@
     glEnable(GL_DEPTH_TEST);
     
     // Camera
-    RemoteControlledCamera *camera = [RemoteControlledCamera new];
-    camera.yOffset = -2;
-    camera.zOffset = -1;
-    camera.xMouse = M_PI_2;
-    camera.yMouse = M_PI_4;
-    self.camera = camera;
+    
+    self.camera = [[BasicCamera2 alloc] initWithPosition:GLKVector3Make(0, 0, -3) orientation:GLKVector3Make(0, 0, 0)];
+    
+    
+    
+    GLKMatrix4 vm = [self.camera viewMatrix];
+//    RemoteControlledCamera *camera = [RemoteControlledCamera new];
+//    camera.yOffset = -2;
+//    camera.zOffset = -1;
+//    camera.xMouse = M_PI_2;
+//    camera.yMouse = M_PI_4;
+//    self.camera = camera;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
