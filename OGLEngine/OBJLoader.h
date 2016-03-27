@@ -8,7 +8,17 @@
 //
 //#import <Foundation/Foundation.h>
 //#import <OpenGLES/ES2/glext.h>
+////#import "OBJ.h"
 //#import "OGLEngine-Swift.h"
+//
+//typedef struct OBJInfo {
+//    int vertices;
+//    int positions;
+//    int texels;
+//    int normals;
+//    int faces;
+//}
+//OBJInfo;
 //
 //@class OBJLoadingResult, StrideData, StrideCollection;
 //
@@ -24,7 +34,7 @@
 //
 //@interface OBJLoadingResult : NSObject
 //
-//@property (nonatomic, strong, readonly) OBJInfo *objInfo;
+//@property (nonatomic, assign, readonly) OBJInfo objInfo;
 //@property (nonatomic, assign, readonly) GLfloat **positions;
 //@property (nonatomic, assign, readonly) GLfloat **texels;
 //@property (nonatomic, assign, readonly) GLfloat **normals;

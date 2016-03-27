@@ -10,7 +10,7 @@
 //
 //@interface OBJLoadingResult ()
 //
-//@property (nonatomic, strong, readwrite) OBJInfo *objInfo;
+//@property (nonatomic, assign, readwrite) OBJInfo objInfo;
 //@property (nonatomic, assign, readwrite) GLfloat **positions;
 //@property (nonatomic, assign, readwrite) GLfloat **texels;
 //@property (nonatomic, assign, readwrite) GLfloat **normals;
@@ -51,7 +51,7 @@
 ////    GLfloat *normals = malloc(strideCollection.array.count * 3 * sizeof(GLfloat));
 //    NSMutableArray<NSNumber *> *normals = [[NSMutableArray alloc] initWithCapacity:strideCollection.array.count * 3];
 //    
-//    OBJInfo *structIterator = [OBJInfo new];
+//    OBJInfo structIterator = {0};
 //    for (StrideData *stride in strideCollection.array) {
 //        positions[structIterator.positions ++] = @(stride.positions[0]);
 //        positions[structIterator.positions ++] = @(stride.positions[1]);
@@ -118,7 +118,7 @@
 //    NSArray<NSString *> *lines = [payload componentsSeparatedByString:@"\n"];
 //    
 //    // read info
-//    OBJInfo *objInfo = [OBJInfo new];
+//    OBJInfo objInfo = {0};
 //    for (NSString *line in lines) {
 //        if ([line hasPrefix:@"v "]) {
 //            objInfo.positions ++;
@@ -152,7 +152,7 @@
 //    }
 //    
 //    
-//    OBJInfo *structIterator = [OBJInfo new];
+//    OBJInfo structIterator = {0};
 //    for (NSString *line in lines) {
 //        if ([line hasPrefix:@"v "]) {
 //            result.positions[structIterator.positions] = [OBJLoader floatsFromString:line];
