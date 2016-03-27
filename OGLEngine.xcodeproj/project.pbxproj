@@ -14,7 +14,6 @@
 		526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD7611C7E600700C22AD9 /* AppDelegate.m */; };
 		526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7631C7E600700C22AD9 /* Shader.fsh */; };
 		526FD7661C7E600700C22AD9 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7651C7E600700C22AD9 /* Shader.vsh */; };
-		526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD7681C7E600700C22AD9 /* GameViewController.m */; };
 		526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76A1C7E600700C22AD9 /* Main.storyboard */; };
 		526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76D1C7E600700C22AD9 /* Assets.xcassets */; };
 		526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */; };
@@ -41,6 +40,7 @@
 		C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830881CA060E00064C2FE /* GeometryModel.swift */; };
 		C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */; };
 		C2EA81D01CA87F3C003DA172 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */; };
+		C2EA81D21CA88D00003DA172 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81D11CA88D00003DA172 /* GameViewController.swift */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 		C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2951CA428E600C64BAA /* OBJLoader.swift */; };
 		D1BC74E972C2E18677C5A5B2 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */; };
@@ -68,8 +68,6 @@
 		526FD7611C7E600700C22AD9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		526FD7631C7E600700C22AD9 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
 		526FD7651C7E600700C22AD9 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
-		526FD7671C7E600700C22AD9 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
-		526FD7681C7E600700C22AD9 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		526FD76B1C7E600700C22AD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		526FD76D1C7E600700C22AD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		526FD7701C7E600700C22AD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,6 +99,7 @@
 		C2C830881CA060E00064C2FE /* GeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryModel.swift; sourceTree = "<group>"; };
 		C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
 		C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
+		C2EA81D11CA88D00003DA172 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllerModels.h; sourceTree = "<group>"; };
 		C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControllerModels.m; sourceTree = "<group>"; };
 		C2EEB2951CA428E600C64BAA /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
@@ -226,8 +225,7 @@
 		521A3CC31C7FA12300F19832 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				526FD7671C7E600700C22AD9 /* GameViewController.h */,
-				526FD7681C7E600700C22AD9 /* GameViewController.m */,
+				C2EA81D11CA88D00003DA172 /* GameViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -545,8 +543,8 @@
 				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
 				C2C830851CA030F30064C2FE /* OBJ.swift in Sources */,
 				C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */,
-				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,
 				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
+				C2EA81D21CA88D00003DA172 /* GameViewController.swift in Sources */,
 				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
 				C2EA81D01CA87F3C003DA172 /* RemoteControlledCamera.swift in Sources */,
 				C22EB02A1CA84E1200E920EA /* BasicCamera.swift in Sources */,
