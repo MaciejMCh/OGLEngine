@@ -22,7 +22,6 @@
 		52C9C9881C822315009F2FBF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9871C822315009F2FBF /* cube.obj */; };
 		8028C08A433B5B0C1E697AEC /* libPods-OGLEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61104443A1882E4CEF047F8D /* libPods-OGLEngine.a */; };
 		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
-		C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2069BF81C8AE36000F4897C /* FocusingCamera.m */; };
 		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
 		C22EB0261CA71FA600E920EA /* cubeLoadingResult.json in Resources */ = {isa = PBXBuildFile; fileRef = C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */; };
 		C22EB0281CA847F000E920EA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB0271CA847F000E920EA /* Scene.swift */; };
@@ -83,8 +82,6 @@
 		AE96C1A1A6C2269789EB970B /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
 		B9BDF39F0C38FDF98D576B75 /* Pods-OGLEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.release.xcconfig"; sourceTree = "<group>"; };
 		C2069BF51C8ADF7100F4897C /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
-		C2069BF71C8AE36000F4897C /* FocusingCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusingCamera.h; sourceTree = "<group>"; };
-		C2069BF81C8AE36000F4897C /* FocusingCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusingCamera.m; sourceTree = "<group>"; };
 		C22115331C90C28000DB3C72 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cubeLoadingResult.json; sourceTree = "<group>"; };
 		C22EB0271CA847F000E920EA /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -265,8 +262,6 @@
 				521A3CD21C7FA24700F19832 /* BasicCamera.h */,
 				521A3CD31C7FA24700F19832 /* BasicCamera.m */,
 				C22EB0291CA84E1200E920EA /* BasicCamera.swift */,
-				C2069BF71C8AE36000F4897C /* FocusingCamera.h */,
-				C2069BF81C8AE36000F4897C /* FocusingCamera.m */,
 				C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */,
 				C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */,
 				C2319C3E1CA077A30023767E /* Camera.swift */,
@@ -559,7 +554,6 @@
 				C2645B311CA3FED1001D0400 /* Program.swift in Sources */,
 				C2C830831CA02ADB0064C2FE /* VAO.swift in Sources */,
 				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
-				C2069BF91C8AE36000F4897C /* FocusingCamera.m in Sources */,
 				C2C830851CA030F30064C2FE /* OBJ.swift in Sources */,
 				C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */,
 				526FD7691C7E600700C22AD9 /* GameViewController.m in Sources */,

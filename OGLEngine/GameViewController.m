@@ -10,7 +10,6 @@
 #import <OpenGLES/ES2/glext.h>
 
 #import "BasicCamera.h"
-#import "FocusingCamera.h"
 #import "RemoteControlledCamera.h"
 #import "OGLEngine-Swift.h"
 
@@ -64,17 +63,12 @@
     
     // Camera
     
-    self.camera = [[BasicCamera2 alloc] initWithPosition:GLKVector3Make(0, 0, -3) orientation:GLKVector3Make(0, 0, 0)];
-    
-    
-    
-    GLKMatrix4 vm = [self.camera viewMatrix];
-//    RemoteControlledCamera *camera = [RemoteControlledCamera new];
-//    camera.yOffset = -2;
-//    camera.zOffset = -1;
-//    camera.xMouse = M_PI_2;
-//    camera.yMouse = M_PI_4;
-//    self.camera = camera;
+    RemoteControlledCamera *camera = [RemoteControlledCamera new];
+    camera.yOffset = -2;
+    camera.zOffset = -1;
+    camera.xMouse = M_PI_2;
+    camera.yMouse = M_PI_4;
+    self.camera = camera;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

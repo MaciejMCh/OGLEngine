@@ -76,7 +76,7 @@ class Scene : NSObject {
 //        camera.xMouse = M_PI_2
 //        camera.yMouse = M_PI_4
 //        self.camera = camera
-//        self.camera = BasicCamera2(position: GLKVector3Make(0, 0, -3), orientation:GLKVector3Make(1, 1, 1.5))
+        self.camera = BasicCamera2(position: GLKVector3Make(0, 0, -3), orientation:GLKVector3Make(0, 0, 0))
     }
     
 }
