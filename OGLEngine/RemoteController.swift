@@ -24,18 +24,18 @@ class RemoteController : NSObject {
                 if let message = message as? String {
                     var eventSubject: NSObject? = nil
                     if message.hasPrefix("m") {
-                        eventSubject = RemoteMouse(message: message)
+                        eventSubject = RemoteMouse.mouseWithMessage(message)
                     }
                     else if message.hasPrefix("d") {
-                        eventSubject = RemoteKey(message: message)
+                        eventSubject = RemoteKey.keyWithMessage(message)
                     }
                     else if message.hasPrefix("u") {
-                        eventSubject = RemoteKey(message: message)
+                        eventSubject = RemoteKey.keyWithMessage(message)
                     }
                     
                     if let eventSubject = eventSubject {
                         for handler: EventHandler in self.eventHandlers {
-                            handler(eventSubject)
+                            handler(eventSubject: eventSubject)
                         }
                     }
 

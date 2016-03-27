@@ -41,7 +41,7 @@
 		C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */; };
 		C2EA81D01CA87F3C003DA172 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */; };
 		C2EA81D21CA88D00003DA172 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81D11CA88D00003DA172 /* GameViewController.swift */; };
-		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
+		C2EA81D41CA890F6003DA172 /* RemoteControllerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81D31CA890F6003DA172 /* RemoteControllerModels.swift */; };
 		C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2951CA428E600C64BAA /* OBJLoader.swift */; };
 		D1BC74E972C2E18677C5A5B2 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */; };
 /* End PBXBuildFile section */
@@ -100,8 +100,7 @@
 		C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
 		C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
 		C2EA81D11CA88D00003DA172 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllerModels.h; sourceTree = "<group>"; };
-		C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControllerModels.m; sourceTree = "<group>"; };
+		C2EA81D31CA890F6003DA172 /* RemoteControllerModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControllerModels.swift; sourceTree = "<group>"; };
 		C2EEB2951CA428E600C64BAA /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -329,9 +328,8 @@
 		C26B8D251C8E48B0004B9EED /* RemoteController */ = {
 			isa = PBXGroup;
 			children = (
-				C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */,
-				C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */,
 				C27834191CA859F50093E605 /* RemoteController.swift */,
+				C2EA81D31CA890F6003DA172 /* RemoteControllerModels.swift */,
 			);
 			name = RemoteController;
 			sourceTree = "<group>";
@@ -554,8 +552,8 @@
 				C22EB0281CA847F000E920EA /* Scene.swift in Sources */,
 				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
 				C2AE35B81CA0BA4C00F75151 /* Renderer.swift in Sources */,
+				C2EA81D41CA890F6003DA172 /* RemoteControllerModels.swift in Sources */,
 				C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */,
-				C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */,
 				C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */,
 				C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */,
 			);
