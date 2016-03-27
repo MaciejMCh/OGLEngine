@@ -7,366 +7,213 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		521A3CBE1C7F958D00F19832 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A3CBD1C7F958D00F19832 /* Texture.png */; };
-		524BD4F21C83747F0067DB36 /* OGLEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F11C83747F0067DB36 /* OGLEngineTests.m */; };
-		524BD4FA1C8374A00067DB36 /* OBJLoaderTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */; };
-		526FD75F1C7E600700C22AD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD75E1C7E600700C22AD9 /* main.m */; };
-		526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526FD7611C7E600700C22AD9 /* AppDelegate.m */; };
-		526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7631C7E600700C22AD9 /* Shader.fsh */; };
-		526FD7661C7E600700C22AD9 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 526FD7651C7E600700C22AD9 /* Shader.vsh */; };
-		526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76A1C7E600700C22AD9 /* Main.storyboard */; };
-		526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76D1C7E600700C22AD9 /* Assets.xcassets */; };
-		526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */; };
-		52C9C9881C822315009F2FBF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9871C822315009F2FBF /* cube.obj */; };
-		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
-		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
-		C22EB0261CA71FA600E920EA /* cubeLoadingResult.json in Resources */ = {isa = PBXBuildFile; fileRef = C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */; };
-		C22EB0281CA847F000E920EA /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB0271CA847F000E920EA /* Scene.swift */; };
-		C22EB02A1CA84E1200E920EA /* BasicCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22EB0291CA84E1200E920EA /* BasicCamera.swift */; };
-		C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */; };
-		C2319C3F1CA077A30023767E /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2319C3E1CA077A30023767E /* Camera.swift */; };
-		C25382A31C8C5A3800ADF443 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C25382A21C8C5A3800ADF443 /* axes.obj */; };
-		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
-		C25A90C51C932124009EFF5F /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C25A90C41C932124009EFF5F /* normalMap.png */; };
-		C2645B311CA3FED1001D0400 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645B301CA3FED1001D0400 /* Program.swift */; };
-		C278341A1CA859F50093E605 /* RemoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27834191CA859F50093E605 /* RemoteController.swift */; };
-		C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2962FAF1C933DC9001188C9 /* cube_tex.obj */; };
-		C2AE35B81CA0BA4C00F75151 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE35B71CA0BA4C00F75151 /* Renderer.swift */; };
-		C2C830711CA019A60064C2FE /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830701CA019A60064C2FE /* Renderable.swift */; };
-		C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8307A1CA022150064C2FE /* DirectionalLight.swift */; };
-		C2C8307F1CA024590064C2FE /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8307E1CA024590064C2FE /* Texture.swift */; };
-		C2C830831CA02ADB0064C2FE /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830821CA02ADB0064C2FE /* VAO.swift */; };
-		C2C830851CA030F30064C2FE /* OBJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830841CA030F30064C2FE /* OBJ.swift */; };
-		C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830881CA060E00064C2FE /* GeometryModel.swift */; };
-		C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */; };
-		C2EA81D01CA87F3C003DA172 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */; };
-		C2EA81D21CA88D00003DA172 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81D11CA88D00003DA172 /* GameViewController.swift */; };
-		C2EA81D41CA890F6003DA172 /* RemoteControllerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA81D31CA890F6003DA172 /* RemoteControllerModels.swift */; };
-		C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2951CA428E600C64BAA /* OBJLoader.swift */; };
-		D1BC74E972C2E18677C5A5B2 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */; };
+		60140969A5CC91BB3B442B81 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */; };
+		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
+		C269D5901CA8981D00E56E67 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* Shader.fsh */; };
+		C269D5921CA8981D00E56E67 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D5911CA8981D00E56E67 /* Shader.vsh */; };
+		C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5931CA8981D00E56E67 /* GameViewController.swift */; };
+		C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C269D5951CA8981D00E56E67 /* Main.storyboard */; };
+		C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C269D5981CA8981D00E56E67 /* Assets.xcassets */; };
+		C269D59C1CA8981D00E56E67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C269D59A1CA8981D00E56E67 /* LaunchScreen.storyboard */; };
+		C269D5A71CA8981D00E56E67 /* OGLEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5A61CA8981D00E56E67 /* OGLEngineTests.swift */; };
+		C269D5C91CA898DD00E56E67 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B11CA898DD00E56E67 /* axes_rgb.png */; };
+		C269D5CA1CA898DD00E56E67 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B21CA898DD00E56E67 /* axes.obj */; };
+		C269D5CB1CA898DD00E56E67 /* BasicCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B31CA898DD00E56E67 /* BasicCamera.swift */; };
+		C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B41CA898DD00E56E67 /* Camera.swift */; };
+		C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B51CA898DD00E56E67 /* cube_tex.obj */; };
+		C269D5CE1CA898DD00E56E67 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B61CA898DD00E56E67 /* cube.obj */; };
+		C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */; };
+		C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B81CA898DD00E56E67 /* GeometryModel.swift */; };
+		C269D5D11CA898DD00E56E67 /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B91CA898DD00E56E67 /* normalMap.png */; };
+		C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BA1CA898DD00E56E67 /* OBJ.swift */; };
+		C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */; };
+		C269D5D41CA898DD00E56E67 /* OtherSources in Resources */ = {isa = PBXBuildFile; fileRef = C269D5BC1CA898DD00E56E67 /* OtherSources */; };
+		C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5BD1CA898DD00E56E67 /* paczek.obj */; };
+		C269D5D61CA898DD00E56E67 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BE1CA898DD00E56E67 /* Program.swift */; };
+		C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */; };
+		C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C01CA898DD00E56E67 /* RemoteController.swift */; };
+		C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */; };
+		C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C21CA898DD00E56E67 /* Renderable.swift */; };
+		C269D5DB1CA898DD00E56E67 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C31CA898DD00E56E67 /* Renderer.swift */; };
+		C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C41CA898DD00E56E67 /* Scene.swift */; };
+		C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */; };
+		C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */; };
+		C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5C71CA898DD00E56E67 /* Texture.png */; };
+		C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C81CA898DD00E56E67 /* Texture.swift */; };
+		C269D5E21CA898E900E56E67 /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5E11CA898E900E56E67 /* VAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		524BD4F41C83747F0067DB36 /* PBXContainerItemProxy */ = {
+		C269D5A31CA8981D00E56E67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 526FD7521C7E600700C22AD9 /* Project object */;
+			containerPortal = C269D5821CA8981D00E56E67 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 526FD7591C7E600700C22AD9;
+			remoteGlobalIDString = C269D5891CA8981D00E56E67;
 			remoteInfo = OGLEngine;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		521A3CBD1C7F958D00F19832 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
-		524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OGLEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		524BD4F11C83747F0067DB36 /* OGLEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OGLEngineTests.m; sourceTree = "<group>"; };
-		524BD4F31C83747F0067DB36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBJLoaderTestCase.m; sourceTree = "<group>"; };
-		526FD75A1C7E600700C22AD9 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		526FD75E1C7E600700C22AD9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		526FD7601C7E600700C22AD9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		526FD7611C7E600700C22AD9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		526FD7631C7E600700C22AD9 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
-		526FD7651C7E600700C22AD9 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
-		526FD76B1C7E600700C22AD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		526FD76D1C7E600700C22AD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		526FD7701C7E600700C22AD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		526FD7721C7E600700C22AD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52C9C9871C822315009F2FBF /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
-		7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OGLEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE96C1A1A6C2269789EB970B /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
-		B9BDF39F0C38FDF98D576B75 /* Pods-OGLEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.release.xcconfig"; sourceTree = "<group>"; };
-		C2069BF51C8ADF7100F4897C /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
-		C22115331C90C28000DB3C72 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
-		C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cubeLoadingResult.json; sourceTree = "<group>"; };
-		C22EB0271CA847F000E920EA /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
-		C22EB0291CA84E1200E920EA /* BasicCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCamera.swift; sourceTree = "<group>"; };
-		C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningGeometryModel.swift; sourceTree = "<group>"; };
-		C2319C3E1CA077A30023767E /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		C25382A21C8C5A3800ADF443 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
-		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
-		C25A90C41C932124009EFF5F /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
-		C2645B301CA3FED1001D0400 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
-		C27834191CA859F50093E605 /* RemoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteController.swift; sourceTree = "<group>"; };
-		C2962FAF1C933DC9001188C9 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
-		C2AE35B71CA0BA4C00F75151 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		C2C8306F1CA019A50064C2FE /* OGLEngine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGLEngine-Bridging-Header.h"; sourceTree = "<group>"; };
-		C2C830701CA019A60064C2FE /* Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
-		C2C8307A1CA022150064C2FE /* DirectionalLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
-		C2C8307E1CA024590064C2FE /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
-		C2C830821CA02ADB0064C2FE /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
-		C2C830841CA030F30064C2FE /* OBJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJ.swift; sourceTree = "<group>"; };
-		C2C830881CA060E00064C2FE /* GeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryModel.swift; sourceTree = "<group>"; };
-		C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
-		C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
-		C2EA81D11CA88D00003DA172 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		C2EA81D31CA890F6003DA172 /* RemoteControllerModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControllerModels.swift; sourceTree = "<group>"; };
-		C2EEB2951CA428E600C64BAA /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
+		5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OGLEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F43FA214889814B7067DBE2 /* Pods-OGLEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.release.xcconfig"; sourceTree = "<group>"; };
+		9205D7DBFBB1CE1C1FCD90A2 /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
+		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C269D58F1CA8981D00E56E67 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		C269D5911CA8981D00E56E67 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		C269D5931CA8981D00E56E67 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		C269D5961CA8981D00E56E67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C269D5981CA8981D00E56E67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C269D59B1CA8981D00E56E67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C269D59D1CA8981D00E56E67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C269D5A21CA8981D00E56E67 /* OGLEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OGLEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C269D5A61CA8981D00E56E67 /* OGLEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGLEngineTests.swift; sourceTree = "<group>"; };
+		C269D5A81CA8981D00E56E67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C269D5B11CA898DD00E56E67 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
+		C269D5B21CA898DD00E56E67 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
+		C269D5B31CA898DD00E56E67 /* BasicCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCamera.swift; sourceTree = "<group>"; };
+		C269D5B41CA898DD00E56E67 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		C269D5B51CA898DD00E56E67 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
+		C269D5B61CA898DD00E56E67 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
+		C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
+		C269D5B81CA898DD00E56E67 /* GeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryModel.swift; sourceTree = "<group>"; };
+		C269D5B91CA898DD00E56E67 /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
+		C269D5BA1CA898DD00E56E67 /* OBJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJ.swift; sourceTree = "<group>"; };
+		C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
+		C269D5BC1CA898DD00E56E67 /* OtherSources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OtherSources; sourceTree = "<group>"; };
+		C269D5BD1CA898DD00E56E67 /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
+		C269D5BE1CA898DD00E56E67 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
+		C269D5C01CA898DD00E56E67 /* RemoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteController.swift; sourceTree = "<group>"; };
+		C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControllerModels.swift; sourceTree = "<group>"; };
+		C269D5C21CA898DD00E56E67 /* Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		C269D5C31CA898DD00E56E67 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		C269D5C41CA898DD00E56E67 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningGeometryModel.swift; sourceTree = "<group>"; };
+		C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
+		C269D5C71CA898DD00E56E67 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
+		C269D5C81CA898DD00E56E67 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		C269D5E11CA898E900E56E67 /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		524BD4EC1C83747E0067DB36 /* Frameworks */ = {
+		C269D5871CA8981D00E56E67 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60140969A5CC91BB3B442B81 /* Pods_OGLEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		526FD7571C7E600700C22AD9 /* Frameworks */ = {
+		C269D59F1CA8981D00E56E67 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1BC74E972C2E18677C5A5B2 /* Pods_OGLEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06F0C27A1224290637D27A3C /* Pods */ = {
+		349D389284EFAA46C483683A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AE96C1A1A6C2269789EB970B /* Pods-OGLEngine.debug.xcconfig */,
-				B9BDF39F0C38FDF98D576B75 /* Pods-OGLEngine.release.xcconfig */,
+				9205D7DBFBB1CE1C1FCD90A2 /* Pods-OGLEngine.debug.xcconfig */,
+				7F43FA214889814B7067DBE2 /* Pods-OGLEngine.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		23B1C13A0EE27685ED12F41B /* Frameworks */ = {
+		C1A74D0DC0FF9B8F2320B5AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */,
+				5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		521A3CBA1C7F956F00F19832 /* Resources */ = {
+		C269D5811CA8981D00E56E67 = {
 			isa = PBXGroup;
 			children = (
-				C22115321C90C27200DB3C72 /* Other */,
-				521A3CC11C7FA0F000F19832 /* Xcode */,
-				521A3CC01C7FA0D600F19832 /* Shaders */,
-				521A3CBC1C7F957D00F19832 /* Textures */,
-				521A3CBB1C7F957900F19832 /* OBJs */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		521A3CBB1C7F957900F19832 /* OBJs */ = {
-			isa = PBXGroup;
-			children = (
-				C2962FAF1C933DC9001188C9 /* cube_tex.obj */,
-				C25382A21C8C5A3800ADF443 /* axes.obj */,
-				C2069BF51C8ADF7100F4897C /* paczek.obj */,
-				52C9C9871C822315009F2FBF /* cube.obj */,
-			);
-			name = OBJs;
-			sourceTree = "<group>";
-		};
-		521A3CBC1C7F957D00F19832 /* Textures */ = {
-			isa = PBXGroup;
-			children = (
-				C25A90C41C932124009EFF5F /* normalMap.png */,
-				C25382A61C8C67CE00ADF443 /* axes_rgb.png */,
-				521A3CBD1C7F958D00F19832 /* Texture.png */,
-			);
-			name = Textures;
-			sourceTree = "<group>";
-		};
-		521A3CBF1C7FA0A400F19832 /* Rendering */ = {
-			isa = PBXGroup;
-			children = (
-				C21AF2BE1C9609FD004635CB /* Core */,
-				521A3CC41C7FA16800F19832 /* Renderable */,
-				C2069BFD1C8B255100F4897C /* Light */,
-				521A3CD01C7FA21B00F19832 /* Camera */,
-				521A3CC81C7FA1AB00F19832 /* GeometryModel */,
-				C2C8307E1CA024590064C2FE /* Texture.swift */,
-				C2C830821CA02ADB0064C2FE /* VAO.swift */,
-				C2C830841CA030F30064C2FE /* OBJ.swift */,
-				C22EB0271CA847F000E920EA /* Scene.swift */,
-			);
-			name = Rendering;
-			sourceTree = "<group>";
-		};
-		521A3CC01C7FA0D600F19832 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				526FD7631C7E600700C22AD9 /* Shader.fsh */,
-				526FD7651C7E600700C22AD9 /* Shader.vsh */,
-			);
-			name = Shaders;
-			sourceTree = "<group>";
-		};
-		521A3CC11C7FA0F000F19832 /* Xcode */ = {
-			isa = PBXGroup;
-			children = (
-				C2C8306F1CA019A50064C2FE /* OGLEngine-Bridging-Header.h */,
-				526FD76A1C7E600700C22AD9 /* Main.storyboard */,
-				526FD76D1C7E600700C22AD9 /* Assets.xcassets */,
-				526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */,
-			);
-			name = Xcode;
-			sourceTree = "<group>";
-		};
-		521A3CC21C7FA10000F19832 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				C26B8D251C8E48B0004B9EED /* RemoteController */,
-				526FD75E1C7E600700C22AD9 /* main.m */,
-				526FD7721C7E600700C22AD9 /* Info.plist */,
-				526FD7601C7E600700C22AD9 /* AppDelegate.h */,
-				526FD7611C7E600700C22AD9 /* AppDelegate.m */,
-			);
-			name = Application;
-			sourceTree = "<group>";
-		};
-		521A3CC31C7FA12300F19832 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				C2EA81D11CA88D00003DA172 /* GameViewController.swift */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		521A3CC41C7FA16800F19832 /* Renderable */ = {
-			isa = PBXGroup;
-			children = (
-				C2C830701CA019A60064C2FE /* Renderable.swift */,
-			);
-			name = Renderable;
-			sourceTree = "<group>";
-		};
-		521A3CC81C7FA1AB00F19832 /* GeometryModel */ = {
-			isa = PBXGroup;
-			children = (
-				C2C830881CA060E00064C2FE /* GeometryModel.swift */,
-				C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */,
-				C2319C3C1CA076D30023767E /* SpinningGeometryModel.swift */,
-			);
-			name = GeometryModel;
-			sourceTree = "<group>";
-		};
-		521A3CD01C7FA21B00F19832 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				C22EB0291CA84E1200E920EA /* BasicCamera.swift */,
-				C2319C3E1CA077A30023767E /* Camera.swift */,
-				C2EA81CF1CA87F3C003DA172 /* RemoteControlledCamera.swift */,
-			);
-			name = Camera;
-			sourceTree = "<group>";
-		};
-		524BD4F01C83747F0067DB36 /* OGLEngineTests */ = {
-			isa = PBXGroup;
-			children = (
-				524BD4F11C83747F0067DB36 /* OGLEngineTests.m */,
-				524BD4F31C83747F0067DB36 /* Info.plist */,
-				524BD4F91C8374A00067DB36 /* OBJLoaderTestCase.m */,
-				C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */,
-			);
-			path = OGLEngineTests;
-			sourceTree = "<group>";
-		};
-		526FD7511C7E600700C22AD9 = {
-			isa = PBXGroup;
-			children = (
-				526FD75C1C7E600700C22AD9 /* OGLEngine */,
-				524BD4F01C83747F0067DB36 /* OGLEngineTests */,
-				526FD75B1C7E600700C22AD9 /* Products */,
-				06F0C27A1224290637D27A3C /* Pods */,
-				23B1C13A0EE27685ED12F41B /* Frameworks */,
+				C269D58C1CA8981D00E56E67 /* OGLEngine */,
+				C269D5A51CA8981D00E56E67 /* OGLEngineTests */,
+				C269D58B1CA8981D00E56E67 /* Products */,
+				349D389284EFAA46C483683A /* Pods */,
+				C1A74D0DC0FF9B8F2320B5AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		526FD75B1C7E600700C22AD9 /* Products */ = {
+		C269D58B1CA8981D00E56E67 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				526FD75A1C7E600700C22AD9 /* OGLEngine.app */,
-				524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */,
+				C269D58A1CA8981D00E56E67 /* OGLEngine.app */,
+				C269D5A21CA8981D00E56E67 /* OGLEngineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		526FD75C1C7E600700C22AD9 /* OGLEngine */ = {
+		C269D58C1CA8981D00E56E67 /* OGLEngine */ = {
 			isa = PBXGroup;
 			children = (
-				C2EEB2951CA428E600C64BAA /* OBJLoader.swift */,
-				521A3CC31C7FA12300F19832 /* Controllers */,
-				521A3CBF1C7FA0A400F19832 /* Rendering */,
-				521A3CBA1C7F956F00F19832 /* Resources */,
-				521A3CC21C7FA10000F19832 /* Application */,
+				C269D5E11CA898E900E56E67 /* VAO.swift */,
+				C269D5B11CA898DD00E56E67 /* axes_rgb.png */,
+				C269D5B21CA898DD00E56E67 /* axes.obj */,
+				C269D5B31CA898DD00E56E67 /* BasicCamera.swift */,
+				C269D5B41CA898DD00E56E67 /* Camera.swift */,
+				C269D5B51CA898DD00E56E67 /* cube_tex.obj */,
+				C269D5B61CA898DD00E56E67 /* cube.obj */,
+				C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */,
+				C269D5B81CA898DD00E56E67 /* GeometryModel.swift */,
+				C269D5B91CA898DD00E56E67 /* normalMap.png */,
+				C269D5BA1CA898DD00E56E67 /* OBJ.swift */,
+				C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */,
+				C269D5BC1CA898DD00E56E67 /* OtherSources */,
+				C269D5BD1CA898DD00E56E67 /* paczek.obj */,
+				C269D5BE1CA898DD00E56E67 /* Program.swift */,
+				C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */,
+				C269D5C01CA898DD00E56E67 /* RemoteController.swift */,
+				C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */,
+				C269D5C21CA898DD00E56E67 /* Renderable.swift */,
+				C269D5C31CA898DD00E56E67 /* Renderer.swift */,
+				C269D5C41CA898DD00E56E67 /* Scene.swift */,
+				C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */,
+				C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */,
+				C269D5C71CA898DD00E56E67 /* Texture.png */,
+				C269D5C81CA898DD00E56E67 /* Texture.swift */,
+				C269D58D1CA8981D00E56E67 /* AppDelegate.swift */,
+				C269D58F1CA8981D00E56E67 /* Shader.fsh */,
+				C269D5911CA8981D00E56E67 /* Shader.vsh */,
+				C269D5931CA8981D00E56E67 /* GameViewController.swift */,
+				C269D5951CA8981D00E56E67 /* Main.storyboard */,
+				C269D5981CA8981D00E56E67 /* Assets.xcassets */,
+				C269D59A1CA8981D00E56E67 /* LaunchScreen.storyboard */,
+				C269D59D1CA8981D00E56E67 /* Info.plist */,
 			);
 			path = OGLEngine;
 			sourceTree = "<group>";
 		};
-		C2069BFD1C8B255100F4897C /* Light */ = {
+		C269D5A51CA8981D00E56E67 /* OGLEngineTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2C8307A1CA022150064C2FE /* DirectionalLight.swift */,
+				C269D5A61CA8981D00E56E67 /* OGLEngineTests.swift */,
+				C269D5A81CA8981D00E56E67 /* Info.plist */,
 			);
-			name = Light;
-			sourceTree = "<group>";
-		};
-		C21AF2BE1C9609FD004635CB /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				C2AE35B71CA0BA4C00F75151 /* Renderer.swift */,
-				C2645B301CA3FED1001D0400 /* Program.swift */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		C22115321C90C27200DB3C72 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				C22115331C90C28000DB3C72 /* IPAddress */,
-			);
-			name = Other;
-			sourceTree = "<group>";
-		};
-		C26B8D251C8E48B0004B9EED /* RemoteController */ = {
-			isa = PBXGroup;
-			children = (
-				C27834191CA859F50093E605 /* RemoteController.swift */,
-				C2EA81D31CA890F6003DA172 /* RemoteControllerModels.swift */,
-			);
-			name = RemoteController;
+			path = OGLEngineTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		524BD4EE1C83747E0067DB36 /* OGLEngineTests */ = {
+		C269D5891CA8981D00E56E67 /* OGLEngine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 524BD4F81C83747F0067DB36 /* Build configuration list for PBXNativeTarget "OGLEngineTests" */;
+			buildConfigurationList = C269D5AB1CA8981D00E56E67 /* Build configuration list for PBXNativeTarget "OGLEngine" */;
 			buildPhases = (
-				524BD4EB1C83747E0067DB36 /* Sources */,
-				524BD4EC1C83747E0067DB36 /* Frameworks */,
-				524BD4ED1C83747E0067DB36 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				524BD4F51C83747F0067DB36 /* PBXTargetDependency */,
-			);
-			name = OGLEngineTests;
-			productName = OGLEngineTests;
-			productReference = 524BD4EF1C83747E0067DB36 /* OGLEngineTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		526FD7591C7E600700C22AD9 /* OGLEngine */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 526FD7751C7E600700C22AD9 /* Build configuration list for PBXNativeTarget "OGLEngine" */;
-			buildPhases = (
-				B3512063FAC059E2539CEF48 /* Check Pods Manifest.lock */,
-				526FD7561C7E600700C22AD9 /* Sources */,
-				526FD7571C7E600700C22AD9 /* Frameworks */,
-				C22115311C90BA0B00DB3C72 /* IP Address */,
-				526FD7581C7E600700C22AD9 /* Resources */,
-				A9451F010AA7C30048644CC9 /* Embed Pods Frameworks */,
-				DF378EED88E135F38945284E /* Copy Pods Resources */,
-				C222BDEE1C91DDEF00549D93 /* Run Controller */,
+				EB7080C0096C1D6652CFFEA6 /* Check Pods Manifest.lock */,
+				C269D5861CA8981D00E56E67 /* Sources */,
+				C269D5871CA8981D00E56E67 /* Frameworks */,
+				C269D5881CA8981D00E56E67 /* Resources */,
+				644EE979ED6EF0C8A7F888F9 /* Embed Pods Frameworks */,
+				5CDDE341E376FF8FA5A6ACE8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -374,29 +221,47 @@
 			);
 			name = OGLEngine;
 			productName = OGLEngine;
-			productReference = 526FD75A1C7E600700C22AD9 /* OGLEngine.app */;
+			productReference = C269D58A1CA8981D00E56E67 /* OGLEngine.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C269D5A11CA8981D00E56E67 /* OGLEngineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C269D5AE1CA8981D00E56E67 /* Build configuration list for PBXNativeTarget "OGLEngineTests" */;
+			buildPhases = (
+				C269D59E1CA8981D00E56E67 /* Sources */,
+				C269D59F1CA8981D00E56E67 /* Frameworks */,
+				C269D5A01CA8981D00E56E67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C269D5A41CA8981D00E56E67 /* PBXTargetDependency */,
+			);
+			name = OGLEngineTests;
+			productName = OGLEngineTests;
+			productReference = C269D5A21CA8981D00E56E67 /* OGLEngineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		526FD7521C7E600700C22AD9 /* Project object */ = {
+		C269D5821CA8981D00E56E67 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = MaciejCh;
+				ORGANIZATIONNAME = "Maciej Chmielewski";
 				TargetAttributes = {
-					524BD4EE1C83747E0067DB36 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 526FD7591C7E600700C22AD9;
+					C269D5891CA8981D00E56E67 = {
+						CreatedOnToolsVersion = 7.2.1;
 					};
-					526FD7591C7E600700C22AD9 = {
-						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 76RXF4V6NR;
+					C269D5A11CA8981D00E56E67 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = C269D5891CA8981D00E56E67;
 					};
 				};
 			};
-			buildConfigurationList = 526FD7551C7E600700C22AD9 /* Build configuration list for PBXProject "OGLEngine" */;
+			buildConfigurationList = C269D5851CA8981D00E56E67 /* Build configuration list for PBXProject "OGLEngine" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -404,108 +269,49 @@
 				en,
 				Base,
 			);
-			mainGroup = 526FD7511C7E600700C22AD9;
-			productRefGroup = 526FD75B1C7E600700C22AD9 /* Products */;
+			mainGroup = C269D5811CA8981D00E56E67;
+			productRefGroup = C269D58B1CA8981D00E56E67 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				526FD7591C7E600700C22AD9 /* OGLEngine */,
-				524BD4EE1C83747E0067DB36 /* OGLEngineTests */,
+				C269D5891CA8981D00E56E67 /* OGLEngine */,
+				C269D5A11CA8981D00E56E67 /* OGLEngineTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		524BD4ED1C83747E0067DB36 /* Resources */ = {
+		C269D5881CA8981D00E56E67 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22EB0261CA71FA600E920EA /* cubeLoadingResult.json in Resources */,
+				C269D5C91CA898DD00E56E67 /* axes_rgb.png in Resources */,
+				C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */,
+				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
+				C269D5921CA8981D00E56E67 /* Shader.vsh in Resources */,
+				C269D5D41CA898DD00E56E67 /* OtherSources in Resources */,
+				C269D5CA1CA898DD00E56E67 /* axes.obj in Resources */,
+				C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */,
+				C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */,
+				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
+				C269D5CE1CA898DD00E56E67 /* cube.obj in Resources */,
+				C269D59C1CA8981D00E56E67 /* LaunchScreen.storyboard in Resources */,
+				C269D5901CA8981D00E56E67 /* Shader.fsh in Resources */,
+				C269D5D11CA898DD00E56E67 /* normalMap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		526FD7581C7E600700C22AD9 /* Resources */ = {
+		C269D5A01CA8981D00E56E67 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				526FD76C1C7E600700C22AD9 /* Main.storyboard in Resources */,
-				C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */,
-				C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */,
-				C22115341C90C28000DB3C72 /* IPAddress in Resources */,
-				C25A90C51C932124009EFF5F /* normalMap.png in Resources */,
-				C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */,
-				526FD7661C7E600700C22AD9 /* Shader.vsh in Resources */,
-				526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */,
-				521A3CBE1C7F958D00F19832 /* Texture.png in Resources */,
-				526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */,
-				C25382A31C8C5A3800ADF443 /* axes.obj in Resources */,
-				526FD7641C7E600700C22AD9 /* Shader.fsh in Resources */,
-				52C9C9881C822315009F2FBF /* cube.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A9451F010AA7C30048644CC9 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3512063FAC059E2539CEF48 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C22115311C90BA0B00DB3C72 /* IP Address */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "IP Address";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/IPAddress.sh\"";
-		};
-		C222BDEE1C91DDEF00549D93 /* Run Controller */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Controller";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/Controller.sh\"";
-		};
-		DF378EED88E135F38945284E /* Copy Pods Resources */ = {
+		5CDDE341E376FF8FA5A6ACE8 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -520,68 +326,96 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		644EE979ED6EF0C8A7F888F9 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB7080C0096C1D6652CFFEA6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		524BD4EB1C83747E0067DB36 /* Sources */ = {
+		C269D5861CA8981D00E56E67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524BD4FA1C8374A00067DB36 /* OBJLoaderTestCase.m in Sources */,
-				524BD4F21C83747F0067DB36 /* OGLEngineTests.m in Sources */,
+				C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */,
+				C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */,
+				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
+				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
+				C269D5DB1CA898DD00E56E67 /* Renderer.swift in Sources */,
+				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
+				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
+				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
+				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
+				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
+				C269D5D61CA898DD00E56E67 /* Program.swift in Sources */,
+				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
+				C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */,
+				C269D5CB1CA898DD00E56E67 /* BasicCamera.swift in Sources */,
+				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
+				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
+				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,
+				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,
+				C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		526FD7561C7E600700C22AD9 /* Sources */ = {
+		C269D59E1CA8981D00E56E67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2645B311CA3FED1001D0400 /* Program.swift in Sources */,
-				C2C830831CA02ADB0064C2FE /* VAO.swift in Sources */,
-				526FD7621C7E600700C22AD9 /* AppDelegate.m in Sources */,
-				C2C830851CA030F30064C2FE /* OBJ.swift in Sources */,
-				C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */,
-				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
-				C2EA81D21CA88D00003DA172 /* GameViewController.swift in Sources */,
-				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
-				C2EA81D01CA87F3C003DA172 /* RemoteControlledCamera.swift in Sources */,
-				C22EB02A1CA84E1200E920EA /* BasicCamera.swift in Sources */,
-				C278341A1CA859F50093E605 /* RemoteController.swift in Sources */,
-				C2319C3F1CA077A30023767E /* Camera.swift in Sources */,
-				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
-				C22EB0281CA847F000E920EA /* Scene.swift in Sources */,
-				526FD75F1C7E600700C22AD9 /* main.m in Sources */,
-				C2AE35B81CA0BA4C00F75151 /* Renderer.swift in Sources */,
-				C2EA81D41CA890F6003DA172 /* RemoteControllerModels.swift in Sources */,
-				C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */,
-				C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */,
-				C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */,
+				C269D5A71CA8981D00E56E67 /* OGLEngineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		524BD4F51C83747F0067DB36 /* PBXTargetDependency */ = {
+		C269D5A41CA8981D00E56E67 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 526FD7591C7E600700C22AD9 /* OGLEngine */;
-			targetProxy = 524BD4F41C83747F0067DB36 /* PBXContainerItemProxy */;
+			target = C269D5891CA8981D00E56E67 /* OGLEngine */;
+			targetProxy = C269D5A31CA8981D00E56E67 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		526FD76A1C7E600700C22AD9 /* Main.storyboard */ = {
+		C269D5951CA8981D00E56E67 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				526FD76B1C7E600700C22AD9 /* Base */,
+				C269D5961CA8981D00E56E67 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */ = {
+		C269D59A1CA8981D00E56E67 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				526FD7701C7E600700C22AD9 /* Base */,
+				C269D59B1CA8981D00E56E67 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -589,37 +423,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		524BD4F61C83747F0067DB36 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = OGLEngineTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mch.OGLEngineTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OGLEngineTests/OGLEngineTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OGLEngine.app/OGLEngine";
-			};
-			name = Debug;
-		};
-		524BD4F71C83747F0067DB36 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = OGLEngineTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mch.OGLEngineTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OGLEngineTests/OGLEngineTests-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OGLEngine.app/OGLEngine";
-			};
-			name = Release;
-		};
-		526FD7731C7E600700C22AD9 /* Debug */ = {
+		C269D5A91CA8981D00E56E67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -659,10 +463,12 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		526FD7741C7E600700C22AD9 /* Release */ = {
+		C269D5AA1CA8981D00E56E67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -695,72 +501,91 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		526FD7761C7E600700C22AD9 /* Debug */ = {
+		C269D5AC1CA8981D00E56E67 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE96C1A1A6C2269789EB970B /* Pods-OGLEngine.debug.xcconfig */;
+			baseConfigurationReference = 9205D7DBFBB1CE1C1FCD90A2 /* Pods-OGLEngine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
+				PRODUCT_BUNDLE_IDENTIFIER = mch.OGLEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OGLEngine/OGLEngine-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		526FD7771C7E600700C22AD9 /* Release */ = {
+		C269D5AD1CA8981D00E56E67 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9BDF39F0C38FDF98D576B75 /* Pods-OGLEngine.release.xcconfig */;
+			baseConfigurationReference = 7F43FA214889814B7067DBE2 /* Pods-OGLEngine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OGLEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.OGL;
+				PRODUCT_BUNDLE_IDENTIFIER = mch.OGLEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OGLEngine/OGLEngine-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		C269D5AF1CA8981D00E56E67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = OGLEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = mch.OGLEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OGLEngine.app/OGLEngine";
+			};
+			name = Debug;
+		};
+		C269D5B01CA8981D00E56E67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = OGLEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = mch.OGLEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OGLEngine.app/OGLEngine";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		524BD4F81C83747F0067DB36 /* Build configuration list for PBXNativeTarget "OGLEngineTests" */ = {
+		C269D5851CA8981D00E56E67 /* Build configuration list for PBXProject "OGLEngine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				524BD4F61C83747F0067DB36 /* Debug */,
-				524BD4F71C83747F0067DB36 /* Release */,
+				C269D5A91CA8981D00E56E67 /* Debug */,
+				C269D5AA1CA8981D00E56E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		526FD7551C7E600700C22AD9 /* Build configuration list for PBXProject "OGLEngine" */ = {
+		C269D5AB1CA8981D00E56E67 /* Build configuration list for PBXNativeTarget "OGLEngine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				526FD7731C7E600700C22AD9 /* Debug */,
-				526FD7741C7E600700C22AD9 /* Release */,
+				C269D5AC1CA8981D00E56E67 /* Debug */,
+				C269D5AD1CA8981D00E56E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		526FD7751C7E600700C22AD9 /* Build configuration list for PBXNativeTarget "OGLEngine" */ = {
+		C269D5AE1CA8981D00E56E67 /* Build configuration list for PBXNativeTarget "OGLEngineTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				526FD7761C7E600700C22AD9 /* Debug */,
-				526FD7771C7E600700C22AD9 /* Release */,
+				C269D5AF1CA8981D00E56E67 /* Debug */,
+				C269D5B01CA8981D00E56E67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 526FD7521C7E600700C22AD9 /* Project object */;
+	rootObject = C269D5821CA8981D00E56E67 /* Project object */;
 }
