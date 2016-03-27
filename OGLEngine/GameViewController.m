@@ -8,18 +8,10 @@
 
 #import "GameViewController.h"
 #import <OpenGLES/ES2/glext.h>
-//#import "OBJ+samples.h"
-//#import "VAO.h"
-//#import "Texture.h"
-//#import "SpinningGeometryModel.h"
+
 #import "BasicCamera.h"
-#import "OBJLoader.h"
-//#import "StaticGeometryModel.h"
-#import "FocusingCamera.h"
-//#import "Renderable.h"
 #import "FocusingCamera.h"
 #import "RemoteControlledCamera.h"
-//#import "DirectionalLight.h"
 #import "OGLEngine-Swift.h"
 
 @interface GameViewController () {
@@ -28,9 +20,10 @@
 @property (strong, nonatomic) EAGLContext *context;
 
 @property (nonatomic, strong) id<Camera> camera;
-@property (nonatomic, strong) DirectionalLight *directionalLight;
-@property (nonatomic, strong) NSMutableArray<Renderable *> *renderables;
-@property (nonatomic, strong) Texture *normalMap;
+@property (nonatomic, strong) Scene *scene;
+//@property (nonatomic, strong) DirectionalLight *directionalLight;
+//@property (nonatomic, strong) NSMutableArray<Renderable *> *renderables;
+//@property (nonatomic, strong) Texture *normalMap;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -56,74 +49,18 @@
 
 @implementation GameViewController
 
+- (Scene *)scene {
+    if (!_scene) {
+        _scene = [Scene new];
+    }
+    return _scene;
+}
+
 - (void)setupGL {
     [EAGLContext setCurrentContext:self.context];
     [self loadShaders];
     glUseProgram(_program);
     glEnable(GL_DEPTH_TEST);
-    
-    self.renderables = [NSMutableArray new];
-    
-    // Vaos
-    VAO *cubeVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube"]];
-    VAO *torusVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"paczek"]];
-    VAO *cubeTexVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"cube_tex"]];
-    VAO *axesVao = [[VAO alloc] initWithOBJ:[OBJLoader objFromFileNamed:@"axes"]];
-//    VAO *groundVao = [[VAO alloc] initWithOBJ:[OBJ square]];
-    
-    // Textures
-    Texture *orangeTexture = [[Texture alloc] initWithColor:[UIColor orangeColor]];
-    Texture *grayTexture = [[Texture alloc] initWithColor:[UIColor grayColor]];
-    Texture *axesTexture = [[Texture alloc] initWithImageNamed:@"axes_rgb"];
-    Texture *groundTexture = [[Texture alloc] initWithColor:[UIColor brownColor]];
-    
-    [orangeTexture bind];
-    [grayTexture bind];
-    [axesTexture bind];
-    [groundTexture bind];
-    
-    // Geometry models
-    SpinningGeometryModel *spinningGeometryModel = [[SpinningGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
-    StaticGeometryModel *originGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 0)];
-    GLKMatrix4 mat = [originGeometryModel modelMatrix];
-//    [originGeometryModel wtf:GLKMatrix4Identity];
-    StaticGeometryModel *xGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(1, 0, 0)];
-    StaticGeometryModel *yGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(0, 1, 0)];
-    StaticGeometryModel *zGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(0, 0, 1)];
-    
-    StaticGeometryModel *standingGeometryModel = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(5, 0, 0)];
-//    StaticGeometryModel *groundGeometryModel = [[StaticGeometryModel alloc] initWithModelMatrix:GLKMatrix4MakeScale(100, 100, 0.01)];
-    
-    
-    // Renderables
-    [self.renderables addObject:[[Renderable alloc] initWithVao:torusVao geometryModel:standingGeometryModel texture:orangeTexture]];
-    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:originGeometryModel texture:axesTexture]];
-//    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:xGeometryModel texture:axesTexture]];
-//    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
-//    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
-//    [self.renderables addObject:[[Renderable alloc] initWithVao:groundVao geometryModel:originGeometryModel texture:groundTexture]];
-    [self.renderables addObject:[[Renderable alloc] initWithVao:cubeTexVao geometryModel:originGeometryModel texture:orangeTexture]];
-    
-    int gridRadius = 5;
-    for (int i=-gridRadius; i<gridRadius; i++) {
-            GLKMatrix4 model = GLKMatrix4MakeScale(.01, 10, .01);
-            model = GLKMatrix4Translate(model, i * 100, 0, 0);
-//        StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithPosition:GLKVector3Make(i * 100, 0, 0) scale:GLKVector3Make(.01, 10, .01)];
-//            [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
-    }
-    for (int i=-gridRadius; i<gridRadius; i++) {
-        GLKMatrix4 model = GLKMatrix4MakeScale(10, .01, .01);
-        model = GLKMatrix4Translate(model, 0, i * 100, 0);
-//        StaticGeometryModel *geometry = [[StaticGeometryModel alloc] initWithModelMatrix:model];
-//        [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
-    }
-    
-    // Light
-    self.directionalLight = [[DirectionalLight alloc] initWithLightDirection:GLKVector3Make(0, -1, -1)];
-    
-    // Normal map
-    self.normalMap = [[Texture alloc] initWithImageNamed:@"normalMap"];
-    [self.normalMap bind];
     
     // Camera
     RemoteControlledCamera *camera = [RemoteControlledCamera new];
@@ -142,8 +79,8 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     [Renderer prepareBuffer];
-    [Renderer passData:self.camera light:self.directionalLight];
-    [Renderer render:self.renderables camera:self.camera normalMap:self.normalMap];
+    [Renderer passData:self.camera light:self.scene.directionalLight];
+    [Renderer render:self.scene.renderables camera:self.camera normalMap:self.scene.normalMap];
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation

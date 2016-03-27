@@ -108,7 +108,7 @@ class OBJLoader : NSObject {
 //            }
 //        }
         
-        NSLog("counts: %d %d %d", positions.count, texels.count, normals.count)
+//        NSLog("counts: %d %d %d", positions.count, texels.count, normals.count)
         
         let strideIndices = facesIndices.map{return [$0.v1, $0.v2, $0.v3]}.stomp()
         
@@ -116,7 +116,7 @@ class OBJLoader : NSObject {
             return e1.p == e2.p && e1.t == e2.t && e1.n == e2.n
         }
         let indicesProcessor = { (entity: VertexIndices) -> (Void) in
-            NSLog("%d %d %d", entity.p, entity.t, entity.n)
+//            NSLog("%d %d %d", entity.p, entity.t, entity.n)
             ps.append(positions[entity.p - 1])
             ts.append(texels[entity.t - 1])
             ns.append(normals[entity.n - 1])
@@ -150,8 +150,8 @@ class OBJLoader : NSObject {
         obj.texels = floatArrayToArray(tss)
         obj.normals = floatArrayToArray(nss)
         
-        NSLog("indexed counts: %d %d %d", ps.count, ts.count, ns.count)
-        NSLog("stomped counts: %d %d %d", pss.count, tss.count, nss.count)
+//        NSLog("indexed counts: %d %d %d", ps.count, ts.count, ns.count)
+//        NSLog("stomped counts: %d %d %d", pss.count, tss.count, nss.count)
         
         var pz = ps.map { (position: (x: Float, y: Float, z: Float)) -> [Float] in
             return [position.x, position.y, position.z]
