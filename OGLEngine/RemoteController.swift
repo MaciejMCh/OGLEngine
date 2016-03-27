@@ -18,8 +18,7 @@ class RemoteController : NSObject {
     override init() {
         super.init()
         do {
-//            let ipAddress: String = try String(contentsOfFile:NSBundle.mainBundle().pathForResource("IPAddress", ofType: "")!)
-            let ipAddress = "localhost"
+            let ipAddress: String = try String(contentsOfFile:NSBundle.mainBundle().pathForResource("IPAddress", ofType: "")!)
             self.webSocketClient =  WebSocket("ws://\(ipAddress):6001")
             self.webSocketClient.event.message = {message in
                 if let message = message as? String {

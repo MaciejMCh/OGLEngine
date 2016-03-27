@@ -27,7 +27,6 @@
 		C269D5D11CA898DD00E56E67 /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B91CA898DD00E56E67 /* normalMap.png */; };
 		C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BA1CA898DD00E56E67 /* OBJ.swift */; };
 		C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */; };
-		C269D5D41CA898DD00E56E67 /* OtherSources in Resources */ = {isa = PBXBuildFile; fileRef = C269D5BC1CA898DD00E56E67 /* OtherSources */; };
 		C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5BD1CA898DD00E56E67 /* paczek.obj */; };
 		C269D5D61CA898DD00E56E67 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BE1CA898DD00E56E67 /* Program.swift */; };
 		C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */; };
@@ -41,6 +40,7 @@
 		C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5C71CA898DD00E56E67 /* Texture.png */; };
 		C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C81CA898DD00E56E67 /* Texture.swift */; };
 		C269D5E21CA898E900E56E67 /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5E11CA898E900E56E67 /* VAO.swift */; };
+		C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C269D5F01CA89B6E00E56E67 /* IPAddress */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +80,6 @@
 		C269D5B91CA898DD00E56E67 /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
 		C269D5BA1CA898DD00E56E67 /* OBJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJ.swift; sourceTree = "<group>"; };
 		C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
-		C269D5BC1CA898DD00E56E67 /* OtherSources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OtherSources; sourceTree = "<group>"; };
 		C269D5BD1CA898DD00E56E67 /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
 		C269D5BE1CA898DD00E56E67 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		C269D5C71CA898DD00E56E67 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
 		C269D5C81CA898DD00E56E67 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		C269D5E11CA898E900E56E67 /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
+		C269D5F01CA89B6E00E56E67 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,39 +155,11 @@
 		C269D58C1CA8981D00E56E67 /* OGLEngine */ = {
 			isa = PBXGroup;
 			children = (
-				C269D5E11CA898E900E56E67 /* VAO.swift */,
-				C269D5B11CA898DD00E56E67 /* axes_rgb.png */,
-				C269D5B21CA898DD00E56E67 /* axes.obj */,
-				C269D5B31CA898DD00E56E67 /* BasicCamera.swift */,
-				C269D5B41CA898DD00E56E67 /* Camera.swift */,
-				C269D5B51CA898DD00E56E67 /* cube_tex.obj */,
-				C269D5B61CA898DD00E56E67 /* cube.obj */,
-				C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */,
-				C269D5B81CA898DD00E56E67 /* GeometryModel.swift */,
-				C269D5B91CA898DD00E56E67 /* normalMap.png */,
-				C269D5BA1CA898DD00E56E67 /* OBJ.swift */,
-				C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */,
-				C269D5BC1CA898DD00E56E67 /* OtherSources */,
-				C269D5BD1CA898DD00E56E67 /* paczek.obj */,
-				C269D5BE1CA898DD00E56E67 /* Program.swift */,
-				C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */,
-				C269D5C01CA898DD00E56E67 /* RemoteController.swift */,
-				C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */,
-				C269D5C21CA898DD00E56E67 /* Renderable.swift */,
-				C269D5C31CA898DD00E56E67 /* Renderer.swift */,
-				C269D5C41CA898DD00E56E67 /* Scene.swift */,
-				C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */,
-				C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */,
-				C269D5C71CA898DD00E56E67 /* Texture.png */,
-				C269D5C81CA898DD00E56E67 /* Texture.swift */,
-				C269D58D1CA8981D00E56E67 /* AppDelegate.swift */,
-				C269D58F1CA8981D00E56E67 /* Shader.fsh */,
-				C269D5911CA8981D00E56E67 /* Shader.vsh */,
-				C269D5931CA8981D00E56E67 /* GameViewController.swift */,
-				C269D5951CA8981D00E56E67 /* Main.storyboard */,
-				C269D5981CA8981D00E56E67 /* Assets.xcassets */,
-				C269D59A1CA8981D00E56E67 /* LaunchScreen.storyboard */,
-				C269D59D1CA8981D00E56E67 /* Info.plist */,
+				C269D5E41CA89A4900E56E67 /* Rendering */,
+				C269D5E31CA89A3B00E56E67 /* Controllers */,
+				C269D5EC1CA89B1300E56E67 /* Resources */,
+				C269D5F21CA89B8F00E56E67 /* Utilities */,
+				C269D5F61CA89BF900E56E67 /* Application */,
 			);
 			path = OGLEngine;
 			sourceTree = "<group>";
@@ -199,6 +171,178 @@
 				C269D5A81CA8981D00E56E67 /* Info.plist */,
 			);
 			path = OGLEngineTests;
+			sourceTree = "<group>";
+		};
+		C269D5E31CA89A3B00E56E67 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5931CA8981D00E56E67 /* GameViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C269D5E41CA89A4900E56E67 /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5E51CA89A5400E56E67 /* Core */,
+				C269D5EA1CA89ADE00E56E67 /* OBJ */,
+				C269D5E61CA89A7900E56E67 /* Renderable */,
+				C269D5E71CA89A8D00E56E67 /* Light */,
+				C269D5E81CA89A9A00E56E67 /* Camera */,
+				C269D5E91CA89AAE00E56E67 /* GeometryModel */,
+				C269D5EB1CA89AF500E56E67 /* Texture */,
+			);
+			name = Rendering;
+			sourceTree = "<group>";
+		};
+		C269D5E51CA89A5400E56E67 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5C41CA898DD00E56E67 /* Scene.swift */,
+				C269D5E11CA898E900E56E67 /* VAO.swift */,
+				C269D5C31CA898DD00E56E67 /* Renderer.swift */,
+				C269D5BE1CA898DD00E56E67 /* Program.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		C269D5E61CA89A7900E56E67 /* Renderable */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5C21CA898DD00E56E67 /* Renderable.swift */,
+			);
+			name = Renderable;
+			sourceTree = "<group>";
+		};
+		C269D5E71CA89A8D00E56E67 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */,
+			);
+			name = Light;
+			sourceTree = "<group>";
+		};
+		C269D5E81CA89A9A00E56E67 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5B41CA898DD00E56E67 /* Camera.swift */,
+				C269D5B31CA898DD00E56E67 /* BasicCamera.swift */,
+				C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		C269D5E91CA89AAE00E56E67 /* GeometryModel */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5B81CA898DD00E56E67 /* GeometryModel.swift */,
+				C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */,
+				C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */,
+			);
+			name = GeometryModel;
+			sourceTree = "<group>";
+		};
+		C269D5EA1CA89ADE00E56E67 /* OBJ */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5BA1CA898DD00E56E67 /* OBJ.swift */,
+				C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */,
+			);
+			name = OBJ;
+			sourceTree = "<group>";
+		};
+		C269D5EB1CA89AF500E56E67 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5C81CA898DD00E56E67 /* Texture.swift */,
+			);
+			name = Texture;
+			sourceTree = "<group>";
+		};
+		C269D5EC1CA89B1300E56E67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5F41CA89BBA00E56E67 /* Shaders */,
+				C269D5EE1CA89B1D00E56E67 /* Textures */,
+				C269D5ED1CA89B1800E56E67 /* OBJs */,
+				C269D5EF1CA89B5800E56E67 /* Utilities */,
+				C269D5F51CA89BD400E56E67 /* Xcode */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		C269D5ED1CA89B1800E56E67 /* OBJs */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5BD1CA898DD00E56E67 /* paczek.obj */,
+				C269D5B21CA898DD00E56E67 /* axes.obj */,
+				C269D5B51CA898DD00E56E67 /* cube_tex.obj */,
+				C269D5B61CA898DD00E56E67 /* cube.obj */,
+			);
+			name = OBJs;
+			sourceTree = "<group>";
+		};
+		C269D5EE1CA89B1D00E56E67 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5B11CA898DD00E56E67 /* axes_rgb.png */,
+				C269D5C71CA898DD00E56E67 /* Texture.png */,
+				C269D5B91CA898DD00E56E67 /* normalMap.png */,
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
+		C269D5EF1CA89B5800E56E67 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5F01CA89B6E00E56E67 /* IPAddress */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		C269D5F21CA89B8F00E56E67 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5F31CA89B9700E56E67 /* RemoteController */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		C269D5F31CA89B9700E56E67 /* RemoteController */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5C01CA898DD00E56E67 /* RemoteController.swift */,
+				C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */,
+			);
+			name = RemoteController;
+			sourceTree = "<group>";
+		};
+		C269D5F41CA89BBA00E56E67 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C269D58F1CA8981D00E56E67 /* Shader.fsh */,
+				C269D5911CA8981D00E56E67 /* Shader.vsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
+		C269D5F51CA89BD400E56E67 /* Xcode */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5951CA8981D00E56E67 /* Main.storyboard */,
+				C269D5981CA8981D00E56E67 /* Assets.xcassets */,
+				C269D59A1CA8981D00E56E67 /* LaunchScreen.storyboard */,
+				C269D59D1CA8981D00E56E67 /* Info.plist */,
+			);
+			name = Xcode;
+			sourceTree = "<group>";
+		};
+		C269D5F61CA89BF900E56E67 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C269D58D1CA8981D00E56E67 /* AppDelegate.swift */,
+			);
+			name = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,8 +433,8 @@
 				C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */,
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
 				C269D5921CA8981D00E56E67 /* Shader.vsh in Resources */,
-				C269D5D41CA898DD00E56E67 /* OtherSources in Resources */,
 				C269D5CA1CA898DD00E56E67 /* axes.obj in Resources */,
+				C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */,
 				C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */,
 				C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
