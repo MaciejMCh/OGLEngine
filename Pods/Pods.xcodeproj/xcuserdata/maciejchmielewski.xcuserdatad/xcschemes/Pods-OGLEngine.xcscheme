@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D446A52AC9805BCE395A3488'
+               BlueprintIdentifier = '7969BD61EC58CFE3E51A52F0'
                BlueprintName = 'Pods-OGLEngine'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-OGLEngine.a'>
+               BuildableName = 'Pods_OGLEngine.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

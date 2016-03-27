@@ -7,7 +7,7 @@
 //
 
 #import "BasicCamera.h"
-#import "RemoteController.h"
+#import "RemoteControllerModels.h"
 
 @interface RemoteControlledCamera : BasicCamera
 

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^EventHandler)(id eventSubject);
+
 @interface RemoteMouse : NSObject
 
 @property (nonatomic, assign) float xPosition;

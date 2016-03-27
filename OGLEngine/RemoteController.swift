@@ -7,75 +7,49 @@
 //
 
 import Foundation
-import SocketRocket
+import SwiftWebSocket
 
-class RemoteController2 : NSObject, SRWebSocketDelegate {
-    static let controller = RemoteController2()
+class RemoteController : NSObject {
+    static let controller = RemoteController()
     
-    var webSocketClient: SRWebSocket!
-        
+    var webSocketClient: WebSocket!
+    var eventHandlers: [EventHandler] = []
     
     override init() {
         super.init()
         do {
-            let ipAddress: String = try NSBundle.mainBundle().pathForResource("IPAddress", ofType: "")!
-            self.webSocketClient = SRWebSocket(URL: NSURL(string: "ws://\(ipAddress):6001")!)
-            self.webSocketClient.open()
-            self.webSocketClient.delegate = self
+            let ipAddress: String = try String(contentsOfFile:NSBundle.mainBundle().pathForResource("IPAddress", ofType: "")!)
+            self.webSocketClient =  WebSocket("ws://\(ipAddress):6001")
+            self.webSocketClient.event.message = {message in
+                if let message = message as? String {
+                    var eventSubject: NSObject? = nil
+                    if message.hasPrefix("m") {
+                        eventSubject = RemoteMouse(message: message)
+                    }
+                    else if message.hasPrefix("d") {
+                        eventSubject = RemoteKey(message: message)
+                    }
+                    else if message.hasPrefix("u") {
+                        eventSubject = RemoteKey(message: message)
+                    }
+                    
+                    if let eventSubject = eventSubject {
+                        for handler: EventHandler in self.eventHandlers {
+                            handler(eventSubject)
+                        }
+                    }
+
+                }
+            }
         } catch _ {
         }
     }
     
-//    func eventHandlers() -> EventHandler {
-//        if !eventHandlers {
-//            self.eventHandlers = NSMutableArray()
-//        }
-//        return eventHandlers
-//    }
-    
-    func webSocketDidOpen(webSocket: SRWebSocket!) {
-        NSLog("open")
+    func addEventHandler(eventHandler: EventHandler) {
+        self.eventHandlers.append(eventHandler)
     }
     
-    func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
-        NSLog("close")
+    func removeEventHandler(eventHandler: EventHandler) {
+//        self.eventHandlers = self.eventHandlers.filter{$0 == eventHandler}
     }
-    
-    func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
-        NSLog("error")
-    }
-    
-    func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
-        NSLog("asd")
-    }
-    
-//    func webSocket(webSocket: SRWebSocket, didReceiveMessage message: String) {
-//        if !(message is NSString.self) {
-//            return
-//        }
-//        var eventSubject: AnyObject? = nil
-//        if message.hasPrefix("m") {
-//            eventSubject = RemoteMouse.mouseWithMessage(message)
-//        }
-//        else if message.hasPrefix("d") {
-//            eventSubject = RemoteKey.keyWithMessage(message)
-//        }
-//        else if message.hasPrefix("u") {
-//            eventSubject = RemoteKey.keyWithMessage(message)
-//        }
-//        
-//        if eventSubject! {
-//            for handler: EventHandler in self.eventHandlers {
-//                handler(eventSubject)
-//            }
-//        }
-//    }
-//    
-//    func addEventHandler(eventHandler: EventHandler) {
-//        self.eventHandlers.append(eventHandler)
-//    }
-//    
-//    func removeEventHandler(eventHandler: EventHandler) {
-//        self.eventHandlers.removeObject(eventHandler)
-//    }
 }

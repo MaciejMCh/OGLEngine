@@ -1,10 +1,10 @@
 PODS:
-  - SocketRocket (0.4.2)
+  - SwiftWebSocket (2.5.0)
 
 DEPENDENCIES:
-  - SocketRocket
+  - SwiftWebSocket (= 2.5.0)
 
 SPEC CHECKSUMS:
-  SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
+  SwiftWebSocket: 168cbde980dc3b5bac925a3d8186f82b3e87768e
 
 COCOAPODS: 0.39.0

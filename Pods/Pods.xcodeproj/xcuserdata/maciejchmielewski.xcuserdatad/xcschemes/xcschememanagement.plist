@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SocketRocket.xcscheme</key>
+		<key>SwiftWebSocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4320F91541EC8751BA7E578517C797D2</key>
+		<key>A8C089A4936CBFEAB8018C30EC0642AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>978F01CAE31028F2E3BC0B7192C166AF</key>
+		<key>CC220C0027B43B6F7E3741BA619179EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

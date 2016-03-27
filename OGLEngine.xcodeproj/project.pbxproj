@@ -20,7 +20,6 @@
 		526FD76E1C7E600700C22AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76D1C7E600700C22AD9 /* Assets.xcassets */; };
 		526FD7711C7E600700C22AD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526FD76F1C7E600700C22AD9 /* LaunchScreen.storyboard */; };
 		52C9C9881C822315009F2FBF /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = 52C9C9871C822315009F2FBF /* cube.obj */; };
-		8028C08A433B5B0C1E697AEC /* libPods-OGLEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61104443A1882E4CEF047F8D /* libPods-OGLEngine.a */; };
 		C2069BF61C8ADF7100F4897C /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2069BF51C8ADF7100F4897C /* paczek.obj */; };
 		C22115341C90C28000DB3C72 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C22115331C90C28000DB3C72 /* IPAddress */; };
 		C22EB0261CA71FA600E920EA /* cubeLoadingResult.json in Resources */ = {isa = PBXBuildFile; fileRef = C22EB0251CA71FA600E920EA /* cubeLoadingResult.json */; };
@@ -32,7 +31,6 @@
 		C25382A71C8C67CE00ADF443 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C25382A61C8C67CE00ADF443 /* axes_rgb.png */; };
 		C25A90C51C932124009EFF5F /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C25A90C41C932124009EFF5F /* normalMap.png */; };
 		C2645B311CA3FED1001D0400 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645B301CA3FED1001D0400 /* Program.swift */; };
-		C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B8D271C8E48CA004B9EED /* RemoteController.m */; };
 		C278341A1CA859F50093E605 /* RemoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27834191CA859F50093E605 /* RemoteController.swift */; };
 		C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2962FAF1C933DC9001188C9 /* cube_tex.obj */; };
 		C2AE35B81CA0BA4C00F75151 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE35B71CA0BA4C00F75151 /* Renderer.swift */; };
@@ -46,6 +44,7 @@
 		C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */; };
 		C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */; };
 		C2EEB2961CA428E600C64BAA /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EEB2951CA428E600C64BAA /* OBJLoader.swift */; };
+		D1BC74E972C2E18677C5A5B2 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +78,7 @@
 		526FD7701C7E600700C22AD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		526FD7721C7E600700C22AD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52C9C9871C822315009F2FBF /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
-		61104443A1882E4CEF047F8D /* libPods-OGLEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OGLEngine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OGLEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE96C1A1A6C2269789EB970B /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
 		B9BDF39F0C38FDF98D576B75 /* Pods-OGLEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.release.xcconfig"; sourceTree = "<group>"; };
 		C2069BF51C8ADF7100F4897C /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
@@ -93,8 +92,6 @@
 		C25382A61C8C67CE00ADF443 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
 		C25A90C41C932124009EFF5F /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
 		C2645B301CA3FED1001D0400 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
-		C26B8D261C8E48CA004B9EED /* RemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteController.h; sourceTree = "<group>"; };
-		C26B8D271C8E48CA004B9EED /* RemoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteController.m; sourceTree = "<group>"; };
 		C27834191CA859F50093E605 /* RemoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteController.swift; sourceTree = "<group>"; };
 		C2962FAF1C933DC9001188C9 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
 		C2AE35B71CA0BA4C00F75151 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
@@ -125,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8028C08A433B5B0C1E697AEC /* libPods-OGLEngine.a in Frameworks */,
+				D1BC74E972C2E18677C5A5B2 /* Pods_OGLEngine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +141,7 @@
 		23B1C13A0EE27685ED12F41B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				61104443A1882E4CEF047F8D /* libPods-OGLEngine.a */,
+				7B4B0C232E8AC24D90D7EE8B /* Pods_OGLEngine.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -341,8 +338,6 @@
 		C26B8D251C8E48B0004B9EED /* RemoteController */ = {
 			isa = PBXGroup;
 			children = (
-				C26B8D261C8E48CA004B9EED /* RemoteController.h */,
-				C26B8D271C8E48CA004B9EED /* RemoteController.m */,
 				C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */,
 				C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */,
 				C27834191CA859F50093E605 /* RemoteController.swift */,
@@ -571,7 +566,6 @@
 				C2319C3D1CA076D30023767E /* SpinningGeometryModel.swift in Sources */,
 				C2EA8D621C9099D4001E09AD /* RemoteControllerModels.m in Sources */,
 				C2C830891CA060E00064C2FE /* GeometryModel.swift in Sources */,
-				C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */,
 				C2EA8D5E1C909874001E09AD /* RemoteControlledCamera.m in Sources */,
 				C2C8308B1CA062AE0064C2FE /* StaticGeometryModel.swift in Sources */,
 			);

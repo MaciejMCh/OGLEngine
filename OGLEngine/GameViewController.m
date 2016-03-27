@@ -20,9 +20,6 @@
 
 @property (nonatomic, strong) id<Camera> camera;
 @property (nonatomic, strong) Scene *scene;
-//@property (nonatomic, strong) DirectionalLight *directionalLight;
-//@property (nonatomic, strong) NSMutableArray<Renderable *> *renderables;
-//@property (nonatomic, strong) Texture *normalMap;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -32,19 +29,6 @@
 - (BOOL)linkProgram:(GLuint)prog;
 - (BOOL)validateProgram:(GLuint)prog;
 @end
-
-//enum {
-//    uniformTexture,
-//    uniformNormalMap,
-//    uniformModelMatrix,
-//    uniformViewMatrix,
-//    uniformProjectionMatrix,
-//    uniformNormalMatrix,
-//    uniformEyePosition,
-//    uniformDirectionalLightDirection,
-//    uniformsCount
-//};
-//GLint uniforms[uniformsCount];
 
 @implementation GameViewController
 
@@ -63,16 +47,12 @@
     
     // Camera
     
-//    RemoteControlledCamera *camera = [RemoteControlledCamera new];
-//    camera.yOffset = -2;
-//    camera.zOffset = -1;
-//    camera.xMouse = M_PI_2;
-//    camera.yMouse = M_PI_4;
-//    self.camera = camera;
-    
-    self.camera = self.scene.camera;
-    
-    [RemoteController2 new];
+    RemoteControlledCamera *camera = [RemoteControlledCamera new];
+    camera.yOffset = -2;
+    camera.zOffset = -1;
+    camera.xMouse = M_PI_2;
+    camera.yMouse = M_PI_4;
+    self.camera = camera;
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
