@@ -63,12 +63,16 @@
     
     // Camera
     
-    RemoteControlledCamera *camera = [RemoteControlledCamera new];
-    camera.yOffset = -2;
-    camera.zOffset = -1;
-    camera.xMouse = M_PI_2;
-    camera.yMouse = M_PI_4;
-    self.camera = camera;
+//    RemoteControlledCamera *camera = [RemoteControlledCamera new];
+//    camera.yOffset = -2;
+//    camera.zOffset = -1;
+//    camera.xMouse = M_PI_2;
+//    camera.yMouse = M_PI_4;
+//    self.camera = camera;
+    
+    self.camera = self.scene.camera;
+    
+    [RemoteController2 new];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

@@ -33,6 +33,7 @@
 		C25A90C51C932124009EFF5F /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C25A90C41C932124009EFF5F /* normalMap.png */; };
 		C2645B311CA3FED1001D0400 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2645B301CA3FED1001D0400 /* Program.swift */; };
 		C26B8D281C8E48CA004B9EED /* RemoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B8D271C8E48CA004B9EED /* RemoteController.m */; };
+		C278341A1CA859F50093E605 /* RemoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27834191CA859F50093E605 /* RemoteController.swift */; };
 		C2962FB01C933DC9001188C9 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2962FAF1C933DC9001188C9 /* cube_tex.obj */; };
 		C2AE35B81CA0BA4C00F75151 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE35B71CA0BA4C00F75151 /* Renderer.swift */; };
 		C2C830711CA019A60064C2FE /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C830701CA019A60064C2FE /* Renderable.swift */; };
@@ -94,6 +95,7 @@
 		C2645B301CA3FED1001D0400 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C26B8D261C8E48CA004B9EED /* RemoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteController.h; sourceTree = "<group>"; };
 		C26B8D271C8E48CA004B9EED /* RemoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteController.m; sourceTree = "<group>"; };
+		C27834191CA859F50093E605 /* RemoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteController.swift; sourceTree = "<group>"; };
 		C2962FAF1C933DC9001188C9 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
 		C2AE35B71CA0BA4C00F75151 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C2C8306F1CA019A50064C2FE /* OGLEngine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OGLEngine-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -106,7 +108,6 @@
 		C2C8308A1CA062AE0064C2FE /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
 		C2EA8D5C1C909874001E09AD /* RemoteControlledCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControlledCamera.h; sourceTree = "<group>"; };
 		C2EA8D5D1C909874001E09AD /* RemoteControlledCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControlledCamera.m; sourceTree = "<group>"; };
-		C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllable.h; sourceTree = "<group>"; };
 		C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteControllerModels.h; sourceTree = "<group>"; };
 		C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteControllerModels.m; sourceTree = "<group>"; };
 		C2EEB2951CA428E600C64BAA /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
@@ -342,9 +343,9 @@
 			children = (
 				C26B8D261C8E48CA004B9EED /* RemoteController.h */,
 				C26B8D271C8E48CA004B9EED /* RemoteController.m */,
-				C2EA8D5F1C9099C4001E09AD /* RemoteControllable.h */,
 				C2EA8D601C9099D4001E09AD /* RemoteControllerModels.h */,
 				C2EA8D611C9099D4001E09AD /* RemoteControllerModels.m */,
+				C27834191CA859F50093E605 /* RemoteController.swift */,
 			);
 			name = RemoteController;
 			sourceTree = "<group>";
@@ -560,6 +561,7 @@
 				C2C830711CA019A60064C2FE /* Renderable.swift in Sources */,
 				C2C8307F1CA024590064C2FE /* Texture.swift in Sources */,
 				C22EB02A1CA84E1200E920EA /* BasicCamera.swift in Sources */,
+				C278341A1CA859F50093E605 /* RemoteController.swift in Sources */,
 				C2319C3F1CA077A30023767E /* Camera.swift in Sources */,
 				C2C8307B1CA022150064C2FE /* DirectionalLight.swift in Sources */,
 				C22EB0281CA847F000E920EA /* Scene.swift in Sources */,
