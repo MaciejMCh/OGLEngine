@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^EventHandler)(id eventSubject);
+typedef void (^EventHandler)(NSObject *eventSubject);
 
 @interface RemoteMouse : NSObject
 

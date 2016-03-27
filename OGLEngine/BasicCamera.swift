@@ -37,7 +37,7 @@ class BasicCamera2: NSObject, Camera {
     
     func viewMatrix() -> GLKMatrix4 {
         var orientation: GLKVector3 = self.orientation
-        var position: GLKVector3 = self.position
+        var position: GLKVector3 = self.cameraPosition()
         let id: GLKMatrix4 = GLKMatrix4Identity
         let rotx = GLKMatrix4Rotate(id, orientation.x, 1, 0, 0)
         let roty = GLKMatrix4Rotate(rotx, orientation.y, 0, 1, 0)

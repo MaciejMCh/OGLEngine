@@ -53,11 +53,25 @@
     camera.xMouse = M_PI_2;
     camera.yMouse = M_PI_4;
     self.camera = camera;
+    GLKVector3 vec = [camera cameraPosition];
+    NSLog(@"%.2f %.2f %.2f", vec.x, vec.y, vec.z);
+    NSLog(@"asd");
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update {
+    RemoteControlledCamera *camera = self.camera;
+    
+//    GLKVector3 vec = [camera cameraPosition];
+//    NSLog(@"%.2f %.2f %.2f", vec.x, vec.y, vec.z);
+    GLKMatrix4 mat = [camera viewMatrix];
+    NSLog(@"%.2f %.2f %.2f %.2f", mat.m00, mat.m01, mat.m02, mat.m03);
+    NSLog(@"%.2f %.2f %.2f %.2f", mat.m10, mat.m11, mat.m12, mat.m13);
+    NSLog(@"%.2f %.2f %.2f %.2f", mat.m20, mat.m21, mat.m22, mat.m23);
+    NSLog(@"%.2f %.2f %.2f %.2f", mat.m30, mat.m31, mat.m32, mat.m33);
+    
+    NSLog(@"K");
     
 }
 
