@@ -24,7 +24,7 @@ class BasicCamera: NSObject, Camera {
     
     override init() {
         super.init()
-        var aspect: Float = fabs(Float(UIScreen.mainScreen().bounds.size.width) / Float(UIScreen.mainScreen().bounds.size.height))
+        let aspect: Float = fabs(Float(UIScreen.mainScreen().bounds.size.width) / Float(UIScreen.mainScreen().bounds.size.height))
         self.staticProjectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 0.1, 100.0)
     }
     
@@ -37,30 +37,6 @@ class BasicCamera: NSObject, Camera {
     }
     
     func viewMatrix() -> GLKMatrix4 {
-        var orientation: GLKVector3 = self.orientation
-//        NSLog("%.2f %.2f %.2f", orientation.x, orientation.y, orientation.z)
-        var position: GLKVector3 = self.cameraPosition()
-        return transformatrionMatrix(position, orientation: orientation)
-//        let id: GLKMatrix4 = GLKMatrix4Identity
-//        let rotx = GLKMatrix4MakeXRotation(orientation.x)
-//        let roty = GLKMatrix4MakeYRotation(orientation.y)
-//        let rotz = GLKMatrix4MakeZRotation(orientation.z)
-//        let tra = GLKMatrix4Translate(rotz, position.x, position.y, position.z)
-//        var res = GLKMatrix4Multiply(rotx, roty)
-//        res = GLKMatrix4Multiply(res, rotz)
-//        res = GLKMatrix4Multiply(res, tra)
-//        return GLKMatrix4Multiply(GLKMatrix4Identity, rotx)
-        
-//        return GLKMatrix4MakeTranslation(position.x, position.y, position.z)
-//        return tra
-//        var res = CATransform3DMakeRotation(CGFloat(orientation.x), 1, 0, 0)
-//        res = CATransform3DRotate(res, CGFloat(orientation.y), 0, 1, 0)
-//        res = CATransform3DRotate(res, CGFloat(orientation.z), 0, 1, 1)
-        
-//        res = CATransform3DMakeTranslation(CGFloat(position.x), CGFloat(position.y), CGFloat(position.z))
-    
-        
-//        return GLKMatrix4Make(Float(res.m11), Float(res.m12), Float(res.m13), Float(res.m14), Float(res.m21), Float(res.m22), Float(res.m23), Float(res.m24), Float(res.m31), Float(res.m32), Float(res.m33), Float(res.m34), Float(res.m41), Float(res.m42), Float(res.m43), Float(res.m44))
-        
+        return transformatrionMatrix(self.cameraPosition(), orientation: self.orientation)
     }
 }
