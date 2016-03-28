@@ -7,10 +7,7 @@
 //
 
 import Foundation
-
-struct GPUProgram {
-    let interface: GPUInterface
-}
+import GLKit
 
 
 struct GPUInterface {
@@ -18,11 +15,34 @@ struct GPUInterface {
     let uniforms: [GPUUniform]
 }
 
+struct GPUAttribute {
+    let variable: GPUVariable<Vector>
+    var location: GLuint = 0
+    func getLocation(program: GPUProgram) {
+        glGetAttribLocation(program.glName, self.gpuDomainName())
+    }
+    
+    func gpuDomainName() -> String {
+        return "a" + self.variable.name.capitalizedString
+    }
+}
 
-typealias GPUAttribute = GPUVariable<Vector>
+struct GPUUniform {
+    let variable: GPUVariable<GPUVariableType>
+    var location: GLuint = 0
+    func getLocation(program: GPUProgram) {
+        glGetUniformLocation(program.glName, self.gpuDomainName())
+    }
+    
+    func gpuDomainName() -> String {
+        return "u" + self.variable.name.capitalizedString
+    }
+}
+
+//typealias GPUAttribute = GPUVariable<Vector>
 
 
-typealias GPUUniform = GPUVariable<GPUVariableType>
+//typealias GPUUniform = GPUVariable<GPUVariableType>
 
 
 struct GPUVariable<T> {

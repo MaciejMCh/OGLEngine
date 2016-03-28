@@ -31,7 +31,6 @@
 		C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BA1CA898DD00E56E67 /* OBJ.swift */; };
 		C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */; };
 		C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5BD1CA898DD00E56E67 /* paczek.obj */; };
-		C269D5D61CA898DD00E56E67 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BE1CA898DD00E56E67 /* Program.swift */; };
 		C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */; };
 		C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C01CA898DD00E56E67 /* RemoteController.swift */; };
 		C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */; };
@@ -44,6 +43,8 @@
 		C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C81CA898DD00E56E67 /* Texture.swift */; };
 		C269D5E21CA898E900E56E67 /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5E11CA898E900E56E67 /* VAO.swift */; };
 		C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C269D5F01CA89B6E00E56E67 /* IPAddress */; };
+		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
+		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +88,6 @@
 		C269D5BA1CA898DD00E56E67 /* OBJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJ.swift; sourceTree = "<group>"; };
 		C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
 		C269D5BD1CA898DD00E56E67 /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
-		C269D5BE1CA898DD00E56E67 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
 		C269D5C01CA898DD00E56E67 /* RemoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteController.swift; sourceTree = "<group>"; };
 		C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControllerModels.swift; sourceTree = "<group>"; };
@@ -100,6 +100,8 @@
 		C269D5C81CA898DD00E56E67 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		C269D5E11CA898E900E56E67 /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 		C269D5F01CA89B6E00E56E67 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
+		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		C20EA33B1CA9BC0C0076F979 /* GPUDomain */ = {
 			isa = PBXGroup;
 			children = (
+				C29219971CA9E17000B78343 /* Program */,
 				C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */,
 				C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */,
 			);
@@ -225,7 +228,6 @@
 				C269D5C41CA898DD00E56E67 /* Scene.swift */,
 				C269D5E11CA898E900E56E67 /* VAO.swift */,
 				C269D5C31CA898DD00E56E67 /* Renderer.swift */,
-				C269D5BE1CA898DD00E56E67 /* Program.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -368,6 +370,15 @@
 				C269D58D1CA8981D00E56E67 /* AppDelegate.swift */,
 			);
 			name = Application;
+			sourceTree = "<group>";
+		};
+		C29219971CA9E17000B78343 /* Program */ = {
+			isa = PBXGroup;
+			children = (
+				C29219951CA9D76B00B78343 /* Program.swift */,
+				C29219981CA9E18A00B78343 /* CloseShotProgram.swift */,
+			);
+			name = Program;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,13 +580,13 @@
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
 				C269D5DB1CA898DD00E56E67 /* Renderer.swift in Sources */,
+				C29219961CA9D76B00B78343 /* Program.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
 				C20EA33A1CA9B86B0076F979 /* TransformatrixMatrix.swift in Sources */,
-				C269D5D61CA898DD00E56E67 /* Program.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
 				C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */,
 				C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */,
@@ -585,6 +596,7 @@
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,
 				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,
 				C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */,
+				C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,20 +2,238 @@
 //  Program.swift
 //  OGLEngine
 //
-//  Created by Maciej Chmielewski on 24.03.2016.
-//  Copyright © 2016 MaciejCh. All rights reserved.
+//  Created by Maciej Chmielewski on 28.03.2016.
+//  Copyright © 2016 Maciej Chmielewski. All rights reserved.
 //
 
 import Foundation
 import GLKit
 
-class Program : NSObject {
-    static var ProgramUniformTexture: GLint = 0
-    static var ProgramUniformNormalMap: GLint = 0
-    static var ProgramUniformModelMatrix: GLint = 0
-    static var ProgramUniformViewMatrix: GLint = 0
-    static var ProgramUniformProjectionMatrix: GLint = 0
-    static var ProgramUniformNormalMatrix: GLint = 0
-    static var ProgramUniformEyePosition: GLint = 0
-    static var ProgramUniformDirectionalLightDirection: GLint = 0
+protocol GPUProgram {
+    var shaderName: String { get }
+    var interface: GPUInterface { get }
+    var glName: GLuint { get }
+    
+    init()
+    
+    static func instantiate() -> GPUProgram
+    
+    mutating func compile()
+    func render(renderables: [Renderable])
+    
 }
+
+extension GPUProgram {
+    
+    private var _shaderName: String {
+        get {
+            return self._shaderName
+        }
+        set {
+            _shaderName = newValue
+        }
+    }
+    
+    private var _interface: GPUInterface {
+        get {
+            return self._interface
+        }
+        set {
+            _interface = newValue
+        }
+    }
+    
+    private var _glName: GLuint {
+        get {
+            return self._glName
+        }
+        set {
+            _glName = newValue
+        }
+    }
+    
+    var shaderName: String {
+        get {
+            return _shaderName
+        }
+    }
+    
+    var interface: GPUInterface {
+        get {
+            return _interface
+        }
+    }
+    
+    var glName: GLuint {
+        get {
+            return _glName
+        }
+    }
+    
+    internal init(shaderName: String, interface: GPUInterface) {
+        self.init()
+        self._shaderName = shaderName
+        self._interface = interface
+    }
+    
+    mutating func compile() {
+        self.loadShaders()
+    }
+    
+    mutating func loadShaders() -> Bool {
+        var vertShader: GLuint = 0
+        var fragShader: GLuint = 0
+        var vertShaderPathname: String
+        var fragShaderPathname: String
+        
+        // Create shader program.
+        self._glName = glCreateProgram()
+        
+        // Create and compile vertex shader.
+        vertShaderPathname = NSBundle.mainBundle().pathForResource(self._shaderName, ofType: "vsh")!
+        if self.compileShader(&vertShader, type: GLenum(GL_VERTEX_SHADER), file: vertShaderPathname) == false {
+            print("Failed to compile vertex shader")
+            return false
+        }
+        
+        // Create and compile fragment shader.
+        fragShaderPathname = NSBundle.mainBundle().pathForResource(self._shaderName, ofType: "fsh")!
+        if !self.compileShader(&fragShader, type: GLenum(GL_FRAGMENT_SHADER), file: fragShaderPathname) {
+            print("Failed to compile fragment shader")
+            return false
+        }
+        
+        // Attach vertex shader to program.
+        glAttachShader(glName, vertShader)
+        
+        // Attach fragment shader to program.
+        glAttachShader(glName, fragShader)
+        
+        // Bind attribute locations.
+        // This needs to be done prior to linking.
+        
+        for attribute in self.interface.attributes {
+            attribute.getLocation(self)
+        }
+        
+        // Link program.
+        if !self.linkProgram(glName) {
+            print("Failed to link program: \(glName)")
+            
+            if vertShader != 0 {
+                glDeleteShader(vertShader)
+                vertShader = 0
+            }
+            if fragShader != 0 {
+                glDeleteShader(fragShader)
+                fragShader = 0
+            }
+            if self._glName != 0 {
+                glDeleteProgram(glName)
+                self._glName = 0
+            }
+            
+            return false
+        }
+        
+        // Get uniform locations.
+        
+        for uniform in self.interface.uniforms {
+            uniform.getLocation(self)
+        }
+        
+        // Release vertex and fragment shaders.
+        if vertShader != 0 {
+            glDetachShader(glName, vertShader)
+            glDeleteShader(vertShader)
+        }
+        if fragShader != 0 {
+            glDetachShader(glName, fragShader)
+            glDeleteShader(fragShader)
+        }
+        
+        return true
+    }
+    
+    
+    func compileShader(inout shader: GLuint, type: GLenum, file: String) -> Bool {
+        var status: GLint = 0
+        var source: UnsafePointer<Int8>
+        do {
+            source = try NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding).UTF8String
+        } catch {
+            print("Failed to load vertex shader")
+            return false
+        }
+        var castSource = UnsafePointer<GLchar>(source)
+        
+        shader = glCreateShader(type)
+        glShaderSource(shader, 1, &castSource, nil)
+        glCompileShader(shader)
+        
+        //#if defined(DEBUG)
+        //        var logLength: GLint = 0
+        //        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+        //        if logLength > 0 {
+        //            var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
+        //            glGetShaderInfoLog(shader, logLength, &logLength, log)
+        //            NSLog("Shader compile log: \n%s", log)
+        //            free(log)
+        //        }
+        //#endif
+        
+        glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &status)
+        if status == 0 {
+            glDeleteShader(shader)
+            return false
+        }
+        return true
+    }
+    
+    func linkProgram(prog: GLuint) -> Bool {
+        var status: GLint = 0
+        glLinkProgram(prog)
+        
+        //#if defined(DEBUG)
+        //        var logLength: GLint = 0
+        //        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+        //        if logLength > 0 {
+        //            var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
+        //            glGetShaderInfoLog(shader, logLength, &logLength, log)
+        //            NSLog("Shader compile log: \n%s", log)
+        //            free(log)
+        //        }
+        //#endif
+        
+        glGetProgramiv(prog, GLenum(GL_LINK_STATUS), &status)
+        if status == 0 {
+            return false
+        }
+        
+        return true
+    }
+    
+    func validateProgram(prog: GLuint) -> Bool {
+        var logLength: GLsizei = 0
+        var status: GLint = 0
+        
+        glValidateProgram(prog)
+        glGetProgramiv(prog, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+        if logLength > 0 {
+            var log: [GLchar] = [GLchar](count: Int(logLength), repeatedValue: 0)
+            glGetProgramInfoLog(prog, logLength, &logLength, &log)
+            print("Program validate log: \n\(log)")
+        }
+        
+        glGetProgramiv(prog, GLenum(GL_VALIDATE_STATUS), &status)
+        var returnVal = true
+        if status == 0 {
+            returnVal = false
+        }
+        return returnVal
+    }
+}
+
+//class CloseShotProgram: GPUProgram {
+//    
+//}
