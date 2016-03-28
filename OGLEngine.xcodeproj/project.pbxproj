@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60140969A5CC91BB3B442B81 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */; };
+		C20EA33A1CA9B86B0076F979 /* TransformatrixMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA3391CA9B86B0076F979 /* TransformatrixMatrix.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* Shader.fsh */; };
 		C269D5921CA8981D00E56E67 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D5911CA8981D00E56E67 /* Shader.vsh */; };
@@ -57,6 +58,7 @@
 		5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OGLEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F43FA214889814B7067DBE2 /* Pods-OGLEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.release.xcconfig"; sourceTree = "<group>"; };
 		9205D7DBFBB1CE1C1FCD90A2 /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
+		C20EA3391CA9B86B0076F979 /* TransformatrixMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformatrixMatrix.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C269D58F1CA8981D00E56E67 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
@@ -130,6 +132,14 @@
 				5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C20EA3381CA9B83D0076F979 /* GLKit cant multuiply matrix */ = {
+			isa = PBXGroup;
+			children = (
+				C20EA3391CA9B86B0076F979 /* TransformatrixMatrix.swift */,
+			);
+			name = "GLKit cant multuiply matrix";
 			sourceTree = "<group>";
 		};
 		C269D5811CA8981D00E56E67 = {
@@ -303,6 +313,7 @@
 		C269D5F21CA89B8F00E56E67 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C20EA3381CA9B83D0076F979 /* GLKit cant multuiply matrix */,
 				C269D5F31CA89B9700E56E67 /* RemoteController */,
 			);
 			name = Utilities;
@@ -548,6 +559,7 @@
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
+				C20EA33A1CA9B86B0076F979 /* TransformatrixMatrix.swift in Sources */,
 				C269D5D61CA898DD00E56E67 /* Program.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
 				C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */,

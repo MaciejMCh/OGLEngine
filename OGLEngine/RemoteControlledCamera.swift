@@ -33,8 +33,13 @@ class RemoteControlledCamera : BasicCamera {
     var yOffset: Float = 0
     var zOffset: Float = 0
     
-    func orientation() -> GLKVector3 {
-        return GLKVector3Make(self.yMouse / 100, 0, self.xMouse / 100)
+    override var orientation: GLKVector3! {
+        get {
+            return GLKVector3Make(self.yMouse / 100, 0, self.xMouse / 100)
+        }
+        set {
+            
+        }
     }
     
     override func cameraPosition() -> GLKVector3 {
