@@ -1,10 +1,10 @@
 PODS:
-  - SwiftWebSocket (2.5.0)
+  - SwiftWebSocket (2.6.0)
 
 DEPENDENCIES:
-  - SwiftWebSocket (= 2.5.0)
+  - SwiftWebSocket
 
 SPEC CHECKSUMS:
-  SwiftWebSocket: 168cbde980dc3b5bac925a3d8186f82b3e87768e
+  SwiftWebSocket: c24c0dde0b33852f478ffb54226408bfe703b26b
 
 COCOAPODS: 0.39.0

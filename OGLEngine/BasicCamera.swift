@@ -42,7 +42,8 @@ class BasicCamera: NSObject, Camera {
         let rotx = GLKMatrix4Rotate(id, orientation.x, 1, 0, 0)
         let roty = GLKMatrix4Rotate(rotx, orientation.y, 0, 1, 0)
         let rotz = GLKMatrix4Rotate(roty, orientation.z, 0, 0, 1)
-        let tra = GLKMatrix4Translate(roty, position.x, position.y, position.z)
+        let tra = GLKMatrix4Translate(rotz, position.x, position.y, position.z)
         return GLKMatrix4MakeTranslation(position.x, position.y, position.z)
+//        return tra
     }
 }

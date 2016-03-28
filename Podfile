@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'OGLEngine' do
 
-pod 'SwiftWebSocket', '2.5.0'
+pod 'SwiftWebSocket'
 
 end
 
