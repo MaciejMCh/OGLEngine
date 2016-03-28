@@ -8,7 +8,6 @@
 
 import Foundation
 import GLKit
-//import QuartzCore
 
 class BasicCamera: NSObject, Camera {
     
