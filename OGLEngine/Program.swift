@@ -120,7 +120,6 @@ extension GPUProgram {
         
         for attribute in self.interface.attributes {
             attribute.bindLocation(self)
-            NSLog("%@ %d", attribute.gpuDomainName(), attribute.location)
         }
         
         // Link program.
@@ -146,7 +145,6 @@ extension GPUProgram {
         // Get uniform locations.
         for uniform in self.interface.uniforms {
             uniform.bindLocation(self)
-            NSLog("%@ %d", uniform.gpuDomainName(), uniform.location)
         }
         
         // Release vertex and fragment shaders.

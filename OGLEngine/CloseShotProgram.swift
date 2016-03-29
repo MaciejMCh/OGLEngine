@@ -58,20 +58,15 @@ class CloseShotProgram: GPUProgram {
     
     func bind(renderable: Renderable) {
         glBindVertexArrayOES(renderable.vao.vaoGLName)
-        glEnableVertexAttribArray(GLuint(VboIndex.Positions.rawValue))
-        glEnableVertexAttribArray(GLuint(VboIndex.Texels.rawValue))
-        glEnableVertexAttribArray(GLuint(VboIndex.Normals.rawValue))
-        glEnableVertexAttribArray(GLuint(VboIndex.Tangents.rawValue))
-        glEnableVertexAttribArray(GLuint(VboIndex.Bitangents.rawValue))
+        for attribute in self.interface.attributes {
+            glEnableVertexAttribArray(attribute.location)
+        }
     }
     
     func unbind(renderable: Renderable) {
-        glDisableVertexAttribArray(GLuint(VboIndex.Positions.rawValue))
-        glDisableVertexAttribArray(GLuint(VboIndex.Texels.rawValue))
-        glDisableVertexAttribArray(GLuint(VboIndex.Normals.rawValue))
-        glDisableVertexAttribArray(GLuint(VboIndex.Tangents.rawValue))
-        glDisableVertexAttribArray(GLuint(VboIndex.Bitangents.rawValue))
-        
+        for attribute in self.interface.attributes {
+            glDisableVertexAttribArray(attribute.location)
+        }
         glBindVertexArrayOES(0);
     }
     
