@@ -119,7 +119,7 @@ extension GPUProgram {
         // This needs to be done prior to linking.
         
         for var attribute in self.interface.attributes {
-            attribute.getLocation(self)
+            attribute.bindLocation(self)
         }
         
         // Link program.
@@ -143,8 +143,8 @@ extension GPUProgram {
         }
         
         // Get uniform locations.
-        for var uniform in self.interface.uniforms {
-            uniform.getLocation(self)
+        for uniform in self.interface.uniforms {
+            uniform.bindLocation(self)
             NSLog("%@ %d", uniform.gpuDomainName(), uniform.location)
         }
         

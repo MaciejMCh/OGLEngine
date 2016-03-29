@@ -16,7 +16,7 @@ uniform mat4 uProjectionMatrix;
 
 uniform mat3 uNormalMatrix;
 uniform vec3 uEyePosition;
-uniform vec3 uDirectionalLightDirection;
+uniform vec3 uLightDirection;
 
 varying lowp vec2 vTexel;
 varying lowp vec3 vPosition;
@@ -26,7 +26,7 @@ varying lowp vec3 vDirectionalLightDirection;
 
 void main() {
     vTexel = aTexel;
-    vDirectionalLightDirection = normalize(uDirectionalLightDirection);
+    vDirectionalLightDirection = normalize(uLightDirection);
     vEyePosition = uEyePosition;
     vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);
     

@@ -6,7 +6,7 @@
 //  Copyright © 2016 MaciejCh. All rights reserved.
 //
 
-uniform sampler2D uTexture;
+uniform sampler2D uColorMap;
 uniform sampler2D uNormalMap;
 varying lowp vec2 vTexel;
 varying lowp vec3 vEyeSpaceNormalizedNormal;
@@ -31,5 +31,5 @@ void main() {
     lowp float NdotH = max(dot(normalVector, halfVector),0.0);
     lowp vec4 specular = vec4(1.0 , 1.0 , 1.0 , 1.0) * pow(NdotH,100.0);
     
-    gl_FragColor = texture2D(uTexture, vTexel) * NdotL + specular;
+    gl_FragColor = texture2D(uColorMap, vTexel) * NdotL + specular;
 }
