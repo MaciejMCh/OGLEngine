@@ -10,9 +10,9 @@ import Foundation
 import GLKit
 
 protocol GPUProgram {
-    var shaderName: String { get }
-    var interface: GPUInterface { get }
-    var glName: GLuint { get }
+    var shaderName: String { get set }
+    var interface: GPUInterface { get set }
+    var glName: GLuint { get set }
     
     init()
     
@@ -20,60 +20,66 @@ protocol GPUProgram {
     
     mutating func compile()
     func render(renderables: [Renderable])
-    
 }
 
 extension GPUProgram {
     
-    private var _shaderName: String {
-        get {
-            return self._shaderName
-        }
-        set {
-            _shaderName = newValue
-        }
-    }
+//    private var _shaderName: String {
+//        get {
+//            return self._shaderName
+//        }
+//        set {
+//            self._shaderName = newValue
+//        }
+//    }
+//    
+//    private var _interface: GPUInterface {
+//        get {
+//            return self._interface
+//        }
+//        set {
+//            _interface = newValue
+//        }
+//    }
+//    
+//    private var _glName: GLuint {
+//        get {
+//            return self._glName
+//        }
+//        set {
+//            _glName = newValue
+//        }
+//    }
     
-    private var _interface: GPUInterface {
-        get {
-            return self._interface
-        }
-        set {
-            _interface = newValue
-        }
-    }
+//    var shaderName: String {
+//        get {
+//            return shaderName
+//        } set {
+//            self.shaderName = newValue
+//        }
+//    }
+//
+//    var interface: GPUInterface {
+//        get {
+//            return interface
+//        } set {
+//            interface = newValue
+//        }
+//    }
+////
+//    var glName: GLuint {
+//        get {
+//            return glName
+//        } set {
+//            glName = newValue
+//        }
+//    }
     
-    private var _glName: GLuint {
-        get {
-            return self._glName
-        }
-        set {
-            _glName = newValue
-        }
-    }
-    
-    var shaderName: String {
-        get {
-            return _shaderName
-        }
-    }
-    
-    var interface: GPUInterface {
-        get {
-            return _interface
-        }
-    }
-    
-    var glName: GLuint {
-        get {
-            return _glName
-        }
-    }
     
     internal init(shaderName: String, interface: GPUInterface) {
         self.init()
-        self._shaderName = shaderName
-        self._interface = interface
+        self.shaderName = shaderName
+        self.interface = interface
     }
     
     mutating func compile() {
@@ -87,17 +93,17 @@ extension GPUProgram {
         var fragShaderPathname: String
         
         // Create shader program.
-        self._glName = glCreateProgram()
+        self.glName = glCreateProgram()
         
         // Create and compile vertex shader.
-        vertShaderPathname = NSBundle.mainBundle().pathForResource(self._shaderName, ofType: "vsh")!
+        vertShaderPathname = NSBundle.mainBundle().pathForResource(self.shaderName, ofType: "vsh")!
         if self.compileShader(&vertShader, type: GLenum(GL_VERTEX_SHADER), file: vertShaderPathname) == false {
             print("Failed to compile vertex shader")
             return false
         }
         
         // Create and compile fragment shader.
-        fragShaderPathname = NSBundle.mainBundle().pathForResource(self._shaderName, ofType: "fsh")!
+        fragShaderPathname = NSBundle.mainBundle().pathForResource(self.shaderName, ofType: "fsh")!
         if !self.compileShader(&fragShader, type: GLenum(GL_FRAGMENT_SHADER), file: fragShaderPathname) {
             print("Failed to compile fragment shader")
             return false
@@ -112,7 +118,7 @@ extension GPUProgram {
         // Bind attribute locations.
         // This needs to be done prior to linking.
         
-        for attribute in self.interface.attributes {
+        for var attribute in self.interface.attributes {
             attribute.getLocation(self)
         }
         
@@ -128,18 +134,18 @@ extension GPUProgram {
                 glDeleteShader(fragShader)
                 fragShader = 0
             }
-            if self._glName != 0 {
+            if self.glName != 0 {
                 glDeleteProgram(glName)
-                self._glName = 0
+                self.glName = 0
             }
             
             return false
         }
         
         // Get uniform locations.
-        
-        for uniform in self.interface.uniforms {
+        for var uniform in self.interface.uniforms {
             uniform.getLocation(self)
+            NSLog("%@ %d", uniform.gpuDomainName(), uniform.location)
         }
         
         // Release vertex and fragment shaders.
@@ -233,7 +239,3 @@ extension GPUProgram {
         return returnVal
     }
 }
-
-//class CloseShotProgram: GPUProgram {
-//    
-//}

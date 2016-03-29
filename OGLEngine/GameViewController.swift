@@ -60,13 +60,20 @@ class GameViewController: GLKViewController {
         
 //        self.loadShaders()
         
-        self.program = CloseShotProgram.instantiate()
-        self.program.loadShaders()
+        var program = CloseShotProgram.instantiate() as! CloseShotProgram
+        program.loadShaders()
+        
+        self.program = program
+        
         glUseProgram(program.glName)
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
         self.scene = Scene()
+        
+        program.camera = self.scene.camera
+        program.directionalLight = self.scene.directionalLight
+        program.normalMap = self.scene.normalMap
         
     }
     
@@ -91,9 +98,16 @@ class GameViewController: GLKViewController {
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
-        Renderer.prepareBuffer()
-        Renderer.passData(self.scene.camera, light: self.scene.directionalLight)
-        Renderer.render(self.scene.renderables, camera: self.scene.camera, normalMap: self.scene.normalMap)
+        
+        glClearColor(0.65, 0.65, 0.65, 1.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+        
+        self.program.render(self.scene.renderables)
+
+        
+//        Renderer.prepareBuffer()
+//        Renderer.passData(self.scene.camera, light: self.scene.directionalLight)
+//        Renderer.render(self.scene.renderables, camera: self.scene.camera, normalMap: self.scene.normalMap)
         
     }
     

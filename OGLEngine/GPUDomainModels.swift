@@ -17,9 +17,9 @@ struct GPUInterface {
 
 struct GPUAttribute {
     let variable: GPUVariable<Vector>
-    var location: GLuint = 0
-    func getLocation(program: GPUProgram) {
-        glGetAttribLocation(program.glName, self.gpuDomainName())
+    var location: GLint = 0
+    mutating func getLocation(program: GPUProgram) {
+        self.location = glGetAttribLocation(program.glName, self.gpuDomainName())
     }
     
     func gpuDomainName() -> String {
@@ -29,13 +29,16 @@ struct GPUAttribute {
 
 struct GPUUniform {
     let variable: GPUVariable<GPUVariableType>
-    var location: GLuint = 0
-    func getLocation(program: GPUProgram) {
-        glGetUniformLocation(program.glName, self.gpuDomainName())
+    var location: GLint = 0
+    mutating func getLocation(program: GPUProgram) {
+        self.location = glGetUniformLocation(program.glName, self.gpuDomainName())
     }
     
     func gpuDomainName() -> String {
-        return "u" + self.variable.name.capitalizedString
+        let name = self.variable.name
+        let first = name.substringToIndex(name.startIndex.advancedBy(1)).uppercaseString
+        let rest = name.substringFromIndex(name.startIndex.advancedBy(1))
+        return "u" + first + rest
     }
 }
 
