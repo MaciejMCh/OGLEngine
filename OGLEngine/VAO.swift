@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-@objc enum VboIndex : Int {
+@objc enum VboIndex : GLuint {
     case Positions = 0
     case Texels
     case Normals

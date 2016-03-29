@@ -11,23 +11,23 @@ import Foundation
 struct DefaultGPUAttributes {
     
     static func position() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "position", variable: Vector(length: 3, numberType: .float)));
+        return GPUAttribute(variable: GPUVariable(name: "position", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Positions.rawValue);
     }
     
     static func texel() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "texel", variable: Vector(length: 2, numberType: .float)));
+        return GPUAttribute(variable: GPUVariable(name: "texel", variable: Vector(length: 2, numberType: .float)), location: VboIndex.Texels.rawValue);
     }
     
     static func normal() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "normal", variable: Vector(length: 3, numberType: .float)));
+        return GPUAttribute(variable: GPUVariable(name: "normal", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Normals.rawValue);
     }
     
     static func tangent() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangent", variable: Vector(length: 3, numberType: .float)));
+        return GPUAttribute(variable: GPUVariable(name: "tangent", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Tangents.rawValue);
     }
     
     static func bitangent() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "bitangent", variable: Vector(length: 3, numberType: .float)));
+        return GPUAttribute(variable: GPUVariable(name: "bitangent", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Bitangents.rawValue);
     }
     
 }

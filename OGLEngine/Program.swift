@@ -118,8 +118,9 @@ extension GPUProgram {
         // Bind attribute locations.
         // This needs to be done prior to linking.
         
-        for var attribute in self.interface.attributes {
+        for attribute in self.interface.attributes {
             attribute.bindLocation(self)
+            NSLog("%@ %d", attribute.gpuDomainName(), attribute.location)
         }
         
         // Link program.

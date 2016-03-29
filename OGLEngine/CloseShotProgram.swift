@@ -46,11 +46,6 @@ class CloseShotProgram: GPUProgram {
             glUniform3fv(self.interface.uniforms.uniformNamed(.lightDirection).location, 1, UnsafePointer($0))
         })
         
-        NSLog("render")
-        for uniform in self.interface.uniforms {
-            NSLog("%@ %d", uniform.gpuDomainName(), uniform.location)
-        }
-        
         for renderable in renderables {
             self.bind(renderable)
             self.bindTexture(renderable, normalMap: normalMap)

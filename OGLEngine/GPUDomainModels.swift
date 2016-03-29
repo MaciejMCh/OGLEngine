@@ -17,13 +17,14 @@ struct GPUInterface {
 
 class GPUAttribute {
     let variable: GPUVariable<Vector>
-    var location: GLint = 0
+    let location: GLuint
     func bindLocation(program: GPUProgram) {
-        self.location = glGetAttribLocation(program.glName, self.gpuDomainName())
+        glBindAttribLocation(program.glName, self.location, self.gpuDomainName())
     }
     
-    init(variable: GPUVariable<Vector>) {
+    init(variable: GPUVariable<Vector>, location: GLuint) {
         self.variable = variable
+        self.location = location
     }
     
     func gpuDomainName() -> String {
