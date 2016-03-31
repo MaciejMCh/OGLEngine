@@ -22,14 +22,6 @@ struct DefaultGPUAttributes {
         return GPUAttribute(variable: GPUVariable(name: "normal", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Normals.rawValue);
     }
     
-    static func tangent() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangent", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Tangents.rawValue);
-    }
-    
-    static func bitangent() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "bitangent", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Bitangents.rawValue);
-    }
-    
 }
 
 enum UniformName: String {
@@ -44,8 +36,6 @@ enum UniformName: String {
     case lightHalfVector = "lightHalfVector"
     case colorMap = "colorMap"
     case normalMap = "normalMap"
-    case tangent = "tangent"
-    case bitangent = "bitangent"
 }
 
 struct DefaultGPUUniforms {
@@ -94,14 +84,6 @@ struct DefaultGPUUniforms {
         return GPUUniform(variable: GPUVariable(name: UniformName.normalMap.rawValue, variable: GPUTexture()))
     }
     
-    static func tangent() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.tangent.rawValue, variable: Vector(length: 3, numberType: .float)));
-    }
-    
-    static func bitangent() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.bitangent.rawValue, variable: Vector(length: 3, numberType: .float)));
-    }
-    
 }
 
 
@@ -116,8 +98,6 @@ struct DefaultInterfaces {
             DefaultGPUAttributes.position(),
             DefaultGPUAttributes.texel(),
             DefaultGPUAttributes.normal(),
-            DefaultGPUAttributes.tangent(),
-            DefaultGPUAttributes.bitangent()
         ]
         let GPUUniforms = [
             DefaultGPUUniforms.modelMatrix(),

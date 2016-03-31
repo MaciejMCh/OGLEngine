@@ -24,6 +24,39 @@ varying lowp vec3 vEyeSpaceNormalizedNormal;
 varying lowp vec3 vEyePosition;
 varying lowp vec3 vDirectionalLightDirection;
 
+struct SphericalVersor {
+    float azimuthalAngle;
+    float polarAngle;
+};
+
+SphericalVersor vec3ToSphericalVersor(vec3 vector) {
+    float azimuthalAngle = acos(vector.z);
+    float polarAngle = atan(vector.y / vector.x);
+    return SphericalVersor(azimuthalAngle, polarAngle);
+}
+
+vec3 sphericalVersorToVec3(SphericalVersor sphericalVersor) {
+    float x = sin(sphericalVersor.azimuthalAngle) * cos(sphericalVersor.polarAngle);
+    float y = sin(sphericalVersor.azimuthalAngle) * sin(sphericalVersor.polarAngle);
+    float z = cos(sphericalVersor.azimuthalAngle);
+    return vec3(x, y, z);
+}
+
+vec3 toSphereSpaceOfVector(vec3 vector, vec3 spacingVector) {
+    
+    SphericalVersor upPointingNormalVersor = vec3ToSphericalVersor(vec3(0.0 ,0.0, 1.0));
+    SphericalVersor versor = vec3ToSphericalVersor(vector);
+    SphericalVersor spacingVersor = vec3ToSphericalVersor(spacingVector);
+    
+    float azimuthalAngleDiff = upPointingNormalVersor.azimuthalAngle - spacingVersor.azimuthalAngle;
+    float polarAngleDiff = upPointingNormalVersor.polarAngle - spacingVersor.polarAngle;
+    
+    versor.azimuthalAngle = versor.azimuthalAngle + azimuthalAngleDiff;
+    versor.polarAngle = versor.polarAngle + polarAngleDiff;
+    
+    return sphericalVersorToVec3(versor);
+}
+
 void main() {
     vTexel = aTexel;
     vDirectionalLightDirection = normalize(uLightDirection);
