@@ -110,6 +110,11 @@ class OBJLoader : NSObject {
         
 //        NSLog("counts: %d %d %d", positions.count, texels.count, normals.count)
         
+        var tbns1: [Float] = []
+        var tbns2: [Float] = []
+        var tbns3: [Float] = []
+        
+        
         let strideIndices = facesIndices.map{return [$0.v1, $0.v2, $0.v3]}.stomp()
         
         let indicesComparator = { (e1: VertexIndices, e2: VertexIndices) -> (Bool) in
@@ -120,6 +125,11 @@ class OBJLoader : NSObject {
             ps.append(positions[entity.p - 1])
             ts.append(texels[entity.t - 1])
             ns.append(normals[entity.n - 1])
+            
+            tbns1.appendContentsOf([1, 0, 0])
+            tbns2.appendContentsOf([0, 1, 0])
+            tbns3.appendContentsOf([0, 0, 1])
+            
         }
         
         
@@ -163,9 +173,17 @@ class OBJLoader : NSObject {
             return [normal.x, normal.y, normal.z]
         }.stomp()
         
+        
+        
+        
+        
         obj.positions = floatArrayToArray(pz)
         obj.texels = floatArrayToArray(tz)
         obj.normals = floatArrayToArray(nz)
+        obj.tbnMatrices1 = floatArrayToArray(tbns1)
+        obj.tbnMatrices2 = floatArrayToArray(tbns2)
+        obj.tbnMatrices3 = floatArrayToArray(tbns3)
+        
         
         return obj
     }

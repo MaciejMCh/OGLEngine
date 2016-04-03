@@ -28,7 +28,7 @@ class GPUAttribute {
     }
     
     func gpuDomainName() -> String {
-        return "a" + self.variable.name.capitalizedString
+        return produceGpuDomainName(self.variable.name, prefix: "a")
     }
 }
 
@@ -44,11 +44,14 @@ class GPUUniform {
     }
     
     func gpuDomainName() -> String {
-        let name = self.variable.name
-        let first = name.substringToIndex(name.startIndex.advancedBy(1)).uppercaseString
-        let rest = name.substringFromIndex(name.startIndex.advancedBy(1))
-        return "u" + first + rest
+        return produceGpuDomainName(self.variable.name, prefix: "u")
     }
+}
+
+func produceGpuDomainName(name: String, prefix: String) -> String {
+    let first = name.substringToIndex(name.startIndex.advancedBy(1)).uppercaseString
+    let rest = name.substringFromIndex(name.startIndex.advancedBy(1))
+    return prefix + first + rest
 }
 
 //typealias GPUAttribute = GPUVariable<Vector>

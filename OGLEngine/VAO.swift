@@ -13,8 +13,9 @@ import GLKit
     case Positions = 0
     case Texels
     case Normals
-    case Tangents
-    case Bitangents
+    case TbnMatrix1
+    case TbnMatrix2
+    case TbnMatrix3
     case VbosCount
 }
 
@@ -27,8 +28,9 @@ class VAO : NSObject {
     var positionsVboGLName: GLuint = 0
     var texelsVboGLName: GLuint = 0
     var normalsVboGLName: GLuint = 0
-    var tangentsVboGLName: GLuint = 0
-    var bitangentsVboGLName: GLuint = 0
+    var tbnMatrix1VboGLName: GLuint = 0
+    var tbnMatrix2VboGLName: GLuint = 0
+    var tbnMatrix3VboGLName: GLuint = 0
     
     convenience init(OBJ obj: OBJ) {
         self.init()
@@ -48,6 +50,9 @@ class VAO : NSObject {
         self.positionsVboGLName = self.generateVboAtIndex(.Positions, data: obj.positions, perVertexCount: 3)
         self.texelsVboGLName = self.generateVboAtIndex(.Texels, data: obj.texels, perVertexCount: 2)
         self.normalsVboGLName = self.generateVboAtIndex(.Normals, data: obj.normals, perVertexCount: 3)
+        self.tbnMatrix1VboGLName = self.generateVboAtIndex(.TbnMatrix1, data: obj.tbnMatrices1, perVertexCount: 3)
+        self.tbnMatrix2VboGLName = self.generateVboAtIndex(.TbnMatrix2, data: obj.tbnMatrices2, perVertexCount: 3)
+        self.tbnMatrix3VboGLName = self.generateVboAtIndex(.TbnMatrix3, data: obj.tbnMatrices3, perVertexCount: 3)
 //        self.tangentsVboGLName = self.generateVboAtIndex(.Tangents, data: obj.tangents, perVertexCount: 3)
 //        self.bitangentsVboGLName = self.generateVboAtIndex(.Bitangents, data: obj.bitangents, perVertexCount: 3)
         glBindVertexArrayOES(0)
