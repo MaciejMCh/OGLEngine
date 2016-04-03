@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 class OBJLoader : NSObject {
     
@@ -79,41 +80,13 @@ class OBJLoader : NSObject {
             strides.append(strideToIndices(faceIndices.v3))
         }
         
-        let vec3Identifier = { (e1: Position, e2: Position) -> Bool in
-            return e1.x == e2.x && e1.y == e2.y && e1.z == e2.z
-        }
-        
-        let vec2Identifier = { (e1: Texel, e2: Texel) -> Bool in
-            return e1.u == e2.u && e1.v == e2.v
-        }
-        
-//        let ps = strides.map {return $0.p}.filterDuplicates(vec3Identifier).map {return [$0.x, $0.y, $0.z]}.stomp()
-//        let ts = strides.map {return $0.t}.filterDuplicates(vec2Identifier).map {return [$0.u, $0.v]}.stomp()
-//        let ns = strides.map {return $0.n}.filterDuplicates(vec3Identifier).map {return [$0.x, $0.y, $0.z]}.stomp()
-        
         var ps: [Position] = []
         var ts: [Texel] = []
         var ns: [Normal] = []
         
-        var usedStrides: [Stride] = []
-        var indexes: [Int] = []
-        
-//        for stride in strides {
-//            if let index = usedStrides.firstOccurence(stride, identificator: { (e1, e2) -> (Bool) in
-//            return e1.p == e2.p && e1.t == e2.t && e1.n == e2.n
-//            }) {
-//                indexes.append(index)
-//            } else {
-//                indexes.append
-//            }
-//        }
-        
-//        NSLog("counts: %d %d %d", positions.count, texels.count, normals.count)
-        
         var tbns1: [Float] = []
         var tbns2: [Float] = []
         var tbns3: [Float] = []
-        
         
         let strideIndices = facesIndices.map{return [$0.v1, $0.v2, $0.v3]}.stomp()
         
@@ -121,7 +94,6 @@ class OBJLoader : NSObject {
             return e1.p == e2.p && e1.t == e2.t && e1.n == e2.n
         }
         let indicesProcessor = { (entity: VertexIndices) -> (Void) in
-//            NSLog("%d %d %d", entity.p, entity.t, entity.n)
             ps.append(positions[entity.p - 1])
             ts.append(texels[entity.t - 1])
             ns.append(normals[entity.n - 1])
@@ -141,41 +113,34 @@ class OBJLoader : NSObject {
         let indices: [Int] = strideIndices.indexify(indicesComparator, processor: indicesProcessor)
         
         let arrayToArray = { (array: [Int]) -> GLIntArray in
-            var glArray = GLIntArray()
+            let glArray = GLIntArray()
             glArray.data = array.map{return UInt($0)}
             glArray.count = UInt(array.count)
             return glArray
         }
         
         let floatArrayToArray = { (array: [Float]) -> GLFloatArray in
-            var glArray = GLFloatArray()
+            let glArray = GLFloatArray()
             glArray.data = array
             glArray.count = UInt(array.count)
             return glArray
         }
         
-        var obj = OBJ()
+        let obj = OBJ()
         obj.indices = arrayToArray(indices)
         obj.positions = floatArrayToArray(pss)
         obj.texels = floatArrayToArray(tss)
         obj.normals = floatArrayToArray(nss)
         
-//        NSLog("indexed counts: %d %d %d", ps.count, ts.count, ns.count)
-//        NSLog("stomped counts: %d %d %d", pss.count, tss.count, nss.count)
-        
-        var pz = ps.map { (position: (x: Float, y: Float, z: Float)) -> [Float] in
+        let pz = ps.map { (position: (x: Float, y: Float, z: Float)) -> [Float] in
             return [position.x, position.y, position.z]
         }.stomp()
-        var tz = ts.map { (texel: (u: Float, v: Float)) -> [Float] in
+        let tz = ts.map { (texel: (u: Float, v: Float)) -> [Float] in
             return [texel.u, texel.v]
         }.stomp()
-        var nz = ns.map { (normal: (x: Float, y: Float, z: Float)) -> [Float] in
+        let nz = ns.map { (normal: (x: Float, y: Float, z: Float)) -> [Float] in
             return [normal.x, normal.y, normal.z]
         }.stomp()
-        
-        
-        
-        
         
         obj.positions = floatArrayToArray(pz)
         obj.texels = floatArrayToArray(tz)
@@ -184,8 +149,21 @@ class OBJLoader : NSObject {
         obj.tbnMatrices2 = floatArrayToArray(tbns2)
         obj.tbnMatrices3 = floatArrayToArray(tbns3)
         
-        
         return obj
+    }
+    
+    func rotationFromVector(formVector: GLKVector3, toVector: GLKVector3) -> GLKMatrix3 {
+        let dot = GLKVector3DotProduct(formVector, toVector);
+        switch dot {
+        case 1: return GLKMatrix3Identity
+        case -1: return GLKMatrix3MakeRotation(Float(M_PI_2), 1, 0, 0)
+        default: break
+        }
+        
+        let axis = GLKVector3Normalize(GLKVector3CrossProduct(formVector, toVector));
+        let radians = acosf(dot);
+        let mat = GLKMatrix3RotateWithVector3(GLKMatrix3Identity, radians, axis);
+        return mat;
     }
 }
 
@@ -224,7 +202,7 @@ extension Array {
             if self.firstOccurence(element, identificator: identificator) == i {
                 result.append(element)
             }
-            i++
+            i += 1
         }
         return result
     }
@@ -235,7 +213,7 @@ extension Array {
             if (identificator(e1: element, e2: iteratingElement)) {
                 return i;
             }
-            i++
+            i += 1
         }
         return nil
     }
