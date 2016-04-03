@@ -65,9 +65,10 @@ class Scene : NSObject {
             //        [self.renderables addObject:[[Renderable alloc] initWithVao:cubeVao geometryModel:geometry texture:grayTexture]];
         }
         // Light
-        self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
+        self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, 0, 1))
         // Normal map
-        self.normalMap = Texture(imageNamed: "normalMap")
+//        self.normalMap = Texture(imageNamed: "normalMap")
+        self.normalMap = Texture(color: UIColor(red: 0.5, green: 0.5, blue: 1.0, alpha: 1.0))
         self.normalMap.bind()
         // Camera
         var camera: RemoteControlledCamera = RemoteControlledCamera()

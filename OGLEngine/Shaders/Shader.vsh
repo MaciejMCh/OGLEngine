@@ -31,7 +31,14 @@ struct SphericalVersor {
 
 SphericalVersor vec3ToSphericalVersor(vec3 vector) {
     float azimuthalAngle = acos(vector.z);
-    float polarAngle = atan(vector.y / vector.x);
+    
+//    float polarAngle = 0.0;
+//    if (vector.x == 0.0) {
+//        polarAngle = 1.57079632679;
+//    } else {
+    float polarAngle = atan(vector.y, vector.x);
+//    float polarAngle = atan(1.0, 1.0);
+//    }
     return SphericalVersor(azimuthalAngle, polarAngle);
 }
 
@@ -42,26 +49,56 @@ vec3 sphericalVersorToVec3(SphericalVersor sphericalVersor) {
     return vec3(x, y, z);
 }
 
+mat3 rotationMatrix(float m_radians, float x, float y, float z)
+{
+    vec3 v = normalize(vec3(x, y, z));
+    float m_cos = cos(m_radians);
+    float m_cosp = 1.0 - m_cos;
+    float m_sin = sin(m_radians);
+    
+    mat3 m = mat3( m_cos + m_cosp * v.v.x * v.v.x,
+        m_cosp * v.v.x * v.v.y + v.v.z * m_sin,
+        m_cosp * v.v.x * v.v.z - v.v.y * m_sin,
+        
+        m_cosp * v.v.x * v.v.y - v.v.z * m_sin,
+        m_cos + m_cosp * v.v.y * v.v.y,
+        m_cosp * v.v.y * v.v.z + v.v.x * m_sin,
+        
+        m_cosp * v.v.x * v.v.z + v.v.y * m_sin,
+        m_cosp * v.v.y * v.v.z - v.v.x * m_sin,
+        m_cos + m_cosp * v.v.z * v.v.z );
+    
+    return m;
+}
 vec3 toSphereSpaceOfVector(vec3 vector, vec3 spacingVector) {
+    vec3 v1 = spacingVector;
+    vec3 v2 = vec3(0, 0, 1);
+    vec3 axis = cross(v1, v2);
+    float dotp = dot(v1, v2);
     
-    SphericalVersor upPointingNormalVersor = vec3ToSphericalVersor(vec3(0.0 ,0.0, 1.0));
-    SphericalVersor versor = vec3ToSphericalVersor(vector);
-    SphericalVersor spacingVersor = vec3ToSphericalVersor(spacingVector);
+    if (dotp == 1.0) {
+        return vector;
+    }
     
-    float azimuthalAngleDiff = upPointingNormalVersor.azimuthalAngle - spacingVersor.azimuthalAngle;
-    float polarAngleDiff = upPointingNormalVersor.polarAngle - spacingVersor.polarAngle;
+    if (dotp == -1.0) {
+        return vector * -1.0;
+    }
     
-    versor.azimuthalAngle = versor.azimuthalAngle + azimuthalAngleDiff;
-    versor.polarAngle = versor.polarAngle + polarAngleDiff;
-    
-    return sphericalVersorToVec3(versor);
+//    if ((axis.x == 0.0) && (axis.y == 0.0) && (axis.z == 0.0)) {
+//        return vector * dotp;
+//    }
+    float angleInradians = acos(dotp);
+    mat3 rot = rotationMatrix(angleInradians, axis.x, axis.y, axis.z);
+    return rot * vector;
 }
 
 void main() {
     vTexel = aTexel;
+//    vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);
+    vEyeSpaceNormalizedNormal = aNormal;
     vDirectionalLightDirection = normalize(uLightDirection);
+    vDirectionalLightDirection = toSphereSpaceOfVector(vDirectionalLightDirection, vEyeSpaceNormalizedNormal);
     vEyePosition = uEyePosition;
-    vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);
     
     mat4 viewProjectionMatrix = uProjectionMatrix * uViewMatrix;
     vec4 modelSpacePosition = uModelMatrix * aPosition;
