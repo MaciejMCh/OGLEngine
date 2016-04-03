@@ -10,9 +10,8 @@ uniform sampler2D uColorMap;
 uniform sampler2D uNormalMap;
 varying lowp vec2 vTexel;
 varying lowp vec3 vEyeSpaceNormalizedNormal;
-varying lowp vec3 vEyePosition;
+varying lowp vec3 vViewVector;
 varying lowp vec3 vDirectionalLightDirection;
-varying lowp vec3 vPosition;
 
 void main() {
     lowp vec3 normalChangeVector = vec3(texture2D(uNormalMap, vTexel * 5.0));
@@ -20,7 +19,7 @@ void main() {
     
     // Calculate vectors
     lowp vec3 lightVector = -vDirectionalLightDirection;
-    lowp vec3 viewVector = normalize(vEyePosition - vPosition);
+    lowp vec3 viewVector = normalize(vViewVector);
     lowp vec3 halfVector = normalize(lightVector + viewVector);
     lowp vec3 normalVector = normalChangeVector;
     

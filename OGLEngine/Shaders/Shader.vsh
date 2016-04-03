@@ -23,9 +23,8 @@ uniform vec3 uEyePosition;
 uniform vec3 uLightDirection;
 
 varying lowp vec2 vTexel;
-varying lowp vec3 vPosition;
 varying lowp vec3 vEyeSpaceNormalizedNormal;
-varying lowp vec3 vEyePosition;
+varying lowp vec3 vViewVector;
 varying lowp vec3 vDirectionalLightDirection;
 
 void main() {
@@ -35,13 +34,12 @@ void main() {
     vDirectionalLightDirection = normalize(uLightDirection);
     vDirectionalLightDirection = tangentMatrix * vDirectionalLightDirection;
     
-    vEyePosition = uEyePosition;
     vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);
     
     mat4 viewProjectionMatrix = uProjectionMatrix * uViewMatrix;
     vec4 modelSpacePosition = uModelMatrix * aPosition;
     
-    vPosition = vec3(modelSpacePosition);
+    vViewVector = tangentMatrix * (uEyePosition - vec3(modelSpacePosition));
     vec4 position = viewProjectionMatrix * modelSpacePosition;
     
     gl_Position = position;
