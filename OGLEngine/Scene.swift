@@ -29,10 +29,13 @@ class Scene : NSObject {
         var grayTexture: Texture = Texture(color: UIColor.grayColor())
         var axesTexture: Texture = Texture(imageNamed: "axes_rgb")
         var groundTexture: Texture = Texture(color: UIColor.brownColor())
+        var bricksTexture = Texture(imageNamed: "bricks_colors")
         orangeTexture.bind()
         grayTexture.bind()
         axesTexture.bind()
         groundTexture.bind()
+        bricksTexture.bind()
+        
         // Geometry models
         var spinningGeometryModel: SpinningGeometryModel = SpinningGeometryModel(position: GLKVector3Make(0, 0, 0))
         var originGeometryModel: StaticGeometryModel = StaticGeometryModel(position: GLKVector3Make(0, 0, 0))
@@ -50,7 +53,7 @@ class Scene : NSObject {
         //    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:yGeometryModel texture:axesTexture]];
         //    [self.renderables addObject:[[Renderable alloc] initWithVao:axesVao geometryModel:zGeometryModel texture:axesTexture]];
         //    [self.renderables addObject:[[Renderable alloc] initWithVao:groundVao geometryModel:originGeometryModel texture:groundTexture]];
-        self.renderables.append(Renderable(vao: cubeTexVao, geometryModel: originGeometryModel, texture: orangeTexture))
+        self.renderables.append(Renderable(vao: cubeTexVao, geometryModel: originGeometryModel, texture: bricksTexture))
         var gridRadius: Int = 5
         for var i = -gridRadius; i < gridRadius; i++ {
             var model: GLKMatrix4 = GLKMatrix4MakeScale(0.01, 10, 0.01)
@@ -67,7 +70,7 @@ class Scene : NSObject {
         // Light
         self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
         // Normal map
-        self.normalMap = Texture(imageNamed: "normalMap")
+        self.normalMap = Texture(imageNamed: "bricks_normals")
         self.normalMap.bind()
         // Camera
         var camera: RemoteControlledCamera = RemoteControlledCamera()

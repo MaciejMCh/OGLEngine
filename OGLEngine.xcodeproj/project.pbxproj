@@ -11,6 +11,9 @@
 		C20EA33A1CA9B86B0076F979 /* TransformatrixMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA3391CA9B86B0076F979 /* TransformatrixMatrix.swift */; };
 		C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */; };
 		C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */; };
+		C21B06AE1CB1873D00D98D75 /* bricks_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AC1CB1873D00D98D75 /* bricks_colors.png */; };
+		C21B06AF1CB1873D00D98D75 /* bricks_normals.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AD1CB1873D00D98D75 /* bricks_normals.png */; };
+		C21B06B21CB18AA300D98D75 /* bricks_specular.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06B11CB18AA300D98D75 /* bricks_specular.png */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* Shader.fsh */; };
 		C269D5921CA8981D00E56E67 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D5911CA8981D00E56E67 /* Shader.vsh */; };
@@ -64,6 +67,9 @@
 		C20EA3391CA9B86B0076F979 /* TransformatrixMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformatrixMatrix.swift; sourceTree = "<group>"; };
 		C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainDefaults.swift; sourceTree = "<group>"; };
 		C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainModels.swift; sourceTree = "<group>"; };
+		C21B06AC1CB1873D00D98D75 /* bricks_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_colors.png; sourceTree = "<group>"; };
+		C21B06AD1CB1873D00D98D75 /* bricks_normals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_normals.png; sourceTree = "<group>"; };
+		C21B06B11CB18AA300D98D75 /* bricks_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_specular.png; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C269D58F1CA8981D00E56E67 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
@@ -156,6 +162,16 @@
 				C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */,
 			);
 			name = GPUDomain;
+			sourceTree = "<group>";
+		};
+		C21B06B01CB1873F00D98D75 /* Bricks */ = {
+			isa = PBXGroup;
+			children = (
+				C21B06B11CB18AA300D98D75 /* bricks_specular.png */,
+				C21B06AC1CB1873D00D98D75 /* bricks_colors.png */,
+				C21B06AD1CB1873D00D98D75 /* bricks_normals.png */,
+			);
+			name = Bricks;
 			sourceTree = "<group>";
 		};
 		C269D5811CA8981D00E56E67 = {
@@ -311,6 +327,7 @@
 		C269D5EE1CA89B1D00E56E67 /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				C21B06B01CB1873F00D98D75 /* Bricks */,
 				C269D5B11CA898DD00E56E67 /* axes_rgb.png */,
 				C269D5C71CA898DD00E56E67 /* Texture.png */,
 				C269D5B91CA898DD00E56E67 /* normalMap.png */,
@@ -470,13 +487,16 @@
 			files = (
 				C269D5C91CA898DD00E56E67 /* axes_rgb.png in Resources */,
 				C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */,
+				C21B06B21CB18AA300D98D75 /* bricks_specular.png in Resources */,
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
 				C269D5921CA8981D00E56E67 /* Shader.vsh in Resources */,
 				C269D5CA1CA898DD00E56E67 /* axes.obj in Resources */,
 				C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */,
+				C21B06AF1CB1873D00D98D75 /* bricks_normals.png in Resources */,
 				C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */,
 				C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
+				C21B06AE1CB1873D00D98D75 /* bricks_colors.png in Resources */,
 				C269D5CE1CA898DD00E56E67 /* cube.obj in Resources */,
 				C269D59C1CA8981D00E56E67 /* LaunchScreen.storyboard in Resources */,
 				C269D5901CA8981D00E56E67 /* Shader.fsh in Resources */,
