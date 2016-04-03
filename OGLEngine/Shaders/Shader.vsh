@@ -10,9 +10,9 @@ attribute vec4 aPosition;
 attribute vec2 aTexel;
 attribute vec3 aNormal;
 
-attribute vec3 aTbnMatrix1;
-attribute vec3 aTbnMatrix2;
-attribute vec3 aTbnMatrix3;
+attribute vec3 aTangentMatrixCol1;
+attribute vec3 aTangentMatrixCol2;
+attribute vec3 aTangentMatrixCol3;
 
 
 uniform mat4 uModelMatrix;
@@ -33,9 +33,9 @@ void main() {
     vTexel = aTexel;
     
     
-    mat3 tbnMatrix = mat3(aTbnMatrix1, aTbnMatrix2, aTbnMatrix3);
+    mat3 tangentMatrix = mat3(aTangentMatrixCol1, aTangentMatrixCol2, aTangentMatrixCol3);
     vDirectionalLightDirection = normalize(uLightDirection);
-    vDirectionalLightDirection = tbnMatrix * vDirectionalLightDirection;
+    vDirectionalLightDirection = tangentMatrix * vDirectionalLightDirection;
     
     vEyePosition = uEyePosition;
     vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);

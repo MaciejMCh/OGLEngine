@@ -22,14 +22,14 @@ struct DefaultGPUAttributes {
         return GPUAttribute(variable: GPUVariable(name: "normal", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Normals.rawValue);
     }
     
-    static func tbnMatrix1() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tbnMatrix1", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TbnMatrix1.rawValue);
+    static func tangentMatrixCol1() -> GPUAttribute {
+        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol1", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TangentMatrixCol1.rawValue);
     }
-    static func tbnMatrix2() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tbnMatrix2", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TbnMatrix2.rawValue);
+    static func tangentMatrixCol2() -> GPUAttribute {
+        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol2", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TangentMatrixCol2.rawValue);
     }
-    static func tbnMatrix3() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tbnMatrix3", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TbnMatrix3.rawValue);
+    static func tangentMatrixCol3() -> GPUAttribute {
+        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol3", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TangentMatrixCol3.rawValue);
     }
     
     
@@ -109,9 +109,9 @@ struct DefaultInterfaces {
             DefaultGPUAttributes.position(),
             DefaultGPUAttributes.texel(),
             DefaultGPUAttributes.normal(),
-            DefaultGPUAttributes.tbnMatrix1(),
-            DefaultGPUAttributes.tbnMatrix2(),
-            DefaultGPUAttributes.tbnMatrix3()
+            DefaultGPUAttributes.tangentMatrixCol1(),
+            DefaultGPUAttributes.tangentMatrixCol2(),
+            DefaultGPUAttributes.tangentMatrixCol3()
         ]
         let GPUUniforms = [
             DefaultGPUUniforms.modelMatrix(),
