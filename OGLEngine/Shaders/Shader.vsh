@@ -14,7 +14,6 @@ attribute vec3 aTangentMatrixCol1;
 attribute vec3 aTangentMatrixCol2;
 attribute vec3 aTangentMatrixCol3;
 
-
 uniform mat4 uModelMatrix;
 uniform mat4 uViewMatrix;
 uniform mat4 uProjectionMatrix;
@@ -31,7 +30,6 @@ varying lowp vec3 vDirectionalLightDirection;
 
 void main() {
     vTexel = aTexel;
-    
     
     mat3 tangentMatrix = mat3(aTangentMatrixCol1, aTangentMatrixCol2, aTangentMatrixCol3);
     vDirectionalLightDirection = normalize(uLightDirection);
