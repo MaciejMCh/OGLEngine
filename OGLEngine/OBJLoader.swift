@@ -94,13 +94,26 @@ class OBJLoader : NSObject {
             return e1.p == e2.p && e1.t == e2.t && e1.n == e2.n
         }
         let indicesProcessor = { (entity: VertexIndices) -> (Void) in
+            let normal = normals[entity.n - 1];
             ps.append(positions[entity.p - 1])
             ts.append(texels[entity.t - 1])
-            ns.append(normals[entity.n - 1])
+            ns.append(normal)
             
-            tbns1.appendContentsOf([1, 0, 0])
-            tbns2.appendContentsOf([0, 1, 0])
-            tbns3.appendContentsOf([0, 0, 1])
+            let tangentMatrix = rotationFromVector(GLKVector3Make(normal.x, normal.y, normal.z), toVector: GLKVector3Make(0, 0, 1))
+            
+            let col1 = GLKMatrix3GetColumn(tangentMatrix, 0)
+            let col2 = GLKMatrix3GetColumn(tangentMatrix, 1)
+            let col3 = GLKMatrix3GetColumn(tangentMatrix, 2)
+            
+            tbns1.appendContentsOf([col1.x, col1.y, col1.z])
+            tbns2.appendContentsOf([col2.x, col2.y, col2.z])
+            tbns3.appendContentsOf([col3.x, col3.y, col3.z])
+            
+//            NSLog("%.2f %.2f %.2f", normal.x, normal.y, normal.z)
+//            let test = GLKMatrix3MultiplyVector3(tangentMatrix, GLKVector3Make(normal.x, normal.y, normal.z))
+//            NSLog("%.2f %.2f %.2f", test.x, test.y, test.z)
+//            
+//            NSLog("gg")
             
         }
         
@@ -151,20 +164,20 @@ class OBJLoader : NSObject {
         
         return obj
     }
-    
-    func rotationFromVector(formVector: GLKVector3, toVector: GLKVector3) -> GLKMatrix3 {
-        let dot = GLKVector3DotProduct(formVector, toVector);
-        switch dot {
-        case 1: return GLKMatrix3Identity
-        case -1: return GLKMatrix3MakeRotation(Float(M_PI_2), 1, 0, 0)
-        default: break
-        }
-        
-        let axis = GLKVector3Normalize(GLKVector3CrossProduct(formVector, toVector));
-        let radians = acosf(dot);
-        let mat = GLKMatrix3RotateWithVector3(GLKMatrix3Identity, radians, axis);
-        return mat;
+}
+
+func rotationFromVector(formVector: GLKVector3, toVector: GLKVector3) -> GLKMatrix3 {
+    let dot = GLKVector3DotProduct(formVector, toVector);
+    switch dot {
+    case 1: return GLKMatrix3Identity
+    case -1: return GLKMatrix3MakeRotation(Float(M_PI), 1, 0, 0)
+    default: break
     }
+    
+    let axis = GLKVector3Normalize(GLKVector3CrossProduct(formVector, toVector));
+    let radians = acosf(dot);
+    let mat = GLKMatrix3RotateWithVector3(GLKMatrix3Identity, radians, axis);
+    return mat;
 }
 
 extension Array where Element : CollectionType {
