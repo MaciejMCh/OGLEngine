@@ -54,34 +54,40 @@ func produceGpuDomainName(name: String, prefix: String) -> String {
     return prefix + first + rest
 }
 
-//typealias GPUAttribute = GPUVariable<Vector>
-
-
-//typealias GPUUniform = GPUVariable<GPUVariableType>
-
 
 struct GPUVariable<T> {
     let name: String
     let variable: T
 }
 
+typealias Dimension = (columns: Int, rows: Int)
 
 protocol GPUVariableType {
-    
+    var dimension: Dimension {get}
 }
 
 struct GPUTexture : GPUVariableType {
-    
+    let dimension = Dimension(1, 1)
 }
 
 struct Vector : GPUVariableType {
     let length: Int
     let numberType : GPUNumberType
+    var dimension: Dimension {
+        get {
+            return Dimension(length, 1)
+        }
+    }
 }
 
 
 struct Matrix : GPUVariableType {
-    let dimension: (Int, Int)
+    let size: Int
+    var dimension: Dimension {
+        get {
+            return Dimension(size, size)
+        }
+    }
 }
 
 

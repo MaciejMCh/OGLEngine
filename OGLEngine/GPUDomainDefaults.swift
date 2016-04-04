@@ -52,23 +52,23 @@ enum UniformName: String {
 struct DefaultGPUUniforms {
     
     static func modelMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.modelMatrix.rawValue, variable: Matrix(dimension: (4, 4))))
+        return GPUUniform(variable: GPUVariable(name: UniformName.modelMatrix.rawValue, variable: Matrix(size: 4)))
     }
     
     static func viewMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.viewMatrix.rawValue, variable: Matrix(dimension: (4, 4))))
+        return GPUUniform(variable: GPUVariable(name: UniformName.viewMatrix.rawValue, variable: Matrix(size: 4)))
     }
     
     static func projectionMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.projectionMatrix.rawValue, variable: Matrix(dimension: (4, 4))))
+        return GPUUniform(variable: GPUVariable(name: UniformName.projectionMatrix.rawValue, variable: Matrix(size: 4)))
     }
     
     static func modelViewProjectionMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.modelViewProjectionMatrix.rawValue, variable: Matrix(dimension: (4, 4))))
+        return GPUUniform(variable: GPUVariable(name: UniformName.modelViewProjectionMatrix.rawValue, variable: Matrix(size: 4)))
     }
     
     static func normalMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.normalMatrix.rawValue, variable: Matrix(dimension: (3, 3))))
+        return GPUUniform(variable: GPUVariable(name: UniformName.normalMatrix.rawValue, variable: Matrix(size: 3)))
     }
     
     static func eyePosition() -> GPUUniform {
