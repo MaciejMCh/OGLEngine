@@ -11,7 +11,7 @@ import UIKit
 import GLKit
 
 class Scene : NSObject {
-    var renderables: [Renderable] = []
+    var renderables: [FinalRenderable] = []
     var directionalLight: DirectionalLight! = nil
     var normalMap: Texture! = nil
     var camera: Camera! = nil
@@ -31,17 +31,17 @@ class Scene : NSObject {
         bricksTexture.bind()
         blackTexture.bind()
         
-        // Renderables
-        self.renderables.append(Renderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), texture: bricksTexture))
-        self.renderables.append(Renderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), texture: blackTexture))
-        self.renderables.append(Renderable(vao: cubeTexVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), texture: bricksTexture))
-        
-        // Light
-        self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
-        
         // Normal map
         self.normalMap = Texture(imageNamed: "bricks_normals")
         self.normalMap.bind()
+        
+        // Renderables
+        self.renderables.append(FinalRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksTexture, normalMap: normalMap))
+        self.renderables.append(FinalRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackTexture, normalMap: normalMap))
+        self.renderables.append(FinalRenderable(vao: cubeTexVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), colorMap: bricksTexture, normalMap: normalMap))
+        
+        // Light
+        self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
         
         // Camera
         let camera: RemoteControlledCamera = RemoteControlledCamera()

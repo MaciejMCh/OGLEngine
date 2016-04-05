@@ -18,8 +18,8 @@ struct GPUInterface {
 class GPUAttribute {
     let variable: GPUVariable<Vector>
     let location: GLuint
-    func bindLocation(program: GPUProgram) {
-        glBindAttribLocation(program.glName, self.location, self.gpuDomainName())
+    func bindLocation(programGLName: GLuint) {
+        glBindAttribLocation(programGLName, self.location, self.gpuDomainName())
     }
     
     init(variable: GPUVariable<Vector>, location: GLuint) {
@@ -35,8 +35,8 @@ class GPUAttribute {
 class GPUUniform {
     let variable: GPUVariable<GPUVariableType>
     var location: GLint = 0
-    func bindLocation(program: GPUProgram) {
-        self.location = glGetUniformLocation(program.glName, self.gpuDomainName())
+    func bindLocation(programGLName: GLuint) {
+        self.location = glGetUniformLocation(programGLName, self.gpuDomainName())
     }
     
     init(variable: GPUVariable<GPUVariableType>) {

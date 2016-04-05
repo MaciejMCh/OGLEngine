@@ -7,17 +7,35 @@
 //
 
 import Foundation
+import UIKit
 
-class Renderable : NSObject {
+protocol Mesh {
+    var vao: VAO {get}
+}
+
+protocol Model {
+    var geometryModel: GeometryModel {get}
+}
+
+protocol Colored {
+    var color: UIColor {get}
+}
+
+protocol ColorMapped {
+    var colorMap: Texture {get}
+}
+
+protocol NormalMapped {
+    var normalMap: Texture {get}
+}
+
+protocol BumpMapped: ColorMapped, NormalMapped {
     
-    var vao: VAO!
-    var geometryModel: GeometryModel!
-    var texture: Texture!
-    
-    convenience init(vao: VAO, geometryModel: GeometryModel, texture: Texture) {
-        self.init()
-        self.vao = vao
-        self.geometryModel = geometryModel
-        self.texture = texture
-    }
+}
+
+struct FinalRenderable: Mesh, Model, BumpMapped {
+    let vao: VAO
+    let geometryModel: GeometryModel
+    let colorMap: Texture
+    let normalMap: Texture
 }

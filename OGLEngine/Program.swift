@@ -10,12 +10,13 @@ import Foundation
 import GLKit
 
 protocol GPUProgram {
+    associatedtype RenderableType
     var shaderName: String {get}
     var interface: GPUInterface {get}
     var glName: GLuint { get set }
     
     mutating func compile()
-    func render(renderables: [Renderable])
+    func render(renderables: [RenderableType])
 }
 
 extension GPUProgram {
@@ -57,7 +58,7 @@ extension GPUProgram {
         // This needs to be done prior to linking.
         
         for attribute in self.interface.attributes {
-            attribute.bindLocation(self)
+            attribute.bindLocation(self.glName)
         }
         
         // Link program.
@@ -82,7 +83,7 @@ extension GPUProgram {
         
         // Get uniform locations.
         for uniform in self.interface.uniforms {
-            uniform.bindLocation(self)
+            uniform.bindLocation(self.glName)
         }
         
         // Release vertex and fragment shaders.

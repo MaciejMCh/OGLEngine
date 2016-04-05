@@ -11,7 +11,7 @@ import OpenGLES
 
 class GameViewController: GLKViewController {
     
-    var program: GPUProgram!
+    var program: CloseShotProgram!
     var context: EAGLContext? = nil
     
     var scene: Scene! = nil
