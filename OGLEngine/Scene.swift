@@ -31,14 +31,10 @@ class Scene : NSObject {
         bricksTexture.bind()
         blackTexture.bind()
         
-        // Geometry models
-        let originGeometryModel: StaticGeometryModel = StaticGeometryModel(position: GLKVector3Make(0, 0, 0))
-        let standingGeometryModel: StaticGeometryModel = StaticGeometryModel(position: GLKVector3Make(5, 0, 0))
-        
         // Renderables
-        self.renderables.append(Renderable(vao: torusVao, geometryModel: standingGeometryModel, texture: bricksTexture))
-        self.renderables.append(Renderable(vao: axesVao, geometryModel: originGeometryModel, texture: blackTexture))
-        self.renderables.append(Renderable(vao: cubeTexVao, geometryModel: originGeometryModel, texture: bricksTexture))
+        self.renderables.append(Renderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), texture: bricksTexture))
+        self.renderables.append(Renderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), texture: blackTexture))
+        self.renderables.append(Renderable(vao: cubeTexVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), texture: bricksTexture))
         
         // Light
         self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
