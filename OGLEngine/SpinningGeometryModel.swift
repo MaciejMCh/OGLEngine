@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-class SpinningGeometryModel : NSObject {
+class SpinningGeometryModel : NSObject, GeometryModel {
     
     var translation: GLKMatrix4!
     
