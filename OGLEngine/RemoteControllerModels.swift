@@ -18,7 +18,7 @@ class RemoteMouse : NSObject {
     class func mouseWithMessage(message: String) -> RemoteMouse {
         var components: [String] = message.componentsSeparatedByString(" ")
         assert(components.count == 3, "format is: m f f")
-        var mouse: RemoteMouse = RemoteMouse()
+        let mouse: RemoteMouse = RemoteMouse()
         mouse.xPosition = CFloat(components[1])!
         mouse.yPosition = CFloat(components[2])!
         return mouse
@@ -39,7 +39,7 @@ class RemoteKey : NSObject {
     class func keyWithMessage(message: String) -> RemoteKey {
         var components: [String] = message.componentsSeparatedByString(" ")
         assert(components.count == 2, "format is: d/u d")
-        var key: RemoteKey = RemoteKey()
+        let key: RemoteKey = RemoteKey()
         key.keyState = (components[0] == "d") ? .Down : .Up
         key.key = Int(components[1])!
         return key

@@ -23,8 +23,8 @@ class DirectionalLight : NSObject {
     }
     
     func halfVectorWithCamera(camera: Camera) -> GLKVector3 {
-        var normalizedLightDirection: GLKVector3 = self.lightDirection
-        var normalizedCameraPosition: GLKVector3 = GLKVector3Normalize(camera.cameraPosition())
+        let normalizedLightDirection: GLKVector3 = self.lightDirection
+        let normalizedCameraPosition: GLKVector3 = GLKVector3Normalize(camera.cameraPosition())
         return GLKVector3Normalize(GLKVector3Subtract(normalizedLightDirection, normalizedCameraPosition))
     }
 }

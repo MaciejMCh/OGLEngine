@@ -33,12 +33,12 @@ public class Texture : NSObject {
     
     func bindTextureWithImage(image: UIImage) -> GLuint {
         // 1
-        var spriteImage: CGImageRef = image.CGImage!
+        let spriteImage: CGImageRef = image.CGImage!
         // 2
-        var width: size_t = CGImageGetWidth(spriteImage)
-        var height: size_t = CGImageGetHeight(spriteImage)
-        var spriteData = calloc(width * height * 4, sizeof(GLubyte))
-        var spriteContext: CGContextRef = CGBitmapContextCreate(spriteData, width, height, 8, width * 4, CGImageGetColorSpace(spriteImage), CGImageAlphaInfo.PremultipliedLast.rawValue)!
+        let width: size_t = CGImageGetWidth(spriteImage)
+        let height: size_t = CGImageGetHeight(spriteImage)
+        let spriteData = calloc(width * height * 4, sizeof(GLubyte))
+        let spriteContext: CGContextRef = CGBitmapContextCreate(spriteData, width, height, 8, width * 4, CGImageGetColorSpace(spriteImage), CGImageAlphaInfo.PremultipliedLast.rawValue)!
         // 3
         CGContextDrawImage(spriteContext, CGRectMake(0, 0, CGFloat(width), CGFloat(height)), spriteImage)
 //        CGContextRelease(spriteContext)
@@ -53,12 +53,12 @@ public class Texture : NSObject {
     }
     
     class func imageWithColor(color: UIColor) -> UIImage {
-        var rect: CGRect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+        let rect: CGRect = CGRectMake(0.0, 0.0, 1.0, 1.0)
         UIGraphicsBeginImageContext(rect.size)
-        var context: CGContextRef = UIGraphicsGetCurrentContext()!
+        let context: CGContextRef = UIGraphicsGetCurrentContext()!
         CGContextSetFillColorWithColor(context, color.CGColor)
         CGContextFillRect(context, rect)
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
     }

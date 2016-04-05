@@ -125,7 +125,7 @@ class KeyToggle : NSObject {
     var beginInterval: CFTimeInterval!
     
     class func keyToggleWithKey(key: RemoteKey, beginInterval: CFTimeInterval) -> KeyToggle {
-        var keyToggle: KeyToggle = KeyToggle()
+        let keyToggle: KeyToggle = KeyToggle()
         keyToggle.key = key
         keyToggle.beginInterval = beginInterval
         return keyToggle
