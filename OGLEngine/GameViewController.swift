@@ -58,9 +58,7 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-//        self.loadShaders()
-        
-        var program = CloseShotProgram.instantiate() as! CloseShotProgram
+        var program = CloseShotProgram()
         program.loadShaders()
         
         self.program = program

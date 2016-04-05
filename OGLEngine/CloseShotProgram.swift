@@ -11,24 +11,13 @@ import GLKit
 
 class CloseShotProgram: GPUProgram {
     
-    var shaderName: String = ""
-    var interface: GPUInterface = DefaultInterfaces.none() {
-        didSet (ads) {
-            
-        }
-        willSet (asd) {
-            
-        }
-    }
+    var shaderName: String = "Shader"
+    var interface: GPUInterface = DefaultInterfaces.detailInterface()
     var glName: GLuint  = 0
     
     var camera: Camera!
     var directionalLight: DirectionalLight!
     var normalMap: Texture!
-    
-    static func instantiate() -> GPUProgram {
-        return self.init(shaderName: "Shader", interface: DefaultInterfaces.detailInterface())
-    }
     
     required init() {
         

@@ -10,77 +10,15 @@ import Foundation
 import GLKit
 
 protocol GPUProgram {
-    var shaderName: String { get set }
-    var interface: GPUInterface { get set }
+    var shaderName: String {get}
+    var interface: GPUInterface {get}
     var glName: GLuint { get set }
-    
-    init()
-    
-    static func instantiate() -> GPUProgram
     
     mutating func compile()
     func render(renderables: [Renderable])
 }
 
 extension GPUProgram {
-    
-//    private var _shaderName: String {
-//        get {
-//            return self._shaderName
-//        }
-//        set {
-//            self._shaderName = newValue
-//        }
-//    }
-//    
-//    private var _interface: GPUInterface {
-//        get {
-//            return self._interface
-//        }
-//        set {
-//            _interface = newValue
-//        }
-//    }
-//    
-//    private var _glName: GLuint {
-//        get {
-//            return self._glName
-//        }
-//        set {
-//            _glName = newValue
-//        }
-//    }
-    
-//    var shaderName: String {
-//        get {
-//            return shaderName
-//        } set {
-//            self.shaderName = newValue
-//        }
-//    }
-//
-//    var interface: GPUInterface {
-//        get {
-//            return interface
-//        } set {
-//            interface = newValue
-//        }
-//    }
-////
-//    var glName: GLuint {
-//        get {
-//            return glName
-//        } set {
-//            glName = newValue
-//        }
-//    }
-    
-    
-    internal init(shaderName: String, interface: GPUInterface) {
-        self.init()
-        self.shaderName = shaderName
-        self.interface = interface
-    }
     
     mutating func compile() {
         self.loadShaders()
