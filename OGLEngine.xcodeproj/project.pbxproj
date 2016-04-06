@@ -38,7 +38,6 @@
 		C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C01CA898DD00E56E67 /* RemoteController.swift */; };
 		C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */; };
 		C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C21CA898DD00E56E67 /* Renderable.swift */; };
-		C269D5DB1CA898DD00E56E67 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C31CA898DD00E56E67 /* Renderer.swift */; };
 		C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C41CA898DD00E56E67 /* Scene.swift */; };
 		C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */; };
 		C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */; };
@@ -99,7 +98,6 @@
 		C269D5C01CA898DD00E56E67 /* RemoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteController.swift; sourceTree = "<group>"; };
 		C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControllerModels.swift; sourceTree = "<group>"; };
 		C269D5C21CA898DD00E56E67 /* Renderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
-		C269D5C31CA898DD00E56E67 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C269D5C41CA898DD00E56E67 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningGeometryModel.swift; sourceTree = "<group>"; };
 		C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				C20EA33B1CA9BC0C0076F979 /* GPUDomain */,
 				C269D5C41CA898DD00E56E67 /* Scene.swift */,
 				C269D5E11CA898E900E56E67 /* VAO.swift */,
-				C269D5C31CA898DD00E56E67 /* Renderer.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -603,7 +600,6 @@
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
 				C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
-				C269D5DB1CA898DD00E56E67 /* Renderer.swift in Sources */,
 				C29219961CA9D76B00B78343 /* Program.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
