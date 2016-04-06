@@ -7,96 +7,93 @@
 //
 
 import Foundation
+import GLKit
 
-struct DefaultGPUAttributes {
+enum Attribute {
+    case Position
+    case Texel
+    case Normal
+    case TangentMatrixCol1
+    case TangentMatrixCol2
+    case TangentMatrixCol3
     
-    static func position() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "position", variable: Vector(length: 3, numberType: .float)), location: 0);
+    func name() -> String {
+        switch self {
+        case .Position: return "position"
+        case .Texel: return "texel"
+        case .Normal: return "normal"
+        case .TangentMatrixCol1: return "tangentMatrixCol1"
+        case .TangentMatrixCol2: return "tangentMatrixCol2"
+        case .TangentMatrixCol3: return "tangentMatrixCol3"
+        }
     }
     
-    static func texel() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "texel", variable: Vector(length: 2, numberType: .float)), location: 1);
+    func location() -> GLuint {
+        switch self {
+        case .Position: return 0
+        case .Texel: return 1
+        case .Normal: return 2
+        case .TangentMatrixCol1: return 3
+        case .TangentMatrixCol2: return 4
+        case .TangentMatrixCol3: return 5
+        }
     }
     
-    static func normal() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "normal", variable: Vector(length: 3, numberType: .float)), location: 2);
+    func size() -> Int {
+        switch self {
+        case .Position: return 3
+        case .Texel: return 2
+        case .Normal: return 3
+        case .TangentMatrixCol1: return 3
+        case .TangentMatrixCol2: return 3
+        case .TangentMatrixCol3: return 3
+        }
     }
     
-    static func tangentMatrixCol1() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol1", variable: Vector(length: 3, numberType: .float)), location: 3);
+    func gpuVariable() -> GPUAttribute {
+        return GPUAttribute(variable: GPUVariable(name: self.name(), variable: Vector(length: self.size(), numberType: .float)), location: self.location());
     }
-    static func tangentMatrixCol2() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol2", variable: Vector(length: 3, numberType: .float)), location: 4);
-    }
-    static func tangentMatrixCol3() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol3", variable: Vector(length: 3, numberType: .float)), location: 5);
-    }
-    
-    
 }
 
-enum UniformName: String {
-    case modelMatrix = "modelMatrix"
-    case viewMatrix = "viewMatrix"
-    case projectionMatrix = "projectionMatrix"
-    case modelViewProjectionMatrix = "modelViewProjectionMatrix"
-    case normalMatrix = "normalMatrix"
-    case eyePosition = "eyePosition"
-    case position = "position"
-    case lightDirection = "lightDirection"
-    case lightHalfVector = "lightHalfVector"
-    case colorMap = "colorMap"
-    case normalMap = "normalMap"
-}
-
-struct DefaultGPUUniforms {
+enum Uniform {
+    case ModelMatrix
+    case ViewMatrix
+    case ProjectionMatrix
+    case ModelViewProjectionMatrix
+    case NormalMatrix
+    case EyePosition
+    case Position
+    case LightDirection
+    case LightHalfVector
+    case ColorMap
+    case NormalMap
     
-    static func modelMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.modelMatrix.rawValue, variable: Matrix(size: 4)))
+    func name() -> String {
+        switch self {
+        case .ModelMatrix: return "modelMatrix"
+        case .ViewMatrix: return "viewMatrix"
+        case .ProjectionMatrix: return "projectionMatrix"
+        case .ModelViewProjectionMatrix: return "modelViewProjectionMatrix"
+        case .NormalMatrix: return "normalMatrix"
+        case .EyePosition: return "eyePosition"
+        case .Position: return "position"
+        case .LightDirection: return "lightDirection"
+        case .LightHalfVector: return "lightHalfVector"
+        case .ColorMap: return "colorMap"
+        case .NormalMap: return "NormalMap"
+        }
     }
-    
-    static func viewMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.viewMatrix.rawValue, variable: Matrix(size: 4)))
-    }
-    
-    static func projectionMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.projectionMatrix.rawValue, variable: Matrix(size: 4)))
-    }
-    
-    static func modelViewProjectionMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.modelViewProjectionMatrix.rawValue, variable: Matrix(size: 4)))
-    }
-    
-    static func normalMatrix() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.normalMatrix.rawValue, variable: Matrix(size: 3)))
-    }
-    
-    static func eyePosition() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.eyePosition.rawValue, variable: Vector(length: 3, numberType: .float)))
-    }
-    
-    static func position() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.position.rawValue, variable: Vector(length: 3, numberType: .float)))
-    }
-    
-    static func lightDirection() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.lightDirection.rawValue, variable: Vector(length: 3, numberType: .float)))
-    }
-    
-    static func lightHalfVector() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.lightHalfVector.rawValue, variable: Vector(length: 3, numberType: .float)))
-    }
-    
-    static func colorMap() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.colorMap.rawValue, variable: GPUTexture()))
-    }
-    
-    static func normalMap() -> GPUUniform {
-        return GPUUniform(variable: GPUVariable(name: UniformName.normalMap.rawValue, variable: GPUTexture()))
+        
+    func gpuVariable() -> GPUUniform {
+        switch self {
+        case .ModelMatrix, .ViewMatrix, .ProjectionMatrix, .ModelViewProjectionMatrix: return GPUUniform(variable: GPUVariable(name: self.name(), variable: Matrix(size: 4)))
+        case .NormalMatrix: return GPUUniform(variable: GPUVariable(name: self.name(), variable: Matrix(size: 3)))
+        case .EyePosition, .Position, .LightDirection, .LightHalfVector: return GPUUniform(variable: GPUVariable(name: self.name(), variable: Vector(length: 3, numberType: .float)))
+        case .ColorMap, .NormalMap: return GPUUniform(variable: GPUVariable(name: self.name(), variable: GPUTexture()))
+        }
     }
     
 }
-
 
 struct DefaultInterfaces {
     
@@ -105,48 +102,21 @@ struct DefaultInterfaces {
     }
     
     static func detailInterface() -> GPUInterface {
-        let GPUAttributes: [GPUAttribute] = [
-            DefaultGPUAttributes.position(),
-            DefaultGPUAttributes.texel(),
-            DefaultGPUAttributes.normal(),
-            DefaultGPUAttributes.tangentMatrixCol1(),
-            DefaultGPUAttributes.tangentMatrixCol2(),
-            DefaultGPUAttributes.tangentMatrixCol3()
-        ]
-        let GPUUniforms = [
-            DefaultGPUUniforms.modelMatrix(),
-            DefaultGPUUniforms.viewMatrix(),
-            DefaultGPUUniforms.projectionMatrix(),
-            DefaultGPUUniforms.normalMatrix(),
-            DefaultGPUUniforms.eyePosition(),
-            DefaultGPUUniforms.lightDirection(),
-            DefaultGPUUniforms.colorMap(),
-            DefaultGPUUniforms.normalMap()
-        ]
-        return GPUInterface(attributes: GPUAttributes, uniforms: GPUUniforms)
+        return GPUInterface(attributes: [.Position, .Texel, .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap])
     }
     
     static func backgroundInterface() -> GPUInterface {
-        let GPUAttributes: [GPUAttribute] = [
-            DefaultGPUAttributes.position()
-        ]
-        let GPUUniforms = [
-            DefaultGPUUniforms.modelViewProjectionMatrix(),
-            DefaultGPUUniforms.lightHalfVector(),
-            DefaultGPUUniforms.colorMap(),
-            DefaultGPUUniforms.normalMap(),
-        ]
-        return GPUInterface(attributes: GPUAttributes, uniforms: GPUUniforms)
+        return GPUInterface(attributes: [.Position], uniforms: [.ModelViewProjectionMatrix, .LightHalfVector, .ColorMap, .NormalMap])
     }
     
 }
 
 extension Array {
     
-    func uniformNamed(uniformName: UniformName) -> GPUUniform! {
+    func uniformNamed(uniform: Uniform) -> GPUUniform! {
         for element in self {
             if let element = element as? GPUUniform {
-                if element.variable.name == uniformName.rawValue {
+                if element.variable.name == uniform.name() {
                     return element
                 }
             }

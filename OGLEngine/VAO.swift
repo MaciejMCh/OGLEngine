@@ -9,48 +9,15 @@
 import Foundation
 import GLKit
 
-enum VBOType {
-    
-    case Position
-    case Texel
-    case Normal
-    case TangentMatrixCol1
-    case TangentMatrixCol2
-    case TangentMatrixCol3
-    
-    func perVertexCount() -> GLint {
-        switch self {
-        case .Position: return 3
-        case .Texel: return 2
-        case .Normal: return 3
-        case .TangentMatrixCol1: return 3
-        case .TangentMatrixCol2: return 3
-        case .TangentMatrixCol3: return 3
-        }
-    }
-    
-    func index() -> GLuint {
-        switch self {
-        case .Position: return 0
-        case .Texel: return 1
-        case .Normal: return 2
-        case .TangentMatrixCol1: return 3
-        case .TangentMatrixCol2: return 4
-        case .TangentMatrixCol3: return 5
-        }
-    }
-    
-}
-
 struct VBO {
-    let type: VBOType
+    let attribute: Attribute
     let glName: GLuint
     let data: GLFloatArray
 }
 
 class VAO {
     
-    var VBOTypes: [VBOType]!
+    var vboAttributes: [Attribute]!
     var obj: OBJ!
     var vbos: [VBO] = []
     
@@ -60,7 +27,7 @@ class VAO {
     
     convenience init(obj: OBJ) {
         self.init()
-        self.VBOTypes = [.Position, .Texel, .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3]
+        self.vboAttributes = [.Position, .Texel, .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3]
         self.obj = obj
         
         self.setup()
@@ -79,18 +46,18 @@ class VAO {
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indicesVboGLName)
         glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Int(obj.indices.count) * sizeof(GLuint), obj.indices.data, GLenum(GL_STATIC_DRAW))
         
-        self.vbos = self.VBOTypes.map{return self.generateVbo($0, data: obj.dataOfType($0))}
+        self.vbos = self.vboAttributes.map{return self.generateVbo($0, data: obj.dataForAttribute($0))}
         
         glBindVertexArrayOES(0)
     }
     
-    func generateVbo(type: VBOType, data: GLFloatArray) -> VBO {
+    func generateVbo(attribute: Attribute, data: GLFloatArray) -> VBO {
         var vboGLName: GLuint = 0
         glGenBuffers(1, &vboGLName)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vboGLName)
         glBufferData(GLenum(GL_ARRAY_BUFFER), Int(data.count) * sizeof(GLfloat), data.data, GLenum(GL_STATIC_DRAW))
-        glVertexAttribPointer(type.index(), type.perVertexCount(), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
+        glVertexAttribPointer(attribute.location(), GLint(attribute.size()), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
-        return VBO(type: type, glName: vboGLName, data: data)
+        return VBO(attribute: attribute, glName: vboGLName, data: data)
     }
 }

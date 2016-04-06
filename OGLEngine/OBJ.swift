@@ -20,8 +20,8 @@ struct OBJ {
     let tbnMatrices2 : GLFloatArray?
     let tbnMatrices3 : GLFloatArray?
     
-    func dataOfType(vboType: VBOType) -> GLFloatArray {
-        switch vboType {
+    func dataForAttribute(attribute: Attribute) -> GLFloatArray {
+        switch attribute {
         case .Position: return self.positions!
         case .Texel: return self.texels!
         case .Normal: return self.normals!

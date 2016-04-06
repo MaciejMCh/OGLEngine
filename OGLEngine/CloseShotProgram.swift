@@ -27,12 +27,12 @@ class CloseShotProgram: GPUProgram {
         var eyePosition = camera.cameraPosition()
         eyePosition = GLKVector3MultiplyScalar(eyePosition, -1)
         withUnsafePointer(&eyePosition, {
-            glUniform3fv(self.interface.uniforms.uniformNamed(.eyePosition).location, 1, UnsafePointer($0))
+            glUniform3fv(self.interface.uniforms.uniformNamed(.EyePosition).location, 1, UnsafePointer($0))
         })
         
         var directionalLightDirection: GLKVector3 = directionalLight.direction()
         withUnsafePointer(&directionalLightDirection, {
-            glUniform3fv(self.interface.uniforms.uniformNamed(.lightDirection).location, 1, UnsafePointer($0))
+            glUniform3fv(self.interface.uniforms.uniformNamed(.LightDirection).location, 1, UnsafePointer($0))
         })
         
         for renderable in renderables {

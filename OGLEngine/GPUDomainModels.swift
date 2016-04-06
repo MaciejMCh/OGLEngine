@@ -13,6 +13,11 @@ import GLKit
 struct GPUInterface {
     let attributes: [GPUAttribute]
     let uniforms: [GPUUniform]
+    
+    init(attributes: [Attribute], uniforms: [Uniform]) {
+        self.attributes = attributes.map{return $0.gpuVariable()}
+        self.uniforms = uniforms.map{return $0.gpuVariable()}
+    }
 }
 
 class GPUAttribute {

@@ -13,7 +13,7 @@ extension GPUProgram where RenderableType: NormalMapped {
     func bindNormalMap(normalMapped: NormalMapped) {
         glActiveTexture(GLenum(GL_TEXTURE1));
         glBindTexture(GLenum(GL_TEXTURE_2D), normalMapped.normalMap.glName);
-        glUniform1i(self.interface.uniforms.uniformNamed(.normalMap).location, 1);
+        glUniform1i(self.interface.uniforms.uniformNamed(.NormalMap).location, 1);
     }
 }
 
@@ -21,7 +21,7 @@ extension GPUProgram where RenderableType: ColorMapped {
     func bindColorMap(colorMapped: ColorMapped) {
         glActiveTexture(GLenum(GL_TEXTURE0));
         glBindTexture(GLenum(GL_TEXTURE_2D), colorMapped.colorMap.glName)
-        glUniform1i(self.interface.uniforms.uniformNamed(.colorMap).location, 0);
+        glUniform1i(self.interface.uniforms.uniformNamed(.ColorMap).location, 0);
     }
 }
 
@@ -52,28 +52,28 @@ extension GPUProgram where RenderableType: Model {
     func passModelMatrix(model: Model) {
         var modelMatrix = model.geometryModel.modelMatrix()
         withUnsafePointer(&modelMatrix, {
-            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.modelMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.ModelMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
     func passNormalMatrix(model: Model) {
         var normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(model.geometryModel.modelMatrix()), nil);
         withUnsafePointer(&normalMatrix, {
-            glUniformMatrix3fv(self.interface.uniforms.uniformNamed(.normalMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix3fv(self.interface.uniforms.uniformNamed(.NormalMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
     func passViewMatrix(camera: Camera) {
         var viewMatrix = camera.viewMatrix()
         withUnsafePointer(&viewMatrix, {
-            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.viewMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.ViewMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
     func passProjectionMatrix(camera: Camera) {
         var projectionMatrix = camera.projectionMatrix()
         withUnsafePointer(&projectionMatrix, {
-            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.projectionMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.ProjectionMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
