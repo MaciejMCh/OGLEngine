@@ -109,19 +109,7 @@ class OBJLoader : NSObject {
             tbns2.appendContentsOf([col2.x, col2.y, col2.z])
             tbns3.appendContentsOf([col3.x, col3.y, col3.z])
             
-//            NSLog("%.2f %.2f %.2f", normal.x, normal.y, normal.z)
-//            let test = GLKMatrix3MultiplyVector3(tangentMatrix, GLKVector3Make(normal.x, normal.y, normal.z))
-//            NSLog("%.2f %.2f %.2f", test.x, test.y, test.z)
-//            
-//            NSLog("gg")
-            
         }
-        
-        
-        let pss = ps.map {return [$0.x, $0.y, $0.z]}.stomp()
-        let tss = ts.map {return [$0.u, $0.v]}.stomp()
-        let nss = ps.map {return [$0.x, $0.y, $0.z]}.stomp()
-        
         
         let indices: [Int] = strideIndices.indexify(indicesComparator, processor: indicesProcessor)
         
