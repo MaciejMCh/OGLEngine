@@ -39,3 +39,9 @@ struct FinalRenderable: Mesh, Model, BumpMapped {
     let colorMap: Texture
     let normalMap: Texture
 }
+
+struct MediumShotRenderable: Mesh, Model, ColorMapped {
+    let vao: VAO
+    let geometryModel: GeometryModel
+    let colorMap: Texture
+}

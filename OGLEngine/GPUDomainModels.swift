@@ -37,19 +37,27 @@ class GPUAttribute {
     }
 }
 
-class GPUUniform {
-    let variable: GPUVariable<GPUVariableType>
+class UniformInstance {
+    var type: ProcessingUnitType
+    var uniform: Uniform!
     var location: GLint = 0
+    
+    init() {
+        
+    }
+    
     func bindLocation(programGLName: GLuint) {
         self.location = glGetUniformLocation(programGLName, self.gpuDomainName())
     }
     
-    init(variable: GPUVariable<GPUVariableType>) {
-        self.variable = variable
-    }
+    
+    
+//    init(variable: GPUVariable<GPUVariableType>) {
+//        self.variable = variable
+//    }
     
     func gpuDomainName() -> String {
-        return produceGpuDomainName(self.variable.name, prefix: "u")
+        return produceGpuDomainName(self.uniform.name(), prefix: "u")
     }
 }
 
@@ -59,44 +67,43 @@ func produceGpuDomainName(name: String, prefix: String) -> String {
     return prefix + first + rest
 }
 
-
-struct GPUVariable<T> {
-    let name: String
-    let variable: T
+enum GPUType {
+    case Float
+    case Vec2
+    case Vec3
+    case Mat3
+    case Mat4
+    case Texture
 }
 
 typealias Dimension = (columns: Int, rows: Int)
 
-protocol GPUVariableType {
+protocol ProcessingUnitType {
+    associatedtype CPUType
+    var gpuType: GPUType {get}
     var dimension: Dimension {get}
 }
 
-struct GPUTexture : GPUVariableType {
-    let dimension = Dimension(1, 1)
+struct PUVector2: ProcessingUnitType {
+    typealias CPUType = GLKVector2
+    let gpuType: GPUType = .Vec2
+    let dimension: Dimension = Dimension(2, 1)
 }
 
-struct Vector : GPUVariableType {
-    let length: Int
-    let numberType : GPUNumberType
-    var dimension: Dimension {
-        get {
-            return Dimension(length, 1)
-        }
-    }
+struct PUVector3: ProcessingUnitType {
+    typealias CPUType = GLKVector3
+    let gpuType: GPUType = .Vec3
+    let dimension: Dimension = Dimension(3, 1)
 }
 
-
-struct Matrix : GPUVariableType {
-    let size: Int
-    var dimension: Dimension {
-        get {
-            return Dimension(size, size)
-        }
-    }
+struct PUMatrix3: ProcessingUnitType {
+    typealias CPUType = GLKMatrix3
+    let gpuType: GPUType = .Mat3
+    let dimension: Dimension = Dimension(3, 3)
 }
 
-
-enum GPUNumberType {
-    case float
-    case integer
+struct PUMatrix4: ProcessingUnitType {
+    typealias CPUType = GLKMatrix4
+    let gpuType: GPUType = .Mat4
+    let dimension: Dimension = Dimension(4, 4)
 }
