@@ -139,12 +139,6 @@ class OBJLoader : NSObject {
             return glArray
         }
         
-        let obj = OBJ()
-        obj.indices = arrayToArray(indices)
-        obj.positions = floatArrayToArray(pss)
-        obj.texels = floatArrayToArray(tss)
-        obj.normals = floatArrayToArray(nss)
-        
         let pz = ps.map { (position: (x: Float, y: Float, z: Float)) -> [Float] in
             return [position.x, position.y, position.z]
         }.stomp()
@@ -155,14 +149,14 @@ class OBJLoader : NSObject {
             return [normal.x, normal.y, normal.z]
         }.stomp()
         
-        obj.positions = floatArrayToArray(pz)
-        obj.texels = floatArrayToArray(tz)
-        obj.normals = floatArrayToArray(nz)
-        obj.tbnMatrices1 = floatArrayToArray(tbns1)
-        obj.tbnMatrices2 = floatArrayToArray(tbns2)
-        obj.tbnMatrices3 = floatArrayToArray(tbns3)
-        
-        return obj
+        return OBJ(
+            indices: arrayToArray(indices),
+            positions: floatArrayToArray(pz),
+            texels: floatArrayToArray(tz),
+            normals: floatArrayToArray(nz),
+            tbnMatrices1: floatArrayToArray(tbns1),
+            tbnMatrices2: floatArrayToArray(tbns2),
+            tbnMatrices3: floatArrayToArray(tbns3))
     }
 }
 

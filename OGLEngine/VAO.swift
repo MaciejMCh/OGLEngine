@@ -9,33 +9,65 @@
 import Foundation
 import GLKit
 
-@objc enum VboIndex : GLuint {
-    case Positions = 0
-    case Texels
-    case Normals
+enum VBOType {
+    
+    case Position
+    case Texel
+    case Normal
     case TangentMatrixCol1
     case TangentMatrixCol2
     case TangentMatrixCol3
-    case VbosCount
+    
+    func perVertexCount() -> GLint {
+        switch self {
+        case .Position: return 3
+        case .Texel: return 2
+        case .Normal: return 3
+        case .TangentMatrixCol1: return 3
+        case .TangentMatrixCol2: return 3
+        case .TangentMatrixCol3: return 3
+        }
+    }
+    
+    func index() -> GLuint {
+        switch self {
+        case .Position: return 0
+        case .Texel: return 1
+        case .Normal: return 2
+        case .TangentMatrixCol1: return 3
+        case .TangentMatrixCol2: return 4
+        case .TangentMatrixCol3: return 5
+        }
+    }
+    
 }
 
-class VAO : NSObject {
+struct VBO {
+    let type: VBOType
+    let glName: GLuint
+    let data: GLFloatArray
+}
+
+class VAO {
     
+    var VBOTypes: [VBOType]!
     var obj: OBJ!
+    var vbos: [VBO] = []
+    
     var vertexCount: UInt = 0
     var vaoGLName: GLuint = 0
     var indicesVboGLName: GLuint = 0
-    var positionsVboGLName: GLuint = 0
-    var texelsVboGLName: GLuint = 0
-    var normalsVboGLName: GLuint = 0
-    var tbnMatrix1VboGLName: GLuint = 0
-    var tbnMatrix2VboGLName: GLuint = 0
-    var tbnMatrix3VboGLName: GLuint = 0
     
-    convenience init(OBJ obj: OBJ) {
+    convenience init(obj: OBJ) {
         self.init()
+        self.VBOTypes = [.Position, .Texel, .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3]
         self.obj = obj
-        self.vertexCount = UInt(obj.indices.count)
+        
+        self.setup()
+    }
+    
+    private func setup() {
+        self.vertexCount = UInt(self.obj.indices.count)
         
         var vaoGLName: GLuint = 0
         glGenVertexArraysOES(1, &vaoGLName)
@@ -47,24 +79,18 @@ class VAO : NSObject {
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indicesVboGLName)
         glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Int(obj.indices.count) * sizeof(GLuint), obj.indices.data, GLenum(GL_STATIC_DRAW))
         
-        self.positionsVboGLName = self.generateVboAtIndex(.Positions, data: obj.positions, perVertexCount: 3)
-        self.texelsVboGLName = self.generateVboAtIndex(.Texels, data: obj.texels, perVertexCount: 2)
-        self.normalsVboGLName = self.generateVboAtIndex(.Normals, data: obj.normals, perVertexCount: 3)
-        self.tbnMatrix1VboGLName = self.generateVboAtIndex(.TangentMatrixCol1, data: obj.tbnMatrices1, perVertexCount: 3)
-        self.tbnMatrix2VboGLName = self.generateVboAtIndex(.TangentMatrixCol2, data: obj.tbnMatrices2, perVertexCount: 3)
-        self.tbnMatrix3VboGLName = self.generateVboAtIndex(.TangentMatrixCol3, data: obj.tbnMatrices3, perVertexCount: 3)
-//        self.tangentsVboGLName = self.generateVboAtIndex(.Tangents, data: obj.tangents, perVertexCount: 3)
-//        self.bitangentsVboGLName = self.generateVboAtIndex(.Bitangents, data: obj.bitangents, perVertexCount: 3)
+        self.vbos = self.VBOTypes.map{return self.generateVbo($0, data: obj.dataOfType($0))}
+        
         glBindVertexArrayOES(0)
     }
     
-    func generateVboAtIndex(index: VboIndex, data: GLFloatArray, perVertexCount: UInt) -> GLuint {
+    func generateVbo(type: VBOType, data: GLFloatArray) -> VBO {
         var vboGLName: GLuint = 0
         glGenBuffers(1, &vboGLName)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vboGLName)
         glBufferData(GLenum(GL_ARRAY_BUFFER), Int(data.count) * sizeof(GLfloat), data.data, GLenum(GL_STATIC_DRAW))
-        glVertexAttribPointer(GLuint(index.rawValue), GLint(perVertexCount), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
+        glVertexAttribPointer(type.index(), type.perVertexCount(), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
-        return vboGLName
+        return VBO(type: type, glName: vboGLName, data: data)
     }
 }

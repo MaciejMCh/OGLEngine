@@ -9,22 +9,26 @@
 import Foundation
 import GLKit
 
-class OBJ : NSObject {
+struct OBJ {
     
-    var indices : GLIntArray!
-    var positions : GLFloatArray!
-    var texels : GLFloatArray!
-    var normals : GLFloatArray!
-    var tbnMatrices1 : GLFloatArray!
-    var tbnMatrices2 : GLFloatArray!
-    var tbnMatrices3 : GLFloatArray!
+    let indices : GLIntArray
     
-    convenience init(indices: GLIntArray, positions: GLFloatArray, texels: GLFloatArray, normals: GLFloatArray) {
-        self.init()
-        self.indices = indices
-        self.positions = positions
-        self.texels = texels
-        self.normals = normals
+    let positions : GLFloatArray?
+    let texels : GLFloatArray?
+    let normals : GLFloatArray?
+    let tbnMatrices1 : GLFloatArray?
+    let tbnMatrices2 : GLFloatArray?
+    let tbnMatrices3 : GLFloatArray?
+    
+    func dataOfType(vboType: VBOType) -> GLFloatArray {
+        switch vboType {
+        case .Position: return self.positions!
+        case .Texel: return self.texels!
+        case .Normal: return self.normals!
+        case .TangentMatrixCol1: return self.tbnMatrices1!
+        case .TangentMatrixCol2: return self.tbnMatrices2!
+        case .TangentMatrixCol3: return self.tbnMatrices3!
+        }
     }
 }
 

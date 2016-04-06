@@ -36,62 +36,19 @@ class CloseShotProgram: GPUProgram {
         })
         
         for renderable in renderables {
-            self.bind(renderable)
-            self.bindTexture(renderable)
-            self.passMatrices(renderable, camera: camera)
+            self.bindAttributes(renderable)
+            self.bindColorMap(renderable)
+            self.bindNormalMap(renderable)
+            
+            self.passModelMatrix(renderable)
+            self.passNormalMatrix(renderable)
+            self.passViewMatrix(camera)
+            self.passProjectionMatrix(camera)
+            
             self.draw(renderable)
-            self.unbind(renderable)
+            self.unbindAttributes(renderable)
         }
         
-    }
-    
-    func bind(mesh: Mesh) {
-        glBindVertexArrayOES(mesh.vao.vaoGLName)
-        for attribute in self.interface.attributes {
-            glEnableVertexAttribArray(attribute.location)
-        }
-    }
-    
-    func unbind(mesh: Mesh) {
-        for attribute in self.interface.attributes {
-            glDisableVertexAttribArray(attribute.location)
-        }
-        glBindVertexArrayOES(0);
-    }
-    
-    func bindTexture(bumpMapped: BumpMapped) {
-        glActiveTexture(GLenum(GL_TEXTURE0));
-        glBindTexture(GLenum(GL_TEXTURE_2D), bumpMapped.colorMap.glName)
-        glActiveTexture(GLenum(GL_TEXTURE1));
-        glBindTexture(GLenum(GL_TEXTURE_2D), bumpMapped.normalMap.glName);
-        glUniform1i(self.interface.uniforms.uniformNamed(.colorMap).location, 0);
-        glUniform1i(self.interface.uniforms.uniformNamed(.normalMap).location, 1);
-    }
-    
-    func passMatrices(model: Model, camera: Camera) {
-        var modelMatrix = model.geometryModel.modelMatrix()
-        var viewMatrix = camera.viewMatrix()
-        var projectionMatrix = camera.projectionMatrix()
-        
-        withUnsafePointer(&modelMatrix, {
-            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.modelMatrix).location, 1, 0, UnsafePointer($0))
-        })
-        withUnsafePointer(&viewMatrix, {
-            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.viewMatrix).location, 1, 0, UnsafePointer($0))
-        })
-        withUnsafePointer(&projectionMatrix, {
-            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.projectionMatrix).location, 1, 0, UnsafePointer($0))
-        })
-        
-        var normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(model.geometryModel.modelMatrix()), nil);
-        withUnsafePointer(&normalMatrix, {
-            glUniformMatrix3fv(self.interface.uniforms.uniformNamed(.normalMatrix).location, 1, 0, UnsafePointer($0))
-        })
-        
-    }
-    
-    func draw(mesh: Mesh) {
-        glDrawElements(GLenum(GL_TRIANGLES), GLsizei(mesh.vao.vertexCount), GLenum(GL_UNSIGNED_INT), nil);
     }
     
 }

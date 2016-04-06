@@ -21,9 +21,9 @@ class Scene : NSObject {
         super.init()
         
         // VAOs
-        let torusVao: VAO = VAO(OBJ: OBJLoader.objFromFileNamed("paczek"))
-        let cubeTexVao: VAO = VAO(OBJ: OBJLoader.objFromFileNamed("cube_tex"))
-        let axesVao: VAO = VAO(OBJ: OBJLoader.objFromFileNamed("axes"))
+        let torusVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("paczek"))
+        let cubeTexVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("cube_tex"))
+        let axesVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("axes"))
         
         // Textures
         let bricksTexture = Texture(imageNamed: "bricks_colors")

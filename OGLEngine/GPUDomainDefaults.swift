@@ -11,25 +11,25 @@ import Foundation
 struct DefaultGPUAttributes {
     
     static func position() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "position", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Positions.rawValue);
+        return GPUAttribute(variable: GPUVariable(name: "position", variable: Vector(length: 3, numberType: .float)), location: 0);
     }
     
     static func texel() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "texel", variable: Vector(length: 2, numberType: .float)), location: VboIndex.Texels.rawValue);
+        return GPUAttribute(variable: GPUVariable(name: "texel", variable: Vector(length: 2, numberType: .float)), location: 1);
     }
     
     static func normal() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "normal", variable: Vector(length: 3, numberType: .float)), location: VboIndex.Normals.rawValue);
+        return GPUAttribute(variable: GPUVariable(name: "normal", variable: Vector(length: 3, numberType: .float)), location: 2);
     }
     
     static func tangentMatrixCol1() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol1", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TangentMatrixCol1.rawValue);
+        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol1", variable: Vector(length: 3, numberType: .float)), location: 3);
     }
     static func tangentMatrixCol2() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol2", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TangentMatrixCol2.rawValue);
+        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol2", variable: Vector(length: 3, numberType: .float)), location: 4);
     }
     static func tangentMatrixCol3() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol3", variable: Vector(length: 3, numberType: .float)), location: VboIndex.TangentMatrixCol3.rawValue);
+        return GPUAttribute(variable: GPUVariable(name: "tangentMatrixCol3", variable: Vector(length: 3, numberType: .float)), location: 5);
     }
     
     
@@ -105,7 +105,7 @@ struct DefaultInterfaces {
     }
     
     static func detailInterface() -> GPUInterface {
-        let GPUAttributes = [
+        let GPUAttributes: [GPUAttribute] = [
             DefaultGPUAttributes.position(),
             DefaultGPUAttributes.texel(),
             DefaultGPUAttributes.normal(),
@@ -127,7 +127,7 @@ struct DefaultInterfaces {
     }
     
     static func backgroundInterface() -> GPUInterface {
-        let GPUAttributes = [
+        let GPUAttributes: [GPUAttribute] = [
             DefaultGPUAttributes.position()
         ]
         let GPUUniforms = [
