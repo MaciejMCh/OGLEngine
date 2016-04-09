@@ -56,6 +56,10 @@ enum Attribute {
         case .Texel: return .Vec3
         }
     }
+    
+    func gpuDomainName() -> String {
+        return gpuDomainNameWithPrefix(self.name(), prefix: "a")
+    }
 }
 
 enum Uniform {
@@ -97,14 +101,14 @@ enum Uniform {
     }
     
     func gpuDomainName() -> String {
-        return "u" + self.name()
+        return gpuDomainNameWithPrefix(self.name(), prefix: "u")
     }
     
-    func bind(programGlName: GLuint) -> GPUInstance {
-        let location = glGetUniformLocation(programGlName, self.gpuDomainName())
-        let type = self.gpuType()
-        return GPUInstance(type: type, location: location)
-    }
+//    func bind(programGlName: GLuint) -> GPUInstance {
+//        let location = glGetUniformLocation(programGlName, self.gpuDomainName())
+//        let type = self.gpuType()
+//        return GPUInstance(type: type, location: location)
+//    }
     
 }
 
@@ -124,17 +128,23 @@ struct DefaultInterfaces {
     
 }
 
-extension Array {
-    
-    func uniformNamed(uniform: Uniform) -> UniformInstance! {
-        for element in self {
-            if let element = element as? UniformInstance {
-                if element.uniform.name() == uniform.name() {
-                    return element
-                }
-            }
-        }
-        return nil
-    }
-    
+func gpuDomainNameWithPrefix(originalName: String, prefix: String) -> String {
+    let first = originalName.substringToIndex(originalName.startIndex.advancedBy(1))
+    let rest = originalName.substringFromIndex(originalName.startIndex.advancedBy(1))
+    return prefix + first.uppercaseString + rest
 }
+
+//extension Array {
+//    
+//    func uniformNamed(uniform: Uniform) -> UniformInstance! {
+//        for element in self {
+//            if let element = element as? UniformInstance {
+//                if element.uniform.name() == uniform.name() {
+//                    return element
+//                }
+//            }
+//        }
+//        return nil
+//    }
+//    
+//}

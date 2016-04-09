@@ -13,6 +13,7 @@ class CloseShotProgram: GPUProgram {
     typealias RenderableType = FinalRenderable
     var shaderName: String = "Shader"
     var interface: GPUInterface = DefaultInterfaces.detailInterface()
+    var implementation: GPUImplementation = GPUImplementation(instances: [])
     var glName: GLuint  = 0
     
     var camera: Camera!
@@ -26,14 +27,14 @@ class CloseShotProgram: GPUProgram {
     func render(renderables: [FinalRenderable]) {
         var eyePosition = camera.cameraPosition()
         eyePosition = GLKVector3MultiplyScalar(eyePosition, -1)
-        withUnsafePointer(&eyePosition, {
-            glUniform3fv(self.interface.uniforms.uniformNamed(.EyePosition).location, 1, UnsafePointer($0))
-        })
+//        withUnsafePointer(&eyePosition, {
+//            glUniform3fv(self.interface.uniforms.uniformNamed(.EyePosition).location, 1, UnsafePointer($0))
+//        })
         
         var directionalLightDirection: GLKVector3 = directionalLight.direction()
-        withUnsafePointer(&directionalLightDirection, {
-            glUniform3fv(self.interface.uniforms.uniformNamed(.LightDirection).location, 1, UnsafePointer($0))
-        })
+//        withUnsafePointer(&directionalLightDirection, {
+//            glUniform3fv(self.interface.uniforms.uniformNamed(.LightDirection).location, 1, UnsafePointer($0))
+//        })
         
         for renderable in renderables {
             self.bindAttributes(renderable)

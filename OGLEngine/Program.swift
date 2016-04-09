@@ -13,6 +13,7 @@ protocol GPUProgram {
     associatedtype RenderableType
     var shaderName: String {get}
     var interface: GPUInterface {get}
+    var implementation: GPUImplementation {get set}
     var glName: GLuint { get set }
     
     mutating func compile()
@@ -58,7 +59,7 @@ extension GPUProgram {
         // This needs to be done prior to linking.
         
         for attribute in self.interface.attributes {
-            attribute.bindLocation(self.glName)
+            glBindAttribLocation(self.glName, attribute.location(), attribute.gpuDomainName())
         }
         
         // Link program.
@@ -82,9 +83,10 @@ extension GPUProgram {
         }
         
         // Get uniform locations.
-        for uniform in self.interface.uniforms {
-            uniform.bind(self.glName)
-        }
+        self.implementation = GPUImplementation(instances: self.interface.uniforms.map{
+            let location = glGetUniformLocation(self.glName, $0.gpuDomainName())
+            return GPUInstance(uniform: $0, location: location, sceneEntityPass: nil)
+            })
         
         // Release vertex and fragment shaders.
         if vertShader != 0 {

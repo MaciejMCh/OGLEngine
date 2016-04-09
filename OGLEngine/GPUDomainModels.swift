@@ -13,16 +13,21 @@ import GLKit
 struct GPUInterface {
     let attributes: [Attribute]
     let uniforms: [Uniform]
-    
-    init(attributes: [Attribute], uniforms: [Uniform]) {
-        self.attributes = attributes
-        self.uniforms = uniforms
-    }
 }
 
+struct GPUImplementation {
+    let instances: [GPUInstance]
+}
+
+
 struct GPUInstance {
-    var type: GPUType
-    var location: GLuint
+    var uniform: Uniform
+    var location: GLint
+    var sceneEntityPass: SceneEntityPass?
+    
+    func passToGpu() {
+        self.sceneEntityPass?.passToGpu(self.location)
+    }
 }
 
 enum GPUType {
@@ -37,28 +42,53 @@ enum GPUType {
 typealias Dimension = (columns: Int, rows: Int)
 
 protocol SceneEntityPass {
-    func passToGpu()
+    func passToGpu(location: GLint)
 }
 
 protocol Passing {
     associatedtype Pass
-    var pass: Pass {get}
-    func passFunction() -> ((pass: Pass) -> ())
+    var passSubject: Pass {get}
+    func pass(passSubject: Pass, location: GLint)
 }
 
-class LightPosition: SceneEntityPass, Passing {
+class Vector3Pass: SceneEntityPass, Passing {
     typealias Pass = GLKVector3
-    var pass: GLKVector3 = GLKVector3Make(0, 0, 0)
+    var passSubject: GLKVector3 = GLKVector3Make(0, 0, 0)
+
+    func pass(var passSubject: GLKVector3, location: GLint) {
+        withUnsafePointer(&passSubject, {
+            glUniform3fv(location, 1, UnsafePointer($0))
+        })
+    }
+    
+    func passToGpu(location: GLint) {
+        self.pass(self.passSubject, location: location)
+    }
+    
 }
 
-extension SceneEntityPass where Self: Passing {
-    func passToGpu() {
-        self.passFunction(self.pass)
+
+extension Array {
+    func get(uniform: Uniform) -> GPUInstance! {
+        for element in self {
+            if let instance = element as? GPUInstance {
+                if instance.uniform == uniform {
+                    return instance
+                }
+            }
+        }
+        return nil
     }
 }
 
-extension Passing where Pass: GLKVector3 {
-    func passFunction(pass: GLKVector3) {
-        
-    }
-}
+//extension SceneEntityPass where Self: Passing {
+//    func passToGpu() {
+//        self.passFunction(self.pass)
+//    }
+//}
+
+//extension Passing where Pass: GLKVector3 {
+//    func passFunction(pass: GLKVector3) {
+//        
+//    }
+//}
