@@ -48,9 +48,10 @@ protocol Passing {
 
 class LightPosition: SceneEntityPass, Passing {
     typealias Pass = GLKVector3
-    
     var pass: GLKVector3 = GLKVector3Make(0, 0, 0)
-    
+}
+
+extension SceneEntityPass where Self: Passing {
     func passToGpu() {
         self.passFunction(self.pass)
     }
@@ -61,6 +62,3 @@ extension Passing where Pass: GLKVector3 {
         
     }
 }
-
-
-
