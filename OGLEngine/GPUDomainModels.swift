@@ -73,8 +73,17 @@ extension Vector3Pass {
     }
 }
 
-class Direction: Vector3Pass {
-    var vector3Pass: GLKVector3 = GLKVector3Make(0, 0, 0)
+class UniversalVector3Pass: Vector3Pass {
+    var subjectGetter: () -> (GLKVector3)
+    var vector3Pass: GLKVector3 {
+        get {
+            return self.subjectGetter()
+        }
+    }
+    
+    init(subjectGetter: () -> (GLKVector3)) {
+        self.subjectGetter = subjectGetter
+    }
 }
 
 

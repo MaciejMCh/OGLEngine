@@ -26,14 +26,10 @@ class CloseShotProgram: GPUProgram {
     
     func programDidCompile() {
         self.bindUniformWithPass(.LightDirection, pass: self.directionalLight)
+        self.bindUniformWithPass(.EyePosition, pass: self.camera.cameraPositionPass())
     }
     
     func render(renderables: [FinalRenderable]) {
-        var eyePosition = camera.cameraPosition()
-        eyePosition = GLKVector3MultiplyScalar(eyePosition, -1)
-        withUnsafePointer(&eyePosition, {
-            glUniform3fv(self.implementation.instances.get(.EyePosition).location, 1, UnsafePointer($0))
-        })
         
         self.triggerBondPasses()
     

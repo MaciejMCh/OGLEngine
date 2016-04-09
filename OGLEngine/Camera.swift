@@ -16,3 +16,11 @@ protocol Camera {
     func cameraPosition() -> GLKVector3
     
 }
+
+extension Camera {
+    func cameraPositionPass() -> UniversalVector3Pass {
+        return UniversalVector3Pass(subjectGetter: { () -> (GLKVector3) in
+            return GLKVector3MultiplyScalar(self.cameraPosition(), -1)
+        })
+    }
+}
