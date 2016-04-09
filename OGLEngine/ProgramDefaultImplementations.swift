@@ -34,13 +34,13 @@ extension GPUProgram where RenderableType: Mesh {
     func bindAttributes(mesh: Mesh) {
         glBindVertexArrayOES(mesh.vao.vaoGLName)
         for attribute in self.interface.attributes {
-            glEnableVertexAttribArray(attribute.location)
+            glEnableVertexAttribArray(attribute.location())
         }
     }
     
     func unbindAttributes(mesh: Mesh) {
         for attribute in self.interface.attributes {
-            glDisableVertexAttribArray(attribute.location)
+            glDisableVertexAttribArray(attribute.location())
         }
         glBindVertexArrayOES(0);
     }

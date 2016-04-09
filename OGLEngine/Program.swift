@@ -83,7 +83,7 @@ extension GPUProgram {
         
         // Get uniform locations.
         for uniform in self.interface.uniforms {
-            uniform.bindLocation(self.glName)
+            uniform.bind(self.glName)
         }
         
         // Release vertex and fragment shaders.

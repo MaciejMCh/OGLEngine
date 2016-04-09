@@ -50,8 +50,11 @@ enum Attribute {
         }
     }
     
-    func gpuVariable() -> GPUAttribute {
-        return GPUAttribute(variable: GPUVariable(name: self.name(), variable: Vector(length: self.size(), numberType: .float)), location: self.location());
+    func gpuType() -> GPUType {
+        switch self {
+        case .Position, .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3: return .Vec3
+        case .Texel: return .Vec3
+        }
     }
 }
 
@@ -84,13 +87,23 @@ enum Uniform {
         }
     }
         
-    func gpuVariable() -> GPUUniform {
+    func gpuType() -> GPUType {
         switch self {
-        case .ModelMatrix, .ViewMatrix, .ProjectionMatrix, .ModelViewProjectionMatrix: return GPUUniform(variable: GPUVariable(name: self.name(), variable: Matrix(size: 4)))
-        case .NormalMatrix: return GPUUniform(variable: GPUVariable(name: self.name(), variable: Matrix(size: 3)))
-        case .EyePosition, .Position, .LightDirection, .LightHalfVector: return GPUUniform(variable: GPUVariable(name: self.name(), variable: Vector(length: 3, numberType: .float)))
-        case .ColorMap, .NormalMap: return GPUUniform(variable: GPUVariable(name: self.name(), variable: GPUTexture()))
+        case .ModelMatrix, .ViewMatrix, .ProjectionMatrix, .ModelViewProjectionMatrix: return .Mat4
+        case .NormalMatrix: return .Mat3
+        case .EyePosition, .Position, .LightDirection, .LightHalfVector: return .Vec3
+        case .ColorMap, .NormalMap: return .Texture
         }
+    }
+    
+    func gpuDomainName() -> String {
+        return "u" + self.name()
+    }
+    
+    func bind(programGlName: GLuint) -> GPUInstance {
+        let location = glGetUniformLocation(programGlName, self.gpuDomainName())
+        let type = self.gpuType()
+        return GPUInstance(type: type, location: location)
     }
     
 }
@@ -113,10 +126,10 @@ struct DefaultInterfaces {
 
 extension Array {
     
-    func uniformNamed(uniform: Uniform) -> GPUUniform! {
+    func uniformNamed(uniform: Uniform) -> UniformInstance! {
         for element in self {
-            if let element = element as? GPUUniform {
-                if element.variable.name == uniform.name() {
+            if let element = element as? UniformInstance {
+                if element.uniform.name() == uniform.name() {
                     return element
                 }
             }
