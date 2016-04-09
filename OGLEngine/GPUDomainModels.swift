@@ -19,7 +19,6 @@ struct GPUImplementation {
     let instances: [GPUInstance]
 }
 
-
 struct GPUInstance {
     var uniform: Uniform
     var location: GLint
@@ -29,17 +28,6 @@ struct GPUInstance {
         self.sceneEntityPass?.passToGpu(self.location)
     }
 }
-
-enum GPUType {
-    case Float
-    case Vec2
-    case Vec3
-    case Mat3
-    case Mat4
-    case Texture
-}
-
-typealias Dimension = (columns: Int, rows: Int)
 
 protocol SceneEntityPass {
     func passToGpu(location: GLint)
@@ -51,20 +39,33 @@ protocol Passing {
     func pass(passSubject: Pass, location: GLint)
 }
 
-class Vector3Pass: SceneEntityPass, Passing {
-    typealias Pass = GLKVector3
-    var passSubject: GLKVector3 = GLKVector3Make(0, 0, 0)
+extension SceneEntityPass where Self: Passing {
+    func passToGpu(location: GLint) {
+        self.pass(self.passSubject, location: location)
+    }
+}
 
+protocol Vector3Pass: SceneEntityPass, Passing {
+    associatedtype Pass = GLKVector3
+    var vector3Pass: GLKVector3 {get}
+}
+
+extension Vector3Pass {
+    var passSubject: GLKVector3 {
+        get {
+            return self.vector3Pass
+        }
+    }
+    
     func pass(var passSubject: GLKVector3, location: GLint) {
         withUnsafePointer(&passSubject, {
             glUniform3fv(location, 1, UnsafePointer($0))
         })
     }
-    
-    func passToGpu(location: GLint) {
-        self.pass(self.passSubject, location: location)
-    }
-    
+}
+
+class Direction: Vector3Pass {
+    var vector3Pass: GLKVector3 = GLKVector3Make(0, 0, 0)
 }
 
 
@@ -80,15 +81,3 @@ extension Array {
         return nil
     }
 }
-
-//extension SceneEntityPass where Self: Passing {
-//    func passToGpu() {
-//        self.passFunction(self.pass)
-//    }
-//}
-
-//extension Passing where Pass: GLKVector3 {
-//    func passFunction(pass: GLKVector3) {
-//        
-//    }
-//}

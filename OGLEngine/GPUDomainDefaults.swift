@@ -9,6 +9,16 @@
 import Foundation
 import GLKit
 
+
+enum GPUType {
+    case Float
+    case Vec2
+    case Vec3
+    case Mat3
+    case Mat4
+    case Texture
+}
+
 enum Attribute {
     case Position
     case Texel
@@ -104,12 +114,6 @@ enum Uniform {
         return gpuDomainNameWithPrefix(self.name(), prefix: "u")
     }
     
-//    func bind(programGlName: GLuint) -> GPUInstance {
-//        let location = glGetUniformLocation(programGlName, self.gpuDomainName())
-//        let type = self.gpuType()
-//        return GPUInstance(type: type, location: location)
-//    }
-    
 }
 
 struct DefaultInterfaces {
@@ -133,18 +137,3 @@ func gpuDomainNameWithPrefix(originalName: String, prefix: String) -> String {
     let rest = originalName.substringFromIndex(originalName.startIndex.advancedBy(1))
     return prefix + first.uppercaseString + rest
 }
-
-//extension Array {
-//    
-//    func uniformNamed(uniform: Uniform) -> UniformInstance! {
-//        for element in self {
-//            if let element = element as? UniformInstance {
-//                if element.uniform.name() == uniform.name() {
-//                    return element
-//                }
-//            }
-//        }
-//        return nil
-//    }
-//    
-//}
