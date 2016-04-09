@@ -25,7 +25,7 @@ class CloseShotProgram: GPUProgram {
     }
     
     func programDidCompile() {
-        self.implementation.instances.get(.LightDirection).bindWithSceneEntityPass(self.directionalLight)
+        self.bindUniformWithPass(.LightDirection, pass: self.directionalLight)
     }
     
     func render(renderables: [FinalRenderable]) {
@@ -35,9 +35,7 @@ class CloseShotProgram: GPUProgram {
             glUniform3fv(self.implementation.instances.get(.EyePosition).location, 1, UnsafePointer($0))
         })
         
-        for instance in self.implementation.instances {
-            instance.passToGpu()
-        }
+        self.triggerBondPasses()
     
         for renderable in renderables {
             self.bindAttributes(renderable)

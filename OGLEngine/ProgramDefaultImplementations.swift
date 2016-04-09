@@ -78,3 +78,15 @@ extension GPUProgram where RenderableType: Model {
     }
     
 }
+
+extension GPUProgram {
+    func bindUniformWithPass(uniform: Uniform, pass: SceneEntityPass) {
+        self.implementation.instances.get(uniform).bindWithSceneEntityPass(pass)
+    }
+    
+    func triggerBondPasses() {
+        for instance in self.implementation.instances {
+            instance.passToGpu()
+        }
+    }
+}
