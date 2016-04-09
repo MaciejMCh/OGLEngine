@@ -64,7 +64,6 @@ class GameViewController: GLKViewController {
         
         program.camera = self.scene.camera
         program.directionalLight = self.scene.directionalLight
-        program.normalMap = self.scene.normalMap
         
         program.compile()
         

@@ -10,6 +10,7 @@ import Foundation
 import GLKit
 
 class CloseShotProgram: GPUProgram {
+    
     typealias RenderableType = FinalRenderable
     var shaderName: String = "Shader"
     var interface: GPUInterface = DefaultInterfaces.detailInterface()
@@ -18,11 +19,6 @@ class CloseShotProgram: GPUProgram {
     
     var camera: Camera!
     var directionalLight: DirectionalLight!
-    var normalMap: Texture!
-    
-    required init() {
-        
-    }
     
     func programDidCompile() {
         self.bindUniformWithPass(.LightDirection, pass: self.directionalLight)

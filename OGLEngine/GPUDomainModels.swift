@@ -66,7 +66,7 @@ extension Vector3Pass {
         }
     }
     
-    func pass(var passSubject: GLKVector3, location: GLint) {
+    func pass(passSubject: GLKVector3, location: GLint) {
         GPUPassFunctions.vec3Pass(passSubject, location: location)
     }
 }
