@@ -14,6 +14,7 @@
 		C21B06AE1CB1873D00D98D75 /* bricks_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AC1CB1873D00D98D75 /* bricks_colors.png */; };
 		C21B06AF1CB1873D00D98D75 /* bricks_normals.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AD1CB1873D00D98D75 /* bricks_normals.png */; };
 		C21B06B21CB18AA300D98D75 /* bricks_specular.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06B11CB18AA300D98D75 /* bricks_specular.png */; };
+		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* Shader.fsh */; };
 		C269D5921CA8981D00E56E67 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D5911CA8981D00E56E67 /* Shader.vsh */; };
@@ -70,6 +71,7 @@
 		C21B06AC1CB1873D00D98D75 /* bricks_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_colors.png; sourceTree = "<group>"; };
 		C21B06AD1CB1873D00D98D75 /* bricks_normals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_normals.png; sourceTree = "<group>"; };
 		C21B06B11CB18AA300D98D75 /* bricks_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_specular.png; sourceTree = "<group>"; };
+		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C269D58F1CA8981D00E56E67 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				C29219971CA9E17000B78343 /* Program */,
 				C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */,
 				C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */,
+				C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */,
 			);
 			name = GPUDomain;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
+				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
 				C20EA33A1CA9B86B0076F979 /* TransformatrixMatrix.swift in Sources */,

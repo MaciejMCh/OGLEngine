@@ -18,9 +18,9 @@ protocol Camera {
 }
 
 extension Camera {
-    func cameraPositionPass() -> UniversalVector3Pass {
-        return UniversalVector3Pass(subjectGetter: { () -> (GLKVector3) in
+    func cameraPositionPass() -> GetterPass<GLKVector3> {
+        return GetterPass<GLKVector3> { () -> GLKVector3 in
             return GLKVector3MultiplyScalar(self.cameraPosition(), -1)
-        })
+        }
     }
 }

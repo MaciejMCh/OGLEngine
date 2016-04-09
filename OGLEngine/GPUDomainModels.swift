@@ -67,22 +67,31 @@ extension Vector3Pass {
     }
     
     func pass(var passSubject: GLKVector3, location: GLint) {
-        withUnsafePointer(&passSubject, {
-            glUniform3fv(location, 1, UnsafePointer($0))
-        })
+        GPUPassFunctions.vec3Pass(passSubject, location: location)
     }
 }
 
-class UniversalVector3Pass: Vector3Pass {
-    var subjectGetter: () -> (GLKVector3)
-    var vector3Pass: GLKVector3 {
+class GetterPass<PassType>: SceneEntityPass, Passing {
+    typealias Pass = PassType
+    typealias PassSubjectGetter = () -> PassType
+    
+    var subjectGetter: PassSubjectGetter
+    
+    var passSubject: PassType {
         get {
             return self.subjectGetter()
         }
     }
     
-    init(subjectGetter: () -> (GLKVector3)) {
+    init(subjectGetter: PassSubjectGetter) {
         self.subjectGetter = subjectGetter
+    }
+    
+    func pass(passSubject: PassType, location: GLint) {
+        switch passSubject {
+        case is GLKVector3: GPUPassFunctions.vec3Pass(passSubject as! GLKVector3, location: location)
+        default: break
+        }
     }
 }
 
