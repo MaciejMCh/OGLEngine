@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-@objc protocol Camera {
+protocol Camera {
     
     func viewMatrix() -> GLKMatrix4
     func projectionMatrix() -> GLKMatrix4

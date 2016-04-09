@@ -19,10 +19,19 @@ struct GPUImplementation {
     let instances: [GPUInstance]
 }
 
-struct GPUInstance {
+class GPUInstance {
     var uniform: Uniform
     var location: GLint
     var sceneEntityPass: SceneEntityPass?
+    
+    init(uniform: Uniform, location: GLint) {
+        self.uniform = uniform
+        self.location = location
+    }
+    
+    func bindWithSceneEntityPass(sceneEntityPass: SceneEntityPass) {
+        self.sceneEntityPass = sceneEntityPass
+    }
     
     func passToGpu() {
         self.sceneEntityPass?.passToGpu(self.location)

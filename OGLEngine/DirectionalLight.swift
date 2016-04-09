@@ -9,7 +9,13 @@
 import Foundation
 import GLKit
 
-class DirectionalLight : NSObject {
+class DirectionalLight: Vector3Pass {
+    
+    var vector3Pass: GLKVector3 {
+        get {
+            return self.lightDirection
+        }
+    }
     
     var lightDirection : GLKVector3!
     

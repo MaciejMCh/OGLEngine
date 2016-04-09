@@ -59,7 +59,14 @@ class GameViewController: GLKViewController {
         EAGLContext.setCurrentContext(self.context)
         
         var program = CloseShotProgram()
-        program.loadShaders()
+        
+        self.scene = Scene()
+        
+        program.camera = self.scene.camera
+        program.directionalLight = self.scene.directionalLight
+        program.normalMap = self.scene.normalMap
+        
+        program.compile()
         
         self.program = program
         
@@ -67,11 +74,7 @@ class GameViewController: GLKViewController {
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
-        self.scene = Scene()
         
-        program.camera = self.scene.camera
-        program.directionalLight = self.scene.directionalLight
-        program.normalMap = self.scene.normalMap
         
     }
     

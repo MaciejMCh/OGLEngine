@@ -18,12 +18,14 @@ protocol GPUProgram {
     
     mutating func compile()
     func render(renderables: [RenderableType])
+    func programDidCompile()
 }
 
 extension GPUProgram {
     
     mutating func compile() {
         self.loadShaders()
+        self.programDidCompile()
     }
     
     mutating func loadShaders() -> Bool {
@@ -85,7 +87,7 @@ extension GPUProgram {
         // Get uniform locations.
         self.implementation = GPUImplementation(instances: self.interface.uniforms.map{
             let location = glGetUniformLocation(self.glName, $0.gpuDomainName())
-            return GPUInstance(uniform: $0, location: location, sceneEntityPass: nil)
+            return GPUInstance(uniform: $0, location: location)
             })
         
         // Release vertex and fragment shaders.
