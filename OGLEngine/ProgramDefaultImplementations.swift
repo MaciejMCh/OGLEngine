@@ -51,30 +51,30 @@ extension GPUProgram where RenderableType: Model {
     
     func passModelMatrix(model: Model) {
         var modelMatrix = model.geometryModel.modelMatrix()
-//        withUnsafePointer(&modelMatrix, {
-//            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.ModelMatrix).location, 1, 0, UnsafePointer($0))
-//        })
+        withUnsafePointer(&modelMatrix, {
+            glUniformMatrix4fv(self.implementation.instances.get(.ModelMatrix).location, 1, 0, UnsafePointer($0))
+        })
     }
     
     func passNormalMatrix(model: Model) {
         var normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(model.geometryModel.modelMatrix()), nil);
-//        withUnsafePointer(&normalMatrix, {
-//            glUniformMatrix3fv(self.interface.uniforms.uniformNamed(.NormalMatrix).location, 1, 0, UnsafePointer($0))
-//        })
+        withUnsafePointer(&normalMatrix, {
+            glUniformMatrix3fv(self.implementation.instances.get(.NormalMatrix).location, 1, 0, UnsafePointer($0))
+        })
     }
     
     func passViewMatrix(camera: Camera) {
         var viewMatrix = camera.viewMatrix()
-//        withUnsafePointer(&viewMatrix, {
-//            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.ViewMatrix).location, 1, 0, UnsafePointer($0))
-//        })
+        withUnsafePointer(&viewMatrix, {
+            glUniformMatrix4fv(self.implementation.instances.get(.ViewMatrix).location, 1, 0, UnsafePointer($0))
+        })
     }
     
     func passProjectionMatrix(camera: Camera) {
         var projectionMatrix = camera.projectionMatrix()
-//        withUnsafePointer(&projectionMatrix, {
-//            glUniformMatrix4fv(self.interface.uniforms.uniformNamed(.ProjectionMatrix).location, 1, 0, UnsafePointer($0))
-//        })
+        withUnsafePointer(&projectionMatrix, {
+            glUniformMatrix4fv(self.implementation.instances.get(.ProjectionMatrix).location, 1, 0, UnsafePointer($0))
+        })
     }
     
 }
