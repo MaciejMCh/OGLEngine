@@ -21,7 +21,6 @@ class MediumShotProgram: GPUProgram {
     
     func programDidCompile() {
         self.bindUniformWithPass(.LightDirection, pass: self.directionalLight)
-//        self.bindUniformWithPass(.EyePosition, pass: self.camera.cameraPositionPass())
     }
     
     func render(renderables: [RenderableType]) {
@@ -30,14 +29,7 @@ class MediumShotProgram: GPUProgram {
         for renderable in renderables {
             self.bindAttributes(renderable)
             self.bindColorMap(renderable)
-//            self.bindNormalMap(renderable)
-            
             self.passModelViewProjectionMatrix(renderable, camera: self.camera)
-            
-            self.passModelMatrix(renderable)
-            self.passViewMatrix(camera)
-            self.passProjectionMatrix(camera)
-            
             self.draw(renderable)
             self.unbindAttributes(renderable)
         }

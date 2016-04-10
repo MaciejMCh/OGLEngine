@@ -127,7 +127,7 @@ struct DefaultInterfaces {
     }
     
     static func mediumShotInterface() -> GPUInterface {
-        return GPUInterface(attributes: [.Position, .Texel, .Normal], uniforms: [.ModelViewProjectionMatrix, .NormalMatrix, .LightDirection, .LightHalfVector, .ColorMap,  .ModelMatrix, .ViewMatrix, .ProjectionMatrix])
+        return GPUInterface(attributes: [.Position, .Texel, .Normal], uniforms: [.ModelViewProjectionMatrix, .NormalMatrix, .LightDirection, .LightHalfVector, .ColorMap])
     }
     
     static func backgroundInterface() -> GPUInterface {
