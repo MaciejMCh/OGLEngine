@@ -11,7 +11,7 @@ import OpenGLES
 
 class GameViewController: GLKViewController {
     
-    var program: CloseShotProgram!
+    var program: MediumShotProgram!
     var context: EAGLContext? = nil
     
     var scene: Scene! = nil
@@ -58,7 +58,7 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        var program = CloseShotProgram()
+        var program = MediumShotProgram()
         
         self.scene = Scene()
         

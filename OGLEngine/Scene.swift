@@ -11,7 +11,7 @@ import UIKit
 import GLKit
 
 class Scene : NSObject {
-    var renderables: [FinalRenderable] = []
+    var renderables: [MediumShotRenderable] = []
     var directionalLight: DirectionalLight! = nil
     var normalMap: Texture! = nil
     var camera: Camera! = nil
@@ -36,9 +36,9 @@ class Scene : NSObject {
         self.normalMap.bind()
         
         // Renderables
-        self.renderables.append(FinalRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksTexture, normalMap: normalMap))
-        self.renderables.append(FinalRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackTexture, normalMap: normalMap))
-        self.renderables.append(FinalRenderable(vao: cubeTexVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), colorMap: bricksTexture, normalMap: normalMap))
+        self.renderables.append(MediumShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksTexture))
+        self.renderables.append(MediumShotRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackTexture))
+        self.renderables.append(MediumShotRenderable(vao: cubeTexVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), colorMap: bricksTexture))
         
         // Light
         self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))

@@ -77,6 +77,18 @@ extension GPUProgram where RenderableType: Model {
         })
     }
     
+    func passModelViewProjectionMatrix(model: Model, camera: Camera) {
+        let modelMatrix = model.geometryModel.modelMatrix()
+        let viewMatrix = camera.viewMatrix()
+        let projectionMatrix = camera.projectionMatrix()
+        
+        var modelViewProjectionMatrix = modelMatrix * viewMatrix * projectionMatrix
+        
+        withUnsafePointer(&modelViewProjectionMatrix, {
+            glUniformMatrix4fv(self.implementation.instances.get(.ModelViewProjectionMatrix).location, 1, 0, UnsafePointer($0))
+        })
+    }
+    
 }
 
 extension GPUProgram {

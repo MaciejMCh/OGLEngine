@@ -25,7 +25,14 @@ extension GPUProgram {
     
     mutating func compile() {
         self.loadShaders()
+        self.validate()
         self.programDidCompile()
+    }
+    
+    func validate() {
+        for instance in self.implementation.instances {
+            assert(instance.location != -1, instance.uniform.gpuDomainName() + " binding failed")
+        }
     }
     
     mutating func loadShaders() -> Bool {
