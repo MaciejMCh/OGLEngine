@@ -12,7 +12,7 @@ import GLKit
 class CloseShotProgram: GPUProgram {
     
     typealias RenderableType = FinalRenderable
-    var shaderName: String = "Shader"
+    var shaderName: String = "CloseShot"
     var interface: GPUInterface = DefaultInterfaces.detailInterface()
     var implementation: GPUImplementation = GPUImplementation(instances: [])
     var glName: GLuint = 0
@@ -35,7 +35,6 @@ class CloseShotProgram: GPUProgram {
             self.bindNormalMap(renderable)
             
             self.passModelMatrix(renderable)
-            self.passNormalMatrix(renderable)
             self.passViewMatrix(camera)
             self.passProjectionMatrix(camera)
             

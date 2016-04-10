@@ -8,7 +8,6 @@
 
 attribute vec4 aPosition;
 attribute vec2 aTexel;
-attribute vec3 aNormal;
 
 attribute vec3 aTangentMatrixCol1;
 attribute vec3 aTangentMatrixCol2;
@@ -18,12 +17,10 @@ uniform mat4 uModelMatrix;
 uniform mat4 uViewMatrix;
 uniform mat4 uProjectionMatrix;
 
-uniform mat3 uNormalMatrix;
 uniform vec3 uEyePosition;
 uniform vec3 uLightDirection;
 
 varying lowp vec2 vTexel;
-varying lowp vec3 vEyeSpaceNormalizedNormal;
 varying lowp vec3 vViewVector;
 varying lowp vec3 vDirectionalLightDirection;
 
@@ -33,8 +30,6 @@ void main() {
     mat3 tangentMatrix = mat3(aTangentMatrixCol1, aTangentMatrixCol2, aTangentMatrixCol3);
     vDirectionalLightDirection = normalize(uLightDirection);
     vDirectionalLightDirection = tangentMatrix * vDirectionalLightDirection;
-    
-    vEyeSpaceNormalizedNormal = normalize(uNormalMatrix * aNormal);
     
     mat4 viewProjectionMatrix = uProjectionMatrix * uViewMatrix;
     vec4 modelSpacePosition = uModelMatrix * aPosition;

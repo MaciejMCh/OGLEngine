@@ -119,16 +119,16 @@ extension GPUProgram {
         glShaderSource(shader, 1, &castSource, nil)
         glCompileShader(shader)
         
-        //#if defined(DEBUG)
-        //        var logLength: GLint = 0
-        //        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-        //        if logLength > 0 {
-        //            var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
-        //            glGetShaderInfoLog(shader, logLength, &logLength, log)
-        //            NSLog("Shader compile log: \n%s", log)
-        //            free(log)
-        //        }
-        //#endif
+//        #if defined(DEBUG)
+                var logLength: GLint = 0
+                glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+                if logLength > 0 {
+                    let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
+                    glGetShaderInfoLog(shader, logLength, &logLength, log)
+                    NSLog("Shader compile log: \n%s", log)
+                    free(log)
+                }
+//        #endif
         
         glGetShaderiv(shader, GLenum(GL_COMPILE_STATUS), &status)
         if status == 0 {
@@ -143,14 +143,14 @@ extension GPUProgram {
         glLinkProgram(prog)
         
         //#if defined(DEBUG)
-        //        var logLength: GLint = 0
-        //        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-        //        if logLength > 0 {
-        //            var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
-        //            glGetShaderInfoLog(shader, logLength, &logLength, log)
-        //            NSLog("Shader compile log: \n%s", log)
-        //            free(log)
-        //        }
+//                var logLength: GLint = 0
+//                glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+//                if logLength > 0 {
+//                    var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
+//                    glGetShaderInfoLog(shader, logLength, &logLength, log)
+//                    NSLog("Shader compile log: \n%s", log)
+//                    free(log)
+//                }
         //#endif
         
         glGetProgramiv(prog, GLenum(GL_LINK_STATUS), &status)
