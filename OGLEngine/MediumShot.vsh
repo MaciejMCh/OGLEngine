@@ -9,6 +9,7 @@ uniform vec3 uLightDirection;
 uniform vec3 uLightHalfVector;
 
 varying lowp vec2 vTexel;
+varying lowp vec3 vNormal;
 varying lowp vec3 vLightDirection;
 varying lowp vec3 vLightHalfVector;
 
@@ -16,8 +17,7 @@ void main() {
     vTexel = aTexel;
     vLightDirection = uLightDirection;
     vLightHalfVector = uLightHalfVector;
-    
-    vec3 vNormal = uNormalMatrix * aNormal;
+    vNormal = normalize(uNormalMatrix * aNormal);
     vec4 position = uModelViewProjectionMatrix * aPosition;
     
     gl_Position = position;

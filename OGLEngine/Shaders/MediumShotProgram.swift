@@ -30,6 +30,7 @@ class MediumShotProgram: GPUProgram {
             self.bindAttributes(renderable)
             self.bindColorMap(renderable)
             self.passModelViewProjectionMatrix(renderable, camera: self.camera)
+            self.passNormalMatrix(renderable)
             self.draw(renderable)
             self.unbindAttributes(renderable)
         }
