@@ -14,6 +14,7 @@
 		C21B06AE1CB1873D00D98D75 /* bricks_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AC1CB1873D00D98D75 /* bricks_colors.png */; };
 		C21B06AF1CB1873D00D98D75 /* bricks_normals.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AD1CB1873D00D98D75 /* bricks_normals.png */; };
 		C21B06B21CB18AA300D98D75 /* bricks_specular.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06B11CB18AA300D98D75 /* bricks_specular.png */; };
+		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* CloseShot.fsh */; };
@@ -74,6 +75,7 @@
 		C21B06AC1CB1873D00D98D75 /* bricks_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_colors.png; sourceTree = "<group>"; };
 		C21B06AD1CB1873D00D98D75 /* bricks_normals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_normals.png; sourceTree = "<group>"; };
 		C21B06B11CB18AA300D98D75 /* bricks_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_specular.png; sourceTree = "<group>"; };
+		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */,
+				C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */,
 			);
 			name = Light;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */,
 				C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */,
 				C269D5CB1CA898DD00E56E67 /* BasicCamera.swift in Sources */,
+				C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */,
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,

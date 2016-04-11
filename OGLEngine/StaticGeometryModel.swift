@@ -9,22 +9,14 @@
 import Foundation
 import GLKit
 
-class StaticGeometryModel : NSObject, GeometryModel {
+class StaticGeometryModel: GeometryModel {
     
-    var staticModelMatrix: GLKMatrix4!
+    var staticModelMatrix: GLKMatrix4?
     
-    convenience init(position: GLKVector3) {
-        self.init()
-        self.staticModelMatrix = GLKMatrix4MakeTranslation(position.x, position.y, position.z)
-    }
-    
-    convenience init(position: GLKVector3, scale: GLKVector3) {
-        self.init()
-        self.staticModelMatrix = GLKMatrix4MakeScale(scale.x, scale.y, scale.z)
-        self.staticModelMatrix = GLKMatrix4Translate(self.staticModelMatrix, position.x, position.y, position.z)
-    }
-    
-    func modelMatrix() -> GLKMatrix4 {
-        return self.staticModelMatrix
+    override func modelMatrix() -> GLKMatrix4 {
+        if (self.staticModelMatrix == nil) {
+            self.staticModelMatrix = super.modelMatrix()
+        }
+        return self.staticModelMatrix!
     }
 }
