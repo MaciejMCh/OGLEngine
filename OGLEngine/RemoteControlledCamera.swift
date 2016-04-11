@@ -9,10 +9,10 @@
 import Foundation
 import GLKit
 
-class RemoteControlledCamera : BasicCamera {
-    override init() {
-        super.init()
-        
+class RemoteControlledCamera: BasicCamera {
+    
+    init() {
+        super.init(position: GLKVector3Make(0, 0, 0), orientation: GLKVector3Make(0, 0, 0))
         self.eventHandler = {(eventSubject: NSObject!) -> () in
             if (eventSubject is RemoteKey) {
                 self.toggleKey(eventSubject as! RemoteKey)
@@ -42,35 +42,40 @@ class RemoteControlledCamera : BasicCamera {
         }
     }
     
-    override func cameraPosition() -> GLKVector3 {
-        var xFix: Float = 0
-        var yFix: Float = 0
-        var zFix: Float = 0
-        for toggle: KeyToggle in self.toggles {
-            switch toggle.key.key {
-            case 1:
-                // s
-                yFix = -Float(CACurrentMediaTime() - toggle.beginInterval)
-            case 13:
-                // w
-                yFix = Float(CACurrentMediaTime() - toggle.beginInterval)
-            case 0:
-                // a
-                xFix = -Float(CACurrentMediaTime() - toggle.beginInterval)
-            case 2:
-                // d
-                xFix = Float(CACurrentMediaTime() - toggle.beginInterval)
-            case 49:
-                // space
-                zFix = Float(CACurrentMediaTime() - toggle.beginInterval)
-            case 48:
-                // tab
-                zFix = -Float(CACurrentMediaTime() - toggle.beginInterval)
-            default:
-                break
+    override var position: GLKVector3! {
+        get {
+            var xFix: Float = 0
+            var yFix: Float = 0
+            var zFix: Float = 0
+            for toggle: KeyToggle in self.toggles {
+                switch toggle.key.key {
+                case 1:
+                    // s
+                    yFix = -Float(CACurrentMediaTime() - toggle.beginInterval)
+                case 13:
+                    // w
+                    yFix = Float(CACurrentMediaTime() - toggle.beginInterval)
+                case 0:
+                    // a
+                    xFix = -Float(CACurrentMediaTime() - toggle.beginInterval)
+                case 2:
+                    // d
+                    xFix = Float(CACurrentMediaTime() - toggle.beginInterval)
+                case 49:
+                    // space
+                    zFix = Float(CACurrentMediaTime() - toggle.beginInterval)
+                case 48:
+                    // tab
+                    zFix = -Float(CACurrentMediaTime() - toggle.beginInterval)
+                default:
+                    break
+                }
             }
+            return GLKVector3Make(self.xOffset + xFix, self.yOffset + yFix, self.zOffset + zFix)
         }
-        return GLKVector3Make(self.xOffset + xFix, self.yOffset + yFix, self.zOffset + zFix)
+        set {
+            
+        }
     }
     
     var eventHandler: EventHandler! = nil

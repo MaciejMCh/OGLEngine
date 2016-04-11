@@ -20,7 +20,7 @@ protocol Camera {
 extension Camera {
     func cameraPositionPass() -> GetterPass<GLKVector3> {
         return GetterPass<GLKVector3> { () -> GLKVector3 in
-            return GLKVector3MultiplyScalar(self.cameraPosition(), -1)
+            return self.cameraPosition()
         }
     }
 }

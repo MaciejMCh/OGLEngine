@@ -9,26 +9,23 @@
 import Foundation
 import GLKit
 
-class BasicCamera: NSObject, Camera {
+class BasicCamera: Camera {
     
     var position: GLKVector3! = GLKVector3Make(0, 0, 0)
     var orientation: GLKVector3! = GLKVector3Make(0, 0, 0)
     var staticProjectionMatrix: GLKMatrix4! = GLKMatrix4Identity
     
-    convenience init(position: GLKVector3, orientation: GLKVector3) {
-        self.init()
+    init(position: GLKVector3, orientation: GLKVector3) {
         self.position = position
         self.orientation = orientation
-    }
-    
-    override init() {
-        super.init()
+        
         let aspect: Float = fabs(Float(UIScreen.mainScreen().bounds.size.width) / Float(UIScreen.mainScreen().bounds.size.height))
         self.staticProjectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 0.1, 100.0)
     }
     
-    func cameraPosition() -> GLKVector3 {
-        return self.position
+    
+    final func cameraPosition() -> GLKVector3 {
+        return GLKVector3Make(-self.position.x, -self.position.y, -self.position.z)
     }
     
     func projectionMatrix() -> GLKMatrix4 {
@@ -36,6 +33,6 @@ class BasicCamera: NSObject, Camera {
     }
     
     func viewMatrix() -> GLKMatrix4 {
-        return transformatrionMatrix(self.cameraPosition(), orientation: self.orientation)
+        return transformatrionMatrix(self.position, orientation: self.orientation)
     }
 }
