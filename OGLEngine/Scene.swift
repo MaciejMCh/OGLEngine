@@ -43,7 +43,7 @@ class Scene {
         let bricksNormalMap = Texture(imageNamed: "bricks_normals")
         bricksColorMap.bind()
         blackColorMap.bind()
-        bricksColorMap.bind()
+        bricksNormalMap.bind()
         
         // Renderables
         
