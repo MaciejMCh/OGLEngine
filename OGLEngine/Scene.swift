@@ -53,8 +53,8 @@ class Scene {
         let mediumShotCube =  MediumShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), colorMap: bricksColorMap)
         
         // Close shots
-        let closeShotTorus = CloseShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
-        let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
+        let closeShotTorus = CloseShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
+        let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         
         
         self.mediumShots = [axes, mediumShotTorus, mediumShotCube]

@@ -17,8 +17,13 @@ class CloseShotProgram: GPUProgram {
     var implementation: GPUImplementation = GPUImplementation(instances: [])
     var glName: GLuint = 0
     
-    var camera: Camera!
-    var directionalLight: DirectionalLight!
+    var camera: Camera
+    var directionalLight: DirectionalLight
+    
+    init(camera: Camera, directionalLight: DirectionalLight) {
+        self.camera = camera;
+        self.directionalLight = directionalLight
+    }
     
     func programDidCompile() {
         self.bindUniformWithPass(.LightDirection, pass: self.directionalLight)

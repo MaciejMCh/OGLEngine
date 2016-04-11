@@ -11,7 +11,9 @@ import OpenGLES
 
 class GameViewController: GLKViewController {
     
-    var program: MediumShotProgram!
+    var mediumShotProgram: MediumShotProgram!
+    var closeShotProgram: CloseShotProgram!
+    
     var context: EAGLContext? = nil
     
     var scene: Scene! = nil
@@ -58,23 +60,15 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        var program = MediumShotProgram()
-        
         self.scene = Scene()
         
-        program.camera = self.scene.camera
-        program.directionalLight = self.scene.directionalLight
+        self.mediumShotProgram = MediumShotProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight)
+        self.mediumShotProgram.compile()
         
-        program.compile()
-        
-        self.program = program
-        
-        glUseProgram(program.glName)
+        self.closeShotProgram = CloseShotProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight)
+        self.closeShotProgram.compile()
         
         glEnable(GLenum(GL_DEPTH_TEST))
-        
-        
-        
     }
     
     func tearDownGL() {
@@ -102,7 +96,13 @@ class GameViewController: GLKViewController {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
-        self.program.render(self.scene.mediumShots)
+        glUseProgram(self.mediumShotProgram.glName)
+        self.mediumShotProgram.render(self.scene.mediumShots)
+        
+        glUseProgram(self.closeShotProgram.glName)
+        self.closeShotProgram.render(self.scene.closeShots)
+        
+        
     }
 }
 
