@@ -10,35 +10,16 @@ import Foundation
 import UIKit
 import GLKit
 
-class Scene : NSObject {
-    var renderables: [MediumShotRenderable] = []
+class Scene {
+    
+    var closeShots: [CloseShotRenderable] = []
+    var mediumShots: [MediumShotRenderable] = []
+    
     var directionalLight: DirectionalLight! = nil
-    var normalMap: Texture! = nil
     var camera: Camera! = nil
     
     
-    override init() {
-        super.init()
-        
-        // VAOs
-        let torusVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("paczek"))
-        let cubeTexVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("cube_tex"))
-        let axesVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("axes"))
-        
-        // Textures
-        let bricksTexture = Texture(imageNamed: "bricks_colors")
-        let blackTexture = Texture(color: UIColor.blackColor())
-        bricksTexture.bind()
-        blackTexture.bind()
-        
-        // Normal map
-        self.normalMap = Texture(imageNamed: "bricks_normals")
-        self.normalMap.bind()
-        
-        // Renderables
-        self.renderables.append(MediumShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksTexture))
-        self.renderables.append(MediumShotRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackTexture))
-        self.renderables.append(MediumShotRenderable(vao: cubeTexVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), colorMap: bricksTexture))
+    init() {
         
         // Light
         self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
@@ -50,6 +31,35 @@ class Scene : NSObject {
         camera.xMouse = Float(M_PI_2)
         camera.yMouse = Float(M_PI_4)
         self.camera = camera
+        
+        // VAOs
+        let torusVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("paczek"))
+        let cubeVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("cube_tex"))
+        let axesVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("axes"))
+        
+        // Textures
+        let bricksColorMap = Texture(imageNamed: "bricks_colors")
+        let blackColorMap = Texture(color: UIColor.blackColor())
+        let bricksNormalMap = Texture(imageNamed: "bricks_normals")
+        bricksColorMap.bind()
+        blackColorMap.bind()
+        bricksColorMap.bind()
+        
+        // Renderables
+        
+        // Medium shots
+        let axes = MediumShotRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackColorMap)
+        let mediumShotTorus = MediumShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksColorMap)
+        let mediumShotCube =  MediumShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), colorMap: bricksColorMap)
+        
+        // Close shots
+        let closeShotTorus = CloseShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
+        let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
+        
+        
+        self.mediumShots = [axes, mediumShotTorus, mediumShotCube]
+        self.closeShots = [closeShotTorus, closeShotCube]
+        
     }
     
 }

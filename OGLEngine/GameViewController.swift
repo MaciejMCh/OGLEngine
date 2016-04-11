@@ -102,7 +102,7 @@ class GameViewController: GLKViewController {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
-        self.program.render(self.scene.renderables)
+        self.program.render(self.scene.mediumShots)
     }
 }
 

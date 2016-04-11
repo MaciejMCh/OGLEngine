@@ -33,7 +33,7 @@ protocol BumpMapped: ColorMapped, NormalMapped {
     
 }
 
-struct FinalRenderable: Mesh, Model, BumpMapped {
+struct CloseShotRenderable: Mesh, Model, BumpMapped {
     let vao: VAO
     let geometryModel: GeometryModel
     let colorMap: Texture

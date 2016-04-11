@@ -11,7 +11,7 @@ import GLKit
 
 class CloseShotProgram: GPUProgram {
     
-    typealias RenderableType = FinalRenderable
+    typealias RenderableType = CloseShotRenderable
     var shaderName: String = "CloseShot"
     var interface: GPUInterface = DefaultInterfaces.detailInterface()
     var implementation: GPUImplementation = GPUImplementation(instances: [])
@@ -25,7 +25,7 @@ class CloseShotProgram: GPUProgram {
         self.bindUniformWithPass(.EyePosition, pass: self.camera.cameraPositionPass())
     }
     
-    func render(renderables: [FinalRenderable]) {
+    func render(renderables: [CloseShotRenderable]) {
         
         self.triggerBondPasses()
     
