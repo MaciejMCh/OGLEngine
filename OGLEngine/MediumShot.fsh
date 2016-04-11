@@ -8,5 +8,7 @@ varying lowp vec3 vLightHalfVector;
 
 void main() {
     lowp float NdotL = max(0.0, dot(vNormal, -vLightDirection));
-    gl_FragColor = NdotL * texture2D(uColorMap, vTexel * 5.0);
+    lowp float NdotH = max(dot(vNormal, vLightHalfVector),0.0);
+    lowp vec4 specular = vec4(1.0 , 1.0 , 1.0 , 1.0) * pow(NdotH,100.0);
+    gl_FragColor = NdotL * texture2D(uColorMap, vTexel * 5.0) + specular;
 }

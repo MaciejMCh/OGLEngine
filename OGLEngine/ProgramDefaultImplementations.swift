@@ -89,6 +89,14 @@ extension GPUProgram where RenderableType: Model {
         })
     }
     
+    func passLightHalfVector(model: Model, camera: Camera, light: DirectionalLight) {
+        let visibleReflectionContext = VisibleReflectionContext(model: model.geometryModel, camera: camera, light: light)
+        var halfVector = visibleReflectionContext.halfVector()
+        withUnsafePointer(&halfVector, {
+            glUniform3fv(self.implementation.instances.get(.LightHalfVector).location, 1, UnsafePointer($0))
+        })
+    }
+    
 }
 
 extension GPUProgram {

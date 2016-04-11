@@ -16,8 +16,18 @@ struct VisibleReflectionContext {
     
     func halfVector() -> GLKVector3 {
         let lightVersor = GLKVector3Normalize(GLKVector3MultiplyScalar(light.direction(), -1))
-        let viewVersor = GLKVector3Normalize(GLKVector3Subtract(camera.cameraPosition(), model.position))
+        let cameraPosition = GLKVector3MultiplyScalar(camera.cameraPosition(), -1)
+        let viewVersor = GLKVector3Normalize(GLKVector3Subtract(cameraPosition, model.position))
         let halfVersor = GLKVector3Normalize(GLKVector3Add(lightVersor, viewVersor))
+        
         return halfVersor
+    }
+}
+
+extension VisibleReflectionContext: Vector3Pass {
+    var vector3Pass: GLKVector3 {
+        get {
+            return self.halfVector()
+        }
     }
 }

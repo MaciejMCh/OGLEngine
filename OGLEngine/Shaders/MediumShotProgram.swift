@@ -29,6 +29,7 @@ class MediumShotProgram: GPUProgram {
         for renderable in renderables {
             self.bindAttributes(renderable)
             self.bindColorMap(renderable)
+            self.passLightHalfVector(renderable, camera: self.camera, light: self.directionalLight)
             self.passModelViewProjectionMatrix(renderable, camera: self.camera)
             self.passNormalMatrix(renderable)
             self.draw(renderable)
