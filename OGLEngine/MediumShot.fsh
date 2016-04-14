@@ -11,5 +11,5 @@ void main() {
     lowp float NdotL = max(0.0, dot(normalizedNormal, -vLightDirection));
     lowp float NdotH = max(dot(normalizedNormal, vLightHalfVector),0.0);
     lowp vec4 specular = vec4(1.0 , 1.0 , 1.0 , 1.0) * pow(NdotH,100.0);
-    gl_FragColor = NdotL * texture2D(uColorMap, vTexel * 5.0) + specular;
+    gl_FragColor = NdotL * texture2D(uColorMap, vTexel) + specular;
 }

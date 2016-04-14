@@ -36,11 +36,12 @@ class Scene {
         let torusVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("paczek"))
         let cubeVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("cube_tex"))
         let axesVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("axes"))
+        let rockVao = VAO(obj: OBJLoader.objFromFileNamed("Rock"))
         
         // Textures
-        let bricksColorMap = Texture(imageNamed: "bricks_colors")
+        let bricksColorMap = Texture(imageNamed: "cliff color")
         let blackColorMap = Texture(color: UIColor.blackColor())
-        let bricksNormalMap = Texture(imageNamed: "bricks_normals")
+        let bricksNormalMap = Texture(imageNamed: "cliff normal")
         bricksColorMap.bind()
         blackColorMap.bind()
         bricksNormalMap.bind()
@@ -55,10 +56,10 @@ class Scene {
         // Close shots
         let closeShotTorus = CloseShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
-        
+        let rock = CloseShotRenderable(vao: rockVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         
         self.mediumShots = [axes, mediumShotTorus, mediumShotCube]
-        self.closeShots = [closeShotTorus, closeShotCube]
+        self.closeShots = [closeShotTorus, closeShotCube, rock]
         
     }
     
