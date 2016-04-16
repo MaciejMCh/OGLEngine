@@ -56,8 +56,11 @@
 		C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C269D5F01CA89B6E00E56E67 /* IPAddress */; };
 		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
 		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
+		C295F5161CC138B00042CC56 /* rocky_ground.obj in Resources */ = {isa = PBXBuildFile; fileRef = C295F5151CC138B00042CC56 /* rocky_ground.obj */; };
 		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
 		C2EFF1311CC03F8000EF1486 /* Rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2EFF1301CC03F8000EF1486 /* Rock.obj */; };
+		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
+		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
 		C2F751021CBA611B0069BC88 /* MediumShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F751011CBA611B0069BC88 /* MediumShotProgram.swift */; };
 		C2F751041CBA65170069BC88 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C2F751031CBA65170069BC88 /* MediumShot.fsh */; };
 		C2F751061CBA65240069BC88 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C2F751051CBA65240069BC88 /* MediumShot.vsh */; };
@@ -129,8 +132,11 @@
 		C269D5F01CA89B6E00E56E67 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
+		C295F5151CC138B00042CC56 /* rocky_ground.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rocky_ground.obj; sourceTree = "<group>"; };
 		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2EFF1301CC03F8000EF1486 /* Rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rock.obj; sourceTree = "<group>"; };
+		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
+		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
 		C2F751011CBA611B0069BC88 /* MediumShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediumShotProgram.swift; path = Shaders/MediumShotProgram.swift; sourceTree = "<group>"; };
 		C2F751031CBA65170069BC88 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MediumShot.fsh; sourceTree = "<group>"; };
 		C2F751051CBA65240069BC88 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MediumShot.vsh; sourceTree = "<group>"; };
@@ -295,8 +301,8 @@
 		C269D5E51CA89A5400E56E67 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C2EFF1321CC0439E00EF1486 /* Scene */,
 				C20EA33B1CA9BC0C0076F979 /* GPUDomain */,
-				C269D5C41CA898DD00E56E67 /* Scene.swift */,
 				C269D5E11CA898E900E56E67 /* VAO.swift */,
 			);
 			name = Core;
@@ -371,6 +377,7 @@
 		C269D5ED1CA89B1800E56E67 /* OBJs */ = {
 			isa = PBXGroup;
 			children = (
+				C295F5151CC138B00042CC56 /* rocky_ground.obj */,
 				C2EFF1301CC03F8000EF1486 /* Rock.obj */,
 				C269D5BD1CA898DD00E56E67 /* paczek.obj */,
 				C269D5B21CA898DD00E56E67 /* axes.obj */,
@@ -459,6 +466,16 @@
 				C2F751011CBA611B0069BC88 /* MediumShotProgram.swift */,
 			);
 			name = Program;
+			sourceTree = "<group>";
+		};
+		C2EFF1321CC0439E00EF1486 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5C41CA898DD00E56E67 /* Scene.swift */,
+				C2EFF1331CC043B200EF1486 /* TestScene.swift */,
+				C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */,
+			);
+			name = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -564,6 +581,7 @@
 				C2602D1C1CC0288000247C61 /* rock color.png in Resources */,
 				C220071C1CBC88200099AFBA /* Plank_Specular.png in Resources */,
 				C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */,
+				C295F5161CC138B00042CC56 /* rocky_ground.obj in Resources */,
 				C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
 				C2EFF1311CC03F8000EF1486 /* Rock.obj in Resources */,
@@ -680,6 +698,7 @@
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C2F751021CBA611B0069BC88 /* MediumShotProgram.swift in Sources */,
+				C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
 				C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
@@ -689,6 +708,7 @@
 				C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */,
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
+				C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,
 				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,
 				C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */,

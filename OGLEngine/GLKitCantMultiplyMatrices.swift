@@ -8,6 +8,7 @@
 
 import Foundation
 import GLKit
+import simd
 
 extension GLKMatrix4 {
     func toCA() -> CATransform3D {
@@ -45,6 +46,21 @@ func multiplyMatrices(lhs: GLKMatrix4, rhs: GLKMatrix4) -> GLKMatrix4 {
     let result = CATransform3DConcat(caLhs, caRhs)
     let glkResult = result.toGLK()
     return glkResult
+}
+
+func invertAndTransposeMatrix(matrix: GLKMatrix4) -> GLKMatrix3 {
+    let col1 = vector_float3(matrix.m00, matrix.m10, matrix.m20)
+    let col2 = vector_float3(matrix.m01, matrix.m11, matrix.m21)
+    let col3 = vector_float3(matrix.m02, matrix.m12, matrix.m22)
+    let simdMatrix = matrix_float3x3(columns: (col1, col2, col3))
+    let wtf = float3x3(simdMatrix)
+    let inverted = matrix_invert(simdMatrix)
+    let transposed = matrix_transpose(inverted)
+    return GLKMatrix3Make(transposed.columns.0.x, transposed.columns.1.x, transposed.columns.2.x,
+                          transposed.columns.0.y, transposed.columns.1.y, transposed.columns.2.y,
+                          transposed.columns.0.z, transposed.columns.1.z, transposed.columns.2.z)
+    
+    
 }
 
 func * (left: GLKMatrix4, right: GLKMatrix4) -> GLKMatrix4 {

@@ -42,6 +42,7 @@ class CloseShotProgram: GPUProgram {
             self.passModelMatrix(renderable)
             self.passViewMatrix(camera)
             self.passProjectionMatrix(camera)
+            self.passNormalMatrix(renderable)
             
             self.draw(renderable)
             self.unbindAttributes(renderable)

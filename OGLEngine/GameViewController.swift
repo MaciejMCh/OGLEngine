@@ -60,7 +60,7 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        self.scene = Scene()
+        self.scene = DefaultScenes.testScene()
         
         self.mediumShotProgram = MediumShotProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight)
         self.mediumShotProgram.compile()

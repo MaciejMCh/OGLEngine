@@ -11,4 +11,14 @@ import GLKit
 
 class SpinningGeometryModel: GeometryModel {
     
+    override var orientation: GLKVector3 {
+        get {
+            let time = Float(CACurrentMediaTime())
+            return GLKVector3Make(2 * time, 0, 0)
+        }
+        set {
+            
+        }
+    }
+    
 }

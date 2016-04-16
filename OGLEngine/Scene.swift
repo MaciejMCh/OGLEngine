@@ -12,55 +12,22 @@ import GLKit
 
 class Scene {
     
-    var closeShots: [CloseShotRenderable] = []
-    var mediumShots: [MediumShotRenderable] = []
+    var closeShots: [CloseShotRenderable]
+    var mediumShots: [MediumShotRenderable]
     
-    var directionalLight: DirectionalLight! = nil
-    var camera: Camera! = nil
+    var directionalLight: DirectionalLight
+    var camera: Camera
     
-    
-    init() {
-        
-        // Light
-        self.directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
-        
-        // Camera
-        let camera: RemoteControlledCamera = RemoteControlledCamera()
-        camera.yOffset = -2
-        camera.zOffset = -1
-        camera.xMouse = Float(M_PI_2)
-        camera.yMouse = Float(M_PI_4)
+    init(closeShots: [CloseShotRenderable], mediumShots: [MediumShotRenderable], directionalLight: DirectionalLight, camera: Camera) {
+        self.closeShots = closeShots
+        self.mediumShots = mediumShots
+        self.directionalLight = directionalLight
         self.camera = camera
-        
-        // VAOs
-        let torusVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("paczek"))
-        let cubeVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("cube_tex"))
-        let axesVao: VAO = VAO(obj: OBJLoader.objFromFileNamed("axes"))
-        let rockVao = VAO(obj: OBJLoader.objFromFileNamed("Rock"))
-        
-        // Textures
-        let bricksColorMap = Texture(imageNamed: "cliff color")
-        let blackColorMap = Texture(color: UIColor.blackColor())
-        let bricksNormalMap = Texture(imageNamed: "cliff normal")
-        bricksColorMap.bind()
-        blackColorMap.bind()
-        bricksNormalMap.bind()
-        
-        // Renderables
-        
-        // Medium shots
-        let axes = MediumShotRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackColorMap)
-        let mediumShotTorus = MediumShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksColorMap)
-        let mediumShotCube =  MediumShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 0)), colorMap: bricksColorMap)
-        
-        // Close shots
-        let closeShotTorus = CloseShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
-        let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
-        let rock = CloseShotRenderable(vao: rockVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
-        
-        self.mediumShots = [axes, mediumShotTorus, mediumShotCube]
-        self.closeShots = [closeShotTorus, closeShotCube, rock]
-        
     }
+    
+}
+
+
+struct DefaultScenes {
     
 }
