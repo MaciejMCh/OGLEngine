@@ -6,6 +6,7 @@ use_frameworks!
 target 'OGLEngine' do
 
 pod 'SwiftWebSocket'
+pod 'Upsurge'
 
 end
 
