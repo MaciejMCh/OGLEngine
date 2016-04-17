@@ -123,7 +123,7 @@ struct DefaultInterfaces {
     }
     
     static func detailInterface() -> GPUInterface {
-        return GPUInterface(attributes: [.Position, .Texel, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap])
+        return GPUInterface(attributes: [.Position, .Texel, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap])
     }
     
     static func mediumShotInterface() -> GPUInterface {

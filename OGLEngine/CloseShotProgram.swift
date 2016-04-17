@@ -32,6 +32,9 @@ class CloseShotProgram: GPUProgram {
     
     func render(renderables: [CloseShotRenderable]) {
         
+        self.triggerPass(self.camera.cameraPositionPass(), uniform: .EyePosition)
+        self.triggerPass(self.directionalLight, uniform: .LightDirection)
+        
         self.triggerBondPasses()
     
         for renderable in renderables {
@@ -42,7 +45,6 @@ class CloseShotProgram: GPUProgram {
             self.passModelMatrix(renderable)
             self.passViewMatrix(camera)
             self.passProjectionMatrix(camera)
-            self.passNormalMatrix(renderable)
             
             self.draw(renderable)
             self.unbindAttributes(renderable)

@@ -47,7 +47,8 @@ extension DefaultScenes {
         let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         let rock = CloseShotRenderable(vao: rockVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         
+        let closeShotBaldCube = CloseShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         
-        return Scene(closeShots: [closeShotTorus, closeShotCube, rock], mediumShots: [axes, mediumShotTorus, mediumShotCube], directionalLight: directionalLight, camera: camera)
+        return Scene(closeShots: [closeShotTorus, closeShotCube, rock, closeShotBaldCube], mediumShots: [axes, mediumShotTorus], directionalLight: directionalLight, camera: camera)
     }
 }

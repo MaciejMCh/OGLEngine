@@ -111,4 +111,8 @@ extension GPUProgram {
             instance.passToGpu()
         }
     }
+    
+    func triggerPass(pass: SceneEntityPass, uniform: Uniform) {
+        pass.passToGpu(self.implementation.instances.get(uniform).location)
+    }
 }
