@@ -21,13 +21,15 @@ uniform mat3 uNormalMatrix;
 uniform vec3 uEyePosition;
 uniform vec3 uLightDirection;
 
+uniform lowp float uTextureScale;
+
 varying lowp vec2 vTexel;
 varying lowp vec3 vViewVector;
 varying lowp vec3 vDirectionalLightDirection;
 varying lowp mat3 vNormalMatrix;
 
 void main() {
-    vTexel = aTexel;
+    vTexel = aTexel * uTextureScale;
     
     mat3 tangentMatrix = mat3(aTangentMatrixCol1, aTangentMatrixCol2, aTangentMatrixCol3);
     vDirectionalLightDirection = normalize(uLightDirection);

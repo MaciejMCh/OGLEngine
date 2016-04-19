@@ -8,6 +8,7 @@
 
 uniform sampler2D uColorMap;
 uniform sampler2D uNormalMap;
+
 varying lowp vec2 vTexel;
 varying lowp vec3 vViewVector;
 varying lowp vec3 vDirectionalLightDirection;

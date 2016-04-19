@@ -58,8 +58,6 @@ extension GPUProgram where RenderableType: Model {
     
     func passNormalMatrix(model: Model) {
         var normalMatrix = invertAndTransposeMatrix(model.geometryModel.modelMatrix())
-//        var normalMatrix = GLKMatrix4GetMatrix3(model.geometryModel.modelMatrix())
-//        var normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(model.geometryModel.modelMatrix()), nil);
         withUnsafePointer(&normalMatrix, {
             glUniformMatrix3fv(self.implementation.instances.get(.NormalMatrix).location, 1, 0, UnsafePointer($0))
         })

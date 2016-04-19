@@ -44,6 +44,10 @@ class CloseShotProgram: GPUProgram {
             self.passProjectionMatrix(camera)
             self.passNormalMatrix(renderable)
             
+            self.triggerPass(GetterPass<Float>(subjectGetter: { () -> Float in
+                return renderable.textureScale
+            }), uniform: .TextureScale)
+            
             self.draw(renderable)
             self.unbindAttributes(renderable)
         }

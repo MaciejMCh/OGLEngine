@@ -15,4 +15,8 @@ struct GPUPassFunctions {
             glUniform3fv(location, 1, UnsafePointer($0))
         })
     }
+    
+    static func floatPass(float: GLfloat, location: GLint) {
+        glUniform1f(location, float)
+    }
 }

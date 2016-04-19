@@ -23,10 +23,12 @@ protocol Colored {
 
 protocol ColorMapped {
     var colorMap: Texture {get}
+    var textureScale: Float {get}
 }
 
 protocol NormalMapped {
     var normalMap: Texture {get}
+    var textureScale: Float {get}
 }
 
 protocol BumpMapped: ColorMapped, NormalMapped {
@@ -38,10 +40,12 @@ struct CloseShotRenderable: Mesh, Model, BumpMapped {
     let geometryModel: GeometryModel
     let colorMap: Texture
     let normalMap: Texture
+    let textureScale: GLfloat
 }
 
 struct MediumShotRenderable: Mesh, Model, ColorMapped {
     let vao: VAO
     let geometryModel: GeometryModel
     let colorMap: Texture
+    let textureScale: Float
 }

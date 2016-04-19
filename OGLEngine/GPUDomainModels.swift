@@ -90,7 +90,8 @@ class GetterPass<PassType>: SceneEntityPass, Passing {
     func pass(passSubject: PassType, location: GLint) {
         switch passSubject {
         case is GLKVector3: GPUPassFunctions.vec3Pass(passSubject as! GLKVector3, location: location)
-        default: break
+        case is GLfloat: GPUPassFunctions.floatPass(passSubject as! GLfloat, location: location)
+        default: assert(false)
         }
     }
 }

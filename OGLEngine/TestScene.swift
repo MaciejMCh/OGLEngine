@@ -40,17 +40,17 @@ extension DefaultScenes {
         // Renderables
         
         // Medium shots
-        let axes = MediumShotRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackColorMap)
-        let mediumShotTorus = MediumShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksColorMap)
-        let mediumShotCube =  MediumShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(), colorMap: bricksColorMap)
+        let axes = MediumShotRenderable(vao: axesVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 0, 0)), colorMap: blackColorMap, textureScale: 1.0)
+        let mediumShotTorus = MediumShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 0)), colorMap: bricksColorMap, textureScale: 1.0)
+        let mediumShotCube =  MediumShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(position: GLKVector3Make(3, 3, 3)), colorMap: bricksColorMap, textureScale: 1.0)
         
         // Close shots
-        let closeShotTorus = CloseShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
-        let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
-        let rock = CloseShotRenderable(vao: rockVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
+        let closeShotTorus = CloseShotRenderable(vao: torusVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(-3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap, textureScale: 1.0)
+        let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap, textureScale: 1.0)
+        let rock = CloseShotRenderable(vao: rockVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap, textureScale: 1.0)
         
-        let closeShotBaldCube = CloseShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(), colorMap: bricksColorMap, normalMap: baldNormalMap)
+        let closeShotBaldCube = CloseShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(), colorMap: bricksColorMap, normalMap: baldNormalMap, textureScale: 1.0)
         
-        return Scene(closeShots: [closeShotTorus, closeShotCube, rock, closeShotBaldCube], mediumShots: [axes, mediumShotTorus], directionalLight: directionalLight, camera: camera)
+        return Scene(closeShots: [closeShotTorus, closeShotCube, rock, closeShotBaldCube], mediumShots: [axes, mediumShotTorus, mediumShotCube], directionalLight: directionalLight, camera: camera)
     }
 }

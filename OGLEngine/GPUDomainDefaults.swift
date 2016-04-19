@@ -84,6 +84,7 @@ enum Uniform {
     case LightHalfVector
     case ColorMap
     case NormalMap
+    case TextureScale
     
     func name() -> String {
         switch self {
@@ -98,6 +99,7 @@ enum Uniform {
         case .LightHalfVector: return "lightHalfVector"
         case .ColorMap: return "colorMap"
         case .NormalMap: return "NormalMap"
+        case .TextureScale: return "TextureScale"
         }
     }
         
@@ -106,6 +108,7 @@ enum Uniform {
         case .ModelMatrix, .ViewMatrix, .ProjectionMatrix, .ModelViewProjectionMatrix: return .Mat4
         case .NormalMatrix: return .Mat3
         case .EyePosition, .Position, .LightDirection, .LightHalfVector: return .Vec3
+        case .TextureScale: return .Float
         case .ColorMap, .NormalMap: return .Texture
         }
     }
@@ -123,7 +126,7 @@ struct DefaultInterfaces {
     }
     
     static func detailInterface() -> GPUInterface {
-        return GPUInterface(attributes: [.Position, .Texel, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap])
+        return GPUInterface(attributes: [.Position, .Texel, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap, .TextureScale])
     }
     
     static func mediumShotInterface() -> GPUInterface {
