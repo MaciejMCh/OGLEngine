@@ -12,7 +12,7 @@ import GLKit
 extension DefaultScenes {
     static func testScene() -> Scene {
         // Light
-        let directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, -1, -1))
+        let directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, 0, -1))
         
         // Camera
         let camera: RemoteControlledCamera = RemoteControlledCamera()
@@ -31,9 +31,11 @@ extension DefaultScenes {
         let bricksColorMap = Texture(imageNamed: "cliff color")
         let blackColorMap = Texture(color: UIColor.blackColor())
         let bricksNormalMap = Texture(imageNamed: "cliff normal")
+        let baldNormalMap = Texture(color: UIColor(red: 0.5, green: 0.5, blue: 1, alpha: 1))
         bricksColorMap.bind()
         blackColorMap.bind()
         bricksNormalMap.bind()
+        baldNormalMap.bind()
         
         // Renderables
         
@@ -47,7 +49,7 @@ extension DefaultScenes {
         let closeShotCube = CloseShotRenderable(vao: cubeVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(3, 0, 3)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         let rock = CloseShotRenderable(vao: rockVao, geometryModel: StaticGeometryModel(position: GLKVector3Make(0, 3, 0)), colorMap: bricksColorMap, normalMap: bricksNormalMap)
         
-        let closeShotBaldCube = CloseShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(), colorMap: bricksColorMap, normalMap: bricksNormalMap)
+        let closeShotBaldCube = CloseShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(), colorMap: bricksColorMap, normalMap: baldNormalMap)
         
         return Scene(closeShots: [closeShotTorus, closeShotCube, rock, closeShotBaldCube], mediumShots: [axes, mediumShotTorus], directionalLight: directionalLight, camera: camera)
     }

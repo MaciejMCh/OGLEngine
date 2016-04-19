@@ -11,6 +11,7 @@ uniform sampler2D uNormalMap;
 varying lowp vec2 vTexel;
 varying lowp vec3 vViewVector;
 varying lowp vec3 vDirectionalLightDirection;
+varying lowp mat3 vNormalMatrix;
 
 void main() {
     lowp vec3 normalChangeVector = vec3(texture2D(uNormalMap, vTexel));
@@ -20,7 +21,7 @@ void main() {
     lowp vec3 lightVector = -vDirectionalLightDirection;
     lowp vec3 viewVector = normalize(vViewVector);
     lowp vec3 halfVector = normalize(lightVector + viewVector);
-    lowp vec3 normalVector = normalChangeVector;
+    lowp vec3 normalVector = vNormalMatrix * normalChangeVector;
     
     // Diffuse light
     lowp float NdotL = max(0.0, dot(normalVector, lightVector));
