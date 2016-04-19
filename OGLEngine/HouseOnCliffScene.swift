@@ -32,8 +32,7 @@ extension DefaultScenes {
         rockyGroundNormals.bind()
         
         // Close shots
-//        let rockyGround = CloseShotRenderable(vao: rockyGroundVao, geometryModel: StaticGeometryModel(orientation: GLKVector3Make(0, Float(M_PI_2), 230)), colorMap: rockyGroundColors, normalMap: rockyGroundNormals)
-        let rockyGround = CloseShotRenderable(vao: rockyGroundVao, geometryModel: SpinningGeometryModel(), colorMap: rockyGroundColors, normalMap: rockyGroundNormals)
+        let rockyGround = CloseShotRenderable(vao: rockyGroundVao, geometryModel: StaticGeometryModel(orientation: GLKVector3Make(Float(-M_PI_2), 0, 0)), colorMap: rockyGroundColors, normalMap: rockyGroundNormals)
         
         return Scene(closeShots: [rockyGround], mediumShots: [], directionalLight: directionalLight, camera: camera)
     }
