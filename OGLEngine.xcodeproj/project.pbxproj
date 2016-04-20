@@ -58,6 +58,14 @@
 		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
 		C295F5161CC138B00042CC56 /* rocky_ground.obj in Resources */ = {isa = PBXBuildFile; fileRef = C295F5151CC138B00042CC56 /* rocky_ground.obj */; };
 		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
+		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
+		C2EA4B8C1CC843470036B12D /* water.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B891CC843470036B12D /* water.obj */; };
+		C2EA4B8D1CC843470036B12D /* rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B8A1CC843470036B12D /* rock.obj */; };
+		C2EA4B8E1CC843470036B12D /* cliff.json in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B8B1CC843470036B12D /* cliff.json */; };
+		C2EA4B931CC849A40036B12D /* shallow_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B8F1CC849A40036B12D /* shallow_normal.png */; };
+		C2EA4B941CC849A40036B12D /* shallow_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B901CC849A40036B12D /* shallow_diffuse.png */; };
+		C2EA4B951CC849A40036B12D /* cliff_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B911CC849A40036B12D /* cliff_normal.png */; };
+		C2EA4B961CC849A40036B12D /* cliff_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B921CC849A40036B12D /* cliff_diffuse.png */; };
 		C2EFF1311CC03F8000EF1486 /* Rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2EFF1301CC03F8000EF1486 /* Rock.obj */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
 		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
@@ -134,6 +142,14 @@
 		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
 		C295F5151CC138B00042CC56 /* rocky_ground.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rocky_ground.obj; sourceTree = "<group>"; };
 		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
+		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
+		C2EA4B891CC843470036B12D /* water.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = water.obj; path = Scenes/cliff/water.obj; sourceTree = "<group>"; };
+		C2EA4B8A1CC843470036B12D /* rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rock.obj; path = Scenes/cliff/rock.obj; sourceTree = "<group>"; };
+		C2EA4B8B1CC843470036B12D /* cliff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = cliff.json; path = Scenes/cliff/cliff.json; sourceTree = "<group>"; };
+		C2EA4B8F1CC849A40036B12D /* shallow_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shallow_normal.png; path = Scenes/cliff/shallow_normal.png; sourceTree = "<group>"; };
+		C2EA4B901CC849A40036B12D /* shallow_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shallow_diffuse.png; path = Scenes/cliff/shallow_diffuse.png; sourceTree = "<group>"; };
+		C2EA4B911CC849A40036B12D /* cliff_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cliff_normal.png; path = Scenes/cliff/cliff_normal.png; sourceTree = "<group>"; };
+		C2EA4B921CC849A40036B12D /* cliff_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cliff_diffuse.png; path = Scenes/cliff/cliff_diffuse.png; sourceTree = "<group>"; };
 		C2EFF1301CC03F8000EF1486 /* Rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rock.obj; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
@@ -365,6 +381,7 @@
 		C269D5EC1CA89B1300E56E67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C2EA4B871CC843320036B12D /* Scenes */,
 				C269D5F41CA89BBA00E56E67 /* Shaders */,
 				C269D5EE1CA89B1D00E56E67 /* Textures */,
 				C269D5ED1CA89B1800E56E67 /* OBJs */,
@@ -468,12 +485,35 @@
 			name = Program;
 			sourceTree = "<group>";
 		};
+		C2EA4B871CC843320036B12D /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C2EA4B881CC8433A0036B12D /* Cliff */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		C2EA4B881CC8433A0036B12D /* Cliff */ = {
+			isa = PBXGroup;
+			children = (
+				C2EA4B8F1CC849A40036B12D /* shallow_normal.png */,
+				C2EA4B901CC849A40036B12D /* shallow_diffuse.png */,
+				C2EA4B911CC849A40036B12D /* cliff_normal.png */,
+				C2EA4B921CC849A40036B12D /* cliff_diffuse.png */,
+				C2EA4B891CC843470036B12D /* water.obj */,
+				C2EA4B8A1CC843470036B12D /* rock.obj */,
+				C2EA4B8B1CC843470036B12D /* cliff.json */,
+			);
+			name = Cliff;
+			sourceTree = "<group>";
+		};
 		C2EFF1321CC0439E00EF1486 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				C269D5C41CA898DD00E56E67 /* Scene.swift */,
 				C2EFF1331CC043B200EF1486 /* TestScene.swift */,
 				C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */,
+				C2EA4B851CC83D030036B12D /* SceneLoader.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -569,8 +609,14 @@
 				C220071A1CBC88200099AFBA /* Plank_Color.png in Resources */,
 				C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */,
 				C21B06B21CB18AA300D98D75 /* bricks_specular.png in Resources */,
+				C2EA4B8E1CC843470036B12D /* cliff.json in Resources */,
+				C2EA4B951CC849A40036B12D /* cliff_normal.png in Resources */,
+				C2EA4B941CC849A40036B12D /* shallow_diffuse.png in Resources */,
+				C2EA4B961CC849A40036B12D /* cliff_diffuse.png in Resources */,
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
 				C2602D211CC0296F00247C61 /* cliff color.png in Resources */,
+				C2EA4B931CC849A40036B12D /* shallow_normal.png in Resources */,
+				C2EA4B8D1CC843470036B12D /* rock.obj in Resources */,
 				C220071B1CBC88200099AFBA /* Plank_Normal.png in Resources */,
 				C2F751061CBA65240069BC88 /* MediumShot.vsh in Resources */,
 				C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */,
@@ -582,6 +628,7 @@
 				C220071C1CBC88200099AFBA /* Plank_Specular.png in Resources */,
 				C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */,
 				C295F5161CC138B00042CC56 /* rocky_ground.obj in Resources */,
+				C2EA4B8C1CC843470036B12D /* water.obj in Resources */,
 				C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
 				C2EFF1311CC03F8000EF1486 /* Rock.obj in Resources */,
@@ -693,6 +740,7 @@
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
 				C29219961CA9D76B00B78343 /* Program.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
+				C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,

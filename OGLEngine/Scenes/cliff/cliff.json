@@ -1,0 +1,1 @@
+{"renderables": [{"geometry": {"position": [0.0, 0.0, 0.0], "orientation": [0.0, 0.0, 0.0]}, "material": "shallow", "mesh": "water", "name": "lake"}, {"geometry": {"position": [0.0, 0.0, -0.243609], "orientation": [0.0, 0.0, 90.0]}, "material": "cliff", "mesh": "rock", "name": "foundation"}]}
