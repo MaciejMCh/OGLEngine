@@ -15,9 +15,9 @@ struct LoadedGeometry {
     
     init(json: [String: AnyObject]) {
         let positionArray = json["position"] as! [Float]
-        let orientationArray = json["orientation"] as! [Float]
+        let orientationArray = json["rotation"] as! [Float]
         self.position = GLKVector3Make(positionArray[0], positionArray[1], positionArray[2])
-        self.orientation = GLKVector3Make(GLKMathDegreesToRadians(orientationArray[0]), GLKMathDegreesToRadians(orientationArray[1]), GLKMathDegreesToRadians(orientationArray[2]))
+        self.orientation = GLKVector3Make(orientationArray[0], orientationArray[1], orientationArray[2])
     }
 }
 
@@ -31,13 +31,13 @@ struct LoadedRenderable {
         self.name = json["name"] as! String
         self.mesh = json["mesh"] as! String
         self.material = json["material"] as! String
-        self.geometry = LoadedGeometry(json: json["geometry"] as! [String: AnyObject])
+        self.geometry = LoadedGeometry(json: json["transformation"] as! [String: AnyObject])
     }
 }
 
 extension Scene {
     static func loadScene(name: String) -> Scene! {
-        guard let fileData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(name, ofType: "json")!) else {
+        guard let fileData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("3dAssets/scenes/" + name, ofType: "scene")!) else {
             return nil
         }
         do {
@@ -75,11 +75,11 @@ extension Scene {
 extension CloseShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
-        self.geometryModel = SpinningGeometryModel(position: loadedRenderable.geometry.orientation, orientation: loadedRenderable.geometry.orientation)
+        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.orientation, orientation: loadedRenderable.geometry.orientation)
         
-        self.colorMap = Texture(imageNamed: loadedRenderable.material + "_diffuse")
+        self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
-        self.normalMap = Texture(imageNamed: loadedRenderable.material + "_normal")
+        self.normalMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/normal.png")
         self.normalMap.bind()
         self.textureScale = 1
     }

@@ -12,7 +12,7 @@ import GLKit
 class OBJLoader : NSObject {
     
     class func objFromFileNamed(fileName: String) -> OBJ {
-        let filePath: String = NSBundle.mainBundle().pathForResource(fileName, ofType: "obj")!
+        let filePath: String = NSBundle.mainBundle().pathForResource("3dAssets/meshes/" + fileName, ofType: "obj")!
         
         var payload = ""
         do {
