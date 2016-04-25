@@ -1,0 +1,3 @@
+[submodule "SceneEditor"]
+	path = SceneEditor
+	url = https://github.com/MaciejMCh/SceneEditor.git

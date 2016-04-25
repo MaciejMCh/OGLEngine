@@ -60,7 +60,7 @@ extension Scene {
             
             // Camera
             let camera: RemoteControlledCamera = RemoteControlledCamera()
-            camera.zOffset = -1
+            camera.zOffset = -5
             camera.xMouse = Float(M_PI_2)
             camera.yMouse = Float(M_PI_4)
             
@@ -75,7 +75,7 @@ extension Scene {
 extension CloseShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
-        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.orientation, orientation: loadedRenderable.geometry.orientation)
+        self.geometryModel = SpinningGeometryModel(position: loadedRenderable.geometry.orientation, orientation: loadedRenderable.geometry.orientation)
         
         self.colorMap = Texture(imageNamed: loadedRenderable.material + "_diffuse")
         self.colorMap.bind()

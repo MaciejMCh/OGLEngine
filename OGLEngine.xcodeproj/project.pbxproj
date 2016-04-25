@@ -11,17 +11,11 @@
 		C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */; };
 		C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */; };
 		C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */; };
-		C21B06AE1CB1873D00D98D75 /* bricks_colors.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AC1CB1873D00D98D75 /* bricks_colors.png */; };
-		C21B06AF1CB1873D00D98D75 /* bricks_normals.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06AD1CB1873D00D98D75 /* bricks_normals.png */; };
-		C21B06B21CB18AA300D98D75 /* bricks_specular.png in Resources */ = {isa = PBXBuildFile; fileRef = C21B06B11CB18AA300D98D75 /* bricks_specular.png */; };
-		C220071A1CBC88200099AFBA /* Plank_Color.png in Resources */ = {isa = PBXBuildFile; fileRef = C22007171CBC88200099AFBA /* Plank_Color.png */; };
-		C220071B1CBC88200099AFBA /* Plank_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C22007181CBC88200099AFBA /* Plank_Normal.png */; };
-		C220071C1CBC88200099AFBA /* Plank_Specular.png in Resources */ = {isa = PBXBuildFile; fileRef = C22007191CBC88200099AFBA /* Plank_Specular.png */; };
+		C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */ = {isa = PBXBuildFile; fileRef = C22824BE1CCD93AC006EBCE3 /* 3dAssets */; };
+		C22824C11CCD9659006EBCE3 /* MediumShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */; };
+		C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */; };
+		C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
-		C2602D1C1CC0288000247C61 /* rock color.png in Resources */ = {isa = PBXBuildFile; fileRef = C2602D1A1CC0288000247C61 /* rock color.png */; };
-		C2602D1D1CC0288000247C61 /* rock normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C2602D1B1CC0288000247C61 /* rock normal.png */; };
-		C2602D211CC0296F00247C61 /* cliff color.png in Resources */ = {isa = PBXBuildFile; fileRef = C2602D1F1CC0296F00247C61 /* cliff color.png */; };
-		C2602D221CC0296F00247C61 /* cliff normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C2602D201CC0296F00247C61 /* cliff normal.png */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* CloseShot.fsh */; };
@@ -31,18 +25,12 @@
 		C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C269D5981CA8981D00E56E67 /* Assets.xcassets */; };
 		C269D59C1CA8981D00E56E67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C269D59A1CA8981D00E56E67 /* LaunchScreen.storyboard */; };
 		C269D5A71CA8981D00E56E67 /* OGLEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5A61CA8981D00E56E67 /* OGLEngineTests.swift */; };
-		C269D5C91CA898DD00E56E67 /* axes_rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B11CA898DD00E56E67 /* axes_rgb.png */; };
-		C269D5CA1CA898DD00E56E67 /* axes.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B21CA898DD00E56E67 /* axes.obj */; };
 		C269D5CB1CA898DD00E56E67 /* BasicCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B31CA898DD00E56E67 /* BasicCamera.swift */; };
 		C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B41CA898DD00E56E67 /* Camera.swift */; };
-		C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B51CA898DD00E56E67 /* cube_tex.obj */; };
-		C269D5CE1CA898DD00E56E67 /* cube.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B61CA898DD00E56E67 /* cube.obj */; };
 		C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */; };
 		C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5B81CA898DD00E56E67 /* GeometryModel.swift */; };
-		C269D5D11CA898DD00E56E67 /* normalMap.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5B91CA898DD00E56E67 /* normalMap.png */; };
 		C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BA1CA898DD00E56E67 /* OBJ.swift */; };
 		C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */; };
-		C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */ = {isa = PBXBuildFile; fileRef = C269D5BD1CA898DD00E56E67 /* paczek.obj */; };
 		C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */; };
 		C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C01CA898DD00E56E67 /* RemoteController.swift */; };
 		C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */; };
@@ -50,28 +38,15 @@
 		C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C41CA898DD00E56E67 /* Scene.swift */; };
 		C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */; };
 		C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */; };
-		C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */ = {isa = PBXBuildFile; fileRef = C269D5C71CA898DD00E56E67 /* Texture.png */; };
 		C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C81CA898DD00E56E67 /* Texture.swift */; };
 		C269D5E21CA898E900E56E67 /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5E11CA898E900E56E67 /* VAO.swift */; };
 		C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C269D5F01CA89B6E00E56E67 /* IPAddress */; };
 		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
 		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
-		C295F5161CC138B00042CC56 /* rocky_ground.obj in Resources */ = {isa = PBXBuildFile; fileRef = C295F5151CC138B00042CC56 /* rocky_ground.obj */; };
 		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
-		C2EA4B8C1CC843470036B12D /* water.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B891CC843470036B12D /* water.obj */; };
-		C2EA4B8D1CC843470036B12D /* rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B8A1CC843470036B12D /* rock.obj */; };
-		C2EA4B8E1CC843470036B12D /* cliff.json in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B8B1CC843470036B12D /* cliff.json */; };
-		C2EA4B931CC849A40036B12D /* shallow_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B8F1CC849A40036B12D /* shallow_normal.png */; };
-		C2EA4B941CC849A40036B12D /* shallow_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B901CC849A40036B12D /* shallow_diffuse.png */; };
-		C2EA4B951CC849A40036B12D /* cliff_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B911CC849A40036B12D /* cliff_normal.png */; };
-		C2EA4B961CC849A40036B12D /* cliff_diffuse.png in Resources */ = {isa = PBXBuildFile; fileRef = C2EA4B921CC849A40036B12D /* cliff_diffuse.png */; };
-		C2EFF1311CC03F8000EF1486 /* Rock.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2EFF1301CC03F8000EF1486 /* Rock.obj */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
 		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
-		C2F751021CBA611B0069BC88 /* MediumShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F751011CBA611B0069BC88 /* MediumShotProgram.swift */; };
-		C2F751041CBA65170069BC88 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C2F751031CBA65170069BC88 /* MediumShot.fsh */; };
-		C2F751061CBA65240069BC88 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C2F751051CBA65240069BC88 /* MediumShot.vsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,17 +66,11 @@
 		C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLKitCantMultiplyMatrices.swift; sourceTree = "<group>"; };
 		C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainDefaults.swift; sourceTree = "<group>"; };
 		C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainModels.swift; sourceTree = "<group>"; };
-		C21B06AC1CB1873D00D98D75 /* bricks_colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_colors.png; sourceTree = "<group>"; };
-		C21B06AD1CB1873D00D98D75 /* bricks_normals.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_normals.png; sourceTree = "<group>"; };
-		C21B06B11CB18AA300D98D75 /* bricks_specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks_specular.png; sourceTree = "<group>"; };
-		C22007171CBC88200099AFBA /* Plank_Color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plank_Color.png; sourceTree = "<group>"; };
-		C22007181CBC88200099AFBA /* Plank_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plank_Normal.png; sourceTree = "<group>"; };
-		C22007191CBC88200099AFBA /* Plank_Specular.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plank_Specular.png; sourceTree = "<group>"; };
+		C22824BE1CCD93AC006EBCE3 /* 3dAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 3dAssets; sourceTree = "<group>"; };
+		C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShotProgram.swift; sourceTree = "<group>"; };
+		C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.vsh; path = Shaders/MediumShot.vsh; sourceTree = "<group>"; };
+		C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.fsh; path = Shaders/MediumShot.fsh; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
-		C2602D1A1CC0288000247C61 /* rock color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock color.png"; sourceTree = "<group>"; };
-		C2602D1B1CC0288000247C61 /* rock normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rock normal.png"; sourceTree = "<group>"; };
-		C2602D1F1CC0296F00247C61 /* cliff color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cliff color.png"; sourceTree = "<group>"; };
-		C2602D201CC0296F00247C61 /* cliff normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cliff normal.png"; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,18 +84,12 @@
 		C269D5A21CA8981D00E56E67 /* OGLEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OGLEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D5A61CA8981D00E56E67 /* OGLEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OGLEngineTests.swift; sourceTree = "<group>"; };
 		C269D5A81CA8981D00E56E67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C269D5B11CA898DD00E56E67 /* axes_rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = axes_rgb.png; sourceTree = "<group>"; };
-		C269D5B21CA898DD00E56E67 /* axes.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = axes.obj; sourceTree = "<group>"; };
 		C269D5B31CA898DD00E56E67 /* BasicCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCamera.swift; sourceTree = "<group>"; };
 		C269D5B41CA898DD00E56E67 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		C269D5B51CA898DD00E56E67 /* cube_tex.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube_tex.obj; sourceTree = "<group>"; };
-		C269D5B61CA898DD00E56E67 /* cube.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cube.obj; sourceTree = "<group>"; };
 		C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionalLight.swift; sourceTree = "<group>"; };
 		C269D5B81CA898DD00E56E67 /* GeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryModel.swift; sourceTree = "<group>"; };
-		C269D5B91CA898DD00E56E67 /* normalMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalMap.png; sourceTree = "<group>"; };
 		C269D5BA1CA898DD00E56E67 /* OBJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJ.swift; sourceTree = "<group>"; };
 		C269D5BB1CA898DD00E56E67 /* OBJLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBJLoader.swift; sourceTree = "<group>"; };
-		C269D5BD1CA898DD00E56E67 /* paczek.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = paczek.obj; sourceTree = "<group>"; };
 		C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControlledCamera.swift; sourceTree = "<group>"; };
 		C269D5C01CA898DD00E56E67 /* RemoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteController.swift; sourceTree = "<group>"; };
 		C269D5C11CA898DD00E56E67 /* RemoteControllerModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteControllerModels.swift; sourceTree = "<group>"; };
@@ -134,28 +97,15 @@
 		C269D5C41CA898DD00E56E67 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinningGeometryModel.swift; sourceTree = "<group>"; };
 		C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticGeometryModel.swift; sourceTree = "<group>"; };
-		C269D5C71CA898DD00E56E67 /* Texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture.png; sourceTree = "<group>"; };
 		C269D5C81CA898DD00E56E67 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		C269D5E11CA898E900E56E67 /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 		C269D5F01CA89B6E00E56E67 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
-		C295F5151CC138B00042CC56 /* rocky_ground.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rocky_ground.obj; sourceTree = "<group>"; };
 		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
-		C2EA4B891CC843470036B12D /* water.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = water.obj; path = Scenes/cliff/water.obj; sourceTree = "<group>"; };
-		C2EA4B8A1CC843470036B12D /* rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rock.obj; path = Scenes/cliff/rock.obj; sourceTree = "<group>"; };
-		C2EA4B8B1CC843470036B12D /* cliff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = cliff.json; path = Scenes/cliff/cliff.json; sourceTree = "<group>"; };
-		C2EA4B8F1CC849A40036B12D /* shallow_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shallow_normal.png; path = Scenes/cliff/shallow_normal.png; sourceTree = "<group>"; };
-		C2EA4B901CC849A40036B12D /* shallow_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shallow_diffuse.png; path = Scenes/cliff/shallow_diffuse.png; sourceTree = "<group>"; };
-		C2EA4B911CC849A40036B12D /* cliff_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cliff_normal.png; path = Scenes/cliff/cliff_normal.png; sourceTree = "<group>"; };
-		C2EA4B921CC849A40036B12D /* cliff_diffuse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cliff_diffuse.png; path = Scenes/cliff/cliff_diffuse.png; sourceTree = "<group>"; };
-		C2EFF1301CC03F8000EF1486 /* Rock.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rock.obj; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
-		C2F751011CBA611B0069BC88 /* MediumShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediumShotProgram.swift; path = Shaders/MediumShotProgram.swift; sourceTree = "<group>"; };
-		C2F751031CBA65170069BC88 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MediumShot.fsh; sourceTree = "<group>"; };
-		C2F751051CBA65240069BC88 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MediumShot.vsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,44 +161,6 @@
 				C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */,
 			);
 			name = GPUDomain;
-			sourceTree = "<group>";
-		};
-		C21B06B01CB1873F00D98D75 /* Bricks */ = {
-			isa = PBXGroup;
-			children = (
-				C21B06B11CB18AA300D98D75 /* bricks_specular.png */,
-				C21B06AC1CB1873D00D98D75 /* bricks_colors.png */,
-				C21B06AD1CB1873D00D98D75 /* bricks_normals.png */,
-			);
-			name = Bricks;
-			sourceTree = "<group>";
-		};
-		C22007161CBC87CA0099AFBA /* Planks */ = {
-			isa = PBXGroup;
-			children = (
-				C22007171CBC88200099AFBA /* Plank_Color.png */,
-				C22007181CBC88200099AFBA /* Plank_Normal.png */,
-				C22007191CBC88200099AFBA /* Plank_Specular.png */,
-			);
-			name = Planks;
-			sourceTree = "<group>";
-		};
-		C2602D191CC0286D00247C61 /* Rock */ = {
-			isa = PBXGroup;
-			children = (
-				C2602D1A1CC0288000247C61 /* rock color.png */,
-				C2602D1B1CC0288000247C61 /* rock normal.png */,
-			);
-			name = Rock;
-			sourceTree = "<group>";
-		};
-		C2602D1E1CC0296500247C61 /* Cliff */ = {
-			isa = PBXGroup;
-			children = (
-				C2602D1F1CC0296F00247C61 /* cliff color.png */,
-				C2602D201CC0296F00247C61 /* cliff normal.png */,
-			);
-			name = Cliff;
 			sourceTree = "<group>";
 		};
 		C269D5811CA8981D00E56E67 = {
@@ -381,41 +293,12 @@
 		C269D5EC1CA89B1300E56E67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C2EA4B871CC843320036B12D /* Scenes */,
+				C22824BE1CCD93AC006EBCE3 /* 3dAssets */,
 				C269D5F41CA89BBA00E56E67 /* Shaders */,
-				C269D5EE1CA89B1D00E56E67 /* Textures */,
-				C269D5ED1CA89B1800E56E67 /* OBJs */,
 				C269D5EF1CA89B5800E56E67 /* Utilities */,
 				C269D5F51CA89BD400E56E67 /* Xcode */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		C269D5ED1CA89B1800E56E67 /* OBJs */ = {
-			isa = PBXGroup;
-			children = (
-				C295F5151CC138B00042CC56 /* rocky_ground.obj */,
-				C2EFF1301CC03F8000EF1486 /* Rock.obj */,
-				C269D5BD1CA898DD00E56E67 /* paczek.obj */,
-				C269D5B21CA898DD00E56E67 /* axes.obj */,
-				C269D5B51CA898DD00E56E67 /* cube_tex.obj */,
-				C269D5B61CA898DD00E56E67 /* cube.obj */,
-			);
-			name = OBJs;
-			sourceTree = "<group>";
-		};
-		C269D5EE1CA89B1D00E56E67 /* Textures */ = {
-			isa = PBXGroup;
-			children = (
-				C2602D1E1CC0296500247C61 /* Cliff */,
-				C2602D191CC0286D00247C61 /* Rock */,
-				C22007161CBC87CA0099AFBA /* Planks */,
-				C21B06B01CB1873F00D98D75 /* Bricks */,
-				C269D5B11CA898DD00E56E67 /* axes_rgb.png */,
-				C269D5C71CA898DD00E56E67 /* Texture.png */,
-				C269D5B91CA898DD00E56E67 /* normalMap.png */,
-			);
-			name = Textures;
 			sourceTree = "<group>";
 		};
 		C269D5EF1CA89B5800E56E67 /* Utilities */ = {
@@ -447,10 +330,10 @@
 		C269D5F41CA89BBA00E56E67 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */,
+				C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */,
 				C269D58F1CA8981D00E56E67 /* CloseShot.fsh */,
 				C269D5911CA8981D00E56E67 /* CloseShot.vsh */,
-				C2F751031CBA65170069BC88 /* MediumShot.fsh */,
-				C2F751051CBA65240069BC88 /* MediumShot.vsh */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -477,34 +360,12 @@
 		C29219971CA9E17000B78343 /* Program */ = {
 			isa = PBXGroup;
 			children = (
+				C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */,
 				C29219951CA9D76B00B78343 /* Program.swift */,
 				C29219981CA9E18A00B78343 /* CloseShotProgram.swift */,
 				C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */,
-				C2F751011CBA611B0069BC88 /* MediumShotProgram.swift */,
 			);
 			name = Program;
-			sourceTree = "<group>";
-		};
-		C2EA4B871CC843320036B12D /* Scenes */ = {
-			isa = PBXGroup;
-			children = (
-				C2EA4B881CC8433A0036B12D /* Cliff */,
-			);
-			name = Scenes;
-			sourceTree = "<group>";
-		};
-		C2EA4B881CC8433A0036B12D /* Cliff */ = {
-			isa = PBXGroup;
-			children = (
-				C2EA4B8F1CC849A40036B12D /* shallow_normal.png */,
-				C2EA4B901CC849A40036B12D /* shallow_diffuse.png */,
-				C2EA4B911CC849A40036B12D /* cliff_normal.png */,
-				C2EA4B921CC849A40036B12D /* cliff_diffuse.png */,
-				C2EA4B891CC843470036B12D /* water.obj */,
-				C2EA4B8A1CC843470036B12D /* rock.obj */,
-				C2EA4B8B1CC843470036B12D /* cliff.json */,
-			);
-			name = Cliff;
 			sourceTree = "<group>";
 		};
 		C2EFF1321CC0439E00EF1486 /* Scene */ = {
@@ -605,40 +466,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C269D5C91CA898DD00E56E67 /* axes_rgb.png in Resources */,
-				C220071A1CBC88200099AFBA /* Plank_Color.png in Resources */,
-				C269D5D51CA898DD00E56E67 /* paczek.obj in Resources */,
-				C21B06B21CB18AA300D98D75 /* bricks_specular.png in Resources */,
-				C2EA4B8E1CC843470036B12D /* cliff.json in Resources */,
-				C2EA4B951CC849A40036B12D /* cliff_normal.png in Resources */,
-				C2EA4B941CC849A40036B12D /* shallow_diffuse.png in Resources */,
-				C2EA4B961CC849A40036B12D /* cliff_diffuse.png in Resources */,
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
-				C2602D211CC0296F00247C61 /* cliff color.png in Resources */,
-				C2EA4B931CC849A40036B12D /* shallow_normal.png in Resources */,
-				C2EA4B8D1CC843470036B12D /* rock.obj in Resources */,
-				C220071B1CBC88200099AFBA /* Plank_Normal.png in Resources */,
-				C2F751061CBA65240069BC88 /* MediumShot.vsh in Resources */,
 				C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */,
-				C269D5CA1CA898DD00E56E67 /* axes.obj in Resources */,
+				C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */,
+				C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */,
+				C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */,
 				C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */,
-				C21B06AF1CB1873D00D98D75 /* bricks_normals.png in Resources */,
-				C2602D221CC0296F00247C61 /* cliff normal.png in Resources */,
-				C2602D1C1CC0288000247C61 /* rock color.png in Resources */,
-				C220071C1CBC88200099AFBA /* Plank_Specular.png in Resources */,
-				C269D5CD1CA898DD00E56E67 /* cube_tex.obj in Resources */,
-				C295F5161CC138B00042CC56 /* rocky_ground.obj in Resources */,
-				C2EA4B8C1CC843470036B12D /* water.obj in Resources */,
-				C269D5DF1CA898DD00E56E67 /* Texture.png in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
-				C2EFF1311CC03F8000EF1486 /* Rock.obj in Resources */,
-				C2602D1D1CC0288000247C61 /* rock normal.png in Resources */,
-				C21B06AE1CB1873D00D98D75 /* bricks_colors.png in Resources */,
-				C269D5CE1CA898DD00E56E67 /* cube.obj in Resources */,
 				C269D59C1CA8981D00E56E67 /* LaunchScreen.storyboard in Resources */,
-				C2F751041CBA65170069BC88 /* MediumShot.fsh in Resources */,
 				C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */,
-				C269D5D11CA898DD00E56E67 /* normalMap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,12 +576,12 @@
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
 				C29219961CA9D76B00B78343 /* Program.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
+				C22824C11CCD9659006EBCE3 /* MediumShotProgram.swift in Sources */,
 				C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
-				C2F751021CBA611B0069BC88 /* MediumShotProgram.swift in Sources */,
 				C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
 				C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */,
