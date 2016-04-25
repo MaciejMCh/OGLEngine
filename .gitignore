@@ -36,5 +36,6 @@ Pods/
 *.blend1
 OGLEngine/3dAssets/*.*
 OGLEngine/3dAssets/materials/*.*
+OGLEngine/3dAssets/materials/**/*.*
 OGLEngine/3dAssets/meshes/*.*
 OGLEngine/3dAssets/scenes/*.*
