@@ -34,4 +34,4 @@ Pods/
 
 # 3d assets
 *.blend1
-OGLEngine/3dAssets/*.*
+OGLEngine/3dAssets/**
