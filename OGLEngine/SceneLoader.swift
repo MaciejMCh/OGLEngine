@@ -60,9 +60,10 @@ extension Scene {
             
             // Camera
             let camera: RemoteControlledCamera = RemoteControlledCamera()
-            camera.zOffset = -5
+            camera.zOffset = -1
+            camera.xOffset = 3
             camera.xMouse = Float(M_PI_2)
-            camera.yMouse = Float(M_PI_4)
+            camera.yMouse = Float(M_PI_2)
             
             return Scene(closeShots: closeShotRenderables, mediumShots: [], directionalLight: directionalLight, camera: camera)
             
