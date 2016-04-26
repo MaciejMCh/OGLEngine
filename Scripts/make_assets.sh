@@ -1,0 +1,1 @@
+python SceneEditor/make_assets_on_diff.py
