@@ -15,6 +15,7 @@
 		C22824C11CCD9659006EBCE3 /* MediumShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */; };
 		C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */; };
 		C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */; };
+		C229F1B31CE5D4E40072444A /* FrameBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C229F1B21CE5D4E40072444A /* FrameBuffer.swift */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 		C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShotProgram.swift; sourceTree = "<group>"; };
 		C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.vsh; path = Shaders/MediumShot.vsh; sourceTree = "<group>"; };
 		C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.fsh; path = Shaders/MediumShot.fsh; sourceTree = "<group>"; };
+		C229F1B21CE5D4E40072444A /* FrameBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameBuffer.swift; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +163,14 @@
 				C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */,
 			);
 			name = GPUDomain;
+			sourceTree = "<group>";
+		};
+		C229F1B41CE5D7820072444A /* Rendered */ = {
+			isa = PBXGroup;
+			children = (
+				C229F1B21CE5D4E40072444A /* FrameBuffer.swift */,
+			);
+			name = Rendered;
 			sourceTree = "<group>";
 		};
 		C269D5811CA8981D00E56E67 = {
@@ -285,6 +295,7 @@
 		C269D5EB1CA89AF500E56E67 /* Texture */ = {
 			isa = PBXGroup;
 			children = (
+				C229F1B41CE5D7820072444A /* Rendered */,
 				C269D5C81CA898DD00E56E67 /* Texture.swift */,
 			);
 			name = Texture;
@@ -584,6 +595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */,
+				C229F1B31CE5D4E40072444A /* FrameBuffer.swift in Sources */,
 				C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */,
 				C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */,
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
