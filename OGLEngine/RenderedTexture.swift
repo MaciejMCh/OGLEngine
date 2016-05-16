@@ -16,9 +16,17 @@ struct RenderedTexture {
     var textureGlName: GLuint = 0
     
     init() {
-        frameBufferGlName = createFrameBuffer()
-        textureGlName = createTextureAttachment()
-        depthBufferGlName = createDepthBufferAttachment()
+        var t = GLuint()
+        var f = GLuint()
+        
+        glGenTextureFromFramebuffer(&t, f: &f, w: 512, h: 512)
+        
+        frameBufferGlName = f
+        textureGlName = t
+        
+//        frameBufferGlName = createFrameBuffer()
+//        textureGlName = createTextureAttachment()
+//        depthBufferGlName = createDepthBufferAttachment()
     }
     
     func createFrameBuffer() -> GLuint {
