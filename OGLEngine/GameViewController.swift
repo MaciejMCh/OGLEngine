@@ -18,6 +18,8 @@ class GameViewController: GLKViewController {
     
     var scene: Scene! = nil
     
+    lazy var frameBuffer: RenderedTexture = RenderedTexture.initialiseReflectionFrameBuffer()
+    
     deinit {
         self.tearDownGL()
     
@@ -92,7 +94,20 @@ class GameViewController: GLKViewController {
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
+        frameBuffer.bind()
+        view.bindDrawable()
+        renderTexture()
+//        frameBuffer.unbindCurrentFrameBuffer()
+//        renderScene()
         
+    }
+    
+    func renderTexture() {
+        glClearColor(1.0, 0.65, 0.25, 1.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+    }
+    
+    func renderScene() {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
@@ -101,8 +116,6 @@ class GameViewController: GLKViewController {
         
         glUseProgram(self.closeShotProgram.glName)
         self.closeShotProgram.render(self.scene.closeShots)
-        
-        
     }
 }
 

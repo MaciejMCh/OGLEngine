@@ -42,6 +42,7 @@
 		C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C81CA898DD00E56E67 /* Texture.swift */; };
 		C269D5E21CA898E900E56E67 /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5E11CA898E900E56E67 /* VAO.swift */; };
 		C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C269D5F01CA89B6E00E56E67 /* IPAddress */; };
+		C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */; };
 		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
 		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
 		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
@@ -102,6 +103,7 @@
 		C269D5C81CA898DD00E56E67 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		C269D5E11CA898E900E56E67 /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 		C269D5F01CA89B6E00E56E67 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
+		C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderedTexture.swift; sourceTree = "<group>"; };
 		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
 		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 		C269D5E51CA89A5400E56E67 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C26EC56B1CE9E1BA005958C5 /* FrameBuffer */,
 				C2EFF1321CC0439E00EF1486 /* Scene */,
 				C20EA33B1CA9BC0C0076F979 /* GPUDomain */,
 				C269D5E11CA898E900E56E67 /* VAO.swift */,
@@ -366,6 +369,14 @@
 				C269D58D1CA8981D00E56E67 /* AppDelegate.swift */,
 			);
 			name = Application;
+			sourceTree = "<group>";
+		};
+		C26EC56B1CE9E1BA005958C5 /* FrameBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */,
+			);
+			name = FrameBuffer;
 			sourceTree = "<group>";
 		};
 		C29219971CA9E17000B78343 /* Program */ = {
@@ -608,6 +619,7 @@
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
+				C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,

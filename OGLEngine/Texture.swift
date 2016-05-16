@@ -29,6 +29,7 @@ public class Texture : NSObject {
             return
         }
         self.glName = self.bindTextureWithImage(self.image)
+        self.glName = 5
     }
     
     func bindTextureWithImage(image: UIImage) -> GLuint {
