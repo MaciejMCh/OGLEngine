@@ -14,13 +14,15 @@ class Scene {
     
     var closeShots: [CloseShotRenderable]
     var mediumShots: [MediumShotRenderable]
+    var reflectiveSurfaces: [ReflectiveSurfaceRenderable]
     
     var directionalLight: DirectionalLight
     var camera: Camera
     
-    init(closeShots: [CloseShotRenderable], mediumShots: [MediumShotRenderable], directionalLight: DirectionalLight, camera: Camera) {
+    init(closeShots: [CloseShotRenderable], mediumShots: [MediumShotRenderable], reflectiveSurfaces: [ReflectiveSurfaceRenderable], directionalLight: DirectionalLight, camera: Camera) {
         self.closeShots = closeShots
         self.mediumShots = mediumShots
+        self.reflectiveSurfaces = reflectiveSurfaces
         self.directionalLight = directionalLight
         self.camera = camera
     }

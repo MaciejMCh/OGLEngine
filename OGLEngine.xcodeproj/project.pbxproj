@@ -45,6 +45,9 @@
 		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
 		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
 		C29755771CEA21E3001D8E6D /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755761CEA21E3001D8E6D /* Renderer.swift */; };
+		C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */; };
+		C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */; };
+		C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */; };
 		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
@@ -106,6 +109,9 @@
 		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
 		C29755761CEA21E3001D8E6D /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurfaceProgram.swift; sourceTree = "<group>"; };
+		C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.vsh; path = Shaders/ReflectiveSurface.vsh; sourceTree = "<group>"; };
+		C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.fsh; path = Shaders/ReflectiveSurface.fsh; sourceTree = "<group>"; };
 		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
@@ -336,6 +342,8 @@
 		C269D5F41CA89BBA00E56E67 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */,
+				C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */,
 				C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */,
 				C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */,
 				C269D58F1CA8981D00E56E67 /* CloseShot.fsh */,
@@ -378,6 +386,7 @@
 				C29219951CA9D76B00B78343 /* Program.swift */,
 				C29219981CA9E18A00B78343 /* CloseShotProgram.swift */,
 				C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */,
+				C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */,
 			);
 			name = Program;
 			sourceTree = "<group>";
@@ -483,8 +492,10 @@
 			files = (
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
 				C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */,
+				C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */,
 				C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */,
 				C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */,
+				C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */,
 				C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */,
 				C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
@@ -600,6 +611,7 @@
 				C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */,
 				C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */,
 				C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */,
+				C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */,
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
 				C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,

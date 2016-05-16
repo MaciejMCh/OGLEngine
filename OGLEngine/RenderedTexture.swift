@@ -10,7 +10,6 @@ import Foundation
 import GLKit
 
 struct RenderedTexture {
-    
     var frameBufferGlName: GLuint = 0
     var depthBufferGlName: GLuint = 0
     var textureGlName: GLuint = 0
@@ -21,12 +20,6 @@ struct RenderedTexture {
         generateTextureFromFramebuffer(&t, f: &f, w: 512, h: 512)
         frameBufferGlName = f
         textureGlName = t
-    }
-    
-    func unbindCurrentFrameBuffer() {
-        glBindFramebuffer(GLenum(GL_FRAMEBUFFER), 1)
-        let scale = UIScreen.mainScreen().scale
-        glViewport(0, 0, GLsizei(CGRectGetWidth(UIScreen.mainScreen().bounds) * scale), GLsizei(CGRectGetHeight(UIScreen.mainScreen().bounds) * scale))
     }
     
     func bindFrameBuffer(frameBufferGlName: GLuint, width: Int = 512, height: Int = 512) {
@@ -64,6 +57,17 @@ struct RenderedTexture {
             NSLog("Framebuffer status: %x", Int(status));
         }
     }
-
+    
+    func withFbo(operations: ()->()) {
+        var currentVboGlName = GLint()
+        glGetIntegerv(GLenum(GL_FRAMEBUFFER_BINDING_OES), &currentVboGlName)
+        
+        self.bind()
+        operations()
+        
+        glBindFramebuffer(GLenum(GL_FRAMEBUFFER), GLuint(currentVboGlName))
+        let scale = UIScreen.mainScreen().scale
+        glViewport(0, 0, GLsizei(CGRectGetWidth(UIScreen.mainScreen().bounds) * scale), GLsizei(CGRectGetHeight(UIScreen.mainScreen().bounds) * scale))
+    }
     
 }

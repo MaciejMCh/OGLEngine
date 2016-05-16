@@ -13,6 +13,7 @@ class GameViewController: GLKViewController {
     
     var mediumShotProgram: MediumShotProgram!
     var closeShotProgram: CloseShotProgram!
+    var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
     
     var context: EAGLContext? = nil
     
@@ -70,10 +71,14 @@ class GameViewController: GLKViewController {
         self.closeShotProgram = CloseShotProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight)
         self.closeShotProgram.compile()
         
+        self.reflectiveSurfaceProgram = ReflectiveSurfaceProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight, scene: self.scene)
+        self.reflectiveSurfaceProgram.compile()
+        
         glEnable(GLenum(GL_DEPTH_TEST))
         
         Renderer.closeShotProgram = closeShotProgram
         Renderer.mediumShotProgram = mediumShotProgram
+        Renderer.reflectiveSurfaceProgram = reflectiveSurfaceProgram
     }
     
     func tearDownGL() {
@@ -97,10 +102,10 @@ class GameViewController: GLKViewController {
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
-        renderedTexture.bind()
-        renderTexture()
+//        renderedTexture.bind()
+//        renderTexture()
         
-        renderedTexture.unbindCurrentFrameBuffer()
+//        renderedTexture.unbindCurrentFrameBuffer()
         Renderer.render(scene)
     }
     

@@ -85,6 +85,7 @@ enum Uniform {
     case ColorMap
     case NormalMap
     case TextureScale
+    case ReflectionColorMap
     
     func name() -> String {
         switch self {
@@ -100,6 +101,7 @@ enum Uniform {
         case .ColorMap: return "colorMap"
         case .NormalMap: return "NormalMap"
         case .TextureScale: return "TextureScale"
+        case .ReflectionColorMap: return "ReflectionColorMap"
         }
     }
         
@@ -109,7 +111,7 @@ enum Uniform {
         case .NormalMatrix: return .Mat3
         case .EyePosition, .Position, .LightDirection, .LightHalfVector: return .Vec3
         case .TextureScale: return .Float
-        case .ColorMap, .NormalMap: return .Texture
+        case .ColorMap, .NormalMap, .ReflectionColorMap: return .Texture
         }
     }
     
@@ -135,6 +137,10 @@ struct DefaultInterfaces {
     
     static func backgroundInterface() -> GPUInterface {
         return GPUInterface(attributes: [.Position], uniforms: [.ModelViewProjectionMatrix, .LightHalfVector, .ColorMap, .NormalMap])
+    }
+    
+    static func reflectiveInterface() -> GPUInterface {
+        return GPUInterface(attributes: [.Position, .Texel], uniforms: [.ModelViewProjectionMatrix, .ReflectionColorMap])
     }
     
 }

@@ -51,6 +51,6 @@ extension DefaultScenes {
         
         let closeShotBaldCube = CloseShotRenderable(vao: cubeVao, geometryModel: SpinningGeometryModel(), colorMap: bricksColorMap, normalMap: baldNormalMap, textureScale: 1.0)
         
-        return Scene(closeShots: [closeShotTorus, closeShotCube, rock, closeShotBaldCube], mediumShots: [axes, mediumShotTorus, mediumShotCube], directionalLight: directionalLight, camera: camera)
+        return Scene(closeShots: [closeShotTorus, closeShotCube, rock, closeShotBaldCube], mediumShots: [axes, mediumShotTorus, mediumShotCube], reflectiveSurfaces: [], directionalLight: directionalLight, camera: camera)
     }
 }

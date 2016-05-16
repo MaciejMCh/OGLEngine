@@ -31,6 +31,10 @@ protocol NormalMapped {
     var textureScale: Float {get}
 }
 
+protocol ReflectiveSurface {
+    var reflectionColorMap: RenderedTexture {get}
+}
+
 protocol BumpMapped: ColorMapped, NormalMapped {
     
 }
@@ -48,4 +52,10 @@ struct MediumShotRenderable: Mesh, Model, ColorMapped {
     let geometryModel: GeometryModel
     let colorMap: Texture
     let textureScale: Float
+}
+
+struct ReflectiveSurfaceRenderable: Mesh, Model, ReflectiveSurface {
+    let vao: VAO
+    let geometryModel: GeometryModel
+    let reflectionColorMap: RenderedTexture
 }

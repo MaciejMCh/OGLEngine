@@ -21,17 +21,32 @@ struct LoadedGeometry {
     }
 }
 
+enum RenderableType {
+    case Default
+    case Reflective
+    
+    static func serialzie(string: String) -> RenderableType {
+        switch string {
+        case "reflective": return .Reflective
+        case "default": return .Default
+        default: return .Default
+        }
+    }
+}
+
 struct LoadedRenderable {
     let name: String
     let mesh: String
     let material: String
     let geometry: LoadedGeometry
+    let type: RenderableType
     
     init(json: [String: AnyObject]) {
         self.name = json["name"] as! String
         self.mesh = json["mesh"] as! String
         self.material = json["material"] as! String
         self.geometry = LoadedGeometry(json: json["transformation"] as! [String: AnyObject])
+        self.type = RenderableType.serialzie(json["type"] as! String)
     }
 }
 
@@ -51,8 +66,12 @@ extension Scene {
             }
             
             var closeShotRenderables: [CloseShotRenderable] = []
+            var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             for loadedRenderable in loadedRenderables {
-                closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+                switch loadedRenderable.type {
+                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+                case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
+                }
             }
             
             // Light
@@ -65,7 +84,7 @@ extension Scene {
             camera.xMouse = Float(M_PI_2)
             camera.yMouse = Float(M_PI_2)
             
-            return Scene(closeShots: closeShotRenderables, mediumShots: [], directionalLight: directionalLight, camera: camera)
+            return Scene(closeShots: closeShotRenderables, mediumShots: [], reflectiveSurfaces: reflectiveSurfaces, directionalLight: directionalLight, camera: camera)
             
         } catch _ {
             return nil
@@ -83,5 +102,13 @@ extension CloseShotRenderable {
         self.normalMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/normal.png")
         self.normalMap.bind()
         self.textureScale = 1
+    }
+}
+
+extension ReflectiveSurfaceRenderable {
+    init(loadedRenderable: LoadedRenderable) {
+        self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
+        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.orientation, orientation: loadedRenderable.geometry.orientation)
+        self.reflectionColorMap = RenderedTexture()
     }
 }
