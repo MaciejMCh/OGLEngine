@@ -35,18 +35,10 @@ class ReflectiveSurfaceProgram: GPUProgram {
             renderable.reflectionColorMap.withFbo({ 
                 Renderer.renderNonReflective(self.scene)
             })
-            
             glUseProgram(self.glName)
-//            renderable.reflectionColorMap.bind()
-//            Renderer.renderNonReflective(scene)
-//            renderable.reflectionColorMap.unbindCurrentFrameBuffer()
 
             self.bindAttributes(renderable)
-            
-            glActiveTexture(GLenum(GL_TEXTURE0));
-            glBindTexture(GLenum(GL_TEXTURE_2D), renderable.reflectionColorMap.textureGlName)
-            glUniform1i(self.implementation.instances.get(.ReflectionColorMap).location, 0);
-            
+            self.passReflectionColorMap(renderable)
             self.passModelViewProjectionMatrix(renderable, camera: self.camera)
             self.draw(renderable)
             self.unbindAttributes(renderable)
