@@ -23,6 +23,10 @@ class RemoteControlledCamera: BasicCamera {
         }
         
         RemoteController.controller.addEventHandler(self.eventHandler)
+        
+        RemotePropertiesCenter.sharedInstance.listenToPropertyChange("invert") { (property) in
+            self.invert = property as! Bool
+        }
     }
     
     var toggles: [KeyToggle] = []
@@ -35,7 +39,14 @@ class RemoteControlledCamera: BasicCamera {
     
     override var orientation: GLKVector3! {
         get {
-            return GLKVector3Make(self.yMouse / 100, 0, self.xMouse / 100)
+            var v = GLKVector3Make(self.yMouse / 100, 0, self.xMouse / 100)
+            let moduloAngle = fmod(v.x, Float(M_PI * 2))
+            let angleDiff = moduloAngle - Float(M_PI_2 * 3)
+            if (invert) {
+                let fixedAngle = moduloAngle - (angleDiff * 2)
+                v = GLKVector3Make(fixedAngle, v.y, v.z)
+            }
+            return v
         }
         set {
             
@@ -71,12 +82,14 @@ class RemoteControlledCamera: BasicCamera {
                     break
                 }
             }
-            return GLKVector3Make(self.xOffset + xFix, self.yOffset + yFix, self.zOffset + zFix)
+            return GLKVector3Make(self.xOffset + xFix, self.yOffset + yFix, (self.zOffset + zFix) * (invert ? -1 : 1))
         }
         set {
             
         }
     }
+    
+    var invert = false
     
     var eventHandler: EventHandler! = nil
     
