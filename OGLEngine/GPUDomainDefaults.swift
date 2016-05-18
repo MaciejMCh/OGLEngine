@@ -17,6 +17,7 @@ enum GPUType {
     case Mat3
     case Mat4
     case Texture
+    case Plane
 }
 
 enum Attribute {
@@ -86,6 +87,7 @@ enum Uniform {
     case NormalMap
     case TextureScale
     case ReflectionColorMap
+    case ClippingPlane
     
     func name() -> String {
         switch self {
@@ -102,6 +104,7 @@ enum Uniform {
         case .NormalMap: return "NormalMap"
         case .TextureScale: return "TextureScale"
         case .ReflectionColorMap: return "ReflectionColorMap"
+        case .ClippingPlane: return "ClippingPlane"
         }
     }
         
@@ -112,6 +115,7 @@ enum Uniform {
         case .EyePosition, .Position, .LightDirection, .LightHalfVector: return .Vec3
         case .TextureScale: return .Float
         case .ColorMap, .NormalMap, .ReflectionColorMap: return .Texture
+        case .ClippingPlane: return .Plane
         }
     }
     
@@ -141,6 +145,10 @@ struct DefaultInterfaces {
     
     static func reflectiveInterface() -> GPUInterface {
         return GPUInterface(attributes: [.Position, .Texel], uniforms: [.ModelViewProjectionMatrix, .ReflectionColorMap])
+    }
+    
+    static func reflectedInterface() -> GPUInterface {
+        return GPUInterface(attributes: [.Position, .Normal, .Texel], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .ColorMap, .TextureScale])
     }
     
 }

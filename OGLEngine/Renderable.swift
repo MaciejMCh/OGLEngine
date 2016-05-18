@@ -59,3 +59,10 @@ struct ReflectiveSurfaceRenderable: Mesh, Model, ReflectiveSurface {
     let geometryModel: GeometryModel
     let reflectionColorMap: RenderedTexture
 }
+
+struct ReflectedRenderable: Mesh, Model, ColorMapped {
+    let vao: VAO
+    let geometryModel: GeometryModel
+    let colorMap: Texture
+    let textureScale: Float
+}

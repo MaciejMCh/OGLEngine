@@ -14,6 +14,7 @@ class GameViewController: GLKViewController {
     var mediumShotProgram: MediumShotProgram!
     var closeShotProgram: CloseShotProgram!
     var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
+    var reflectedProgram: ReflectedProgram!
     
     var context: EAGLContext? = nil
     
@@ -74,11 +75,15 @@ class GameViewController: GLKViewController {
         self.reflectiveSurfaceProgram = ReflectiveSurfaceProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight, scene: self.scene)
         self.reflectiveSurfaceProgram.compile()
         
+        self.reflectedProgram = ReflectedProgram()
+        self.reflectedProgram.compile()
+        
         glEnable(GLenum(GL_DEPTH_TEST))
         
         Renderer.closeShotProgram = closeShotProgram
         Renderer.mediumShotProgram = mediumShotProgram
         Renderer.reflectiveSurfaceProgram = reflectiveSurfaceProgram
+        Renderer.reflectedProgram = reflectedProgram
     }
     
     func tearDownGL() {

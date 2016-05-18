@@ -48,7 +48,10 @@
 		C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */; };
 		C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */; };
 		C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */; };
+		C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */; };
 		C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */; };
+		C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */; };
+		C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */; };
 		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
@@ -113,7 +116,10 @@
 		C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurfaceProgram.swift; sourceTree = "<group>"; };
 		C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.vsh; path = Shaders/ReflectiveSurface.vsh; sourceTree = "<group>"; };
 		C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.fsh; path = Shaders/ReflectiveSurface.fsh; sourceTree = "<group>"; };
+		C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedProgram.swift; sourceTree = "<group>"; };
 		C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteProperties.swift; sourceTree = "<group>"; };
+		C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.vsh; path = Shaders/Reflected.vsh; sourceTree = "<group>"; };
+		C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.fsh; path = Shaders/Reflected.fsh; sourceTree = "<group>"; };
 		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
@@ -345,6 +351,8 @@
 		C269D5F41CA89BBA00E56E67 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */,
+				C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */,
 				C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */,
 				C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */,
 				C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */,
@@ -385,13 +393,30 @@
 		C29219971CA9E17000B78343 /* Program */ = {
 			isa = PBXGroup;
 			children = (
-				C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */,
-				C29219951CA9D76B00B78343 /* Program.swift */,
-				C29219981CA9E18A00B78343 /* CloseShotProgram.swift */,
-				C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */,
-				C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */,
+				C2AB3E5A1CEC73C900D43544 /* Foundation */,
+				C2AB3E591CEC73BA00D43544 /* Concrete */,
 			);
 			name = Program;
+			sourceTree = "<group>";
+		};
+		C2AB3E591CEC73BA00D43544 /* Concrete */ = {
+			isa = PBXGroup;
+			children = (
+				C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */,
+				C29219981CA9E18A00B78343 /* CloseShotProgram.swift */,
+				C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */,
+				C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */,
+			);
+			name = Concrete;
+			sourceTree = "<group>";
+		};
+		C2AB3E5A1CEC73C900D43544 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				C29219951CA9D76B00B78343 /* Program.swift */,
+				C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */,
+			);
+			name = Foundation;
 			sourceTree = "<group>";
 		};
 		C2EFF1321CC0439E00EF1486 /* Scene */ = {
@@ -496,9 +521,11 @@
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
 				C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */,
 				C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */,
+				C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */,
 				C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */,
 				C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */,
 				C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */,
+				C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */,
 				C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */,
 				C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
@@ -640,6 +667,7 @@
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
 				C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */,
+				C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,
 				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,
 				C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */,

@@ -13,6 +13,7 @@ struct Renderer {
     static var closeShotProgram: CloseShotProgram!
     static var mediumShotProgram: MediumShotProgram!
     static var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
+    static var reflectedProgram: ReflectedProgram!
     
     static func render(scene: Scene) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
@@ -28,15 +29,13 @@ struct Renderer {
         self.reflectiveSurfaceProgram.render(scene.reflectiveSurfaces)
     }
     
-    static func renderNonReflective(scene: Scene) {
+    static func renderReflected(scene: Scene) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
-        glUseProgram(self.mediumShotProgram.glName)
-        self.mediumShotProgram.render(scene.mediumShots)
-
-        glUseProgram(self.closeShotProgram.glName)
-        self.closeShotProgram.render(scene.closeShots)
+        glUseProgram(self.reflectedProgram.glName)
+        self.reflectedProgram.camera = scene.camera
+        self.reflectedProgram.render(scene.reflecteds())
     }
     
 }
