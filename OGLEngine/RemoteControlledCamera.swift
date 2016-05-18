@@ -13,7 +13,7 @@ class RemoteControlledCamera: BasicCamera {
     
     init() {
         super.init(position: GLKVector3Make(0, 0, 0), orientation: GLKVector3Make(0, 0, 0))
-        self.eventHandler = {(eventSubject: NSObject!) -> () in
+        self.eventHandler = {(eventSubject: Any!) -> () in
             if (eventSubject is RemoteKey) {
                 self.toggleKey(eventSubject as! RemoteKey)
             }

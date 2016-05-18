@@ -22,7 +22,7 @@ class RemoteController : NSObject {
             self.webSocketClient =  WebSocket("ws://\(ipAddress):6001")
             self.webSocketClient.event.message = {message in
                 if let message = message as? String {
-                    var eventSubject: NSObject? = nil
+                    var eventSubject: Any? = nil
                     if message.hasPrefix("m") {
                         eventSubject = RemoteMouse.mouseWithMessage(message)
                     }
@@ -31,6 +31,9 @@ class RemoteController : NSObject {
                     }
                     else if message.hasPrefix("u") {
                         eventSubject = RemoteKey.keyWithMessage(message)
+                    }
+                    else if message.hasPrefix("p") {
+                        eventSubject = RemoteProperties(jsonString: message.substringFromIndex(message.startIndex.advancedBy(2)))
                     }
                     
                     if let eventSubject = eventSubject {
