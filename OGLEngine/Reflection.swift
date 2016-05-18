@@ -16,6 +16,7 @@ struct ReflectionPlane {
     let D: Float = 0
     
     func reflectedCamera(camera: BasicCamera) -> BasicCamera {
+        return camera
         let position = camera.position
         let orientation = camera.orientation
         return BasicCamera(position: GLKVector3Make(position.x, position.y, -position.z), orientation: GLKVector3Make(orientation.x, -orientation.y, orientation.z))
