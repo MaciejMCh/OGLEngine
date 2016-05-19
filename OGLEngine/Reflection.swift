@@ -17,7 +17,12 @@ struct ReflectionPlane {
     
     func reflectedCamera(camera: BasicCamera) -> BasicCamera {
         var position = camera.position
-        position = GLKVector3Make(position.x, position.y, -position.z)
+        position = GLKVector3Make(-position.x, -position.y, -position.z)
+        
+        let diff = position.z - 0.5
+        let z = position.z - (diff * 2)
+        
+        position = GLKVector3Make(-position.x, -position.y, -z)
         
         var orientation = camera.orientation
         let moduloAngle = fmod(orientation.x, Float(M_PI * 2))

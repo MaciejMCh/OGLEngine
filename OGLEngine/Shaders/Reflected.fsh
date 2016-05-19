@@ -12,7 +12,7 @@ varying lowp vec2 vTexel;
 varying lowp vec4 vModelSpacePosition;
 
 void main() {
-    if (vModelSpacePosition.z < 0.0) {
+    if (vModelSpacePosition.z < 0.5) {
         discard;
     }
     gl_FragColor = texture2D(uColorMap, vTexel);
