@@ -33,7 +33,7 @@ class ReflectiveSurfaceProgram: GPUProgram {
         for renderable in renderables {
             
             renderable.reflectionColorMap.withFbo({ 
-                Renderer.renderReflected(self.scene)
+                Renderer.renderReflected(self.scene, reflectionPlane: renderable.reflectionPlane)
             })
             glUseProgram(self.glName)
 

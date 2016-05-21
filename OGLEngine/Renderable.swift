@@ -58,6 +58,7 @@ struct ReflectiveSurfaceRenderable: Mesh, Model, ReflectiveSurface {
     let vao: VAO
     let geometryModel: GeometryModel
     let reflectionColorMap: RenderedTexture
+    let reflectionPlane: ReflectionPlane
 }
 
 struct ReflectedRenderable: Mesh, Model, ColorMapped {

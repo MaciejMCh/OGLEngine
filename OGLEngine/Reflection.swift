@@ -10,20 +10,40 @@ import Foundation
 import GLKit
 
 struct ReflectionPlane {
-    let A: Float = 0
-    let B: Float = 0
-    let C: Float = 1
-    let D: Float = 0
+    let A: Float
+    let B: Float
+    let C: Float
+    let D: Float
+    
+    let a: Float
+    let b: Float
+    let c: Float
+    let d: Float
+    
+    init(p1: GLKVector3, p2: GLKVector3, p3: GLKVector3) {
+        let vec1 = GLKVector3Subtract(p1, p3)
+        let vec2 = GLKVector3Subtract(p2, p3)
+        let normal = GLKVector3Normalize(GLKVector3CrossProduct(vec1, vec2))
+        
+        self.A = normal.x
+        self.B = normal.y
+        self.C = normal.z
+        self.D = self.A * p1.x + self.B * p1.y + self.C * p1.z
+        
+        NSLog("\(A) \(B) \(C) \(D)")
+        
+        let N = sqrt(A * A + B * B + C * C)
+        
+        a = A / N
+        b = B / N
+        c = C / N
+        d = D / N
+    }
     
     func reflectedCamera(camera: BasicCamera) -> BasicCamera {
-        var position = camera.position
-        position = GLKVector3Make(-position.x, -position.y, -position.z)
+        let position = reflectedPoint(camera.position)
         
-        let diff = position.z - 0.5
-        let z = position.z - (diff * 2)
-        
-        position = GLKVector3Make(-position.x, -position.y, -z)
-        
+        // TODO: orientation is mirrored only by (0 0 1 z) plane
         var orientation = camera.orientation
         let moduloAngle = fmod(orientation.x, Float(M_PI * 2))
         let angleDiff = moduloAngle - Float(M_PI_2 * 3)
@@ -31,5 +51,14 @@ struct ReflectionPlane {
         orientation = GLKVector3Make(fixedAngle, orientation.y, orientation.z)
         
         return BasicCamera(position: position, orientation: orientation)
+    }
+    
+    func distanceToPoint(point: GLKVector3) -> Float {
+        return point.x * a + point.y * b + point.z * c + d
+    }
+    
+    func reflectedPoint(point: GLKVector3) -> GLKVector3 {
+        let distance = distanceToPoint(point)
+        return GLKVector3Add(point, GLKVector3Make(A * distance * -2, B * distance * -2, C * distance * -2))
     }
 }

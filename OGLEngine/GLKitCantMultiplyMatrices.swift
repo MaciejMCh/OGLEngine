@@ -11,6 +11,18 @@ import GLKit
 import simd
 import Upsurge
 
+func transformVector(vector: GLKVector3, transformation: GLKMatrix4) -> GLKVector3 {
+    let t = transformation
+    let mat = Matrix<Float>([
+        [t.m00, t.m10, t.m20, t.m30],
+        [t.m01, t.m11, t.m21, t.m31],
+        [t.m02, t.m12, t.m22, t.m32],
+        [t.m03, t.m13, t.m23, t.m33]])
+    let vec = Matrix<Float>([[vector.x], [vector.y], [vector.z], [1.0]])
+    let transformed = mat * vec
+    return GLKVector3Make(transformed.column(0)[0], transformed.column(0)[1], transformed.column(0)[2])
+}
+
 extension GLKMatrix4 {
     func toCA() -> CATransform3D {
         return CATransform3D(m11: CGFloat(self.m00), m12: CGFloat(self.m01), m13: CGFloat(self.m02), m14: CGFloat(self.m03),
