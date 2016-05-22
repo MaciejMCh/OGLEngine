@@ -30,7 +30,16 @@ public struct GPUFunctions {
     
     static func mediumShotVertex() -> TypedGPUFunction<Void> {
         let scope = GPUScope()
-        return TypedGPUFunction<Void>(signature: "main", input: [], output: TypedGPUVariable<Void>(), scope: scope)
+        let vTexel = TypedGPUVariable<GLKVector2>(name: "vTexel")
+        let uTexel = TypedGPUVariable<GLKVector2>(name: "uTexel")
+        let glPosition = TypedGPUVariable<GLKVector4>(name: "gl_Position")
+        let aPosition = TypedGPUVariable<GLKVector4>(name: "aPosition")
+        let uModelViewProjectionMatrix = TypedGPUVariable<GLKMatrix4>(name: "uModelViewProjectionMatrix")
+        
+        scope ✍ vTexel ⬅ uTexel
+        scope ✍ glPosition ⬅ uModelViewProjectionMatrix * aPosition
+        
+        return TypedGPUFunction<Void>(signature: "main", input: [], scope: scope)
     }
     
     static func mediumShotFragment() -> TypedGPUFunction<Void> {

@@ -36,19 +36,46 @@ struct GLSLParser {
             GLSLParser.uniformsDeclaration(vertexShader.uniforms),
             "// Varyings",
             GLSLParser.varyingsDeclaration(vertexShader.varyings),
-            GLSLParser.functionDeclaration(vertexShader.function)
-            
+            GLSLParser.functionDeclaration(vertexShader.function),
+            GLSLParser.scope(vertexShader.function.scope),
+            "}"
             ])
     }
     
+    static func scope(scope: GPUScope) -> String {
+        return ""
+    }
+    
     static func functionDeclaration(function: AnyGPUFunction) -> String {
-        return GLSLParser.variableType(function.output) + " " + function.signature + "()" + " {"
+        return GLSLParser.functionType(function) + " " + function.signature + "(" + GLSLParser.argumentsDeclaration(function.input) + ")" + " {"
+    }
+    
+    static func argumentsDeclaration(arguments: [AnyGPUVariable]) -> String {
+        var string = ""
+        for argument in arguments {
+            string = string + GLSLParser.variableType(argument) + " " + argument.name! + ", "
+        }
+        if (string.characters.count >= 2) {
+            string = string.substringToIndex(string.endIndex.advancedBy(-2))
+        }
+        return string
+    }
+    
+    static func functionType(function: AnyGPUFunction) -> String {
+        switch function {
+        case is TypedGPUFunction<Void>: return "void"
+        case is TypedGPUFunction<GLKVector3>: return "vec3"
+        default:
+            assert(false)
+            return "unsupported type"
+        }
     }
     
     static func variableType(variable: AnyGPUVariable) -> String {
         switch variable {
         case is TypedGPUVariable<Void>: return "void"
         case is TypedGPUVariable<GLKVector3>: return "vec3"
+        case is TypedGPUVariable<Int>: return "int"
         default:
             assert(false)
             return "unsupported type"

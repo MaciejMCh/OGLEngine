@@ -39,8 +39,11 @@ public struct GPUPipeline {
     let fragmentShader: FragmentShader
 }
 
-public struct GPUScope {
-    
+public class GPUScope {
+    var instructions: [GPUInstruction] = []
+    func appendInstruction(instruction: GPUInstruction) {
+        self.instructions.append(instruction)
+    }
 }
 
 // MARK: Variable
@@ -75,16 +78,14 @@ public protocol GPUFunction {
 }
 
 public class AnyGPUFunction: GPUFunction {
-    public typealias ReturnType = Any
+    public typealias ReturnType = String
     
     var signature: String
     var input: [AnyGPUVariable]
-    var output: TypedGPUVariable<ReturnType>
     var scope : GPUScope
     
     public init() {
         self.signature = "error"
-        self.output = TypedGPUVariable<ReturnType>(value: nil, name: "")
         self.input = []
         self.scope = GPUScope()
     }
@@ -92,37 +93,34 @@ public class AnyGPUFunction: GPUFunction {
     public init(signature: String, input: [AnyGPUVariable], output: TypedGPUVariable<ReturnType>, scope: GPUScope) {
         self.signature = signature
         self.input = input
-        self.output = output
         self.scope = scope
+    }
+    
+    public func outputVariable() -> TypedGPUVariable<ReturnType> {
+        return TypedGPUVariable<ReturnType>()
     }
 }
 
 public class TypedGPUFunction<T>: AnyGPUFunction {
     typealias ReturnType = T
     
-//    override var output: TypedGPUVariable<T>
-    
     override init() {
         super.init()
     }
     
-    init(signature: String, input: [AnyGPUVariable]) {
+    init(signature: String, input: [AnyGPUVariable], scope: GPUScope) {
         super.init()
         self.signature = signature
-        self.output = TypedGPUVariable<T>()
+        self.input = input
+        self.scope = scope
     }
-    
-//    public init<T>(signature: String, input: [AnyGPUVariable], output: TypedGPUVariable<T>, scope: GPUScope) {
-//        super.init()
-//        self.signature = signature
-//        self.input = input
-//        // TODO: T is not ReturnType
-//        self.output = output
-//        self.scope = scope
-//    }
     
     init(input: [AnyGPUVariable], output: TypedGPUVariable<T>, scope: GPUScope) {
         super.init()
+    }
+    
+    public func GGoutputVariable() -> TypedGPUVariable<T> {
+        return TypedGPUVariable<T>()
     }
 }
 
@@ -153,6 +151,19 @@ public class GPUEvaluation<ReturnType>: GPUInstruction {
     
     init(function: TypedGPUFunction<ReturnType>) {
         self.function = function
+    }
+}
+
+public class GPUInfixEvaluation<ReturnType>: GPUEvaluation<ReturnType> {
+    private(set) var operatorSymbol: String
+    private(set) var lhs: AnyGPUVariable
+    private(set) var rhs: AnyGPUVariable
+    
+    init(operatorSymbol: String, lhs: AnyGPUVariable, rhs: AnyGPUVariable) {
+        self.operatorSymbol = operatorSymbol
+        self.lhs = lhs
+        self.rhs = rhs
+        super.init(function: TypedGPUFunction<ReturnType>())
     }
 }
 

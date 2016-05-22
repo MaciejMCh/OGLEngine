@@ -14,7 +14,7 @@ import GLKit
 // Append function
 infix operator ✍ {}
 public func ✍ (lhs: GPUScope, rhs: GPUInstruction) {
-    
+    lhs.appendInstruction(rhs)
 }
 
 // MARK: Variable
@@ -40,4 +40,10 @@ prefix func ⇅ <T>(sharedStruct: GPUSharedStruct) -> TypedGPUVariable<T> {
 infix operator ⋅ { associativity left precedence 200 }
 public func ⋅ (lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) -> GPUEvaluation<Float> {
     return GPUEvaluation<Float>(function: StandardGPUFunction(name: "dot", input: [lhs, rhs]))
+}
+
+// Matrix operations
+infix operator * { associativity left precedence 140 }
+public func * (lhs: TypedGPUVariable<GLKMatrix4>, rhs: TypedGPUVariable<GLKVector4>) -> GPUInfixEvaluation<GLKVector4> {
+    return GPUInfixEvaluation<GLKVector4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
