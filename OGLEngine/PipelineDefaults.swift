@@ -9,7 +9,30 @@
 import Foundation
 import GLKit
 
+public struct DefaultPipelines {
+    static func mediumShotPipeline() -> GPUPipeline {
+        let vertexShader = VertexShader(
+            attributes: [.Position, .Texel, .Normal],
+            uniforms: [.ModelViewProjectionMatrix],
+            varyings: [],
+            function: GPUFunctions.mediumShotVertex())
+        let fragmentShader = FragmentShader(
+            uniforms: [.ColorMap],
+            varyings: [],
+            function: GPUFunctions.mediumShotFragment())
+        return GPUPipeline(vertexShader: vertexShader, fragmentShader: fragmentShader)
+    }
+}
+
 public struct GPUFunctions {
+    
+    static func mediumShotVertex() -> TypedGPUFunction<Void> {
+        return TypedGPUFunction<Void>()
+    }
+    
+    static func mediumShotFragment() -> TypedGPUFunction<Void> {
+        return TypedGPUFunction<Void>()
+    }
     
     static func assignment<T>(assignee: TypedGPUVariable<T>, assignment: TypedGPUVariable<T>) -> TypedGPUFunction<Void> {
         return TypedGPUFunction<Void>()

@@ -7,6 +7,25 @@
 //
 
 import Foundation
+import GLKit
+
+public struct FragmentShader {
+    let uniforms: [Uniform]
+    let varyings: [AnyGPUVariable]
+    let function: TypedGPUFunction<Void>
+}
+
+public struct VertexShader {
+    let attributes: [Attribute]
+    let uniforms: [Uniform]
+    let varyings: [AnyGPUVariable]
+    let function: TypedGPUFunction<Void>
+}
+
+public struct GPUPipeline {
+    let vertexShader: VertexShader
+    let fragmentShader: FragmentShader
+}
 
 public struct GPUScope {
     
@@ -70,4 +89,29 @@ public class TypedGPUFunction<T>: AnyGPUFunction {
     init(input: [AnyGPUVariable], output: TypedGPUVariable<T>, scope: GPUScope) {
         super.init()
     }
+}
+
+// Instruction
+
+public protocol GPUInstruction {
+    
+}
+
+public struct GPUDeclaration: GPUInstruction {
+    let variable: AnyGPUVariable
+}
+
+public struct GPUAssignment<T>: GPUInstruction {
+    let assignee: TypedGPUVariable<T>
+    let assignment: TypedGPUVariable<T>
+}
+
+public struct GPUCallbackAssignment<T>: GPUInstruction {
+    let assignee: TypedGPUVariable<T>
+    let assignment: TypedGPUFunction<T>
+}
+
+public struct GPUDotProduct: GPUInstruction {
+    let lhs: TypedGPUVariable<GLKVector3>
+    let rhs: TypedGPUVariable<GLKVector3>
 }
