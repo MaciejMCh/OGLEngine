@@ -13,7 +13,7 @@ import GLKit
 
 // Append function
 infix operator ✍ {}
-public func ✍ (lhs: GPUScope, rhs: AnyGPUFunction) {
+public func ✍ (lhs: GPUScope, rhs: GPUInstruction) {
     
 }
 
@@ -21,12 +21,12 @@ public func ✍ (lhs: GPUScope, rhs: AnyGPUFunction) {
 
 // Assignment
 infix operator ⬅ { associativity left precedence 140 }
-public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUVariable<T>) -> TypedGPUFunction<Void> {
-    return TypedGPUFunction<Void>()
+public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUVariable<T>) -> GPUInstruction {
+    return GPUAssignment(assignee: lhs, assignment: rhs)
 }
 
-public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUFunction<T>) -> TypedGPUFunction<Void> {
-    return TypedGPUFunction<Void>()
+public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: GPUEvaluation<T>) -> GPUInstruction {
+    return GPUEvaluationAssignment(assignee: lhs, assignment: rhs)
 }
 
 prefix operator ⇅ {}
@@ -38,6 +38,6 @@ prefix func ⇅ <T>(sharedStruct: GPUSharedStruct) -> TypedGPUVariable<T> {
 
 // Dot product
 infix operator ⋅ { associativity left precedence 200 }
-public func ⋅ (lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) -> TypedGPUFunction<Float> {
-    return TypedGPUFunction<Float>()
+public func ⋅ (lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) -> GPUEvaluation<Float> {
+    return GPUEvaluation<Float>(function: StandardGPUFunction(name: "dot", input: [lhs, rhs]))
 }

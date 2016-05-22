@@ -91,6 +91,13 @@ public class TypedGPUFunction<T>: AnyGPUFunction {
     }
 }
 
+public class StandardGPUFunction<T>: TypedGPUFunction<T> {
+    init(name: String, input: [AnyGPUVariable]) {
+        super.init()
+        self.input = input
+    }
+}
+
 // Instruction
 
 public protocol GPUInstruction {
@@ -106,12 +113,25 @@ public struct GPUAssignment<T>: GPUInstruction {
     let assignment: TypedGPUVariable<T>
 }
 
-public struct GPUCallbackAssignment<T>: GPUInstruction {
-    let assignee: TypedGPUVariable<T>
-    let assignment: TypedGPUFunction<T>
+public class GPUEvaluation<ReturnType>: GPUInstruction {
+    private(set) var function: TypedGPUFunction<ReturnType>
+    
+    init(function: TypedGPUFunction<ReturnType>) {
+        self.function = function
+    }
 }
 
-public struct GPUDotProduct: GPUInstruction {
-    let lhs: TypedGPUVariable<GLKVector3>
-    let rhs: TypedGPUVariable<GLKVector3>
+public struct GPUEvaluationAssignment<T>: GPUInstruction {
+    let assignee: TypedGPUVariable<T>
+    let assignment: GPUEvaluation<T>
+}
+
+public class GPUDotProduct: GPUEvaluation<Float> {
+//    private(set) var lhs: TypedGPUVariable<GLKVector3>
+//    private(set) var rhs: TypedGPUVariable<GLKVector3>
+    
+//    init(lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) {
+//        self.lhs = lhs
+//        self.rhs = rhs
+//    }
 }
