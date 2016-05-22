@@ -7,104 +7,124 @@
 //
 
 import Foundation
+import GLKit
 
-//protocol GPUFunction {
-//    associatedtype InputType
-//    associatedtype OutputType
-//    
-//    func functionBody(input: InputType) -> OutputType
-//}
-
-public struct GPUFunction {
-    var input: [GPUVariable]
-    var output: GPUVariable
-    var scope : GPUScope
+public struct GPUFunctions {
     
-    static func assignment(assignee: GPUVariable, assignment: GPUVariable) -> GPUFunction {
-        return GPUFunction()
+    static func assignment<T>(assignee: TypedGPUVariable<T>, assignment: TypedGPUVariable<T>) -> TypedGPUFunction<Void> {
+        return TypedGPUFunction<Void>()
     }
     
-    static func assignment(assignee: GPUVariable, assignment: GPUFunction) -> GPUFunction {
-        return GPUFunction()
+    static func assignment<T>(assignee: TypedGPUVariable<T>, assignment: TypedGPUFunction<T>) -> TypedGPUFunction<Void> {
+        return TypedGPUFunction<Void>()
     }
     
     
-    static func dotProduct(lhs: GPUVariable, rhs: GPUVariable) -> GPUFunction {
-        return GPUFunction()
+    static func dotProduct(lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) -> TypedGPUFunction<Float> {
+        return TypedGPUFunction<Float>()
     }
     
-    static func phongFactors() -> GPUFunction {
-        let output = GPUVariable.color()
-        let input = [GPUVariable(), GPUVariable(), GPUVariable()]
+    static func phongFactors() -> TypedGPUFunction<GLKVector2> {
+        let output = TypedGPUVariable<GLKVector2>()
+        let input = [TypedGPUVariable<GLKVector3>(), TypedGPUVariable<GLKVector3>(), TypedGPUVariable<GLKVector3>()]
         
         let lightVector = input[0]
         let halfVector = input[1]
         let normalVector = input[2]
         
         let scope = GPUScope()
-        let ndl = GPUVariable()
-        let ndh = GPUVariable()
+        let ndl = TypedGPUVariable<Float>()
+        let ndh = TypedGPUVariable<Float>()
         
-        scope | (ndl |= (normalVector || lightVector))
-        scope | (ndh |= (normalVector || halfVector))
-        scope | (output |= GPUVariable.color())
+        scope | ndl ⬅ normalVector ⋅ lightVector
+        scope | ndh ⬅ normalVector ⋅ halfVector
+        scope | output ⬅ TypedGPUVariable<GLKVector2>()
         
-        return GPUFunction(input: input, output: output, scope: scope)
+        return TypedGPUFunction<GLKVector2>(input: input, output: output, scope: scope)
+    }
+}
+
+public protocol GPUVariable {
+    associatedtype UnderlyingType
+}
+
+public class AnyGPUVariable: GPUVariable {
+    public typealias UnderlyingType = Any
+}
+
+public class TypedGPUVariable<T>: AnyGPUVariable {
+    public typealias UnderlyingType = T
+}
+
+
+
+public protocol GPUFunction {
+    associatedtype ReturnType
+}
+
+public class AnyGPUFunction: GPUFunction {
+    public typealias ReturnType = Any
+    
+    var input: [AnyGPUVariable]
+    var output: TypedGPUVariable<ReturnType>
+    var scope : GPUScope
+    
+    public init() {
+        self.output = TypedGPUVariable<ReturnType>()
+        self.input = []
+        self.scope = GPUScope()
     }
     
-    init(input: [GPUVariable] = [], output: GPUVariable = GPUVariable(), scope: GPUScope = GPUScope()) {
+    public init(input: [AnyGPUVariable], output: TypedGPUVariable<ReturnType>, scope: GPUScope) {
         self.input = input
         self.output = output
         self.scope = scope
     }
 }
 
-public struct GPUVariable {
-    func declare() -> GPUFunction {
-        return GPUFunction()
+public class TypedGPUFunction<T>: AnyGPUFunction {
+    public typealias ReturnType = T
+    
+    override init() {
+        super.init()
     }
     
-    static func color() -> GPUVariable {
-        return GPUVariable()
-    }
-    
-    static func vec3() -> GPUVariable {
-        return GPUVariable()
+    init(input: [AnyGPUVariable], output: TypedGPUVariable<T>, scope: GPUScope) {
+        super.init()
     }
 }
 
-postfix operator || {}
-public func || (lhs: GPUVariable, rhs: GPUVariable) -> GPUFunction {
-    return GPUFunction.dotProduct(lhs, rhs: rhs)
+// Dot product
+infix operator ⋅ { associativity left precedence 200 }
+public func ⋅ (lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) -> TypedGPUFunction<Float> {
+    return TypedGPUFunction<Float>()
 }
 
+// Assignment
 postfix operator |= {}
-public func |= (lhs: GPUVariable, rhs: GPUVariable) -> GPUFunction {
-    return GPUFunction.assignment(lhs, assignment: rhs)
+public func |= <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUVariable<T>) -> TypedGPUFunction<Void> {
+    return TypedGPUFunction<Void>()
 }
 
-public func |= (lhs: GPUVariable, rhs: GPUFunction) -> GPUFunction {
-    return GPUFunction.assignment(lhs, assignment: rhs)
+public func |= <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUFunction<T>) -> TypedGPUFunction<Void> {
+    return TypedGPUFunction<Void>()
 }
+
+infix operator ⬅ { associativity left precedence 140 }
+public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUVariable<T>) -> TypedGPUFunction<Void> {
+    return TypedGPUFunction<Void>()
+}
+
+public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUFunction<T>) -> TypedGPUFunction<Void> {
+    return TypedGPUFunction<Void>()
+}
+
 
 public struct GPUScope {
     
 }
 
-postfix operator | {}
-public func | (lhs: GPUScope, rhs: GPUFunction) {
+infix operator | {}
+public func | (lhs: GPUScope, rhs: AnyGPUFunction) {
     
-}
-
-func diffuseColor() {
-    let scope = GPUScope()
-}
-
-func play() {
-    let scope = GPUScope()
-    let viewVector = GPUVariable()
-    let normalVector = GPUVariable()
-    
-    scope | viewVector.declare()
-    scope | normalVector.declare()
 }
