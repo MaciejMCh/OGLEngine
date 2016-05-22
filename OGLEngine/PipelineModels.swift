@@ -9,6 +9,17 @@
 import Foundation
 import GLKit
 
+public enum VariablePrecision {
+    case Low
+    case High
+}
+
+public struct GPUVarying {
+    let variable: AnyGPUVariable
+    let type: GPUType
+    let precision: VariablePrecision
+}
+
 public struct FragmentShader {
     let uniforms: [Uniform]
     let varyings: [AnyGPUVariable]
@@ -16,9 +27,10 @@ public struct FragmentShader {
 }
 
 public struct VertexShader {
+    let name: String
     let attributes: [Attribute]
     let uniforms: [Uniform]
-    let varyings: [AnyGPUVariable]
+    let varyings: [GPUVarying]
     let function: TypedGPUFunction<Void>
 }
 
@@ -38,20 +50,23 @@ public protocol GPUVariable {
 
 public class AnyGPUVariable: GPUVariable {
     public typealias UnderlyingType = Any
+    private(set) var name: String?
+    
+    init(name: String? = nil) {
+        self.name = name
+    }
 }
 
 public class TypedGPUVariable<T>: AnyGPUVariable {
     public typealias UnderlyingType = T
     
-    private(set) var value: T!
+    private(set) var value: T?
     
-    init(value: T) {
+    init(value: T? = nil, name: String? = nil) {
+        super.init(name: name)
         self.value = value
     }
     
-    override init() {
-        
-    }
 }
 
 // MARK: Function
@@ -62,17 +77,20 @@ public protocol GPUFunction {
 public class AnyGPUFunction: GPUFunction {
     public typealias ReturnType = Any
     
+    var signature: String
     var input: [AnyGPUVariable]
     var output: TypedGPUVariable<ReturnType>
     var scope : GPUScope
     
     public init() {
-        self.output = TypedGPUVariable<ReturnType>()
+        self.signature = "error"
+        self.output = TypedGPUVariable<ReturnType>(value: nil, name: "")
         self.input = []
         self.scope = GPUScope()
     }
     
-    public init(input: [AnyGPUVariable], output: TypedGPUVariable<ReturnType>, scope: GPUScope) {
+    public init(signature: String, input: [AnyGPUVariable], output: TypedGPUVariable<ReturnType>, scope: GPUScope) {
+        self.signature = signature
         self.input = input
         self.output = output
         self.scope = scope
@@ -80,11 +98,28 @@ public class AnyGPUFunction: GPUFunction {
 }
 
 public class TypedGPUFunction<T>: AnyGPUFunction {
-    public typealias ReturnType = T
+    typealias ReturnType = T
+    
+//    override var output: TypedGPUVariable<T>
     
     override init() {
         super.init()
     }
+    
+    init(signature: String, input: [AnyGPUVariable]) {
+        super.init()
+        self.signature = signature
+        self.output = TypedGPUVariable<T>()
+    }
+    
+//    public init<T>(signature: String, input: [AnyGPUVariable], output: TypedGPUVariable<T>, scope: GPUScope) {
+//        super.init()
+//        self.signature = signature
+//        self.input = input
+//        // TODO: T is not ReturnType
+//        self.output = output
+//        self.scope = scope
+//    }
     
     init(input: [AnyGPUVariable], output: TypedGPUVariable<T>, scope: GPUScope) {
         super.init()
@@ -124,14 +159,4 @@ public class GPUEvaluation<ReturnType>: GPUInstruction {
 public struct GPUEvaluationAssignment<T>: GPUInstruction {
     let assignee: TypedGPUVariable<T>
     let assignment: GPUEvaluation<T>
-}
-
-public class GPUDotProduct: GPUEvaluation<Float> {
-//    private(set) var lhs: TypedGPUVariable<GLKVector3>
-//    private(set) var rhs: TypedGPUVariable<GLKVector3>
-    
-//    init(lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) {
-//        self.lhs = lhs
-//        self.rhs = rhs
-//    }
 }

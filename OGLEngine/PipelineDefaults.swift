@@ -11,10 +11,12 @@ import GLKit
 
 public struct DefaultPipelines {
     static func mediumShotPipeline() -> GPUPipeline {
+        let varyings = [GPUVarying(variable: TypedGPUVariable<GLKVector2>(name: "vTexel"), type: .Vec2, precision: .Low)]
         let vertexShader = VertexShader(
+            name: "Medium Shot",
             attributes: [.Position, .Texel, .Normal],
             uniforms: [.ModelViewProjectionMatrix],
-            varyings: [],
+            varyings: varyings,
             function: GPUFunctions.mediumShotVertex())
         let fragmentShader = FragmentShader(
             uniforms: [.ColorMap],
@@ -27,7 +29,8 @@ public struct DefaultPipelines {
 public struct GPUFunctions {
     
     static func mediumShotVertex() -> TypedGPUFunction<Void> {
-        return TypedGPUFunction<Void>()
+        let scope = GPUScope()
+        return TypedGPUFunction<Void>(signature: "main", input: [], output: TypedGPUVariable<Void>(), scope: scope)
     }
     
     static func mediumShotFragment() -> TypedGPUFunction<Void> {
@@ -43,8 +46,8 @@ public struct GPUFunctions {
         let normalVector = input[2]
         
         let scope = GPUScope()
-        let ndl = TypedGPUVariable<Float>()
-        let ndh = TypedGPUVariable<Float>()
+        let ndl = TypedGPUVariable<Float>(name: "ndl")
+        let ndh = TypedGPUVariable<Float>(name: "ndh")
         
         scope ✍ ndl ⬅ normalVector ⋅ lightVector
         scope ✍ ndh ⬅ normalVector ⋅ halfVector

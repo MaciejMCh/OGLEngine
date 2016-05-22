@@ -9,7 +9,6 @@
 import Foundation
 import GLKit
 
-
 struct GPUInterface {
     let attributes: [Attribute]
     let uniforms: [Uniform]
