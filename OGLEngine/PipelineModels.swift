@@ -23,6 +23,16 @@ public class AnyGPUVariable: GPUVariable {
 
 public class TypedGPUVariable<T>: AnyGPUVariable {
     public typealias UnderlyingType = T
+    
+    private(set) var value: T!
+    
+    init(value: T) {
+        self.value = value
+    }
+    
+    override init() {
+        
+    }
 }
 
 // MARK: Function

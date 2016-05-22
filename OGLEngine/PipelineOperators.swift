@@ -29,6 +29,11 @@ public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: TypedGPUFunction<T>) -> Typed
     return TypedGPUFunction<Void>()
 }
 
+prefix operator ⇅ {}
+prefix func ⇅ <T>(sharedStruct: GPUSharedStruct) -> TypedGPUVariable<T> {
+    return sharedStruct.GPUVariable()
+}
+
 // MARK: Function
 
 // Dot product

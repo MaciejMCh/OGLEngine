@@ -19,13 +19,12 @@ public struct GPUFunctions {
         return TypedGPUFunction<Void>()
     }
     
-    
     static func dotProduct(lhs: TypedGPUVariable<GLKVector3>, rhs: TypedGPUVariable<GLKVector3>) -> TypedGPUFunction<Float> {
         return TypedGPUFunction<Float>()
     }
     
-    static func phongFactors() -> TypedGPUFunction<GLKVector2> {
-        let output = TypedGPUVariable<GLKVector2>()
+    static func phongFactors() -> TypedGPUFunction<PhongFactors> {
+        let output = TypedGPUVariable<PhongFactors>()
         let input = [TypedGPUVariable<GLKVector3>(), TypedGPUVariable<GLKVector3>(), TypedGPUVariable<GLKVector3>()]
         
         let lightVector = input[0]
@@ -38,8 +37,7 @@ public struct GPUFunctions {
         
         scope ✍ ndl ⬅ normalVector ⋅ lightVector
         scope ✍ ndh ⬅ normalVector ⋅ halfVector
-        scope ✍ output ⬅ TypedGPUVariable<GLKVector2>()
-        
-        return TypedGPUFunction<GLKVector2>(input: input, output: output, scope: scope)
+        scope ✍ output ⬅ ⇅PhongFactors(ndl: ndl, ndh: ndh)
+        return TypedGPUFunction<PhongFactors>(input: input, output: output, scope: scope)
     }
 }
