@@ -43,7 +43,11 @@ struct GLSLParser {
     }
     
     static func scope(scope: GPUScope) -> String {
-        return ""
+        var instructionLines: [String] = []
+        for instruction in scope.instructions {
+            instructionLines.append(instruction.glslRepresentation() + ";")
+        }
+        return stringFromLines(instructionLines)
     }
     
     static func functionDeclaration(function: AnyGPUFunction) -> String {

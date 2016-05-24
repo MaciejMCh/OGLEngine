@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60140969A5CC91BB3B442B81 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */; };
+		C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20687E91CF4AEEB008E8793 /* GPUTypes.swift */; };
 		C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */; };
 		C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */; };
 		C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */; };
@@ -54,6 +55,7 @@
 		C2B188F71CF1D3E3008BB626 /* PipelineDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */; };
 		C2B188F91CF1D994008BB626 /* PipelineSharedStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F81CF1D994008BB626 /* PipelineSharedStructs.swift */; };
 		C2B188FD1CF20844008BB626 /* GLSLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188FC1CF20844008BB626 /* GLSLParser.swift */; };
+		C2B188FF1CF2799E008BB626 /* PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */; };
 		C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */; };
 		C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */; };
 		C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */; };
@@ -78,6 +80,7 @@
 		5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OGLEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F43FA214889814B7067DBE2 /* Pods-OGLEngine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.release.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.release.xcconfig"; sourceTree = "<group>"; };
 		9205D7DBFBB1CE1C1FCD90A2 /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
+		C20687E91CF4AEEB008E8793 /* GPUTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUTypes.swift; sourceTree = "<group>"; };
 		C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLKitCantMultiplyMatrices.swift; sourceTree = "<group>"; };
 		C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainDefaults.swift; sourceTree = "<group>"; };
 		C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainModels.swift; sourceTree = "<group>"; };
@@ -128,6 +131,7 @@
 		C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineDefaults.swift; sourceTree = "<group>"; };
 		C2B188F81CF1D994008BB626 /* PipelineSharedStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineSharedStructs.swift; sourceTree = "<group>"; };
 		C2B188FC1CF20844008BB626 /* GLSLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLParser.swift; sourceTree = "<group>"; };
+		C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineProgram.swift; sourceTree = "<group>"; };
 		C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteProperties.swift; sourceTree = "<group>"; };
 		C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.vsh; path = Shaders/Reflected.vsh; sourceTree = "<group>"; };
 		C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.fsh; path = Shaders/Reflected.fsh; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 				C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */,
 				C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */,
 				C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */,
+				C20687E91CF4AEEB008E8793 /* GPUTypes.swift */,
 			);
 			name = GPUDomain;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 			children = (
 				C29219951CA9D76B00B78343 /* Program.swift */,
 				C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */,
+				C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -698,7 +704,9 @@
 				C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
 				C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */,
+				C2B188FF1CF2799E008BB626 /* PipelineProgram.swift in Sources */,
 				C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */,
+				C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */,
 				C269D5CB1CA898DD00E56E67 /* BasicCamera.swift in Sources */,
 				C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */,
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,

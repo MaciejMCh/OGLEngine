@@ -134,16 +134,35 @@ public class StandardGPUFunction<T>: TypedGPUFunction<T> {
 // Instruction
 
 public protocol GPUInstruction {
-    
+    func glslRepresentation() -> String
 }
 
 public struct GPUDeclaration: GPUInstruction {
     let variable: AnyGPUVariable
+    let precision: VariablePrecision?
+    
+    init(variable: AnyGPUVariable, precision: VariablePrecision? = nil) {
+        self.variable = variable
+        self.precision = precision
+    }
+    
+    public func glslRepresentation() -> String {
+        let typeAndName = GLSLParser.variableType(self.variable) + " " + self.variable.name!
+        if let precision = self.precision {
+            return GLSLParser.precision(precision) + " " + typeAndName
+        } else {
+            return typeAndName;
+        }
+    }
 }
 
 public struct GPUAssignment<T>: GPUInstruction {
     let assignee: TypedGPUVariable<T>
     let assignment: TypedGPUVariable<T>
+    
+    public func glslRepresentation() -> String {
+        return assignee.name! + " = " + assignment.name!
+    }
 }
 
 public class GPUEvaluation<ReturnType>: GPUInstruction {
@@ -151,6 +170,10 @@ public class GPUEvaluation<ReturnType>: GPUInstruction {
     
     init(function: TypedGPUFunction<ReturnType>) {
         self.function = function
+    }
+    
+    public func glslRepresentation() -> String {
+        return "temporary()"
     }
 }
 
@@ -165,9 +188,17 @@ public class GPUInfixEvaluation<ReturnType>: GPUEvaluation<ReturnType> {
         self.rhs = rhs
         super.init(function: TypedGPUFunction<ReturnType>())
     }
+    
+    public override func glslRepresentation() -> String {
+        return self.lhs.name! + " " + self.operatorSymbol + " " + self.rhs.name!
+    }
 }
 
 public struct GPUEvaluationAssignment<T>: GPUInstruction {
     let assignee: TypedGPUVariable<T>
     let assignment: GPUEvaluation<T>
+    
+    public func glslRepresentation() -> String {
+        return self.assignee.name! + " = " + self.assignment.glslRepresentation()
+    }
 }
