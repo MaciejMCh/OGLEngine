@@ -29,6 +29,10 @@ extension GPUProgram {
         self.programDidCompile()
     }
     
+    func programDidCompile() {
+        
+    }
+    
     func validate() {
         for instance in self.implementation.instances {
             assert(instance.location != -1, instance.uniform.gpuDomainName() + " binding failed")

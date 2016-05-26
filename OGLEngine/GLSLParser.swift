@@ -35,7 +35,7 @@ struct GLSLParser {
             "// Uniforms",
             GLSLParser.uniformsDeclaration(vertexShader.uniforms),
             "// Varyings",
-            GLSLParser.varyingsDeclaration(vertexShader.varyings),
+            GLSLParser.varyingsDeclaration(vertexShader.interpolation.varyings()),
             GLSLParser.functionDeclaration(vertexShader.function),
             GLSLParser.scope(vertexShader.function.scope),
             "}"
@@ -52,7 +52,7 @@ struct GLSLParser {
             "// Uniforms",
             GLSLParser.uniformsDeclaration(fragmentShader.uniforms),
             "// Varyings",
-            GLSLParser.varyingsDeclaration(fragmentShader.varyings),
+            GLSLParser.varyingsDeclaration(fragmentShader.interpolation.varyings()),
             GLSLParser.functionDeclaration(fragmentShader.function),
             GLSLParser.scope(fragmentShader.function.scope),
             "}"
@@ -128,7 +128,7 @@ struct GLSLParser {
         var string = ""
         
         for varying in varyings {
-            string = string + "varying " + GLSLParser.precision(varying.precision) + " " + GLSLParser.gpuType(varying.type) + " " + varying.variable.name! + ";\n"
+            string = string + "varying " + GLSLParser.precision(varying.precision) + " " + GLSLParser.variableType(varying.variable) + " " + varying.variable.name! + ";\n"
         }
         
         return string

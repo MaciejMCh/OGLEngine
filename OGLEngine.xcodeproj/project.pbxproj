@@ -53,7 +53,6 @@
 		C2B188F31CF1CC8B008BB626 /* PipelineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */; };
 		C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F41CF1CCD6008BB626 /* PipelineOperators.swift */; };
 		C2B188F71CF1D3E3008BB626 /* PipelineDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */; };
-		C2B188F91CF1D994008BB626 /* PipelineSharedStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F81CF1D994008BB626 /* PipelineSharedStructs.swift */; };
 		C2B188FD1CF20844008BB626 /* GLSLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188FC1CF20844008BB626 /* GLSLParser.swift */; };
 		C2B188FF1CF2799E008BB626 /* PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */; };
 		C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */; };
@@ -130,7 +129,6 @@
 		C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineModels.swift; sourceTree = "<group>"; };
 		C2B188F41CF1CCD6008BB626 /* PipelineOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineOperators.swift; sourceTree = "<group>"; };
 		C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineDefaults.swift; sourceTree = "<group>"; };
-		C2B188F81CF1D994008BB626 /* PipelineSharedStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineSharedStructs.swift; sourceTree = "<group>"; };
 		C2B188FC1CF20844008BB626 /* GLSLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLParser.swift; sourceTree = "<group>"; };
 		C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineProgram.swift; sourceTree = "<group>"; };
 		C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteProperties.swift; sourceTree = "<group>"; };
@@ -448,7 +446,6 @@
 				C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */,
 				C2B188F41CF1CCD6008BB626 /* PipelineOperators.swift */,
 				C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */,
-				C2B188F81CF1D994008BB626 /* PipelineSharedStructs.swift */,
 				C2B188FC1CF20844008BB626 /* GLSLParser.swift */,
 			);
 			name = Pipeline;
@@ -696,7 +693,6 @@
 				C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,
-				C2B188F91CF1D994008BB626 /* PipelineSharedStructs.swift in Sources */,
 				C29755771CEA21E3001D8E6D /* Renderer.swift in Sources */,
 				C2B188F71CF1D3E3008BB626 /* PipelineDefaults.swift in Sources */,
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,

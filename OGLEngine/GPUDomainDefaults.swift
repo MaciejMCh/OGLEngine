@@ -32,7 +32,11 @@ enum GPUType {
     }
 }
 
-enum Attribute {
+protocol GLSLEnum {
+    func gpuDomainName() -> String
+}
+
+enum Attribute: GLSLEnum {
     case Position
     case Texel
     case Normal
@@ -89,7 +93,7 @@ enum Attribute {
     }
 }
 
-enum Uniform {
+enum Uniform: GLSLEnum {
     case ModelMatrix
     case ViewMatrix
     case ProjectionMatrix

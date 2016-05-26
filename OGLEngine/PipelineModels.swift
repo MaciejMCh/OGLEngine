@@ -9,6 +9,10 @@
 import Foundation
 import GLKit
 
+public protocol Interpolation {
+    func varyings() -> [GPUVarying]
+}
+
 public enum VariablePrecision {
     case Low
     case High
@@ -23,19 +27,19 @@ public enum VariableAccessKind {
 
 public struct GPUVarying {
     let variable: AnyGPUVariable
-    let type: GPUType
     let precision: VariablePrecision
 }
 
 public protocol Shader {
     var name: String {get}
+    var interpolation: Interpolation {get}
     var function: TypedGPUFunction<Void> {get}
 }
 
 public struct FragmentShader: Shader {
     public let name: String
     let uniforms: [Uniform]
-    let varyings: [GPUVarying]
+    public let interpolation: Interpolation
     public let function: TypedGPUFunction<Void>
 }
 
@@ -43,7 +47,7 @@ public struct VertexShader: Shader {
     public let name: String
     let attributes: [Attribute]
     let uniforms: [Uniform]
-    let varyings: [GPUVarying]
+    public let interpolation: Interpolation
     public let function: TypedGPUFunction<Void>
 }
 
@@ -142,6 +146,12 @@ public class TypedGPUFunction<T>: AnyGPUFunction {
     
     public func GGoutputVariable() -> TypedGPUVariable<T> {
         return TypedGPUVariable<T>()
+    }
+}
+
+public class ShaderFunction: TypedGPUFunction<Void> {
+    init(scope: GPUScope) {
+        super.init(signature: "main", input: [], scope: scope)
     }
 }
 

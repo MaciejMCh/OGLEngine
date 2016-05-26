@@ -56,11 +56,6 @@ public func ⬅ <T>(lhs: TypedGPUVariable<T>, rhs: GPUEvaluation<T>) -> GPUInstr
     return GPUEvaluationAssignment(assignee: lhs, assignment: rhs)
 }
 
-prefix operator ⇅ {}
-prefix func ⇅ <T>(sharedStruct: GPUSharedStruct) -> TypedGPUVariable<T> {
-    return sharedStruct.GPUVariable()
-}
-
 // MARK: Function
 
 // Dot product
@@ -109,4 +104,11 @@ public func ✖ (lhs: TypedGPUVariable<GLSLColor>, rhs: TypedGPUVariable<GLSLCol
 infix operator ^ { associativity left precedence 200 }
 public func ^ (lhs: TypedGPUVariable<GLSLFloat>, rhs: TypedGPUVariable<GLSLFloat>) -> GPUEvaluation<GLSLFloat> {
     return GPUEvaluation<GLSLFloat>(function: StandardGPUFunction(name: "pow", input: [lhs, rhs]))
+}
+
+// Texture operations
+
+infix operator ☒ { associativity left precedence 200 }
+public func ☒ (lhs: TypedGPUVariable<GLSLTexture>, rhs: TypedGPUVariable<GLSLVec2>) -> GPUEvaluation<GLSLColor> {
+    return GPUEvaluation<GLSLColor>(function: StandardGPUFunction(name: "texture2D", input: [lhs, rhs]))
 }
