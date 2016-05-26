@@ -64,6 +64,7 @@
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
 		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
+		C2FDAF551CF7551800ED63DC /* GLSLCodeSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
+		C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLCodeSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +437,7 @@
 				C29219951CA9D76B00B78343 /* Program.swift */,
 				C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */,
 				C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */,
+				C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
 				C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
+				C2FDAF551CF7551800ED63DC /* GLSLCodeSource.swift in Sources */,
 				C29219961CA9D76B00B78343 /* Program.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
 				C22824C11CCD9659006EBCE3 /* MediumShotProgram.swift in Sources */,

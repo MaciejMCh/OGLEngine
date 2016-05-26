@@ -16,7 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        NSLog(GLSLParser.vertexShader(DefaultPipelines.mediumShotPipeline().vertexShader))
+//        NSLog(GLSLParser.vertexShader(DefaultPipelines.mediumShotPipeline().vertexShader))
+        
+//        NSLog(GLSLParser.scope(DefaultScopes.MediumShotVertexScope(
+//            TypedGPUVariable<GLSLVec4>(name: "gl_Position"),
+//            aPosition: TypedGPUVariable<GLSLVec4>(name: "aPosition"),
+//            aTexel: TypedGPUVariable<GLSLVec2>(name: "aTexel"),
+//            aNormal: TypedGPUVariable<GLSLVec3>(name: "aNormal"),
+//            vTexel: TypedGPUVariable<GLSLVec2>(name: "vTexel"),
+//            vLighDirection: TypedGPUVariable<GLSLVec3>(name: "vLighDirection"),
+//            vLighHalfVector: TypedGPUVariable<GLSLVec3>(name: "vLighHalfVector"),
+//            vNormal: TypedGPUVariable<GLSLVec3>(name: "vNormal"),
+//            uLighDirection: TypedGPUVariable<GLSLVec3>(name: "uLighDirection"),
+//            uLighHalfVector: TypedGPUVariable<GLSLVec3>(name: "uLighHalfVector"),
+//            uNormalMatrix: TypedGPUVariable<GLSLMat3>(name: "uNormalMatrix"),
+//            uModelViewProjectionMatrix: TypedGPUVariable<GLSLMat4>(name: "uModelViewProjectionMatrix"))))
+        
+//        NSLog("\n" + GLSLParser.scope(DefaultScopes.PhongReflectionColorScope()))
+        
+//        NSLog("\n" + GLSLParser.scope(DefaultScopes.AttributesDeclaration.ViewSpaceCalculation().scope))
+        
+//        NSLog("\n" + GLSLParser.scope(DefaultScopes.VertexShaders.MediumShot()))
+        
         return true
     }
 

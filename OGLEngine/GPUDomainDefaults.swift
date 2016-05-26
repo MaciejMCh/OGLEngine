@@ -18,6 +18,18 @@ enum GPUType {
     case Mat4
     case Texture
     case Plane
+    
+    func variableNamed(name: String) -> AnyGPUVariable {
+        switch self {
+        case .Float: return TypedGPUVariable<GLSLFloat>(name: name)
+        case .Vec2: return TypedGPUVariable<GLSLVec2>(name: name)
+        case .Vec3: return TypedGPUVariable<GLSLVec3>(name: name)
+        case .Mat3: return TypedGPUVariable<GLSLMat3>(name: name)
+        case .Mat4: return TypedGPUVariable<GLSLMat4>(name: name)
+        case .Texture: return TypedGPUVariable<GLSLTexture>(name: name)
+        case .Plane: return TypedGPUVariable<GLSLPlane>(name: name)
+        }
+    }
 }
 
 enum Attribute {
@@ -71,6 +83,10 @@ enum Attribute {
     func gpuDomainName() -> String {
         return gpuDomainNameWithPrefix(self.name(), prefix: "a")
     }
+    
+    func variable() -> AnyGPUVariable {
+        return self.gpuType().variableNamed(self.gpuDomainName())
+    }
 }
 
 enum Uniform {
@@ -121,6 +137,10 @@ enum Uniform {
     
     func gpuDomainName() -> String {
         return gpuDomainNameWithPrefix(self.name(), prefix: "u")
+    }
+    
+    func variable() -> AnyGPUVariable {
+        return self.gpuType().variableNamed(self.gpuDomainName())
     }
     
 }

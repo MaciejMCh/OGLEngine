@@ -11,7 +11,7 @@ import GLKit
 
 class MediumShotProgram: GPUProgram {
     typealias RenderableType = MediumShotRenderable
-    var shaderName: String = "MediumShot"
+    var shaderSource: GLSLShaderCodeSource = GLSLFileShaderCodeSource(shaderFileName: "MediumShot")
     var interface: GPUInterface = DefaultInterfaces.mediumShotInterface()
     var implementation: GPUImplementation = GPUImplementation(instances: [])
     var glName: GLuint = 0

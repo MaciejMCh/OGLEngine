@@ -14,24 +14,37 @@ public enum VariablePrecision {
     case High
 }
 
+public enum VariableAccessKind {
+    case Attribute
+    case Uniform
+    case Varying
+    case Local
+}
+
 public struct GPUVarying {
     let variable: AnyGPUVariable
     let type: GPUType
     let precision: VariablePrecision
 }
 
-public struct FragmentShader {
-    let uniforms: [Uniform]
-    let varyings: [AnyGPUVariable]
-    let function: TypedGPUFunction<Void>
+public protocol Shader {
+    var name: String {get}
+    var function: TypedGPUFunction<Void> {get}
 }
 
-public struct VertexShader {
-    let name: String
+public struct FragmentShader: Shader {
+    public let name: String
+    let uniforms: [Uniform]
+    let varyings: [GPUVarying]
+    public let function: TypedGPUFunction<Void>
+}
+
+public struct VertexShader: Shader {
+    public let name: String
     let attributes: [Attribute]
     let uniforms: [Uniform]
     let varyings: [GPUVarying]
-    let function: TypedGPUFunction<Void>
+    public let function: TypedGPUFunction<Void>
 }
 
 public struct GPUPipeline {
@@ -41,8 +54,16 @@ public struct GPUPipeline {
 
 public class GPUScope {
     var instructions: [GPUInstruction] = []
+    
     func appendInstruction(instruction: GPUInstruction) {
         self.instructions.append(instruction)
+    }
+    
+    func mergeScope(scope: GPUScope) {
+        var mergedInstructions: [GPUInstruction] = []
+        mergedInstructions.appendContentsOf(self.instructions)
+        mergedInstructions.appendContentsOf(scope.instructions)
+        self.instructions = mergedInstructions
     }
 }
 
@@ -127,6 +148,7 @@ public class TypedGPUFunction<T>: AnyGPUFunction {
 public class StandardGPUFunction<T>: TypedGPUFunction<T> {
     init(name: String, input: [AnyGPUVariable]) {
         super.init()
+        self.signature = name
         self.input = input
     }
 }
@@ -140,18 +162,27 @@ public protocol GPUInstruction {
 public struct GPUDeclaration: GPUInstruction {
     let variable: AnyGPUVariable
     let precision: VariablePrecision?
+    let accessKind: VariableAccessKind
     
-    init(variable: AnyGPUVariable, precision: VariablePrecision? = nil) {
+    init(variable: AnyGPUVariable, precision: VariablePrecision? = nil, accessKind: VariableAccessKind = .Local) {
         self.variable = variable
         self.precision = precision
+        self.accessKind = accessKind
     }
     
     public func glslRepresentation() -> String {
-        let typeAndName = GLSLParser.variableType(self.variable) + " " + self.variable.name!
+        var access = ""
+        switch self.accessKind {
+        case .Attribute: access = "attribute "
+        case .Uniform: access = "uniform "
+        case .Varying: access = "varying "
+        case .Local: access = ""
+        }
+        let accessAndTypeAndName = access + GLSLParser.variableType(self.variable) + " " + self.variable.name!
         if let precision = self.precision {
-            return GLSLParser.precision(precision) + " " + typeAndName
+            return GLSLParser.precision(precision) + " " + accessAndTypeAndName
         } else {
-            return typeAndName;
+            return accessAndTypeAndName;
         }
     }
 }
@@ -172,8 +203,19 @@ public class GPUEvaluation<ReturnType>: GPUInstruction {
         self.function = function
     }
     
+    func variable() -> TypedGPUVariable<ReturnType> {
+        return TypedGPUVariable<ReturnType>(name: "")
+    }
+    
     public func glslRepresentation() -> String {
-        return "temporary()"
+        var inputString = ""
+        for argument in self.function.input {
+            inputString = inputString + argument.name! + ", "
+        }
+        if inputString.characters.count >= 2 {
+            inputString = inputString.substringToIndex(inputString.endIndex.advancedBy(-2))
+        }
+        return self.function.signature + "(" + inputString + ")"
     }
 }
 

@@ -11,7 +11,7 @@ import GLKit
 
 class ReflectiveSurfaceProgram: GPUProgram {
     typealias RenderableType = ReflectiveSurfaceRenderable
-    var shaderName: String = "ReflectiveSurface"
+    var shaderSource: GLSLShaderCodeSource = GLSLFileShaderCodeSource(shaderFileName: "ReflectiveSurface")
     var interface: GPUInterface = DefaultInterfaces.reflectiveInterface()
     var implementation: GPUImplementation = GPUImplementation(instances: [])
     var glName: GLuint = 0

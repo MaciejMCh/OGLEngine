@@ -13,8 +13,8 @@ protocol GPUSharedStruct {
 }
 
 struct PhongFactors: GPUSharedStruct {
-    let ndl: TypedGPUVariable<Float>
-    let ndh: TypedGPUVariable<Float>
+    let ndl: TypedGPUVariable<GLSLFloat>
+    let ndh: TypedGPUVariable<GLSLFloat>
 }
 
 extension GPUSharedStruct {

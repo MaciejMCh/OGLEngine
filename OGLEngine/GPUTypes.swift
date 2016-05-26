@@ -12,26 +12,46 @@ protocol GLSLType {
     
 }
 
-struct GLSLVec3: GLSLType {
+public struct GLSLColor: GLSLType {
     
 }
 
-struct GLSLVec2: GLSLType {
+public struct GLSLVoid: GLSLType {
     
 }
 
-struct GLSLMat3: GLSLType {
+public struct GLSLVec4: GLSLType {
     
 }
 
-struct GLSLMat4: GLSLType {
+public struct GLSLVec3: GLSLType {
     
 }
 
-struct GLSLInt: GLSLType {
+public struct GLSLVec2: GLSLType {
     
 }
 
-struct GLSLTexture: GLSLType {
+public struct GLSLMat3: GLSLType {
+    
+}
+
+public struct GLSLMat4: GLSLType {
+    
+}
+
+public struct GLSLInt: GLSLType {
+    
+}
+
+public struct GLSLTexture: GLSLType {
+    
+}
+
+public struct GLSLFloat: GLSLType {
+    
+}
+
+public struct GLSLPlane: GLSLType {
     
 }

@@ -12,7 +12,7 @@ import GLKit
 class CloseShotProgram: GPUProgram {
     
     typealias RenderableType = CloseShotRenderable
-    var shaderName: String = "CloseShot"
+    var shaderSource: GLSLShaderCodeSource = GLSLFileShaderCodeSource(shaderFileName: "CloseShot")
     var interface: GPUInterface = DefaultInterfaces.detailInterface()
     var implementation: GPUImplementation = GPUImplementation(instances: [])
     var glName: GLuint = 0

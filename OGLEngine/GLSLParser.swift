@@ -42,6 +42,23 @@ struct GLSLParser {
             ])
     }
     
+    static func fragmentShader(fragmentShader: FragmentShader) -> String {
+        return stringFromLines([
+            "",
+            "// Auto generated code",
+            "// Fragment shader",
+            "// " + fragmentShader.name,
+            "",
+            "// Uniforms",
+            GLSLParser.uniformsDeclaration(fragmentShader.uniforms),
+            "// Varyings",
+            GLSLParser.varyingsDeclaration(fragmentShader.varyings),
+            GLSLParser.functionDeclaration(fragmentShader.function),
+            GLSLParser.scope(fragmentShader.function.scope),
+            "}"
+            ])
+    }
+    
     static func scope(scope: GPUScope) -> String {
         var instructionLines: [String] = []
         for instruction in scope.instructions {
@@ -77,9 +94,11 @@ struct GLSLParser {
     
     static func variableType(variable: AnyGPUVariable) -> String {
         switch variable {
-        case is TypedGPUVariable<Void>: return "void"
-        case is TypedGPUVariable<GLKVector3>: return "vec3"
-        case is TypedGPUVariable<Int>: return "int"
+        case is TypedGPUVariable<GLSLVoid>: return "void"
+        case is TypedGPUVariable<GLSLVec4>: return "vec4"
+        case is TypedGPUVariable<GLSLVec2>: return "vec2"
+        case is TypedGPUVariable<GLSLVec3>: return "vec3"
+        case is TypedGPUVariable<GLSLInt>: return "int"
         default:
             assert(false)
             return "unsupported type"

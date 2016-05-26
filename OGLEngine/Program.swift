@@ -11,7 +11,7 @@ import GLKit
 
 protocol GPUProgram {
     associatedtype RenderableType
-    var shaderName: String {get}
+    var shaderSource: GLSLShaderCodeSource {get}
     var interface: GPUInterface {get}
     var implementation: GPUImplementation {get set}
     var glName: GLuint { get set }
@@ -38,23 +38,23 @@ extension GPUProgram {
     mutating func loadShaders() -> Bool {
         var vertShader: GLuint = 0
         var fragShader: GLuint = 0
-        var vertShaderPathname: String
-        var fragShaderPathname: String
         
         // Create shader program.
         self.glName = glCreateProgram()
         
         // Create and compile vertex shader.
-        vertShaderPathname = NSBundle.mainBundle().pathForResource(self.shaderName, ofType: "vsh")!
-        if self.compileShader(&vertShader, type: GLenum(GL_VERTEX_SHADER), file: vertShaderPathname) == false {
+        let vertShaderCode = self.shaderSource.vertexShaderCode()
+        if self.compileShader(&vertShader, type: GLenum(GL_VERTEX_SHADER), code: vertShaderCode) == false {
             print("Failed to compile vertex shader")
+            assert(false)
             return false
         }
         
         // Create and compile fragment shader.
-        fragShaderPathname = NSBundle.mainBundle().pathForResource(self.shaderName, ofType: "fsh")!
-        if !self.compileShader(&fragShader, type: GLenum(GL_FRAGMENT_SHADER), file: fragShaderPathname) {
+        let fragShaderCode = self.shaderSource.fragmentShaderCode()
+        if !self.compileShader(&fragShader, type: GLenum(GL_FRAGMENT_SHADER), code: fragShaderCode) {
             print("Failed to compile fragment shader")
+            assert(false)
             return false
         }
         
@@ -111,15 +111,15 @@ extension GPUProgram {
     }
     
     
-    func compileShader(inout shader: GLuint, type: GLenum, file: String) -> Bool {
+    func compileShader(inout shader: GLuint, type: GLenum, code: String) -> Bool {
         var status: GLint = 0
-        var source: UnsafePointer<Int8>
-        do {
-            source = try NSString(contentsOfFile: file, encoding: NSUTF8StringEncoding).UTF8String
-        } catch {
-            print("Failed to load vertex shader")
-            return false
-        }
+        let source: UnsafePointer<Int8> = (code as NSString).UTF8String
+//        do {
+//            source = try NSString(contentsOfFile: code, encoding: NSUTF8StringEncoding).UTF8String
+//        } catch {
+//            print("Failed to load vertex shader")
+//            return false
+//        }
         var castSource = UnsafePointer<GLchar>(source)
         
         shader = glCreateShader(type)
