@@ -191,8 +191,7 @@ struct DefaultVertexShaders {
 }
 
 struct DefaultFragmentShaders {
-    static func MediumShot(uniforms: EnumCollection<Uniform>, interpolation: MediumShotInterpolation) -> FragmentShader {
-        
+    static func MediumShot(uniforms: EnumCollection<Uniform>, interpolation: MediumShotInterpolation) -> FragmentShader {   
         return FragmentShader(name: "MediumShot",
                               uniforms: uniforms.collection,
                               interpolation: interpolation,

@@ -94,6 +94,8 @@ struct GLSLParser {
     
     static func variableType(variable: AnyGPUVariable) -> String {
         switch variable {
+        case is TypedGPUVariable<GLSLFloat>: return "float"
+        case is TypedGPUVariable<GLSLColor>: return "vec4"
         case is TypedGPUVariable<GLSLVoid>: return "void"
         case is TypedGPUVariable<GLSLVec4>: return "vec4"
         case is TypedGPUVariable<GLSLVec2>: return "vec2"

@@ -21,13 +21,17 @@ extension PipelineProgram {
     }
 }
 
-//class SamplePipelineProgram: PipelineProgram {
-//    var pipeline: GPUPipeline = DefaultPipelines.mediumShotPipeline()
-//    var interface: GPUInterface = DefaultInterfaces.mediumShotInterface()
-//    var implementation: GPUImplementation = GPUImplementation(instances: [])
-//    var glName: GLuint = 0
-//    
-//    func render(renderables: [RenderableType]) {
-//        
-//    }
-//}
+class SamplePipelineProgram: PipelineProgram {
+    var pipeline: GPUPipeline
+    var interface: GPUInterface = DefaultInterfaces.mediumShotInterface()
+    var implementation: GPUImplementation = GPUImplementation(instances: [])
+    var glName: GLuint = 0
+    
+    init() {
+        self.pipeline = DefaultPipelines.MediumShot(self.interface.attributes, uniforms: self.interface.uniforms, interpolation: MediumShotInterpolation())
+    }
+    
+    func render(renderables: [RenderableType]) {
+        
+    }
+}
