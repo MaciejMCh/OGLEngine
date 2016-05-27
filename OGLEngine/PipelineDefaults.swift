@@ -90,6 +90,7 @@ public struct DefaultScopes {
         let scope = GPUScope()
         let scaledTexel = TypedGPUVariable<GLSLVec2>(name: "scaledTexel")
         
+        scope ↳ scaledTexel
         scope ✍ scaledTexel ⬅ aTexel * uTextureScale
         scope ✍ vTexel ⬅ scaledTexel
         scope ✍ vLighDirection ⬅ uLighDirection

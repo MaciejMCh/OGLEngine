@@ -111,8 +111,9 @@ struct GLSLParser {
         switch type {
         case .Mat3: return "mat3"
         case .Mat4: return "mat4"
-        case .Vec3: return "vec3"
         case .Vec2: return "vec2"
+        case .Vec3: return "vec3"
+        case .Vec4: return "vec4"
         case .Float: return "float"
         case .Texture: return "sampler2D"
         case .Plane: return "vec4"

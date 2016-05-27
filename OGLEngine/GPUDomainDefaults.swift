@@ -14,6 +14,7 @@ enum GPUType {
     case Float
     case Vec2
     case Vec3
+    case Vec4
     case Mat3
     case Mat4
     case Texture
@@ -24,6 +25,7 @@ enum GPUType {
         case .Float: return TypedGPUVariable<GLSLFloat>(name: name)
         case .Vec2: return TypedGPUVariable<GLSLVec2>(name: name)
         case .Vec3: return TypedGPUVariable<GLSLVec3>(name: name)
+        case .Vec4: return TypedGPUVariable<GLSLVec4>(name: name)
         case .Mat3: return TypedGPUVariable<GLSLMat3>(name: name)
         case .Mat4: return TypedGPUVariable<GLSLMat4>(name: name)
         case .Texture: return TypedGPUVariable<GLSLTexture>(name: name)
@@ -79,8 +81,9 @@ enum Attribute: GLSLEnum {
     
     func gpuType() -> GPUType {
         switch self {
-        case .Position, .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3: return .Vec3
-        case .Texel: return .Vec3
+        case .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3: return .Vec3
+        case .Texel: return .Vec2
+        case .Position: return .Vec4
         }
     }
     
