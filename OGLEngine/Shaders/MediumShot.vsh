@@ -7,6 +7,7 @@ uniform mat4 uModelViewProjectionMatrix;
 uniform mat3 uNormalMatrix;
 uniform vec3 uLightDirection;
 uniform vec3 uLightHalfVector;
+uniform float uTextureScale;
 
 varying lowp vec2 vTexel;
 varying lowp vec3 vNormal;
@@ -14,7 +15,7 @@ varying lowp vec3 vLightDirection;
 varying lowp vec3 vLightHalfVector;
 
 void main() {
-    vTexel = aTexel;
+    vTexel = aTexel * uTextureScale;
     vLightDirection = uLightDirection;
     vLightHalfVector = uLightHalfVector;
     vNormal = normalize(uNormalMatrix * aNormal);

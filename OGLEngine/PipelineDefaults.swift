@@ -61,8 +61,9 @@ public struct DefaultScopes {
                                                                  lightColor: vLightColor,
                                                                  shininess: vShininess,
                                                                  phongColor: OpenGLDefaultVariables.glFragColor())
-        
+        scope ↳↘ normalizedNormal
         scope ✍ normalizedNormal ⬅ ^vNormal
+        scope ↳↘ colorFromMap
         scope ✍ colorFromMap ⬅ uColorMap ☒ vTexel
         scope ⎘ phongScope
         
@@ -135,6 +136,11 @@ public struct DefaultScopes {
         let diffuseColor = TypedGPUVariable<GLSLColor>(name: "diffuseColor")
         let specularColor = TypedGPUVariable<GLSLColor>(name: "specularColor")
         
+        scope ↳↘ ndl
+        scope ↳↘ ndh
+        scope ↳↘ reflectionPower
+        scope ↳↘ diffuseColor
+        scope ↳↘ specularColor
         scope ⎘ phongFactorsScope
         scope ✍ diffuseColor ⬅ fullDiffuseColor * ndl
         scope ✍ reflectionPower ⬅ (ndh ^ shininess)
@@ -147,7 +153,7 @@ public struct DefaultScopes {
 }
 
 struct EnumCollection<T> {
-    let collection: [T]
+    private(set) var collection: [T]
 }
 
 extension EnumCollection where T: GLSLEnum {
@@ -158,6 +164,9 @@ extension EnumCollection where T: GLSLEnum {
             }
         }
         return nil
+    }
+    mutating func exclude(elementsToExclude: [T]) {
+        self.collection = self.collection.filter{!elementsToExclude.map{$0.gpuDomainName()}.contains($0.gpuDomainName())}
     }
 }
 
@@ -210,10 +219,13 @@ public struct DefaultPipelines {
     static func MediumShot(attributes: [Attribute],
                            uniforms: [Uniform],
                            interpolation: MediumShotInterpolation) -> GPUPipeline {
+        var vertexUniforms = EnumCollection<Uniform>(collection: uniforms)
+        let fragmentUniforms: [Uniform] = [.ColorMap]
+        vertexUniforms.exclude(fragmentUniforms)
         let vertexShader = DefaultVertexShaders.MediumShot(EnumCollection<Attribute>(collection: attributes),
-                                                           uniforms: EnumCollection<Uniform>(collection: uniforms),
+                                                           uniforms: vertexUniforms,
                                                            interpolation: interpolation)
-        let fragmentShader = DefaultFragmentShaders.MediumShot(EnumCollection<Uniform>(collection: uniforms),
+        let fragmentShader = DefaultFragmentShaders.MediumShot(EnumCollection<Uniform>(collection: fragmentUniforms),
                                                                interpolation: interpolation)
         return GPUPipeline(vertexShader: vertexShader,
                            fragmentShader: fragmentShader)

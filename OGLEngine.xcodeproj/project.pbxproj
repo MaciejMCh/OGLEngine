@@ -61,6 +61,7 @@
 		C2CD6A831CEC877F001F3A7E /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD6A821CEC877F001F3A7E /* Reflection.swift */; };
 		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
+		C2EB5CE81CF9EBE0008327C9 /* GPUDefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EB5CE71CF9EBE0008327C9 /* GPUDefaultVariables.swift */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
 		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
 		C2FDAF551CF7551800ED63DC /* GLSLCodeSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */; };
@@ -137,6 +138,7 @@
 		C2CD6A821CEC877F001F3A7E /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
 		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
+		C2EB5CE71CF9EBE0008327C9 /* GPUDefaultVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDefaultVariables.swift; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
 		C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLCodeSource.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */,
 				C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */,
 				C20687E91CF4AEEB008E8793 /* GPUTypes.swift */,
+				C2EB5CE71CF9EBE0008327C9 /* GPUDefaultVariables.swift */,
 			);
 			name = GPUDomain;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */,
 				C269D5CB1CA898DD00E56E67 /* BasicCamera.swift in Sources */,
 				C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */,
+				C2EB5CE81CF9EBE0008327C9 /* GPUDefaultVariables.swift in Sources */,
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,

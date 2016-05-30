@@ -41,6 +41,17 @@ public func ↳ (lhs: GPUScope, rhs: AnyGPUVariable) {
     lhs.appendInstruction(GPUDeclaration(variable: rhs, accessKind: .Local))
 }
 
+infix operator ↳↗ {}
+public func ↳↗ (lhs: GPUScope, rhs: AnyGPUVariable) {
+    lhs.appendInstruction(GPUDeclaration(variable: rhs, precision: .High, accessKind: .Local))
+}
+
+
+infix operator ↳↘ {}
+public func ↳↘ (lhs: GPUScope, rhs: AnyGPUVariable) {
+    lhs.appendInstruction(GPUDeclaration(variable: rhs, precision: .Low, accessKind: .Local))
+}
+
 // Uniform declaration
 
 infix operator ⎘ {}
