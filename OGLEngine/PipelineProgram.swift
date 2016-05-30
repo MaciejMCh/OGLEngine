@@ -45,6 +45,10 @@ class TestPipelineProgram: PipelineProgram {
         self.pipeline.uniform(Uniforms.lightColor).cpuVariableGetter = {
             return (r: 1.0, g: 1.0, b: 1.0, a: 1.0)
         }
+        
+        self.pipeline.uniform(Uniforms.colorMap).cpuVariableGetter = {
+            return renderable.colorMap
+        }
     }
     
 }

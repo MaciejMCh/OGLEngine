@@ -250,7 +250,7 @@ struct DefaultFragmentShaders {
                               uniforms: uniforms,
                               interpolation: interpolation,
                               function: ShaderFunction(scope: DefaultScopes.MediumShotFragment(
-                                TypedGPUVariable<GLSLTexture>(glslRepresentable: Uniforms.colorMap),
+                                uniforms.get(Uniforms.colorMap).variable as! TypedGPUVariable<GLSLTexture>,
                                 vTexel: interpolation.vTexel,
                                 vLighDirection: interpolation.vLighDirection,
                                 vLighHalfVector: interpolation.vLighHalfVector,
@@ -274,7 +274,8 @@ public struct DefaultPipelines {
             GPUUniform(variable: Uniforms.modelViewProjectionMatrix),
             GPUUniform(variable: Uniforms.textureScale),
             GPUUniform(variable: Uniforms.shininess),
-            GPUUniform(variable: Uniforms.lightColor)
+            GPUUniform(variable: Uniforms.lightColor),
+            GPUUniform(variable: Uniforms.colorMap)
             ])
         let interpolation = MediumShotInterpolation()
         

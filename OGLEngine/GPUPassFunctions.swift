@@ -37,4 +37,10 @@ struct GPUPassFunctions {
     static func floatPass(float: GLfloat, location: GLint) {
         glUniform1f(location, float)
     }
+    
+    static func texturePass(texture: Texture, location: GLint) {
+        glActiveTexture(GLenum(GL_TEXTURE0));
+        glBindTexture(GLenum(GL_TEXTURE_2D), texture.glName)
+        glUniform1i(location, 0);
+    }
 }
