@@ -130,7 +130,7 @@ public struct DefaultScopes {
         bodyScope ✍ vTexel ⬅ scaledTexel
         bodyScope ✍ vShininess ⬅ uShininess
         bodyScope ✍ vLightColor ⬅ uLightColor
-//        bodyScope ✍ vLighDirection ⬅ uLighDirection * TypedGPUVariable<GLSLFloat>(value: -1.0)
+        bodyScope ✍ vLighDirection ⬅ uLighDirection * (TypedGPUVariable<GLSLFloat>(value: -1.0))
         bodyScope ✍ vLighHalfVector ⬅ uLighHalfVector
         bodyScope ✍ vNormal ⬅ uNormalMatrix * aNormal
         bodyScope ✍ vNormal ⬅ ^vNormal

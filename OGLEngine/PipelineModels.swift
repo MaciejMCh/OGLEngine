@@ -33,14 +33,14 @@ public struct GPUVarying {
 public protocol Shader {
     var name: String {get}
     var interpolation: Interpolation {get}
-    var function: TypedGPUFunction<Void> {get}
+    var function: TypedGPUFunction<GLSLVoid> {get}
 }
 
 public struct FragmentShader: Shader {
     public let name: String
     let uniforms: GLSLVariableCollection<AnyGPUUniform>
     public let interpolation: Interpolation
-    public let function: TypedGPUFunction<Void>
+    public let function: TypedGPUFunction<GLSLVoid>
 }
 
 public struct VertexShader: Shader {
@@ -48,7 +48,7 @@ public struct VertexShader: Shader {
     let attributes: GLSLVariableCollection<GPUAttribute>
     let uniforms: GLSLVariableCollection<AnyGPUUniform>
     public let interpolation: Interpolation
-    public let function: TypedGPUFunction<Void>
+    public let function: TypedGPUFunction<GLSLVoid>
 }
 
 public struct GPUPipeline {
@@ -102,12 +102,24 @@ extension AnyGPUVariable: GLSLRepresentable {
     }
 }
 
-public class TypedGPUVariable<T>: AnyGPUVariable {
+public class TypedGPUVariable<T: GLSLType>: AnyGPUVariable {
     public typealias UnderlyingType = T
     
-    private(set) var value: T?
+    private(set) var value: T.CPUCounterpart?
+    override var name: String? {
+        get {
+            if let value = self.value {
+                return T.primitiveFace(value)
+            } else {
+                return super.name
+            }
+        }
+        set {
+            self.name = newValue
+        }
+    }
     
-    init(value: T? = nil, name: String? = nil) {
+    init(value: T.CPUCounterpart? = nil, name: String? = nil) {
         super.init(name: name)
         self.value = value
     }
@@ -120,7 +132,7 @@ public protocol GPUFunction {
 }
 
 public class AnyGPUFunction: GPUFunction {
-    public typealias ReturnType = String
+    public typealias ReturnType = GLSLVoid
     
     var signature: String
     var input: [AnyGPUVariable]
@@ -143,7 +155,7 @@ public class AnyGPUFunction: GPUFunction {
     }
 }
 
-public class TypedGPUFunction<T>: AnyGPUFunction {
+public class TypedGPUFunction<T: GLSLType>: AnyGPUFunction {
     typealias ReturnType = T
     
     override init() {
@@ -166,13 +178,13 @@ public class TypedGPUFunction<T>: AnyGPUFunction {
     }
 }
 
-public class ShaderFunction: TypedGPUFunction<Void> {
+public class ShaderFunction: TypedGPUFunction<GLSLVoid> {
     init(scope: GPUScope) {
         super.init(signature: "main", input: [], scope: scope)
     }
 }
 
-public class StandardGPUFunction<T>: TypedGPUFunction<T> {
+public class StandardGPUFunction<T: GLSLType>: TypedGPUFunction<T> {
     init(name: String, input: [AnyGPUVariable]) {
         super.init()
         self.signature = name
@@ -186,7 +198,7 @@ public protocol GPUInstruction {
     func glslRepresentation() -> String
 }
 
-public struct GPUFunctionBody<T>: GPUInstruction {
+public struct GPUFunctionBody<T: GLSLType>: GPUInstruction {
     let function: TypedGPUFunction<T>
     let childScope: GPUScope
     
@@ -231,7 +243,7 @@ public struct GPUDeclaration: GPUInstruction {
     }
 }
 
-public struct GPUAssignment<T>: GPUInstruction {
+public struct GPUAssignment<T: GLSLType>: GPUInstruction {
     let assignee: TypedGPUVariable<T>
     let assignment: TypedGPUVariable<T>
     
@@ -240,7 +252,7 @@ public struct GPUAssignment<T>: GPUInstruction {
     }
 }
 
-public class GPUEvaluation<ReturnType>: GPUInstruction {
+public class GPUEvaluation<ReturnType: GLSLType>: GPUInstruction {
     private(set) var function: TypedGPUFunction<ReturnType>
     
     init(function: TypedGPUFunction<ReturnType>) {
@@ -263,7 +275,7 @@ public class GPUEvaluation<ReturnType>: GPUInstruction {
     }
 }
 
-public class GPUInfixEvaluation<ReturnType>: GPUEvaluation<ReturnType> {
+public class GPUInfixEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType> {
     private(set) var operatorSymbol: String
     private(set) var lhs: AnyGPUVariable
     private(set) var rhs: AnyGPUVariable
@@ -280,7 +292,7 @@ public class GPUInfixEvaluation<ReturnType>: GPUEvaluation<ReturnType> {
     }
 }
 
-public struct GPUEvaluationAssignment<T>: GPUInstruction {
+public struct GPUEvaluationAssignment<T: GLSLType>: GPUInstruction {
     let assignee: TypedGPUVariable<T>
     let assignment: GPUEvaluation<T>
     

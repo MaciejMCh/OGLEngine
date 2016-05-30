@@ -96,16 +96,12 @@ public func * (lhs: TypedGPUVariable<GLSLVec2>, rhs: TypedGPUVariable<GLSLFloat>
 }
 
 // Primitive Scaling
-public func * (lhs: TypedGPUVariable<GLSLVec3>, rhs: TypedGPUVariable<GLSLFloat>) -> GPUInfixEvaluation<GLSLVec2> {
-    return GPUInfixEvaluation<GLSLVec2>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: TypedGPUVariable<GLSLVec3>, rhs: TypedGPUVariable<GLSLFloat>) -> GPUInfixEvaluation<GLSLVec3> {
+    return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
 // Matrix operations
 infix operator * { associativity left precedence 140 }
-public func * (lhs: TypedGPUVariable<GLKMatrix4>, rhs: TypedGPUVariable<GLKVector4>) -> GPUInfixEvaluation<GLKVector4> {
-    return GPUInfixEvaluation<GLKVector4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
-}
-
 public func * (lhs: TypedGPUVariable<GLSLMat4>, rhs: TypedGPUVariable<GLSLVec4>) -> GPUInfixEvaluation<GLSLVec4> {
     return GPUInfixEvaluation<GLSLVec4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }

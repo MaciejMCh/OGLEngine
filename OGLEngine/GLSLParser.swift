@@ -70,8 +70,8 @@ struct GLSLParser {
     
     static func functionType(function: AnyGPUFunction) -> String {
         switch function {
-        case is TypedGPUFunction<Void>: return "void"
-        case is TypedGPUFunction<GLKVector3>: return "vec3"
+        case is TypedGPUFunction<GLSLVoid>: return "void"
+        case is TypedGPUFunction<GLSLVec3>: return "vec3"
         default:
             assert(false)
             return "unsupported type"
