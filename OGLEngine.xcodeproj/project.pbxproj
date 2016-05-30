@@ -53,6 +53,7 @@
 		C2AFAE621CFC4D0300C2F8D0 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE611CFC4D0300C2F8D0 /* Attribute.swift */; };
 		C2AFAE641CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE631CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift */; };
 		C2AFAE661CFC4DFD00C2F8D0 /* Uniform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE651CFC4DFD00C2F8D0 /* Uniform.swift */; };
+		C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */; };
 		C2B188F31CF1CC8B008BB626 /* PipelineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */; };
 		C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F41CF1CCD6008BB626 /* PipelineOperators.swift */; };
 		C2B188F71CF1D3E3008BB626 /* PipelineDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */; };
@@ -132,6 +133,7 @@
 		C2AFAE611CFC4D0300C2F8D0 /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		C2AFAE631CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLVariablesCollection.swift; sourceTree = "<group>"; };
 		C2AFAE651CFC4DFD00C2F8D0 /* Uniform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uniform.swift; sourceTree = "<group>"; };
+		C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineModels.swift; sourceTree = "<group>"; };
 		C2B188F41CF1CCD6008BB626 /* PipelineOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineOperators.swift; sourceTree = "<group>"; };
 		C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineDefaults.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */,
+				C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */,
 			);
 			name = Pipeline;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,
 				C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */,
+				C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */,
 				C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,
 				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,

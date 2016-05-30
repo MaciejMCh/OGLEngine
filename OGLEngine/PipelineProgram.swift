@@ -10,18 +10,65 @@ import Foundation
 import GLKit
 
 class TestPipelineProgram: PipelineProgram {
+    typealias RenderableType = MediumShotRenderable
     var glName: GLuint = 0
     var pipeline = DefaultPipelines.MediumShot()
     
-    func render() {
-        self.pipeline.uniform(Uniforms.colorMap).passToGPU()
+    var camera: Camera!
+    var directionalLight: DirectionalLight!
+    
+    func willRender(renderable: RenderableType) {
+        self.pipeline.uniform(Uniforms.modelViewProjectionMatrix).cpuVariableGetter = {
+            return renderable.modelViewProjectionMatrix(self.camera)
+        }
+        
+        self.pipeline.uniform(Uniforms.normalMatrix).cpuVariableGetter = {
+            return renderable.normalMatrix()
+        }
+        
+        self.pipeline.uniform(Uniforms.lightDirection).cpuVariableGetter = {
+            return self.directionalLight.lightDirection
+        }
+        
+        self.pipeline.uniform(Uniforms.lightHalfVector).cpuVariableGetter = {
+            return self.directionalLight.halfVectorWithCamera(self.camera)
+        }
+        
+        self.pipeline.uniform(Uniforms.textureScale).cpuVariableGetter = {
+            return 1.0
+        }
+        
+        self.pipeline.uniform(Uniforms.shininess).cpuVariableGetter = {
+            return 100.0
+        }
+        
+        self.pipeline.uniform(Uniforms.lightColor).cpuVariableGetter = {
+            return (r: 1.0, g: 1.0, b: 1.0, a: 1.0)
+        }
     }
+    
 }
 
 protocol PipelineProgram {
+    associatedtype RenderableType
+    
     var glName: GLuint {get set}
     var pipeline: GPUPipeline {get}
-    func render()
+    func willRender(renderable: RenderableType)
+}
+
+extension PipelineProgram where RenderableType: Mesh  {
+    func render(renderables: [RenderableType]) {
+        for renderable in renderables {
+            self.bindAttributes(renderable)
+            self.willRender(renderable)
+            for uniform in self.pipeline.fragmentShader.uniforms.collection {
+                uniform.passToGPU()
+            }
+            self.draw(renderable)
+            self.unbindAttributes(renderable)
+        }
+    }
 }
 
 extension PipelineProgram {

@@ -16,6 +16,10 @@ class AnyGPUUniform {
     init(variable: AnyGPUVariable) {
         self.variable = variable
     }
+    
+    func passToGPU() {
+        
+    }
 }
 
 extension AnyGPUUniform: GLSLRepresentable {
@@ -35,7 +39,7 @@ class GPUUniform<T: GLSLType> : AnyGPUUniform {
         super.init(variable: variable)
     }
     
-    func passToGPU() {
+    override func passToGPU() {
         T.passValueToGPU(self.cpuVariableGetter(), location: self.location)
     }
 }

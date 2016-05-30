@@ -16,6 +16,24 @@ struct GPUPassFunctions {
         })
     }
     
+    static func vec4Pass(var vec4: GLKVector4, location: GLint) {
+        withUnsafePointer(&vec4, {
+            glUniform3fv(location, 1, UnsafePointer($0))
+        })
+    }
+    
+    static func mat3Pass(var mat3: GLKMatrix3, location: GLint) {
+        withUnsafePointer(&mat3, {
+            glUniformMatrix3fv(location, 1, 0, UnsafePointer($0))
+        })
+    }
+    
+    static func mat4Pass(var mat4: GLKMatrix4, location: GLint) {
+        withUnsafePointer(&mat4, {
+            glUniformMatrix4fv(location, 1, 0, UnsafePointer($0))
+        })
+    }
+    
     static func floatPass(float: GLfloat, location: GLint) {
         glUniform1f(location, float)
     }

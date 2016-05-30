@@ -66,10 +66,12 @@ extension Scene {
             }
             
             var closeShotRenderables: [CloseShotRenderable] = []
+            var mediumShotRenderables: [MediumShotRenderable] = []
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             for loadedRenderable in loadedRenderables {
                 switch loadedRenderable.type {
-                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+//                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+                case .Default: mediumShotRenderables.append(MediumShotRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
                 }
             }
@@ -84,7 +86,7 @@ extension Scene {
             camera.xMouse = Float(M_PI_2)
             camera.yMouse = Float(M_PI_2)
             
-            return Scene(closeShots: closeShotRenderables, mediumShots: [], reflectiveSurfaces: reflectiveSurfaces, directionalLight: directionalLight, camera: camera)
+            return Scene(closeShots: closeShotRenderables, mediumShots: mediumShotRenderables, reflectiveSurfaces: reflectiveSurfaces, directionalLight: directionalLight, camera: camera)
             
         } catch _ {
             return nil
@@ -101,6 +103,17 @@ extension CloseShotRenderable {
         self.colorMap.bind()
         self.normalMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/normal.png")
         self.normalMap.bind()
+        self.textureScale = 1
+    }
+}
+
+extension MediumShotRenderable {
+    init(loadedRenderable: LoadedRenderable) {
+        self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
+        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
+        
+        self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
+        self.colorMap.bind()
         self.textureScale = 1
     }
 }

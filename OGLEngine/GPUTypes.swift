@@ -21,7 +21,11 @@ extension GLSLType {
 }
 
 public struct GLSLColor: GLSLType {
-    typealias CPUCounterpart = UIColor
+    typealias CPUCounterpart = (r: Float, g: Float, b: Float, a: Float)
+    
+    static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        GPUPassFunctions.vec4Pass(GLKVector4Make(value.r, value.g, value.b, value.a), location: location)
+    }
 }
 
 public struct GLSLVoid: GLSLType {
@@ -35,7 +39,7 @@ public struct GLSLVec4: GLSLType {
 public struct GLSLVec3: GLSLType {
     typealias CPUCounterpart = GLKVector3
     
-    func passValueToGPU(value: CPUCounterpart, location: GLint) {
+    static func passValueToGPU(value: CPUCounterpart, location: GLint) {
         GPUPassFunctions.vec3Pass(value, location: location)
     }
 }
@@ -46,10 +50,18 @@ public struct GLSLVec2: GLSLType {
 
 public struct GLSLMat3: GLSLType {
     typealias CPUCounterpart = GLKMatrix3
+    
+    static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        GPUPassFunctions.mat3Pass(value, location: location)
+    }
 }
 
 public struct GLSLMat4: GLSLType {
     typealias CPUCounterpart = GLKMatrix4
+    
+    static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        GPUPassFunctions.mat4Pass(value, location: location)
+    }
 }
 
 public struct GLSLInt: GLSLType {
@@ -63,7 +75,7 @@ public struct GLSLTexture: GLSLType {
 public struct GLSLFloat: GLSLType {
     typealias CPUCounterpart = Float
     
-    func passValueToGPU(value: CPUCounterpart, location: GLint) {
+    static func passValueToGPU(value: CPUCounterpart, location: GLint) {
         GPUPassFunctions.floatPass(value, location: location)
     }
 }

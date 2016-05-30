@@ -15,6 +15,7 @@ class GameViewController: GLKViewController {
     var closeShotProgram: CloseShotProgram!
     var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
     var reflectedProgram: ReflectedProgram!
+    var pipelineProgram: TestPipelineProgram!
     
     var context: EAGLContext? = nil
     
@@ -64,10 +65,10 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        var program = TestPipelineProgram()
-        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
-        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
-        program.compile()
+//        var program = TestPipelineProgram()
+//        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
+//        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
+//        program.compile()
         
         self.scene = Scene.loadScene("house_on_cliff")
         
@@ -82,6 +83,11 @@ class GameViewController: GLKViewController {
         
         self.reflectedProgram = ReflectedProgram()
         self.reflectedProgram.compile()
+        
+        self.pipelineProgram = TestPipelineProgram()
+        self.pipelineProgram.camera = self.scene.camera
+        self.pipelineProgram.directionalLight = self.scene.directionalLight
+        self.pipelineProgram.compile()
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
@@ -112,11 +118,13 @@ class GameViewController: GLKViewController {
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
-//        renderedTexture.bind()
-//        renderTexture()
+//        Renderer.render(scene)
         
-//        renderedTexture.unbindCurrentFrameBuffer()
-        Renderer.render(scene)
+        glClearColor(0.65, 0.65, 0.65, 1.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+        
+        glUseProgram(self.pipelineProgram.glName)
+        self.pipelineProgram.render(scene.mediumShots)
     }
     
     func renderTexture() {
