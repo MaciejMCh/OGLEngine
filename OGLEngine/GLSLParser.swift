@@ -30,15 +30,7 @@ struct GLSLParser {
             "// Vertex shader",
             "// " + vertexShader.name,
             "",
-            "// Attributes",
-            GLSLParser.attributesDeclaration(vertexShader.attributes),
-            "// Uniforms",
-            GLSLParser.uniformsDeclaration(vertexShader.uniforms),
-            "// Varyings",
-            GLSLParser.varyingsDeclaration(vertexShader.interpolation.varyings()),
-            GLSLParser.functionDeclaration(vertexShader.function),
-            GLSLParser.scope(vertexShader.function.scope),
-            "}"
+            GLSLParser.scope(vertexShader.function.scope)
             ])
     }
     
@@ -49,20 +41,14 @@ struct GLSLParser {
             "// Fragment shader",
             "// " + fragmentShader.name,
             "",
-            "// Uniforms",
-            GLSLParser.uniformsDeclaration(fragmentShader.uniforms),
-            "// Varyings",
-            GLSLParser.varyingsDeclaration(fragmentShader.interpolation.varyings()),
-            GLSLParser.functionDeclaration(fragmentShader.function),
-            GLSLParser.scope(fragmentShader.function.scope),
-            "}"
+            GLSLParser.scope(fragmentShader.function.scope)
             ])
     }
     
     static func scope(scope: GPUScope) -> String {
         var instructionLines: [String] = []
         for instruction in scope.instructions {
-            instructionLines.append(instruction.glslRepresentation() + ";")
+            instructionLines.append(instruction.glslRepresentation())
         }
         return stringFromLines(instructionLines)
     }
@@ -94,13 +80,20 @@ struct GLSLParser {
     
     static func variableType(variable: AnyGPUVariable) -> String {
         switch variable {
-        case is TypedGPUVariable<GLSLFloat>: return "float"
-        case is TypedGPUVariable<GLSLColor>: return "vec4"
         case is TypedGPUVariable<GLSLVoid>: return "void"
-        case is TypedGPUVariable<GLSLVec4>: return "vec4"
+        case is TypedGPUVariable<GLSLInt>: return "int"
+        case is TypedGPUVariable<GLSLFloat>: return "float"
+            
         case is TypedGPUVariable<GLSLVec2>: return "vec2"
         case is TypedGPUVariable<GLSLVec3>: return "vec3"
-        case is TypedGPUVariable<GLSLInt>: return "int"
+        case is TypedGPUVariable<GLSLVec4>: return "vec4"
+        
+        case is TypedGPUVariable<GLSLMat3>: return "mat3"
+        case is TypedGPUVariable<GLSLMat4>: return "mat4"
+        
+        case is TypedGPUVariable<GLSLColor>: return "vec4"
+        case is TypedGPUVariable<GLSLTexture>: return "sampler2D"
+            
         default:
             assert(false)
             return "unsupported type"
@@ -125,16 +118,6 @@ struct GLSLParser {
         case .Low: return "lowp"
         case .High: return "highp"
         }
-    }
-    
-    static func varyingsDeclaration(varyings: [GPUVarying]) -> String {
-        var string = ""
-        
-        for varying in varyings {
-            string = string + "varying " + GLSLParser.precision(varying.precision) + " " + GLSLParser.variableType(varying.variable) + " " + varying.variable.name! + ";\n"
-        }
-        
-        return string
     }
     
     static func attributesDeclaration(attributes: [Attribute]) -> String {

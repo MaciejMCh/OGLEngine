@@ -30,9 +30,14 @@ public func ⥥ (lhs: GPUScope, rhs: AnyGPUVariable) {
 }
 
 // Varying declaration
-infix operator ⟿ {}
-public func ⟿ (lhs: GPUScope, rhs: AnyGPUVariable) {
-    lhs.appendInstruction(GPUDeclaration(variable: rhs, accessKind: .Varying))
+infix operator ⟿↘ {}
+public func ⟿↘ (lhs: GPUScope, rhs: AnyGPUVariable) {
+    lhs.appendInstruction(GPUDeclaration(variable: rhs, precision: .Low, accessKind: .Varying))
+}
+
+infix operator ⟿↗ {}
+public func ⟿↗ (lhs: GPUScope, rhs: AnyGPUVariable) {
+    lhs.appendInstruction(GPUDeclaration(variable: rhs, precision: .High, accessKind: .Varying))
 }
 
 // Local declaration

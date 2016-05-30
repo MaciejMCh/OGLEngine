@@ -38,15 +38,15 @@ public protocol Shader {
 
 public struct FragmentShader: Shader {
     public let name: String
-    let uniforms: [Uniform]
+    let uniforms: GLSLVariableCollection<AnyGPUUniform>
     public let interpolation: Interpolation
     public let function: TypedGPUFunction<Void>
 }
 
 public struct VertexShader: Shader {
     public let name: String
-    let attributes: [Attribute]
-    let uniforms: [Uniform]
+    let attributes: GLSLVariableCollection<GPUAttribute>
+    let uniforms: GLSLVariableCollection<AnyGPUUniform>
     public let interpolation: Interpolation
     public let function: TypedGPUFunction<Void>
 }
@@ -54,6 +54,15 @@ public struct VertexShader: Shader {
 public struct GPUPipeline {
     let vertexShader: VertexShader
     let fragmentShader: FragmentShader
+    
+    func uniform<T>(variable: TypedGPUVariable<T>) -> GPUUniform<T>! {
+        for uniform in vertexShader.uniforms.collection {
+            if uniform.glslName == variable.glslName {
+                return uniform as! GPUUniform<T>
+            }
+        }
+        return nil
+    }
 }
 
 public class GPUScope {
@@ -82,6 +91,14 @@ public class AnyGPUVariable: GPUVariable {
     
     init(name: String? = nil) {
         self.name = name
+    }
+}
+
+extension AnyGPUVariable: GLSLRepresentable {
+    var glslName: String {
+        get {
+            return self.name!
+        }
     }
 }
 
@@ -169,6 +186,18 @@ public protocol GPUInstruction {
     func glslRepresentation() -> String
 }
 
+public struct GPUFunctionBody<T>: GPUInstruction {
+    let function: TypedGPUFunction<T>
+    let childScope: GPUScope
+    
+    public func glslRepresentation() -> String {
+        return stringFromLines([
+            GLSLParser.functionDeclaration(self.function),
+            GLSLParser.scope(self.childScope),
+            "}"])
+    }
+}
+
 public struct GPUDeclaration: GPUInstruction {
     let variable: AnyGPUVariable
     let precision: VariablePrecision?
@@ -188,12 +217,17 @@ public struct GPUDeclaration: GPUInstruction {
         case .Varying: access = "varying "
         case .Local: access = ""
         }
-        let accessAndTypeAndName = access + GLSLParser.variableType(self.variable) + " " + self.variable.name!
-        if let precision = self.precision {
-            return GLSLParser.precision(precision) + " " + accessAndTypeAndName
-        } else {
-            return accessAndTypeAndName;
-        }
+        let precision = self.precision != nil ? GLSLParser.precision(self.precision!) : ""
+        let type = GLSLParser.variableType(self.variable)
+        let name = self.variable.name!
+        var result = access + " " + precision + " " + type + " " + name + ";"
+        
+        // Trim
+        result = result.stringByReplacingOccurrencesOfString("   ", withString: " ")
+        result = result.stringByReplacingOccurrencesOfString("  ", withString: " ")
+        result = result.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        return result
     }
 }
 
@@ -202,7 +236,7 @@ public struct GPUAssignment<T>: GPUInstruction {
     let assignment: TypedGPUVariable<T>
     
     public func glslRepresentation() -> String {
-        return assignee.name! + " = " + assignment.name!
+        return assignee.name! + " = " + assignment.name! + ";"
     }
 }
 
@@ -251,6 +285,6 @@ public struct GPUEvaluationAssignment<T>: GPUInstruction {
     let assignment: GPUEvaluation<T>
     
     public func glslRepresentation() -> String {
-        return self.assignee.name! + " = " + self.assignment.glslRepresentation()
+        return self.assignee.name! + " = " + self.assignment.glslRepresentation() + ";"
     }
 }

@@ -9,22 +9,19 @@
 import Foundation
 import GLKit
 
-//protocol PipelineProgram: GPUProgram {
-//    var pipeline: GPUPipeline {get}
-//}
-//
-//extension PipelineProgram {
-//    var shaderSource: GLSLShaderCodeSource {
-//        get {
-//            return GLSLParsedCodeSource(pipeline: self.pipeline)
-//        }
-//    }
-//}
+class TestPipelineProgram: PipelineProgram {
+    var glName: GLuint = 0
+    var pipeline = DefaultPipelines.MediumShot()
+    
+    func render() {
+        self.pipeline.uniform(Uniforms.colorMap).passToGPU()
+    }
+}
 
 protocol PipelineProgram {
     var glName: GLuint {get set}
     var pipeline: GPUPipeline {get}
-    var implementation: GPUPipelineImplementation {get set}
+    func render()
 }
 
 extension PipelineProgram {
@@ -39,7 +36,7 @@ extension PipelineProgram {
     }
     
     func validate() {
-        for uniform in self.implementation.uniforms {
+        for uniform in self.pipeline.vertexShader.uniforms.collection {
             assert(uniform.location != -1)
         }
     }
@@ -76,8 +73,8 @@ extension PipelineProgram {
         // Bind attribute locations.
         // This needs to be done prior to linking.
         
-        for attribute in self.pipeline.vertexShader.attributes {
-            glBindAttribLocation(self.glName, attribute.location(), attribute.gpuDomainName())
+        for attribute in self.pipeline.vertexShader.attributes.collection {
+            glBindAttribLocation(self.glName, attribute.location, attribute.variable.name!)
         }
         
         // Link program.
@@ -96,16 +93,16 @@ extension PipelineProgram {
                 glDeleteProgram(glName)
                 self.glName = 0
             }
-            
+            assert(false)
             return false
         }
         
         // Get uniform locations.
-        
-        self.implementation = GPUImplementation(instances: self.interface.uniforms.map{
-            let location = glGetUniformLocation(self.glName, $0.gpuDomainName())
-            return GPUInstance(uniform: $0, location: location)
-            })
+        let uniforms = self.pipeline.vertexShader.uniforms.collection
+        for uniform in uniforms {
+            let location = glGetUniformLocation(self.glName, uniform.glslName)
+            uniform.location = location
+        }
         
         // Release vertex and fragment shaders.
         if vertShader != 0 {
@@ -160,14 +157,15 @@ extension PipelineProgram {
         glLinkProgram(prog)
         
         //#if defined(DEBUG)
-        //                var logLength: GLint = 0
-        //                glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
-        //                if logLength > 0 {
-        //                    var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
-        //                    glGetShaderInfoLog(shader, logLength, &logLength, log)
-        //                    NSLog("Shader compile log: \n%s", log)
-        //                    free(log)
-        //                }
+        let shader = GLuint(3)
+                        var logLength: GLint = 0
+                        glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
+                        if logLength > 0 {
+                            var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
+                            glGetShaderInfoLog(shader, logLength, &logLength, log)
+                            NSLog("Shader compile log: \n%s", log)
+                            free(log)
+                        }
         //#endif
         
         glGetProgramiv(prog, GLenum(GL_LINK_STATUS), &status)
@@ -198,24 +196,3 @@ extension PipelineProgram {
         return returnVal
     }
 }
-
-//class BasePipelineProgram: PipelineProgram {
-//    var pipeline: GPUPipeline!
-//    var implementation: GPUPipelineImplementation = GPUPipelineImplementation(uniforms: [])
-//}
-
-//class SamplePipelineProgram: PipelineProgram {
-//    var pipeline: GPUPipeline
-//    var interface: GPUInterface = DefaultInterfaces.mediumShotInterface()
-//    var implementation: GPUImplementation = GPUImplementation(instances: [])
-//    var pipelineImplementation: GPUPipelineImplementation!
-//    var glName: GLuint = 0
-//    
-//    init() {
-//        self.pipeline = DefaultPipelines.MediumShot(self.interface.attributes, uniforms: self.interface.uniforms, interpolation: MediumShotInterpolation())
-//    }
-//    
-//    func render(renderables: [RenderableType]) {
-//        
-//    }
-//}
