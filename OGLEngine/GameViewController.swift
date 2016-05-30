@@ -65,9 +65,9 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-//        var program = TestPipelineProgram()
-//        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
-//        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
+        var program = TestPipelineProgram()
+        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
+        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
 //        program.compile()
         
         self.scene = Scene.loadScene("house_on_cliff")

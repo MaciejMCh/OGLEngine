@@ -18,7 +18,7 @@ struct GPUPassFunctions {
     
     static func vec4Pass(var vec4: GLKVector4, location: GLint) {
         withUnsafePointer(&vec4, {
-            glUniform3fv(location, 1, UnsafePointer($0))
+            glUniform4fv(location, 1, UnsafePointer($0))
         })
     }
     
