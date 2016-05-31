@@ -12,6 +12,12 @@ protocol GPURepresentable {
     var glslName: String {get}
 }
 
+extension GPUVariable {
+    convenience init(glslRepresentable: GPURepresentable) {
+        self.init(name: glslRepresentable.glslName)
+    }
+}
+
 struct GPUVariableCollection<T: GPURepresentable> {
     let collection: [T]
     

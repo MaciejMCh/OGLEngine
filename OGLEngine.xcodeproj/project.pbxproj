@@ -17,6 +17,9 @@
 		C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */; };
 		C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
+		C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */; };
+		C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */; };
+		C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* CloseShot.fsh */; };
@@ -100,6 +103,9 @@
 		C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.vsh; path = Shaders/MediumShot.vsh; sourceTree = "<group>"; };
 		C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.fsh; path = Shaders/MediumShot.fsh; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
+		C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLDefaultVariables.swift; sourceTree = "<group>"; };
+		C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShot.swift; sourceTree = "<group>"; };
+		C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongReflection.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +224,33 @@
 				C20687E91CF4AEEB008E8793 /* GPUTypes.swift */,
 			);
 			name = GPUDomain;
+			sourceTree = "<group>";
+		};
+		C23FC5541CFDE6A100DE4A40 /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				C23FC55D1CFDE88C00DE4A40 /* Functionalities */,
+				C23FC55C1CFDE87C00DE4A40 /* Shaders */,
+				C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */,
+				C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */,
+			);
+			name = Defaults;
+			sourceTree = "<group>";
+		};
+		C23FC55C1CFDE87C00DE4A40 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
+		C23FC55D1CFDE88C00DE4A40 /* Functionalities */ = {
+			isa = PBXGroup;
+			children = (
+				C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */,
+			);
+			name = Functionalities;
 			sourceTree = "<group>";
 		};
 		C269D5811CA8981D00E56E67 = {
@@ -474,6 +507,7 @@
 		C2BC701D1CF067F70037A143 /* Pipeline */ = {
 			isa = PBXGroup;
 			children = (
+				C23FC5541CFDE6A100DE4A40 /* Defaults */,
 				C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */,
 				C2E1581B1CFD9BE800BB3805 /* PipelineShader.swift */,
 				C2E158231CFD9D2400BB3805 /* PipelineInterpolation.swift */,
@@ -481,7 +515,6 @@
 				C2E158171CFD9B2D00BB3805 /* PipelineVariable.swift */,
 				C2E158191CFD9B8F00BB3805 /* PipelineInstruction.swift */,
 				C2B188F41CF1CCD6008BB626 /* PipelineOperators.swift */,
-				C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */,
 				C2B188FC1CF20844008BB626 /* GLSLParser.swift */,
 				C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */,
 				C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */,
@@ -742,6 +775,7 @@
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
 				C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */,
 				C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */,
+				C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */,
 				C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */,
@@ -749,6 +783,7 @@
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
 				C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */,
 				C2E1581A1CFD9B8F00BB3805 /* PipelineInstruction.swift in Sources */,
+				C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
 				C2E158221CFD9D0200BB3805 /* PipelineScope.swift in Sources */,
 				C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */,
@@ -760,6 +795,7 @@
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
 				C2E1581E1CFD9C1800BB3805 /* PipelineFunction.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
+				C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */,
 				C2E158201CFD9C4A00BB3805 /* PipelineVarying.swift in Sources */,
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,
 				C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */,
