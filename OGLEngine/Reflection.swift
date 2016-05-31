@@ -43,7 +43,6 @@ struct ReflectionPlane {
     func reflectedCamera(camera: BasicCamera) -> BasicCamera {
         let position = reflectedPoint(camera.position)
         
-        // TODO: orientation is mirrored only by (0 0 1 z) plane
         var orientation = camera.orientation
         let moduloAngle = fmod(orientation.x, Float(M_PI * 2))
         let angleDiff = moduloAngle - Float(M_PI_2 * 3)

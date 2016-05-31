@@ -1,0 +1,9 @@
+- OpenGL ES3: Vertices are drawn in wrong order
+- Attributes, VAO: Both Normal and TBN VBOs are generated (Potential fix of problem above)
+- Program, PipelineProgram: Pipeline and GPUProgram should have same base (glName, compile())
+- ReflectionPlane, Camera: Camera orientation is mirrored only by (0 0 1 z) plane
+- Get rid of old GPU* classes (ie Uniform, Attribute enums)
+	- Create PipelinePrograms equivalents of all GPUPrograms
+	- Remove all GPUPrograms
+	- Remove old models (most are in GPUDomainModels.swift)
+	- Cleanup
