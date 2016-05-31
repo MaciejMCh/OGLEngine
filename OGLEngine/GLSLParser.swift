@@ -23,7 +23,7 @@ func stringFromLines(lines: [String]) -> String {
 }
 
 struct GLSLParser {
-    static func vertexShader(vertexShader: VertexShader) -> String {
+    static func vertexShader(vertexShader: GPUVertexShader) -> String {
         return stringFromLines([
             "",
             "// Auto generated code",
@@ -34,7 +34,7 @@ struct GLSLParser {
             ])
     }
     
-    static func fragmentShader(fragmentShader: FragmentShader) -> String {
+    static func fragmentShader(fragmentShader: GPUFragmentShader) -> String {
         return stringFromLines([
             "",
             "// Auto generated code",
@@ -127,7 +127,7 @@ struct GLSLParser {
         }
     }
     
-    static func precision(precision: VariablePrecision) -> String {
+    static func precision(precision: GPUVariablePrecision) -> String {
         switch precision {
         case .Low: return "lowp"
         case .High: return "highp"

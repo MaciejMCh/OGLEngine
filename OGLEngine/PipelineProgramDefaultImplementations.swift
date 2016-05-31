@@ -50,28 +50,28 @@ extension PipelineProgram where RenderableType: Model {
     func passModelMatrix(model: Model) {
         var modelMatrix = model.geometryModel.modelMatrix()
         withUnsafePointer(&modelMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(Uniforms.modelMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.modelMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
     func passNormalMatrix(model: Model) {
         var normalMatrix = invertAndTransposeMatrix(model.geometryModel.modelMatrix())
         withUnsafePointer(&normalMatrix, {
-            glUniformMatrix3fv(self.pipeline.uniform(Uniforms.normalMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix3fv(self.pipeline.uniform(GPUUniforms.normalMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
     func passViewMatrix(camera: Camera) {
         var viewMatrix = camera.viewMatrix()
         withUnsafePointer(&viewMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(Uniforms.viewMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.viewMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
     func passProjectionMatrix(camera: Camera) {
         var projectionMatrix = camera.projectionMatrix()
         withUnsafePointer(&projectionMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(Uniforms.projectionMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.projectionMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
@@ -83,7 +83,7 @@ extension PipelineProgram where RenderableType: Model {
         var modelViewProjectionMatrix = modelMatrix * viewMatrix * projectionMatrix
         
         withUnsafePointer(&modelViewProjectionMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(Uniforms.modelViewProjectionMatrix).location, 1, 0, UnsafePointer($0))
+            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.modelViewProjectionMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
@@ -91,7 +91,7 @@ extension PipelineProgram where RenderableType: Model {
         let visibleReflectionContext = VisibleReflectionContext(model: model.geometryModel, camera: camera, light: light)
         var halfVector = visibleReflectionContext.halfVector()
         withUnsafePointer(&halfVector, {
-            glUniform3fv(self.pipeline.uniform(Uniforms.lightHalfVector).location, 1, UnsafePointer($0))
+            glUniform3fv(self.pipeline.uniform(GPUUniforms.lightHalfVector).location, 1, UnsafePointer($0))
         })
     }
     

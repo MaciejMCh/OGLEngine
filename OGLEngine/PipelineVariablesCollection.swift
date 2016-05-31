@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol GLSLRepresentable {
+protocol GPURepresentable {
     var glslName: String {get}
 }
 
-struct GLSLVariableCollection<T: GLSLRepresentable> {
+struct GPUVariableCollection<T: GPURepresentable> {
     let collection: [T]
     
-    func get(variable: GLSLRepresentable) -> T! {
+    func get(variable: GPURepresentable) -> T! {
         for element in collection {
             if element.glslName == variable.glslName {
                 return element

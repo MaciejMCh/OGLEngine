@@ -8,23 +8,23 @@
 
 import Foundation
 
-public protocol Shader {
+public protocol GPUShader {
     var name: String {get}
-    var interpolation: Interpolation {get}
+    var interpolation: GPUInterpolation {get}
     var function: MainGPUFunction {get}
 }
 
-public struct FragmentShader: Shader {
+public struct GPUFragmentShader: GPUShader {
     public let name: String
-    let uniforms: GLSLVariableCollection<AnyGPUUniform>
-    public let interpolation: Interpolation
+    let uniforms: GPUVariableCollection<AnyGPUUniform>
+    public let interpolation: GPUInterpolation
     public let function: MainGPUFunction
 }
 
-public struct VertexShader: Shader {
+public struct GPUVertexShader: GPUShader {
     public let name: String
-    let attributes: GLSLVariableCollection<GPUAttribute>
-    let uniforms: GLSLVariableCollection<AnyGPUUniform>
-    public let interpolation: Interpolation
+    let attributes: GPUVariableCollection<GPUAttribute>
+    let uniforms: GPUVariableCollection<AnyGPUUniform>
+    public let interpolation: GPUInterpolation
     public let function: MainGPUFunction
 }

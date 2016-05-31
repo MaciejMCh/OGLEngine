@@ -23,7 +23,7 @@ class AnyGPUUniform {
     }
 }
 
-extension AnyGPUUniform: GLSLRepresentable {
+extension AnyGPUUniform: GPURepresentable {
     var glslName: String {
         get {
             return self.variable.name!
@@ -45,7 +45,7 @@ class GPUUniform<T: GLSLType> : AnyGPUUniform {
     }
 }
 
-struct Uniforms {
+struct GPUUniforms {
     static let modelMatrix = GPUVariable<GLSLMat4>(name: "uModelMatrix")
     static let viewMatrix = GPUVariable<GLSLMat4>(name: "uViewMatrix")
     static let projectionMatrix = GPUVariable<GLSLMat4>(name: "uProjectionMatrix")

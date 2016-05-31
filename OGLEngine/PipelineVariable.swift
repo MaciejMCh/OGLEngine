@@ -16,7 +16,7 @@ public class AnyGPUVariable {
     }
 }
 
-extension AnyGPUVariable: GLSLRepresentable {
+extension AnyGPUVariable: GPURepresentable {
     var glslName: String {
         get {
             return self.name!
@@ -45,12 +45,12 @@ public class GPUVariable<T: GLSLType>: AnyGPUVariable {
     }   
 }
 
-public enum VariablePrecision {
+public enum GPUVariablePrecision {
     case Low
     case High
 }
 
-public enum VariableAccessKind {
+public enum GPUVariableAccessKind {
     case Attribute
     case Uniform
     case Varying

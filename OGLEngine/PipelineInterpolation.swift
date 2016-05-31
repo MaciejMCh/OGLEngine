@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol Interpolation {
+public protocol GPUInterpolation {
     func varyings() -> [GPUVarying]
 }

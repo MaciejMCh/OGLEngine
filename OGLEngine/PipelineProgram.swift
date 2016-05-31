@@ -18,35 +18,35 @@ class TestPipelineProgram: PipelineProgram {
     var directionalLight: DirectionalLight!
     
     func willRender(renderable: RenderableType) {
-        self.pipeline.uniform(Uniforms.modelViewProjectionMatrix).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.modelViewProjectionMatrix).cpuVariableGetter = {
             return renderable.modelViewProjectionMatrix(self.camera)
         }
         
-        self.pipeline.uniform(Uniforms.normalMatrix).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.normalMatrix).cpuVariableGetter = {
             return renderable.normalMatrix()
         }
         
-        self.pipeline.uniform(Uniforms.lightDirection).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.lightDirection).cpuVariableGetter = {
             return self.directionalLight.lightDirection
         }
         
-        self.pipeline.uniform(Uniforms.lightHalfVector).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.lightHalfVector).cpuVariableGetter = {
             return self.directionalLight.halfVectorWithCamera(self.camera)
         }
         
-        self.pipeline.uniform(Uniforms.textureScale).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.textureScale).cpuVariableGetter = {
             return 1.0
         }
         
-        self.pipeline.uniform(Uniforms.shininess).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.shininess).cpuVariableGetter = {
             return 100.0
         }
         
-        self.pipeline.uniform(Uniforms.lightColor).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.lightColor).cpuVariableGetter = {
             return (r: 1.0, g: 1.0, b: 1.0, a: 1.0)
         }
         
-        self.pipeline.uniform(Uniforms.colorMap).cpuVariableGetter = {
+        self.pipeline.uniform(GPUUniforms.colorMap).cpuVariableGetter = {
             return renderable.colorMap
         }
     }
@@ -57,7 +57,7 @@ protocol PipelineProgram {
     associatedtype RenderableType
     
     var glName: GLuint {get set}
-    var pipeline: Pipeline {get}
+    var pipeline: GPUPipeline {get}
     func willRender(renderable: RenderableType)
 }
 
@@ -190,7 +190,7 @@ extension PipelineProgram {
         if logLength > 0 {
             let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
             glGetShaderInfoLog(shader, logLength, &logLength, log)
-            NSLog("Shader compile log: \n%s", log)
+            NSLog("GPUShader compile log: \n%s", log)
             free(log)
         }
         //        #endif
@@ -214,7 +214,7 @@ extension PipelineProgram {
                         if logLength > 0 {
                             let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
                             glGetShaderInfoLog(shader, logLength, &logLength, log)
-                            NSLog("Shader compile log: \n%s", log)
+                            NSLog("GPUShader compile log: \n%s", log)
                             free(log)
                         }
         //#endif

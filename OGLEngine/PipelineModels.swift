@@ -9,9 +9,9 @@
 import Foundation
 import GLKit
 
-public struct Pipeline {
-    let vertexShader: VertexShader
-    let fragmentShader: FragmentShader
+public struct GPUPipeline {
+    let vertexShader: GPUVertexShader
+    let fragmentShader: GPUFragmentShader
     
     func uniform<T>(variable: GPUVariable<T>) -> GPUUniform<T>! {
         for uniform in vertexShader.uniforms.collection {

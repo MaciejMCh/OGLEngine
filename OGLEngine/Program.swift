@@ -136,7 +136,7 @@ extension GPUProgram {
                 if logLength > 0 {
                     let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
                     glGetShaderInfoLog(shader, logLength, &logLength, log)
-                    NSLog("Shader compile log: \n%s", log)
+                    NSLog("GPUShader compile log: \n%s", log)
                     free(log)
                 }
 //        #endif
@@ -159,7 +159,7 @@ extension GPUProgram {
 //                if logLength > 0 {
 //                    var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
 //                    glGetShaderInfoLog(shader, logLength, &logLength, log)
-//                    NSLog("Shader compile log: \n%s", log)
+//                    NSLog("GPUShader compile log: \n%s", log)
 //                    free(log)
 //                }
         //#endif

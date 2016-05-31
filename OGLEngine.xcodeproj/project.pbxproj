@@ -51,7 +51,7 @@
 		C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */; };
 		C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */; };
 		C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */; };
-		C2AFAE641CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE631CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift */; };
+		C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */; };
 		C2AFAE661CFC4DFD00C2F8D0 /* PipelineUniform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */; };
 		C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */; };
 		C2B188F31CF1CC8B008BB626 /* PipelineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */; };
@@ -138,7 +138,7 @@
 		C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.fsh; path = Shaders/ReflectiveSurface.fsh; sourceTree = "<group>"; };
 		C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedProgram.swift; sourceTree = "<group>"; };
 		C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineAttribute.swift; sourceTree = "<group>"; };
-		C2AFAE631CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLVariablesCollection.swift; sourceTree = "<group>"; };
+		C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineVariablesCollection.swift; sourceTree = "<group>"; };
 		C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineUniform.swift; sourceTree = "<group>"; };
 		C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineModels.swift; sourceTree = "<group>"; };
@@ -485,7 +485,7 @@
 				C2B188FC1CF20844008BB626 /* GLSLParser.swift */,
 				C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */,
 				C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */,
-				C2AFAE631CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift */,
+				C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */,
 				C2E1581D1CFD9C1800BB3805 /* PipelineFunction.swift */,
 				C2E158211CFD9D0200BB3805 /* PipelineScope.swift */,
 			);
@@ -742,7 +742,7 @@
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
 				C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */,
 				C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */,
-				C2AFAE641CFC4D6B00C2F8D0 /* GLSLVariablesCollection.swift in Sources */,
+				C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */,
 				C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */,

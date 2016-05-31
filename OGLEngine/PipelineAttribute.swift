@@ -14,7 +14,7 @@ struct GPUAttribute {
     let location: GLuint
 }
 
-extension GPUAttribute: GLSLRepresentable {
+extension GPUAttribute: GPURepresentable {
     var glslName: String {
         get {
             return self.variable.name!
@@ -22,7 +22,7 @@ extension GPUAttribute: GLSLRepresentable {
     }
 }
 
-struct Attributes {
+struct GPUAttributes {
     static let position = GPUAttribute(variable: GPUVariable<GLSLVec4>(name: "aPosition"), location: 0)
     static let texel = GPUAttribute(variable: GPUVariable<GLSLVec2>(name: "aTexel"), location: 1)
     static let normal = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aNormal"), location: 2)

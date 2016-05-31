@@ -10,5 +10,5 @@ import Foundation
 
 public struct GPUVarying {
     let variable: AnyGPUVariable
-    let precision: VariablePrecision
+    let precision: GPUVariablePrecision
 }

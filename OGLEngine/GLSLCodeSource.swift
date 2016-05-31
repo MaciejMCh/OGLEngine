@@ -40,7 +40,7 @@ struct GLSLFileShaderCodeSource: GLSLShaderCodeSource {
 }
 
 struct GLSLParsedCodeSource: GLSLShaderCodeSource {
-    let pipeline: Pipeline
+    let pipeline: GPUPipeline
     
     func vertexShaderCode() -> String {
         return GLSLParser.vertexShader(self.pipeline.vertexShader)

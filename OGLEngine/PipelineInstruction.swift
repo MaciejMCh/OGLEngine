@@ -14,10 +14,10 @@ public protocol GPUInstruction {
 
 public struct GPUDeclaration: GPUInstruction {
     let variable: AnyGPUVariable
-    let precision: VariablePrecision?
-    let accessKind: VariableAccessKind
+    let precision: GPUVariablePrecision?
+    let accessKind: GPUVariableAccessKind
     
-    init(variable: AnyGPUVariable, precision: VariablePrecision? = nil, accessKind: VariableAccessKind = .Local) {
+    init(variable: AnyGPUVariable, precision: GPUVariablePrecision? = nil, accessKind: GPUVariableAccessKind = .Local) {
         self.variable = variable
         self.precision = precision
         self.accessKind = accessKind
