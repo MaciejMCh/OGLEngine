@@ -10,22 +10,22 @@ import Foundation
 import GLKit
 
 public struct OpenGLDefaultVariables {
-    static func glPosition() -> TypedGPUVariable<GLSLVec4> {
-        return TypedGPUVariable<GLSLVec4>(name: "gl_Position")
+    static func glPosition() -> GPUVariable<GLSLVec4> {
+        return GPUVariable<GLSLVec4>(name: "gl_Position")
     }
     
-    static func glFragColor() -> TypedGPUVariable<GLSLColor> {
-        return TypedGPUVariable<GLSLColor>(name: "gl_FragColor")
+    static func glFragColor() -> GPUVariable<GLSLColor> {
+        return GPUVariable<GLSLColor>(name: "gl_FragColor")
     }
 }
 
 struct MediumShotInterpolation: Interpolation {
-    let vTexel = TypedGPUVariable<GLSLVec2>(name: "vTexel")
-    let vLighDirection = TypedGPUVariable<GLSLVec3>(name: "vLighDirection")
-    let vLighHalfVector = TypedGPUVariable<GLSLVec3>(name: "vLighHalfVector")
-    let vNormal = TypedGPUVariable<GLSLVec3>(name: "vNormal")
-    let vLightColor = TypedGPUVariable<GLSLColor>(name: "vLightColor")
-    let vShininess = TypedGPUVariable<GLSLFloat>(name: "vShininess")
+    let vTexel = GPUVariable<GLSLVec2>(name: "vTexel")
+    let vLighDirection = GPUVariable<GLSLVec3>(name: "vLighDirection")
+    let vLighHalfVector = GPUVariable<GLSLVec3>(name: "vLighHalfVector")
+    let vNormal = GPUVariable<GLSLVec3>(name: "vNormal")
+    let vLightColor = GPUVariable<GLSLColor>(name: "vLightColor")
+    let vShininess = GPUVariable<GLSLFloat>(name: "vShininess")
     
     func varyings() -> [GPUVarying] {
         return [
@@ -42,19 +42,19 @@ struct MediumShotInterpolation: Interpolation {
 public struct DefaultScopes {
     
     static func MediumShotFragment(
-        uColorMap: TypedGPUVariable<GLSLTexture>,
-        vTexel: TypedGPUVariable<GLSLVec2>,
-        vLighDirection: TypedGPUVariable<GLSLVec3>,
-        vLighHalfVector: TypedGPUVariable<GLSLVec3>,
-        vNormal: TypedGPUVariable<GLSLVec3>,
-        vLightColor: TypedGPUVariable<GLSLColor>,
-        vShininess: TypedGPUVariable<GLSLFloat>
+        uColorMap: GPUVariable<GLSLTexture>,
+        vTexel: GPUVariable<GLSLVec2>,
+        vLighDirection: GPUVariable<GLSLVec3>,
+        vLighHalfVector: GPUVariable<GLSLVec3>,
+        vNormal: GPUVariable<GLSLVec3>,
+        vLightColor: GPUVariable<GLSLColor>,
+        vShininess: GPUVariable<GLSLFloat>
         ) -> GPUScope {
         
         let bodyScope = GPUScope()
         let declarationsScope = GPUScope()
-        let normalizedNormal = TypedGPUVariable<GLSLVec3>(name: "normalizedNormal")
-        let colorFromMap = TypedGPUVariable<GLSLColor>(name: "colorFromMap")
+        let normalizedNormal = GPUVariable<GLSLVec3>(name: "normalizedNormal")
+        let colorFromMap = GPUVariable<GLSLColor>(name: "colorFromMap")
         
         declarationsScope ⥥ uColorMap
         declarationsScope ⟿↘ vTexel
@@ -63,7 +63,7 @@ public struct DefaultScopes {
         declarationsScope ⟿↘ vLighHalfVector
         declarationsScope ⟿↘ vShininess
         declarationsScope ⟿↘ vLightColor
-        declarationsScope ✍ GPUFunctionBody(function: ShaderFunction(scope: bodyScope), childScope: bodyScope)
+        declarationsScope ✍ GPUFunctionBody(function: MainFunction(), childScope: bodyScope)
         
         let phongScope = DefaultScopes.PhongReflectionColorScope(normalizedNormal,
                                                                  lightVector: vLighDirection,
@@ -82,30 +82,30 @@ public struct DefaultScopes {
     }
     
     static func MediumShotVertex(
-        glPosition: TypedGPUVariable<GLSLVec4>,
+        glPosition: GPUVariable<GLSLVec4>,
         
-        aPosition: TypedGPUVariable<GLSLVec4>,
-        aTexel: TypedGPUVariable<GLSLVec2>,
-        aNormal: TypedGPUVariable<GLSLVec3>,
+        aPosition: GPUVariable<GLSLVec4>,
+        aTexel: GPUVariable<GLSLVec2>,
+        aNormal: GPUVariable<GLSLVec3>,
         
-        vTexel: TypedGPUVariable<GLSLVec2>,
-        vLighDirection: TypedGPUVariable<GLSLVec3>,
-        vLighHalfVector: TypedGPUVariable<GLSLVec3>,
-        vNormal: TypedGPUVariable<GLSLVec3>,
-        vShininess: TypedGPUVariable<GLSLFloat>,
-        vLightColor: TypedGPUVariable<GLSLColor>,
+        vTexel: GPUVariable<GLSLVec2>,
+        vLighDirection: GPUVariable<GLSLVec3>,
+        vLighHalfVector: GPUVariable<GLSLVec3>,
+        vNormal: GPUVariable<GLSLVec3>,
+        vShininess: GPUVariable<GLSLFloat>,
+        vLightColor: GPUVariable<GLSLColor>,
         
-        uLighDirection: TypedGPUVariable<GLSLVec3>,
-        uLighHalfVector: TypedGPUVariable<GLSLVec3>,
-        uNormalMatrix: TypedGPUVariable<GLSLMat3>,
-        uModelViewProjectionMatrix: TypedGPUVariable<GLSLMat4>,
-        uTextureScale: TypedGPUVariable<GLSLFloat>,
-        uShininess: TypedGPUVariable<GLSLFloat>,
-        uLightColor: TypedGPUVariable<GLSLColor>
+        uLighDirection: GPUVariable<GLSLVec3>,
+        uLighHalfVector: GPUVariable<GLSLVec3>,
+        uNormalMatrix: GPUVariable<GLSLMat3>,
+        uModelViewProjectionMatrix: GPUVariable<GLSLMat4>,
+        uTextureScale: GPUVariable<GLSLFloat>,
+        uShininess: GPUVariable<GLSLFloat>,
+        uLightColor: GPUVariable<GLSLColor>
         ) -> GPUScope {
         let bodyScope = GPUScope()
         let declarationsScope = GPUScope()
-        let scaledTexel = TypedGPUVariable<GLSLVec2>(name: "scaledTexel")
+        let scaledTexel = GPUVariable<GLSLVec2>(name: "scaledTexel")
         
         declarationsScope ⥤ aPosition
         declarationsScope ⥤ aTexel
@@ -123,14 +123,14 @@ public struct DefaultScopes {
         declarationsScope ⟿↘ vTexel
         declarationsScope ⟿↘ vShininess
         declarationsScope ⟿↘ vLightColor
-        declarationsScope ✍ GPUFunctionBody(function: ShaderFunction(scope: bodyScope), childScope: bodyScope)
+        declarationsScope ✍ GPUFunctionBody(function: MainFunction(), childScope: bodyScope)
         
         bodyScope ↳ scaledTexel
         bodyScope ✍ scaledTexel ⬅ aTexel * uTextureScale
         bodyScope ✍ vTexel ⬅ scaledTexel
         bodyScope ✍ vShininess ⬅ uShininess
         bodyScope ✍ vLightColor ⬅ uLightColor
-        bodyScope ✍ vLighDirection ⬅ uLighDirection * (TypedGPUVariable<GLSLFloat>(value: -1.0))
+        bodyScope ✍ vLighDirection ⬅ uLighDirection * (GPUVariable<GLSLFloat>(value: -1.0))
         bodyScope ✍ vLighHalfVector ⬅ uLighHalfVector
         bodyScope ✍ vNormal ⬅ uNormalMatrix * aNormal
         bodyScope ✍ vNormal ⬅ ^vNormal
@@ -140,11 +140,11 @@ public struct DefaultScopes {
     }
     
     static func PhongFactorsScope(
-        normalVector: TypedGPUVariable<GLSLVec3>,
-        lightVector: TypedGPUVariable<GLSLVec3>,
-        halfVector: TypedGPUVariable<GLSLVec3>,
-        ndl: TypedGPUVariable<GLSLFloat>,
-        ndh: TypedGPUVariable<GLSLFloat>
+        normalVector: GPUVariable<GLSLVec3>,
+        lightVector: GPUVariable<GLSLVec3>,
+        halfVector: GPUVariable<GLSLVec3>,
+        ndl: GPUVariable<GLSLFloat>,
+        ndh: GPUVariable<GLSLFloat>
         ) -> GPUScope {
         let scope = GPUScope()
         
@@ -155,22 +155,22 @@ public struct DefaultScopes {
     }
     
     static func PhongReflectionColorScope(
-        normalVector: TypedGPUVariable<GLSLVec3> = TypedGPUVariable<GLSLVec3>(name: "normalVector"),
-        lightVector: TypedGPUVariable<GLSLVec3> = TypedGPUVariable<GLSLVec3>(name: "lightVector"),
-        halfVector: TypedGPUVariable<GLSLVec3> = TypedGPUVariable<GLSLVec3>(name: "halfVector"),
-        fullDiffuseColor: TypedGPUVariable<GLSLColor> = TypedGPUVariable<GLSLColor>(name: "fullDiffuseColor"),
-        lightColor: TypedGPUVariable<GLSLColor> = TypedGPUVariable<GLSLColor>(name: "lightColor"),
-        shininess: TypedGPUVariable<GLSLFloat> = TypedGPUVariable<GLSLFloat>(name: "shininess"),
-        phongColor: TypedGPUVariable<GLSLColor> = TypedGPUVariable<GLSLColor>(name: "phongColor")
+        normalVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "normalVector"),
+        lightVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "lightVector"),
+        halfVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "halfVector"),
+        fullDiffuseColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "fullDiffuseColor"),
+        lightColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "lightColor"),
+        shininess: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "shininess"),
+        phongColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "phongColor")
         ) -> GPUScope {
         
         let scope = GPUScope()
-        let ndl = TypedGPUVariable<GLSLFloat>(name: "ndl")
-        let ndh = TypedGPUVariable<GLSLFloat>(name: "ndh")
-        let reflectionPower = TypedGPUVariable<GLSLFloat>(name: "reflectionPower")
+        let ndl = GPUVariable<GLSLFloat>(name: "ndl")
+        let ndh = GPUVariable<GLSLFloat>(name: "ndh")
+        let reflectionPower = GPUVariable<GLSLFloat>(name: "reflectionPower")
         let phongFactorsScope = DefaultScopes.PhongFactorsScope(normalVector, lightVector: lightVector, halfVector: halfVector, ndl: ndl, ndh: ndh)
-        let diffuseColor = TypedGPUVariable<GLSLColor>(name: "diffuseColor")
-        let specularColor = TypedGPUVariable<GLSLColor>(name: "specularColor")
+        let diffuseColor = GPUVariable<GLSLColor>(name: "diffuseColor")
+        let specularColor = GPUVariable<GLSLColor>(name: "specularColor")
         
         scope ↳↘ ndl
         scope ↳↘ ndh
@@ -206,7 +206,7 @@ extension EnumCollection where T: GLSLEnum {
     }
 }
 
-extension TypedGPUVariable {
+extension GPUVariable {
     convenience init(glslEnum: GLSLEnum) {
         self.init(name: glslEnum.gpuDomainName())
     }
@@ -223,24 +223,24 @@ struct DefaultVertexShaders {
         
         let scope = DefaultScopes.MediumShotVertex(
             OpenGLDefaultVariables.glPosition(),
-            aPosition: TypedGPUVariable<GLSLVec4>(glslRepresentable: attributes.get(Attributes.position)),
-            aTexel: TypedGPUVariable<GLSLVec2>(glslRepresentable: attributes.get(Attributes.texel)),
-            aNormal: TypedGPUVariable<GLSLVec3>(glslRepresentable: attributes.get(Attributes.normal)),
+            aPosition: GPUVariable<GLSLVec4>(glslRepresentable: attributes.get(Attributes.position)),
+            aTexel: GPUVariable<GLSLVec2>(glslRepresentable: attributes.get(Attributes.texel)),
+            aNormal: GPUVariable<GLSLVec3>(glslRepresentable: attributes.get(Attributes.normal)),
             vTexel: interpolation.vTexel,
             vLighDirection: interpolation.vLighDirection,
             vLighHalfVector: interpolation.vLighHalfVector,
             vNormal: interpolation.vNormal,
             vShininess: interpolation.vShininess,
             vLightColor: interpolation.vLightColor,
-            uLighDirection: TypedGPUVariable<GLSLVec3>(glslRepresentable: uniforms.get(Uniforms.lightDirection)),
-            uLighHalfVector: TypedGPUVariable<GLSLVec3>(glslRepresentable: uniforms.get(Uniforms.lightHalfVector)),
-            uNormalMatrix: TypedGPUVariable<GLSLMat3>(glslRepresentable: uniforms.get(Uniforms.normalMatrix)),
-            uModelViewProjectionMatrix: TypedGPUVariable<GLSLMat4>(glslRepresentable: uniforms.get(Uniforms.modelViewProjectionMatrix)),
-            uTextureScale: TypedGPUVariable<GLSLFloat>(glslRepresentable: uniforms.get(Uniforms.textureScale)),
-            uShininess: TypedGPUVariable<GLSLFloat>(glslRepresentable: uniforms.get(Uniforms.shininess)),
-            uLightColor: TypedGPUVariable<GLSLColor>(glslRepresentable: uniforms.get(Uniforms.lightColor)))
+            uLighDirection: GPUVariable<GLSLVec3>(glslRepresentable: uniforms.get(Uniforms.lightDirection)),
+            uLighHalfVector: GPUVariable<GLSLVec3>(glslRepresentable: uniforms.get(Uniforms.lightHalfVector)),
+            uNormalMatrix: GPUVariable<GLSLMat3>(glslRepresentable: uniforms.get(Uniforms.normalMatrix)),
+            uModelViewProjectionMatrix: GPUVariable<GLSLMat4>(glslRepresentable: uniforms.get(Uniforms.modelViewProjectionMatrix)),
+            uTextureScale: GPUVariable<GLSLFloat>(glslRepresentable: uniforms.get(Uniforms.textureScale)),
+            uShininess: GPUVariable<GLSLFloat>(glslRepresentable: uniforms.get(Uniforms.shininess)),
+            uLightColor: GPUVariable<GLSLColor>(glslRepresentable: uniforms.get(Uniforms.lightColor)))
         
-        return VertexShader(name: "MediumShot", attributes: attributes, uniforms: uniforms, interpolation: interpolation, function: ShaderFunction(scope: scope))
+        return VertexShader(name: "MediumShot", attributes: attributes, uniforms: uniforms, interpolation: interpolation, function: MainFunction(scope: scope))
     }
 }
 
@@ -249,8 +249,8 @@ struct DefaultFragmentShaders {
         return FragmentShader(name: "MediumShot",
                               uniforms: uniforms,
                               interpolation: interpolation,
-                              function: ShaderFunction(scope: DefaultScopes.MediumShotFragment(
-                                uniforms.get(Uniforms.colorMap).variable as! TypedGPUVariable<GLSLTexture>,
+                              function: MainFunction(scope: DefaultScopes.MediumShotFragment(
+                                uniforms.get(Uniforms.colorMap).variable as! GPUVariable<GLSLTexture>,
                                 vTexel: interpolation.vTexel,
                                 vLighDirection: interpolation.vLighDirection,
                                 vLighHalfVector: interpolation.vLighHalfVector,
@@ -260,7 +260,7 @@ struct DefaultFragmentShaders {
     }
 }
 public struct DefaultPipelines {
-    static func MediumShot() -> GPUPipeline {
+    static func MediumShot() -> Pipeline {
         
         let attributes = GLSLVariableCollection<GPUAttribute>(collection: [
             Attributes.position,
@@ -281,6 +281,6 @@ public struct DefaultPipelines {
         
         let vertexShader = DefaultVertexShaders.MediumShot(attributes, uniforms: uniforms, interpolation: interpolation)
         let fragmentShader = DefaultFragmentShaders.MediumShot(uniforms, interpolation: interpolation)
-        return GPUPipeline(vertexShader: vertexShader, fragmentShader: fragmentShader)
+        return Pipeline(vertexShader: vertexShader, fragmentShader: fragmentShader)
     }
 }

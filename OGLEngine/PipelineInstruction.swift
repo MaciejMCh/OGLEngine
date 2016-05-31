@@ -13,7 +13,7 @@ public protocol GPUInstruction {
 }
 
 public struct GPUFunctionBody<T: GLSLType>: GPUInstruction {
-    let function: TypedGPUFunction<T>
+    let function: GPUFunction<T>
     let childScope: GPUScope
     
     public func glslRepresentation() -> String {
@@ -58,8 +58,8 @@ public struct GPUDeclaration: GPUInstruction {
 }
 
 public struct GPUAssignment<T: GLSLType>: GPUInstruction {
-    let assignee: TypedGPUVariable<T>
-    let assignment: TypedGPUVariable<T>
+    let assignee: GPUVariable<T>
+    let assignment: GPUVariable<T>
     
     public func glslRepresentation() -> String {
         return assignee.name! + " = " + assignment.name! + ";"
@@ -67,14 +67,14 @@ public struct GPUAssignment<T: GLSLType>: GPUInstruction {
 }
 
 public class GPUEvaluation<ReturnType: GLSLType>: GPUInstruction {
-    private(set) var function: TypedGPUFunction<ReturnType>
+    private(set) var function: GPUFunction<ReturnType>
     
-    init(function: TypedGPUFunction<ReturnType>) {
+    init(function: GPUFunction<ReturnType>) {
         self.function = function
     }
     
-    func variable() -> TypedGPUVariable<ReturnType> {
-        return TypedGPUVariable<ReturnType>(name: "")
+    func variable() -> GPUVariable<ReturnType> {
+        return GPUVariable<ReturnType>(name: "")
     }
     
     public func glslRepresentation() -> String {
@@ -98,7 +98,7 @@ public class GPUInfixEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType>
         self.operatorSymbol = operatorSymbol
         self.lhs = lhs
         self.rhs = rhs
-        super.init(function: TypedGPUFunction<ReturnType>())
+        super.init(function: GPUFunction<ReturnType>(signature: operatorSymbol, input: [lhs, rhs]))
     }
     
     public override func glslRepresentation() -> String {
@@ -107,7 +107,7 @@ public class GPUInfixEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType>
 }
 
 public struct GPUEvaluationAssignment<T: GLSLType>: GPUInstruction {
-    let assignee: TypedGPUVariable<T>
+    let assignee: GPUVariable<T>
     let assignment: GPUEvaluation<T>
     
     public func glslRepresentation() -> String {

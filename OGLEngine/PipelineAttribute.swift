@@ -23,10 +23,10 @@ extension GPUAttribute: GLSLRepresentable {
 }
 
 struct Attributes {
-    static let position = GPUAttribute(variable: TypedGPUVariable<GLSLVec4>(name: "aPosition"), location: 0)
-    static let texel = GPUAttribute(variable: TypedGPUVariable<GLSLVec2>(name: "aTexel"), location: 1)
-    static let normal = GPUAttribute(variable: TypedGPUVariable<GLSLVec3>(name: "aNormal"), location: 2)
-    static let tbn = GPUAttribute(variable: TypedGPUVariable<GLSLMat3>(name: "aTBN"), location: 3)
+    static let position = GPUAttribute(variable: GPUVariable<GLSLVec4>(name: "aPosition"), location: 0)
+    static let texel = GPUAttribute(variable: GPUVariable<GLSLVec2>(name: "aTexel"), location: 1)
+    static let normal = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aNormal"), location: 2)
+    static let tbn = GPUAttribute(variable: GPUVariable<GLSLMat3>(name: "aTBN"), location: 3)
     
     static func get(variable: AnyGPUVariable) -> GPUAttribute! {
         switch variable.name! {

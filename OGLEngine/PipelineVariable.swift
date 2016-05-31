@@ -8,12 +8,7 @@
 
 import Foundation
 
-public protocol GPUVariable {
-    associatedtype UnderlyingType
-}
-
-public class AnyGPUVariable: GPUVariable {
-    public typealias UnderlyingType = Any
+public class AnyGPUVariable {
     private(set) var name: String?
     
     init(name: String? = nil) {
@@ -29,9 +24,7 @@ extension AnyGPUVariable: GLSLRepresentable {
     }
 }
 
-public class TypedGPUVariable<T: GLSLType>: AnyGPUVariable {
-    public typealias UnderlyingType = T
-    
+public class GPUVariable<T: GLSLType>: AnyGPUVariable {
     private(set) var value: T.CPUCounterpart?
     override var name: String? {
         get {

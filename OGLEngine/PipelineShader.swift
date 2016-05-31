@@ -11,14 +11,14 @@ import Foundation
 public protocol Shader {
     var name: String {get}
     var interpolation: Interpolation {get}
-    var function: TypedGPUFunction<GLSLVoid> {get}
+    var function: GPUFunction<GLSLVoid> {get}
 }
 
 public struct FragmentShader: Shader {
     public let name: String
     let uniforms: GLSLVariableCollection<AnyGPUUniform>
     public let interpolation: Interpolation
-    public let function: TypedGPUFunction<GLSLVoid>
+    public let function: GPUFunction<GLSLVoid>
 }
 
 public struct VertexShader: Shader {
@@ -26,5 +26,5 @@ public struct VertexShader: Shader {
     let attributes: GLSLVariableCollection<GPUAttribute>
     let uniforms: GLSLVariableCollection<AnyGPUUniform>
     public let interpolation: Interpolation
-    public let function: TypedGPUFunction<GLSLVoid>
+    public let function: GPUFunction<GLSLVoid>
 }

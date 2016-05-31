@@ -8,67 +8,26 @@
 
 import Foundation
 
-public protocol GPUFunction {
-    associatedtype ReturnType
-}
-
-public class AnyGPUFunction: GPUFunction {
-    public typealias ReturnType = GLSLVoid
-    
+public class AnyGPUFunction {
     var signature: String
     var input: [AnyGPUVariable]
-    var scope : GPUScope
+    var scope: GPUScope? = nil
     
-    public init() {
-        self.signature = "error"
-        self.input = []
-        self.scope = GPUScope()
-    }
-    
-    public init(signature: String, input: [AnyGPUVariable], output: TypedGPUVariable<ReturnType>, scope: GPUScope) {
+    public init(signature: String, input: [AnyGPUVariable]) {
         self.signature = signature
         self.input = input
+    }
+}
+
+public class GPUFunction<ReturnType: GLSLType>: AnyGPUFunction {
+    override init(signature: String, input: [AnyGPUVariable]) {
+        super.init(signature: signature, input: input)
+    }
+}
+
+public class MainFunction: GPUFunction<GLSLVoid> {
+    init(scope: GPUScope? = nil) {
+        super.init(signature: "main", input: [])
         self.scope = scope
-    }
-    
-    public func outputVariable() -> TypedGPUVariable<ReturnType> {
-        return TypedGPUVariable<ReturnType>()
-    }
-}
-
-public class TypedGPUFunction<T: GLSLType>: AnyGPUFunction {
-    typealias ReturnType = T
-    
-    override init() {
-        super.init()
-    }
-    
-    init(signature: String, input: [AnyGPUVariable], scope: GPUScope) {
-        super.init()
-        self.signature = signature
-        self.input = input
-        self.scope = scope
-    }
-    
-    init(input: [AnyGPUVariable], output: TypedGPUVariable<T>, scope: GPUScope) {
-        super.init()
-    }
-    
-    public func GGoutputVariable() -> TypedGPUVariable<T> {
-        return TypedGPUVariable<T>()
-    }
-}
-
-public class ShaderFunction: TypedGPUFunction<GLSLVoid> {
-    init(scope: GPUScope) {
-        super.init(signature: "main", input: [], scope: scope)
-    }
-}
-
-public class StandardGPUFunction<T: GLSLType>: TypedGPUFunction<T> {
-    init(name: String, input: [AnyGPUVariable]) {
-        super.init()
-        self.signature = name
-        self.input = input
     }
 }

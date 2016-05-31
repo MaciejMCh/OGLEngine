@@ -65,7 +65,7 @@ extension Scene {
                 loadedRenderables.append(loadedRenderable)
             }
             
-            var closeShotRenderables: [CloseShotRenderable] = []
+            let closeShotRenderables: [CloseShotRenderable] = []
             var mediumShotRenderables: [MediumShotRenderable] = []
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             for loadedRenderable in loadedRenderables {

@@ -9,11 +9,11 @@
 import Foundation
 import GLKit
 
-public struct GPUPipeline {
+public struct Pipeline {
     let vertexShader: VertexShader
     let fragmentShader: FragmentShader
     
-    func uniform<T>(variable: TypedGPUVariable<T>) -> GPUUniform<T>! {
+    func uniform<T>(variable: GPUVariable<T>) -> GPUUniform<T>! {
         for uniform in vertexShader.uniforms.collection {
             if uniform.glslName == variable.glslName {
                 return uniform as! GPUUniform<T>

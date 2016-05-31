@@ -30,7 +30,7 @@ struct GLSLParser {
             "// Vertex shader",
             "// " + vertexShader.name,
             "",
-            GLSLParser.scope(vertexShader.function.scope)
+            GLSLParser.scope(vertexShader.function.scope!)
             ])
     }
     
@@ -41,7 +41,7 @@ struct GLSLParser {
             "// Fragment shader",
             "// " + fragmentShader.name,
             "",
-            GLSLParser.scope(fragmentShader.function.scope)
+            GLSLParser.scope(fragmentShader.function.scope!)
             ])
     }
     
@@ -70,8 +70,8 @@ struct GLSLParser {
     
     static func functionType(function: AnyGPUFunction) -> String {
         switch function {
-        case is TypedGPUFunction<GLSLVoid>: return "void"
-        case is TypedGPUFunction<GLSLVec3>: return "vec3"
+        case is GPUFunction<GLSLVoid>: return "void"
+        case is GPUFunction<GLSLVec3>: return "vec3"
         default:
             assert(false)
             return "unsupported type"
@@ -80,19 +80,19 @@ struct GLSLParser {
     
     static func variableType(variable: AnyGPUVariable) -> String {
         switch variable {
-        case is TypedGPUVariable<GLSLVoid>: return "void"
-        case is TypedGPUVariable<GLSLInt>: return "int"
-        case is TypedGPUVariable<GLSLFloat>: return "float"
+        case is GPUVariable<GLSLVoid>: return "void"
+        case is GPUVariable<GLSLInt>: return "int"
+        case is GPUVariable<GLSLFloat>: return "float"
             
-        case is TypedGPUVariable<GLSLVec2>: return "vec2"
-        case is TypedGPUVariable<GLSLVec3>: return "vec3"
-        case is TypedGPUVariable<GLSLVec4>: return "vec4"
+        case is GPUVariable<GLSLVec2>: return "vec2"
+        case is GPUVariable<GLSLVec3>: return "vec3"
+        case is GPUVariable<GLSLVec4>: return "vec4"
         
-        case is TypedGPUVariable<GLSLMat3>: return "mat3"
-        case is TypedGPUVariable<GLSLMat4>: return "mat4"
+        case is GPUVariable<GLSLMat3>: return "mat3"
+        case is GPUVariable<GLSLMat4>: return "mat4"
         
-        case is TypedGPUVariable<GLSLColor>: return "vec4"
-        case is TypedGPUVariable<GLSLTexture>: return "sampler2D"
+        case is GPUVariable<GLSLColor>: return "vec4"
+        case is GPUVariable<GLSLTexture>: return "sampler2D"
             
         default:
             assert(false)

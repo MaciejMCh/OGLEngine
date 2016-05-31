@@ -57,7 +57,7 @@ protocol PipelineProgram {
     associatedtype RenderableType
     
     var glName: GLuint {get set}
-    var pipeline: GPUPipeline {get}
+    var pipeline: Pipeline {get}
     func willRender(renderable: RenderableType)
 }
 
@@ -212,7 +212,7 @@ extension PipelineProgram {
                         var logLength: GLint = 0
                         glGetShaderiv(shader, GLenum(GL_INFO_LOG_LENGTH), &logLength)
                         if logLength > 0 {
-                            var log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
+                            let log = UnsafeMutablePointer<GLchar>(malloc(Int(logLength)))
                             glGetShaderInfoLog(shader, logLength, &logLength, log)
                             NSLog("Shader compile log: \n%s", log)
                             free(log)

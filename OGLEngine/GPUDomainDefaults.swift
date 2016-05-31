@@ -22,14 +22,14 @@ enum GPUType {
     
     func variableNamed(name: String) -> AnyGPUVariable {
         switch self {
-        case .Float: return TypedGPUVariable<GLSLFloat>(name: name)
-        case .Vec2: return TypedGPUVariable<GLSLVec2>(name: name)
-        case .Vec3: return TypedGPUVariable<GLSLVec3>(name: name)
-        case .Vec4: return TypedGPUVariable<GLSLVec4>(name: name)
-        case .Mat3: return TypedGPUVariable<GLSLMat3>(name: name)
-        case .Mat4: return TypedGPUVariable<GLSLMat4>(name: name)
-        case .Texture: return TypedGPUVariable<GLSLTexture>(name: name)
-        case .Plane: return TypedGPUVariable<GLSLPlane>(name: name)
+        case .Float: return GPUVariable<GLSLFloat>(name: name)
+        case .Vec2: return GPUVariable<GLSLVec2>(name: name)
+        case .Vec3: return GPUVariable<GLSLVec3>(name: name)
+        case .Vec4: return GPUVariable<GLSLVec4>(name: name)
+        case .Mat3: return GPUVariable<GLSLMat3>(name: name)
+        case .Mat4: return GPUVariable<GLSLMat4>(name: name)
+        case .Texture: return GPUVariable<GLSLTexture>(name: name)
+        case .Plane: return GPUVariable<GLSLPlane>(name: name)
         }
     }
 }
