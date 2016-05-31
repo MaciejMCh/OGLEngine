@@ -63,6 +63,11 @@ public func ⎘ (lhs: GPUScope, rhs: GPUScope) {
     lhs.mergeScope(rhs)
 }
 
+// Function declaration
+public func ↳ (lhs: GPUScope, rhs: AnyGPUFunction) {
+    lhs.appendFunction(rhs)
+}
+
 // MARK: GPUVariable
 
 // Assignment

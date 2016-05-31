@@ -13,21 +13,21 @@ public class AnyGPUFunction {
     var input: [AnyGPUVariable]
     var scope: GPUScope? = nil
     
-    public init(signature: String, input: [AnyGPUVariable]) {
+    public init(signature: String, input: [AnyGPUVariable], scope: GPUScope? = nil) {
         self.signature = signature
         self.input = input
+        self.scope = scope
     }
 }
 
 public class GPUFunction<ReturnType: GLSLType>: AnyGPUFunction {
-    override init(signature: String, input: [AnyGPUVariable]) {
-        super.init(signature: signature, input: input)
+    override init(signature: String, input: [AnyGPUVariable], scope: GPUScope? = nil) {
+        super.init(signature: signature, input: input, scope: scope)
     }
 }
 
-public class MainFunction: GPUFunction<GLSLVoid> {
-    init(scope: GPUScope? = nil) {
-        super.init(signature: "main", input: [])
-        self.scope = scope
+public class MainGPUFunction: GPUFunction<GLSLVoid> {
+    init(scope: GPUScope) {
+        super.init(signature: "main", input: [], scope: scope)
     }
 }

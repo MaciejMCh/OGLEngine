@@ -10,9 +10,14 @@ import Foundation
 
 public class GPUScope {
     var instructions: [GPUInstruction] = []
+    var functions: [AnyGPUFunction] = []
     
     func appendInstruction(instruction: GPUInstruction) {
         self.instructions.append(instruction)
+    }
+    
+    func appendFunction(function: AnyGPUFunction) {
+        self.functions.append(function)
     }
     
     func mergeScope(scope: GPUScope) {
@@ -20,5 +25,6 @@ public class GPUScope {
         mergedInstructions.appendContentsOf(self.instructions)
         mergedInstructions.appendContentsOf(scope.instructions)
         self.instructions = mergedInstructions
+        self.functions.appendContentsOf(scope.functions)
     }
 }

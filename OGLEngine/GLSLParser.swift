@@ -50,7 +50,21 @@ struct GLSLParser {
         for instruction in scope.instructions {
             instructionLines.append(instruction.glslRepresentation())
         }
-        return stringFromLines(instructionLines)
+        
+        var functionDeclarationStrings: [String] = []
+        for function in scope.functions {
+            functionDeclarationStrings.append(GLSLParser.function(function))
+        }
+        
+        return stringFromLines(instructionLines + functionDeclarationStrings)
+    }
+    
+    static func function(function: AnyGPUFunction) -> String {
+        return stringFromLines([
+            functionDeclaration(function),
+            scope(function.scope!),
+            "}"
+            ])
     }
     
     static func functionDeclaration(function: AnyGPUFunction) -> String {

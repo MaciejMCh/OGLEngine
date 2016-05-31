@@ -12,18 +12,6 @@ public protocol GPUInstruction {
     func glslRepresentation() -> String
 }
 
-public struct GPUFunctionBody<T: GLSLType>: GPUInstruction {
-    let function: GPUFunction<T>
-    let childScope: GPUScope
-    
-    public func glslRepresentation() -> String {
-        return stringFromLines([
-            GLSLParser.functionDeclaration(self.function),
-            GLSLParser.scope(self.childScope),
-            "}"])
-    }
-}
-
 public struct GPUDeclaration: GPUInstruction {
     let variable: AnyGPUVariable
     let precision: VariablePrecision?

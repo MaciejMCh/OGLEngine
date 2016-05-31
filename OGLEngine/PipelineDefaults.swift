@@ -51,19 +51,20 @@ public struct DefaultScopes {
         vShininess: GPUVariable<GLSLFloat>
         ) -> GPUScope {
         
+        let globalScope = GPUScope()
         let bodyScope = GPUScope()
-        let declarationsScope = GPUScope()
+        let mainFunction = MainGPUFunction(scope: bodyScope)
         let normalizedNormal = GPUVariable<GLSLVec3>(name: "normalizedNormal")
         let colorFromMap = GPUVariable<GLSLColor>(name: "colorFromMap")
         
-        declarationsScope ⥥ uColorMap
-        declarationsScope ⟿↘ vTexel
-        declarationsScope ⟿↘ vNormal
-        declarationsScope ⟿↘ vLighDirection
-        declarationsScope ⟿↘ vLighHalfVector
-        declarationsScope ⟿↘ vShininess
-        declarationsScope ⟿↘ vLightColor
-        declarationsScope ✍ GPUFunctionBody(function: MainFunction(), childScope: bodyScope)
+        globalScope ⥥ uColorMap
+        globalScope ⟿↘ vTexel
+        globalScope ⟿↘ vNormal
+        globalScope ⟿↘ vLighDirection
+        globalScope ⟿↘ vLighHalfVector
+        globalScope ⟿↘ vShininess
+        globalScope ⟿↘ vLightColor
+        globalScope ↳ mainFunction
         
         let phongScope = DefaultScopes.PhongReflectionColorScope(normalizedNormal,
                                                                  lightVector: vLighDirection,
@@ -78,7 +79,7 @@ public struct DefaultScopes {
         bodyScope ✍ colorFromMap ⬅ uColorMap ☒ vTexel
         bodyScope ⎘ phongScope
         
-        return declarationsScope
+        return globalScope
     }
     
     static func MediumShotVertex(
@@ -104,26 +105,27 @@ public struct DefaultScopes {
         uLightColor: GPUVariable<GLSLColor>
         ) -> GPUScope {
         let bodyScope = GPUScope()
-        let declarationsScope = GPUScope()
+        let globalScope = GPUScope()
         let scaledTexel = GPUVariable<GLSLVec2>(name: "scaledTexel")
+        let mainFunction = MainGPUFunction(scope: bodyScope)
         
-        declarationsScope ⥤ aPosition
-        declarationsScope ⥤ aTexel
-        declarationsScope ⥤ aNormal
-        declarationsScope ⥥ uTextureScale
-        declarationsScope ⥥ uLighDirection
-        declarationsScope ⥥ uLighHalfVector
-        declarationsScope ⥥ uNormalMatrix
-        declarationsScope ⥥ uModelViewProjectionMatrix
-        declarationsScope ⥥ uShininess
-        declarationsScope ⥥ uLightColor
-        declarationsScope ⟿↘ vLighDirection
-        declarationsScope ⟿↘ vLighHalfVector
-        declarationsScope ⟿↘ vNormal
-        declarationsScope ⟿↘ vTexel
-        declarationsScope ⟿↘ vShininess
-        declarationsScope ⟿↘ vLightColor
-        declarationsScope ✍ GPUFunctionBody(function: MainFunction(), childScope: bodyScope)
+        globalScope ⥤ aPosition
+        globalScope ⥤ aTexel
+        globalScope ⥤ aNormal
+        globalScope ⥥ uTextureScale
+        globalScope ⥥ uLighDirection
+        globalScope ⥥ uLighHalfVector
+        globalScope ⥥ uNormalMatrix
+        globalScope ⥥ uModelViewProjectionMatrix
+        globalScope ⥥ uShininess
+        globalScope ⥥ uLightColor
+        globalScope ⟿↘ vLighDirection
+        globalScope ⟿↘ vLighHalfVector
+        globalScope ⟿↘ vNormal
+        globalScope ⟿↘ vTexel
+        globalScope ⟿↘ vShininess
+        globalScope ⟿↘ vLightColor
+        globalScope ↳ mainFunction
         
         bodyScope ↳ scaledTexel
         bodyScope ✍ scaledTexel ⬅ aTexel * uTextureScale
@@ -136,7 +138,7 @@ public struct DefaultScopes {
         bodyScope ✍ vNormal ⬅ ^vNormal
         bodyScope ✍ glPosition ⬅ uModelViewProjectionMatrix * aPosition
         
-        return declarationsScope
+        return globalScope
     }
     
     static func PhongFactorsScope(
@@ -240,7 +242,7 @@ struct DefaultVertexShaders {
             uShininess: GPUVariable<GLSLFloat>(glslRepresentable: uniforms.get(Uniforms.shininess)),
             uLightColor: GPUVariable<GLSLColor>(glslRepresentable: uniforms.get(Uniforms.lightColor)))
         
-        return VertexShader(name: "MediumShot", attributes: attributes, uniforms: uniforms, interpolation: interpolation, function: MainFunction(scope: scope))
+        return VertexShader(name: "MediumShot", attributes: attributes, uniforms: uniforms, interpolation: interpolation, function: MainGPUFunction(scope: scope))
     }
 }
 
@@ -249,7 +251,7 @@ struct DefaultFragmentShaders {
         return FragmentShader(name: "MediumShot",
                               uniforms: uniforms,
                               interpolation: interpolation,
-                              function: MainFunction(scope: DefaultScopes.MediumShotFragment(
+                              function: MainGPUFunction(scope: DefaultScopes.MediumShotFragment(
                                 uniforms.get(Uniforms.colorMap).variable as! GPUVariable<GLSLTexture>,
                                 vTexel: interpolation.vTexel,
                                 vLighDirection: interpolation.vLighDirection,
