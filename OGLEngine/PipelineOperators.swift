@@ -89,6 +89,13 @@ public func ⋅ (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUE
     return GPUEvaluation<GLSLFloat>(function: GPUFunction<GLSLFloat>(signature: "dot", input: [lhs, rhs]))
 }
 
+// Difference
+infix operator - { associativity left precedence 200 }
+public func - (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec3> {
+    return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
+}
+
+
 // Normalization
 prefix operator ^ {}
 prefix func ^ (vector: GPUVariable<GLSLVec3>) -> GPUEvaluation<GLSLVec3> {
@@ -109,6 +116,10 @@ public func * (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLFloat>) -> GPUIn
 infix operator * { associativity left precedence 140 }
 public func * (lhs: GPUVariable<GLSLMat4>, rhs: GPUVariable<GLSLVec4>) -> GPUInfixEvaluation<GLSLVec4> {
     return GPUInfixEvaluation<GLSLVec4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+}
+
+public func * (lhs: GPUVariable<GLSLMat4>, rhs: GPUVariable<GLSLMat4>) -> GPUInfixEvaluation<GLSLMat4> {
+    return GPUInfixEvaluation<GLSLMat4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
 public func * (lhs: GPUVariable<GLSLMat3>, rhs: GPUVariable<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec3> {
