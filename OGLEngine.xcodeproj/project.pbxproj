@@ -45,6 +45,7 @@
 		C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5C81CA898DD00E56E67 /* Texture.swift */; };
 		C269D5E21CA898E900E56E67 /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5E11CA898E900E56E67 /* VAO.swift */; };
 		C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C269D5F01CA89B6E00E56E67 /* IPAddress */; };
+		C26A3F8C1CFEC8ED0080AE12 /* CloseShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */; };
 		C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */; };
 		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
 		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
@@ -135,6 +136,7 @@
 		C269D5C81CA898DD00E56E67 /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		C269D5E11CA898E900E56E67 /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 		C269D5F01CA89B6E00E56E67 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
+		C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShot.swift; sourceTree = "<group>"; };
 		C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderedTexture.swift; sourceTree = "<group>"; };
 		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */,
+				C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				C2E158181CFD9B2D00BB3805 /* PipelineVariable.swift in Sources */,
 				C2B188F71CF1D3E3008BB626 /* PipelineDefaults.swift in Sources */,
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
+				C26A3F8C1CFEC8ED0080AE12 /* CloseShot.swift in Sources */,
 				C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */,
 				C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */,
 				C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */,

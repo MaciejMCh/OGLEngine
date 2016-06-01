@@ -21,10 +21,24 @@ extension GPUVariable {
 struct GPUVariableCollection<T: GPURepresentable> {
     let collection: [T]
     
-    func get(variable: GPURepresentable) -> T! {
-        for element in collection {
-            if element.glslName == variable.glslName {
-                return element
+    // TODO: Very ugly
+    func get<T where T: GLSLType>(uniform: GPUVariable<T>) -> GPUVariable<T>! {
+        for element in self.collection {
+            if element.glslName == uniform.glslName {
+                if self is GPUVariableCollection<AnyGPUVariable> {
+                    return element as! GPUVariable<T>
+                } else if self is GPUVariableCollection<AnyGPUUniform> {
+                    return (element as! GPUUniform<T>).typedVariable
+                }
+            }
+        }
+        return nil
+    }
+    
+    func get<T where T: GLSLType>(attribute: GPUAttribute<T>) -> GPUVariable<T>! {
+        for element in self.collection {
+            if element.glslName == attribute.glslName {
+                return (element as! GPUAttribute<T>).typedVariable
             }
         }
         return nil

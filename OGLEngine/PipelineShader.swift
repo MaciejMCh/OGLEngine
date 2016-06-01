@@ -23,7 +23,7 @@ public struct GPUFragmentShader: GPUShader {
 
 public struct GPUVertexShader: GPUShader {
     public let name: String
-    let attributes: GPUVariableCollection<GPUAttribute>
+    let attributes: GPUVariableCollection<AnyGPUAttribute>
     let uniforms: GPUVariableCollection<AnyGPUUniform>
     public let interpolation: GPUInterpolation
     public let function: MainGPUFunction

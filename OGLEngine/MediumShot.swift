@@ -10,7 +10,7 @@ import Foundation
 
 extension DefaultPipelines {
     static func MediumShot() -> GPUPipeline {
-        let attributes = GPUVariableCollection<GPUAttribute>(collection: [
+        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
             GPUAttributes.position,
             GPUAttributes.texel,
             GPUAttributes.normal
@@ -34,28 +34,28 @@ extension DefaultPipelines {
 }
 
 extension DefaultVertexShaders {
-    static func MediumShot(attributes: GPUVariableCollection<GPUAttribute>,
+    static func MediumShot(attributes: GPUVariableCollection<AnyGPUAttribute>,
                            uniforms: GPUVariableCollection<AnyGPUUniform>,
                            interpolation: MediumShotInterpolation) -> GPUVertexShader {
         
         let scope = DefaultScopes.MediumShotVertex(
             OpenGLDefaultVariables.glPosition(),
-            aPosition: GPUVariable<GLSLVec4>(glslRepresentable: attributes.get(GPUAttributes.position)),
-            aTexel: GPUVariable<GLSLVec2>(glslRepresentable: attributes.get(GPUAttributes.texel)),
-            aNormal: GPUVariable<GLSLVec3>(glslRepresentable: attributes.get(GPUAttributes.normal)),
+            aPosition: attributes.get(GPUAttributes.position),
+            aTexel: attributes.get(GPUAttributes.texel),
+            aNormal: attributes.get(GPUAttributes.normal),
             vTexel: interpolation.vTexel,
             vLighDirection: interpolation.vLighDirection,
             vLighHalfVector: interpolation.vLighHalfVector,
             vNormal: interpolation.vNormal,
             vShininess: interpolation.vShininess,
             vLightColor: interpolation.vLightColor,
-            uLighDirection: GPUVariable<GLSLVec3>(glslRepresentable: uniforms.get(GPUUniforms.lightDirection)),
-            uLighHalfVector: GPUVariable<GLSLVec3>(glslRepresentable: uniforms.get(GPUUniforms.lightHalfVector)),
-            uNormalMatrix: GPUVariable<GLSLMat3>(glslRepresentable: uniforms.get(GPUUniforms.normalMatrix)),
-            uModelViewProjectionMatrix: GPUVariable<GLSLMat4>(glslRepresentable: uniforms.get(GPUUniforms.modelViewProjectionMatrix)),
-            uTextureScale: GPUVariable<GLSLFloat>(glslRepresentable: uniforms.get(GPUUniforms.textureScale)),
-            uShininess: GPUVariable<GLSLFloat>(glslRepresentable: uniforms.get(GPUUniforms.shininess)),
-            uLightColor: GPUVariable<GLSLColor>(glslRepresentable: uniforms.get(GPUUniforms.lightColor)))
+            uLighDirection: uniforms.get(GPUUniforms.lightDirection),
+            uLighHalfVector: uniforms.get(GPUUniforms.lightHalfVector),
+            uNormalMatrix: uniforms.get(GPUUniforms.normalMatrix),
+            uModelViewProjectionMatrix: uniforms.get(GPUUniforms.modelViewProjectionMatrix),
+            uTextureScale: uniforms.get(GPUUniforms.textureScale),
+            uShininess: uniforms.get(GPUUniforms.shininess),
+            uLightColor: uniforms.get(GPUUniforms.lightColor))
         
         return GPUVertexShader(name: "MediumShot", attributes: attributes, uniforms: uniforms, interpolation: interpolation, function: MainGPUFunction(scope: scope))
     }
@@ -87,7 +87,7 @@ extension DefaultFragmentShaders {
                                  uniforms: uniforms,
                                  interpolation: interpolation,
                                  function: MainGPUFunction(scope: DefaultScopes.MediumShotFragment(
-                                    uniforms.get(GPUUniforms.colorMap).variable as! GPUVariable<GLSLTexture>,
+                                    uniforms.get(GPUUniforms.colorMap),
                                     vTexel: interpolation.vTexel,
                                     vLighDirection: interpolation.vLighDirection,
                                     vLighHalfVector: interpolation.vLighHalfVector,
