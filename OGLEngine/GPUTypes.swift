@@ -75,10 +75,10 @@ public struct GLSLInt: GLSLType {
 }
 
 public struct GLSLTexture: GLSLType {
-    public typealias CPUCounterpart = Texture
+    public typealias CPUCounterpart = (texture: Texture, index: GLint)
     
     public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
-        GPUPassFunctions.texturePass(value, location: location)
+        GPUPassFunctions.texturePass(value.texture, index: value.index, location: GLint(value.texture.glName))
     }
 }
 

@@ -47,7 +47,7 @@ class MediumShotPipelineProgram: PipelineProgram {
         }
         
         self.pipeline.uniform(GPUUniforms.colorMap).cpuVariableGetter = {
-            return renderable.colorMap
+            return (texture: renderable.colorMap, index: 0)
         }
     }
 }

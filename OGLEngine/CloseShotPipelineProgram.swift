@@ -18,25 +18,18 @@ class CloseShotPipelineProgram: PipelineProgram {
     var directionalLight: DirectionalLight!
     
     func willRender(renderable: RenderableType) {
-        self.pipeline.uniform(GPUUniforms.lightDirection).cpuVariableGetter = {
-            return self.directionalLight.lightDirection
-        }
-        self.pipeline.uniform(GPUUniforms.lightHalfVector).cpuVariableGetter = {
-            return self.directionalLight.halfVectorWithCamera(self.camera)
-        }
-        self.pipeline.uniform(GPUUniforms.modelMatrix).cpuVariableGetter = {
-            return renderable.geometryModel.modelMatrix()
-        }
-        self.pipeline.uniform(GPUUniforms.viewMatrix).cpuVariableGetter = {
-            return self.camera.viewMatrix()
-        }
-        self.pipeline.uniform(GPUUniforms.projectionMatrix).cpuVariableGetter = {
-            return self.camera.projectionMatrix()
-        }
-        
+        self.pipeline.uniform(GPUUniforms.lightDirection).cpuVariableGetter = {self.directionalLight.lightDirection}
+        self.pipeline.uniform(GPUUniforms.modelMatrix).cpuVariableGetter = {renderable.geometryModel.modelMatrix()}
+        self.pipeline.uniform(GPUUniforms.viewMatrix).cpuVariableGetter = {self.camera.viewMatrix()}
+        self.pipeline.uniform(GPUUniforms.projectionMatrix).cpuVariableGetter = {self.camera.projectionMatrix()}
+        self.pipeline.uniform(GPUUniforms.normalMatrix).cpuVariableGetter = {renderable.normalMatrix()}
+        self.pipeline.uniform(GPUUniforms.eyePosition).cpuVariableGetter = {self.camera.cameraPosition()}
+        self.pipeline.uniform(GPUUniforms.colorMap).cpuVariableGetter = {(texture: renderable.colorMap, index: 0)}
+        self.pipeline.uniform(GPUUniforms.normalMap).cpuVariableGetter = {(texture: renderable.normalMap, index: 1)}
+        self.pipeline.uniform(GPUUniforms.textureScale).cpuVariableGetter = {1.0}
+        self.pipeline.uniform(GPUUniforms.lightColor).cpuVariableGetter = {(r: 1.0, g: 1.0, b:1.0, a:1.0)}
+        self.pipeline.uniform(GPUUniforms.shininess).cpuVariableGetter = {100.0}
     }
 }
 
-//self.pipeline.uniform(GPUUniforms.).cpuVariableGetter = {
-//    
-//}
+//self.pipeline.uniform(GPUUniforms.).cpuVariableGetter = {}
