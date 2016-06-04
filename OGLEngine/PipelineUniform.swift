@@ -41,6 +41,7 @@ class GPUUniform<T: GLSLType> : AnyGPUUniform {
     }
     
     override func passToGPU() {
+        assert(self.cpuVariableGetter != nil, self.variable.name! + " uniform has no assigned cpu counterpart getter.")
         T.passValueToGPU(self.cpuVariableGetter(), location: self.location)
     }
 }

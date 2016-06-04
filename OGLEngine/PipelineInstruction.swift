@@ -77,6 +77,20 @@ public class GPUEvaluation<ReturnType: GLSLType>: GPUInstruction {
     }
 }
 
+public class FixedGPUEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType> {
+    private(set) var glslCode: String
+    
+    init(glslCode: String) {
+        self.glslCode = glslCode
+        super.init(function: GPUFunction<ReturnType>(signature: "", input: []))
+    }
+    
+    public override func glslRepresentation() -> String {
+        return self.glslCode
+    }
+    
+}
+
 public class GPUInfixEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType> {
     private(set) var operatorSymbol: String
     private(set) var lhs: AnyGPUVariable

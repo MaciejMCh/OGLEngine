@@ -65,13 +65,13 @@ extension Scene {
                 loadedRenderables.append(loadedRenderable)
             }
             
-            let closeShotRenderables: [CloseShotRenderable] = []
+            var closeShotRenderables: [CloseShotRenderable] = []
             var mediumShotRenderables: [MediumShotRenderable] = []
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             for loadedRenderable in loadedRenderables {
                 switch loadedRenderable.type {
-//                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
-                case .Default: mediumShotRenderables.append(MediumShotRenderable(loadedRenderable: loadedRenderable))
+                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+//                case .Default: mediumShotRenderables.append(MediumShotRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
                 }
             }

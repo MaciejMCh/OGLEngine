@@ -1,3 +1,6 @@
+- GPUPipeline, Program validation: Find error cases before program compiles, because OpenGL logger doesn't precise error:
+	- Failed to link program: Varying is not declared in one of shaders
+	- Can't fin uniform location: Varying or uniform is never assigned
 - OpenGL ES3: Vertices are drawn in wrong order
 - Attributes, VAO: Both Normal and TBN VBOs are generated (Potential fix of problem above)
 - Program, PipelineProgram: Pipeline and GPUProgram should have same base (glName, compile())

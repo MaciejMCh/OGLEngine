@@ -15,7 +15,7 @@ class GameViewController: GLKViewController {
     var closeShotProgram: CloseShotProgram!
     var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
     var reflectedProgram: ReflectedProgram!
-    var pipelineProgram: TestPipelineProgram!
+    var pipelineProgram: CloseShotPipelineProgram!
     
     var context: EAGLContext? = nil
     
@@ -65,9 +65,9 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-//        let program = TestPipelineProgram()
-//        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
-//        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
+        let program = CloseShotPipelineProgram()
+        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
+        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
         
 //        program.compile()
@@ -86,10 +86,11 @@ class GameViewController: GLKViewController {
         self.reflectedProgram = ReflectedProgram()
         self.reflectedProgram.compile()
         
-        self.pipelineProgram = TestPipelineProgram()
+        self.pipelineProgram = CloseShotPipelineProgram()
         self.pipelineProgram.camera = self.scene.camera
         self.pipelineProgram.directionalLight = self.scene.directionalLight
         self.pipelineProgram.compile()
+        
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
@@ -126,7 +127,7 @@ class GameViewController: GLKViewController {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.pipelineProgram.glName)
-        self.pipelineProgram.render(scene.mediumShots)
+        self.pipelineProgram.render(scene.closeShots)
     }
     
     func renderTexture() {
