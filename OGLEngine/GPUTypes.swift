@@ -32,6 +32,10 @@ public struct GLSLColor: GLSLType {
     public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
         GPUPassFunctions.vec4Pass(GLKVector4Make(value.r, value.g, value.b, value.a), location: location)
     }
+    
+    public static func primitiveFace(primitive: CPUCounterpart) -> String {
+        return "vec4(\(primitive.r), \(primitive.g), \(primitive.b), \(primitive.a))"
+    }
 }
 
 public struct GLSLVoid: GLSLType {
@@ -40,6 +44,10 @@ public struct GLSLVoid: GLSLType {
 
 public struct GLSLVec4: GLSLType {
     public typealias CPUCounterpart = GLKVector4
+    
+    public static func primitiveFace(primitive: CPUCounterpart) -> String {
+        return "vec4(\(primitive.x), \(primitive.y), \(primitive.z), \(primitive.w))"
+    }
 }
 
 public struct GLSLVec3: GLSLType {
@@ -48,10 +56,18 @@ public struct GLSLVec3: GLSLType {
     public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
         GPUPassFunctions.vec3Pass(value, location: location)
     }
+    
+    public static func primitiveFace(primitive: CPUCounterpart) -> String {
+        return "vec3(\(primitive.x), \(primitive.y), \(primitive.z))"
+    }
 }
 
 public struct GLSLVec2: GLSLType {
     public typealias CPUCounterpart = GLKVector2
+    
+    public static func primitiveFace(primitive: CPUCounterpart) -> String {
+        return "vec2(\(primitive.x), \(primitive.y))"
+    }
 }
 
 public struct GLSLMat3: GLSLType {
@@ -72,6 +88,10 @@ public struct GLSLMat4: GLSLType {
 
 public struct GLSLInt: GLSLType {
     public typealias CPUCounterpart = Int
+    
+    public static func primitiveFace(primitive: CPUCounterpart) -> String {
+        return "\(primitive)"
+    }
 }
 
 public struct GLSLTexture: GLSLType {
