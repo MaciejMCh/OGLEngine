@@ -135,14 +135,14 @@ extension DefaultScopes {
         mainScope ↳ tbnMatrix
         mainScope ✍ tbnMatrix ⬅ GPUEvaluation(function: GPUFunction<GLSLMat3>(signature: "mat3", input: [aTbnMatrixCol1, aTbnMatrixCol2, aTbnMatrixCol3]))
         mainScope ✍ vLightVector ⬅ uLightDirection * GPUVariable<GLSLFloat>(value: -1.0)
-        mainScope ✍ vLightVector ⬅ uNormalMatrix * vLightVector
+//        mainScope ✍ vLightVector ⬅ uNormalMatrix * vLightVector
         mainScope ✍ vLightVector ⬅ tbnMatrix * vLightVector
         mainScope ↳ worldSpacePosition
         mainScope ✍ worldSpacePosition ⬅ uModelMatrix * aPosition
         mainScope ↳ worldSpacePositionVector
         mainScope ✍ worldSpacePositionVector ⬅ GPUEvaluation(function: GPUFunction<GLSLVec3>(signature: "vec3", input: [worldSpacePosition]))
         mainScope ✍ vViewVector ⬅ (uEyePosition - worldSpacePositionVector)
-        mainScope ✍ vViewVector ⬅ uNormalMatrix * vViewVector
+//        mainScope ✍ vViewVector ⬅ uNormalMatrix * vViewVector
         mainScope ✍ vViewVector ⬅ tbnMatrix * vViewVector
         mainScope ↳ viewProjectionMatrix
         mainScope ✍ viewProjectionMatrix ⬅ uProjectionMatrix * uViewMatrix
@@ -218,6 +218,8 @@ extension DefaultScopes {
         mainScope ↳↘ lightVersor
         mainScope ✍ lightVersor ⬅ ^vLightVector
         mainScope ↳↘ halfVector
+        mainScope ✍ halfVector ⬅ (lightVersor + viewVersor)
+        mainScope ✍ halfVector ⬅ ^halfVector
         mainScope ↳↘ colorFromMap
         mainScope ✍ colorFromMap ⬅ uColorMap ☒ vTexel
         mainScope ⎘ phongScope

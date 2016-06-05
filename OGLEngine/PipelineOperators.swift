@@ -95,6 +95,12 @@ public func - (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUInf
     return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
 }
 
+// Sum
+infix operator + { associativity left precedence 200 }
+public func + (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec3> {
+    return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
+}
+
 
 // Normalization
 prefix operator ^ {}
