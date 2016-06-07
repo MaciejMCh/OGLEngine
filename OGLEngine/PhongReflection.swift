@@ -9,6 +9,24 @@
 import Foundation
 
 extension DefaultScopes {
+
+    static func PhongHalfVersor(
+        lightVersor: GPUVariable<GLSLVec3>,
+        modelPosition: GPUVariable<GLSLVec3>,
+        eyePosition: GPUVariable<GLSLVec3>,
+        viewVersor: GPUVariable<GLSLVec3>,
+        halfVersor: GPUVariable<GLSLVec3>
+        ) -> GPUScope {
+        let scope = GPUScope()
+        
+        scope ✍ viewVersor ⬅ (eyePosition - modelPosition)
+        scope ✍ viewVersor ⬅ ^viewVersor
+        scope ✍ halfVersor ⬅ (lightVersor + viewVersor)
+        scope ✍ halfVersor ⬅ ^halfVersor
+        
+        return scope
+    }
+    
     static func PhongFactorsScope(
         normalVector: GPUVariable<GLSLVec3>,
         lightVector: GPUVariable<GLSLVec3>,

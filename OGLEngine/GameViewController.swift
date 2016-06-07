@@ -15,7 +15,7 @@ class GameViewController: GLKViewController {
     var closeShotProgram: CloseShotProgram!
     var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
     var reflectedProgram: ReflectedProgram!
-    var pipelineProgram: CloseShotPipelineProgram!
+    var pipelineProgram: PhongV1PipelineProgram!
     
     var context: EAGLContext? = nil
     
@@ -72,7 +72,7 @@ class GameViewController: GLKViewController {
         
 //        program.compile()
         
-        self.scene = Scene.loadScene("house_on_cliff")
+        self.scene = Scene.loadScene("test")
         
         self.mediumShotProgram = MediumShotProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight)
         self.mediumShotProgram.compile()
@@ -86,9 +86,9 @@ class GameViewController: GLKViewController {
         self.reflectedProgram = ReflectedProgram()
         self.reflectedProgram.compile()
         
-        self.pipelineProgram = CloseShotPipelineProgram()
+        self.pipelineProgram = PhongV1PipelineProgram()
         self.pipelineProgram.camera = self.scene.camera
-        self.pipelineProgram.directionalLight = self.scene.directionalLight
+//        self.pipelineProgram.directionalLight = self.scene.directionalLight
         self.pipelineProgram.compile()
         
         
@@ -127,7 +127,7 @@ class GameViewController: GLKViewController {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.pipelineProgram.glName)
-        self.pipelineProgram.render(scene.closeShots)
+        self.pipelineProgram.render(scene.mediumShots)
     }
     
     func renderTexture() {

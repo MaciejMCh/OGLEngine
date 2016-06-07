@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 extension DefaultPipelines {
     static func CloseShot() -> GPUPipeline {
@@ -146,6 +147,25 @@ extension DefaultScopes {
         mainScope ✍ vViewVector ⬅ tbnMatrix * vViewVector
         mainScope ↳ viewProjectionMatrix
         mainScope ✍ viewProjectionMatrix ⬅ uProjectionMatrix * uViewMatrix
+        
+        
+        let lightVersor = GPUVariable<GLSLVec3>(name: "lightVersor")
+        mainScope ↳ lightVersor
+        mainScope ✍ lightVersor ⬅ vLightVector * GPUVariable(value: -1.0)
+//        let lightVersor = GLKVector3Normalize(GLKVector3MultiplyScalar(light.direction(), -1))
+        
+//        let cameraPosition = camera.cameraPosition()
+        let viewVersor = GPUVariable<GLSLVec3>(name: "viewVersor")
+        mainScope ↳ viewVersor
+        mainScope ✍ viewVersor ⬅ (uEyePosition - worldSpacePositionVector)
+//        let viewVersor = GLKVector3Normalize(GLKVector3Subtract(cameraPosition, model.position))
+        let halfVersor = vViewVector
+        mainScope ✍ halfVersor ⬅ (lightVersor + viewVersor)
+        mainScope ✍ halfVersor ⬅ ^halfVersor
+//        let halfVersor = GLKVector3Normalize(GLKVector3Add(lightVersor, viewVersor))
+        
+        
+        
         mainScope ✍ glPosition ⬅ viewProjectionMatrix * worldSpacePosition
         
         globalScope ⥤ aPosition
@@ -223,6 +243,27 @@ extension DefaultScopes {
         mainScope ↳↘ colorFromMap
         mainScope ✍ colorFromMap ⬅ uColorMap ☒ vTexel
         mainScope ⎘ phongScope
+        
+        let dot = GPUVariable<GLSLFloat>(name: "dotP")
+        
+        mainScope ↳↘ dot
+        mainScope ✍ dot ⬅ vLightVector ⋅ GPUVariable(value: GLKVector3Make(0.0, 0.0, 1.0))
+        let diffuseColor = GPUVariable<GLSLColor>(name: "difColor")
+        mainScope ↳↘ diffuseColor
+        mainScope ✍ diffuseColor ⬅ colorFromMap * dot
+        
+        
+        let halfVersor = vViewVector
+        let ndoth = GPUVariable<GLSLFloat>(name: "asdas")
+        mainScope ↳↘ ndoth
+        mainScope ✍ ndoth ⬅ halfVersor ⋅ GPUVariable(value: GLKVector3Make(0.0, 0.0, 1.0))
+        mainScope ✍ ndoth ⬅ (ndoth ^ GPUVariable<GLSLFloat>(value: 100.0))
+        
+        let reflectionColor = GPUVariable<GLSLColor>(name: "reftionColor")
+        mainScope ↳↘ reflectionColor
+        mainScope ✍ reflectionColor ⬅ GPUVariable<GLSLColor>(value: (r: 1.0, g: 1.0, b: 1.0, a: 1.0)) * ndoth
+        
+        mainScope ✍ glFragColor ⬅ (diffuseColor ✖ reflectionColor)
         
         return globalScope
     }

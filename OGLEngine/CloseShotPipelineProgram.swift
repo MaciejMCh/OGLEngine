@@ -18,6 +18,7 @@ class CloseShotPipelineProgram: PipelineProgram {
     var directionalLight: DirectionalLight!
     
     func willRender(renderable: RenderableType) {
+//        NSLog("\(directionalLight.lightDirection.x) \(directionalLight.lightDirection.y) \(directionalLight.lightDirection.z)")
         self.pipeline.uniform(GPUUniforms.lightDirection).cpuVariableGetter = {self.directionalLight.lightDirection}
         self.pipeline.uniform(GPUUniforms.modelMatrix).cpuVariableGetter = {renderable.geometryModel.modelMatrix()}
         self.pipeline.uniform(GPUUniforms.viewMatrix).cpuVariableGetter = {self.camera.viewMatrix()}

@@ -55,6 +55,8 @@
 		C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */; };
 		C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */; };
 		C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */; };
+		C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */; };
+		C29DFAE91D06F8C00003B7A2 /* PhongV1PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */; };
 		C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */; };
 		C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */; };
 		C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */; };
@@ -148,6 +150,8 @@
 		C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurfaceProgram.swift; sourceTree = "<group>"; };
 		C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.vsh; path = Shaders/ReflectiveSurface.vsh; sourceTree = "<group>"; };
 		C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.fsh; path = Shaders/ReflectiveSurface.fsh; sourceTree = "<group>"; };
+		C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1.swift; sourceTree = "<group>"; };
+		C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1PipelineProgram.swift; sourceTree = "<group>"; };
 		C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedProgram.swift; sourceTree = "<group>"; };
 		C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineAttribute.swift; sourceTree = "<group>"; };
 		C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineVariablesCollection.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 			children = (
 				C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */,
 				C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */,
+				C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */,
 			);
 			name = Concrete;
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 			children = (
 				C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */,
 				C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */,
+				C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -804,6 +810,7 @@
 				C2E1581A1CFD9B8F00BB3805 /* PipelineInstruction.swift in Sources */,
 				C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
+				C29DFAE91D06F8C00003B7A2 /* PhongV1PipelineProgram.swift in Sources */,
 				C2E158221CFD9D0200BB3805 /* PipelineScope.swift in Sources */,
 				C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */,
 				C2B188FF1CF2799E008BB626 /* PipelineProgram.swift in Sources */,
@@ -820,6 +827,7 @@
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,
 				C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */,
 				C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */,
+				C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */,
 				C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,
 				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,
