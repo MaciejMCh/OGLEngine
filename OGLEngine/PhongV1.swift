@@ -132,7 +132,7 @@ extension DefaultScopes {
         mainScope ✍ glPosition ⬅ viewProjectionMatrix * worldSpacePosition
         mainScope ✍ vTexel ⬅ aTexel
         mainScope ✍ vPosition ⬅ GPUEvaluation(function: GPUFunction(signature: "vec3", input: [worldSpacePosition]))
-        mainScope ✍ vNormal ⬅ aNormal
+        mainScope ✍ vNormal ⬅ uNormalMatrix * aNormal
         mainScope ✍ vEyePosition ⬅ uEyePosition
         
         return globalScope

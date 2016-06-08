@@ -70,8 +70,8 @@ extension Scene {
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             for loadedRenderable in loadedRenderables {
                 switch loadedRenderable.type {
-                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
-//                case .Default: mediumShotRenderables.append(MediumShotRenderable(loadedRenderable: loadedRenderable))
+//                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+                case .Default: mediumShotRenderables.append(MediumShotRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
                 }
             }
@@ -97,7 +97,7 @@ extension Scene {
 extension CloseShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
-        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
+        self.geometryModel = SpinningGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
         
         self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
@@ -110,7 +110,7 @@ extension CloseShotRenderable {
 extension MediumShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
-        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
+        self.geometryModel = SpinningGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
         
         self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
