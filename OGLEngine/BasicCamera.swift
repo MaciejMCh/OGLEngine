@@ -34,4 +34,8 @@ class BasicCamera: Camera {
     func viewMatrix() -> GLKMatrix4 {
         return transformatrionMatrix(self.position, orientation: self.orientation)
     }
+    
+    func viewProjectionMatrix() -> GLKMatrix4 {
+        return self.viewMatrix() * self.projectionMatrix()
+    }
 }

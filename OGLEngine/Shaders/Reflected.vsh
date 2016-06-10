@@ -11,8 +11,7 @@ attribute vec2 aTexel;
 attribute vec2 aNormal;
 
 uniform mat4 uModelMatrix;
-uniform mat4 uViewMatrix;
-uniform mat4 uProjectionMatrix;
+uniform mat4 uViewProjectionMatrix;
 uniform lowp float uTextureScale;
 
 varying lowp vec2 vTexel;
@@ -20,9 +19,8 @@ varying lowp vec4 vModelSpacePosition;
 
 void main() {
     vTexel = aTexel * uTextureScale;
-    mat4 viewProjectionMatrix = uProjectionMatrix * uViewMatrix;
     vec4 modelSpacePosition = uModelMatrix * aPosition;
-    vec4 position = viewProjectionMatrix * modelSpacePosition;
+    vec4 position = uViewProjectionMatrix * modelSpacePosition;
     vModelSpacePosition = modelSpacePosition;
     gl_Position = position;
 }

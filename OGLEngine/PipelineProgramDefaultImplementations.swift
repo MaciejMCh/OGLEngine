@@ -34,9 +34,8 @@ extension PipelineProgram where RenderableType: Mesh {
 extension Model {
     func modelViewProjectionMatrix(camera: Camera) -> GLKMatrix4 {
         let modelMatrix = self.geometryModel.modelMatrix()
-        let viewMatrix = camera.viewMatrix()
-        let projectionMatrix = camera.projectionMatrix()
-        let modelViewProjectionMatrix = modelMatrix * viewMatrix * projectionMatrix
+        let viewProjectionMatrix = camera.viewProjectionMatrix()
+        let modelViewProjectionMatrix = modelMatrix * viewProjectionMatrix
         return modelViewProjectionMatrix
     }
     
@@ -61,26 +60,18 @@ extension PipelineProgram where RenderableType: Model {
         })
     }
     
-    func passViewMatrix(camera: Camera) {
-        var viewMatrix = camera.viewMatrix()
-        withUnsafePointer(&viewMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.viewMatrix).location, 1, 0, UnsafePointer($0))
-        })
-    }
-    
-    func passProjectionMatrix(camera: Camera) {
-        var projectionMatrix = camera.projectionMatrix()
-        withUnsafePointer(&projectionMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.projectionMatrix).location, 1, 0, UnsafePointer($0))
+    func passViewProjectionMatrix(camera: Camera) {
+        var viewProjectionMatrix = camera.viewProjectionMatrix()
+        withUnsafePointer(&viewProjectionMatrix, {
+            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.viewProjectionMatrix).location, 1, 0, UnsafePointer($0))
         })
     }
     
     func passModelViewProjectionMatrix(model: Model, camera: Camera) {
         let modelMatrix = model.geometryModel.modelMatrix()
-        let viewMatrix = camera.viewMatrix()
-        let projectionMatrix = camera.projectionMatrix()
+        let viewProjectionMatrix = camera.viewProjectionMatrix()
         
-        var modelViewProjectionMatrix = modelMatrix * viewMatrix * projectionMatrix
+        var modelViewProjectionMatrix = modelMatrix * viewProjectionMatrix
         
         withUnsafePointer(&modelViewProjectionMatrix, {
             glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.modelViewProjectionMatrix).location, 1, 0, UnsafePointer($0))

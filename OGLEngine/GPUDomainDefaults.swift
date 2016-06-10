@@ -98,8 +98,7 @@ enum Attribute: GLSLEnum {
 
 enum Uniform: GLSLEnum {
     case ModelMatrix
-    case ViewMatrix
-    case ProjectionMatrix
+    case ViewProjectionMatrix
     case ModelViewProjectionMatrix
     case NormalMatrix
     case EyePosition
@@ -115,8 +114,7 @@ enum Uniform: GLSLEnum {
     func name() -> String {
         switch self {
         case .ModelMatrix: return "modelMatrix"
-        case .ViewMatrix: return "viewMatrix"
-        case .ProjectionMatrix: return "projectionMatrix"
+        case .ViewProjectionMatrix: return "viewProjectionMatrix"
         case .ModelViewProjectionMatrix: return "modelViewProjectionMatrix"
         case .NormalMatrix: return "normalMatrix"
         case .EyePosition: return "eyePosition"
@@ -133,7 +131,7 @@ enum Uniform: GLSLEnum {
         
     func gpuType() -> GPUType {
         switch self {
-        case .ModelMatrix, .ViewMatrix, .ProjectionMatrix, .ModelViewProjectionMatrix: return .Mat4
+        case .ModelMatrix, .ViewProjectionMatrix, .ModelViewProjectionMatrix: return .Mat4
         case .NormalMatrix: return .Mat3
         case .EyePosition, .Position, .LightDirection, .LightHalfVector: return .Vec3
         case .TextureScale: return .Float
@@ -159,7 +157,7 @@ struct DefaultInterfaces {
     }
     
     static func detailInterface() -> GPUInterface {
-        return GPUInterface(attributes: [.Position, .Texel, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap, .TextureScale])
+        return GPUInterface(attributes: [.Position, .Texel, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap, .TextureScale])
     }
     
     static func mediumShotInterface() -> GPUInterface {
@@ -175,7 +173,7 @@ struct DefaultInterfaces {
     }
     
     static func reflectedInterface() -> GPUInterface {
-        return GPUInterface(attributes: [.Position, .Normal, .Texel], uniforms: [.ModelMatrix, .ViewMatrix, .ProjectionMatrix, .ColorMap, .TextureScale])
+        return GPUInterface(attributes: [.Position, .Normal, .Texel], uniforms: [.ModelMatrix, .ViewProjectionMatrix, .ColorMap, .TextureScale])
     }
     
 }

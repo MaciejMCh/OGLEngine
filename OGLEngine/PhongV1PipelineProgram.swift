@@ -18,8 +18,7 @@ class PhongV1PipelineProgram: PipelineProgram {
     
     func willRender(renderable: RenderableType) {
         self.pipeline.uniform(GPUUniforms.modelMatrix).cpuVariableGetter = {renderable.geometryModel.modelMatrix()}
-        self.pipeline.uniform(GPUUniforms.viewMatrix).cpuVariableGetter = {self.camera.viewMatrix()}
-        self.pipeline.uniform(GPUUniforms.projectionMatrix).cpuVariableGetter = {self.camera.projectionMatrix()}
+        self.pipeline.uniform(GPUUniforms.viewProjectionMatrix).cpuVariableGetter = {self.camera.viewProjectionMatrix()}
         self.pipeline.uniform(GPUUniforms.normalMatrix).cpuVariableGetter = {renderable.normalMatrix()}
         self.pipeline.uniform(GPUUniforms.eyePosition).cpuVariableGetter = {self.camera.cameraPosition()}
         self.pipeline.uniform(GPUUniforms.colorMap).cpuVariableGetter = {(texture: renderable.colorMap, index: 0)}

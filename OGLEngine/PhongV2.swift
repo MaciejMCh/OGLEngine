@@ -26,8 +26,7 @@ extension DefaultPipelines {
             ])
         let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
             GPUUniform(variable: GPUUniforms.modelMatrix),
-            GPUUniform(variable: GPUUniforms.viewMatrix),
-            GPUUniform(variable: GPUUniforms.projectionMatrix),
+            GPUUniform(variable: GPUUniforms.viewProjectionMatrix),
             GPUUniform(variable: GPUUniforms.normalMatrix),
             GPUUniform(variable: GPUUniforms.eyePosition),
             GPUUniform(variable: GPUUniforms.colorMap)
@@ -51,8 +50,7 @@ extension DefaultVertexShaders {
             aTBNCol2: attributes.get(GPUAttributes.tbnCol2),
             aTBNCol3: attributes.get(GPUAttributes.tbnCol3),
             uModelMatrix: uniforms.get(GPUUniforms.modelMatrix),
-            uViewMatrix: uniforms.get(GPUUniforms.viewMatrix),
-            uProjectionMatrix: uniforms.get(GPUUniforms.projectionMatrix),
+            uViewProjectionMatrix: uniforms.get(GPUUniforms.viewProjectionMatrix),
             uNormalMatrix: uniforms.get(GPUUniforms.normalMatrix),
             uEyePosition: uniforms.get(GPUUniforms.eyePosition),
             vTexel: interpolation.vTexel,
@@ -99,8 +97,7 @@ extension DefaultScopes {
         aTBNCol2: GPUVariable<GLSLVec3>,
         aTBNCol3: GPUVariable<GLSLVec3>,
         uModelMatrix: GPUVariable<GLSLMat4>,
-        uViewMatrix: GPUVariable<GLSLMat4>,
-        uProjectionMatrix: GPUVariable<GLSLMat4>,
+        uViewProjectionMatrix: GPUVariable<GLSLMat4>,
         uNormalMatrix: GPUVariable<GLSLMat3>,
         uEyePosition: GPUVariable<GLSLVec3>,
         vTexel: GPUVariable<GLSLVec2>,
@@ -110,7 +107,6 @@ extension DefaultScopes {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
         let worldSpacePosition = GPUVariable<GLSLVec4>(name: "worldSpacePosition")
-        let viewProjectionMatrix = GPUVariable<GLSLMat4>(name: "viewProjectionMatrix")
         let tbnMatrix = GPUVariable<GLSLMat3>(name: "tbnMatrix")
         
         globalScope ⥤ aPosition
@@ -119,8 +115,7 @@ extension DefaultScopes {
         globalScope ⥤ aTBNCol2
         globalScope ⥤ aTBNCol3
         globalScope ⥥ uModelMatrix
-        globalScope ⥥ uViewMatrix
-        globalScope ⥥ uProjectionMatrix
+        globalScope ⥥ uViewProjectionMatrix
         globalScope ⥥ uNormalMatrix
         globalScope ⥥ uEyePosition
         globalScope ⟿↘ vTexel
@@ -130,9 +125,7 @@ extension DefaultScopes {
         
         mainScope ↳ worldSpacePosition
         mainScope ✍ worldSpacePosition ⬅ uModelMatrix * aPosition
-        mainScope ↳ viewProjectionMatrix
-        mainScope ✍ viewProjectionMatrix ⬅ uProjectionMatrix * uViewMatrix
-        mainScope ✍ glPosition ⬅ viewProjectionMatrix * worldSpacePosition
+        mainScope ✍ glPosition ⬅ uViewProjectionMatrix * worldSpacePosition
         mainScope ✍ vTexel ⬅ aTexel
         mainScope ↳ tbnMatrix
         mainScope ✍ tbnMatrix ⬅ GPUEvaluation(function: GPUFunction<GLSLMat3>(signature: "mat3", input: [aTBNCol1, aTBNCol2, aTBNCol3]))

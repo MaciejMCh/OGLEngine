@@ -21,8 +21,7 @@ extension DefaultPipelines {
             ])
         let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
             GPUUniform(variable: GPUUniforms.modelMatrix),
-            GPUUniform(variable: GPUUniforms.viewMatrix),
-            GPUUniform(variable: GPUUniforms.projectionMatrix),
+            GPUUniform(variable: GPUUniforms.viewProjectionMatrix),
             GPUUniform(variable: GPUUniforms.normalMatrix),
             GPUUniform(variable: GPUUniforms.eyePosition),
             GPUUniform(variable: GPUUniforms.lightDirection),
@@ -50,8 +49,7 @@ extension DefaultVertexShaders {
                                                   aTbnMatrixCol2: attributes.get(GPUAttributes.tbnCol2),
                                                   aTbnMatrixCol3: attributes.get(GPUAttributes.tbnCol3),
                                                   uModelMatrix: uniforms.get(GPUUniforms.modelMatrix),
-                                                  uViewMatrix: uniforms.get(GPUUniforms.viewMatrix),
-                                                  uProjectionMatrix: uniforms.get(GPUUniforms.projectionMatrix),
+                                                  uViewProjectionMatrix: uniforms.get(GPUUniforms.viewProjectionMatrix),
                                                   uNormalMatrix: uniforms.get(GPUUniforms.normalMatrix),
                                                   uEyePosition: uniforms.get(GPUUniforms.eyePosition),
                                                   uLightDirection: uniforms.get(GPUUniforms.lightDirection),
@@ -108,8 +106,7 @@ extension DefaultScopes {
         aTbnMatrixCol2: GPUVariable<GLSLVec3>,
         aTbnMatrixCol3: GPUVariable<GLSLVec3>,
         uModelMatrix: GPUVariable<GLSLMat4>,
-        uViewMatrix: GPUVariable<GLSLMat4>,
-        uProjectionMatrix: GPUVariable<GLSLMat4>,
+        uViewProjectionMatrix: GPUVariable<GLSLMat4>,
         uNormalMatrix: GPUVariable<GLSLMat3>,
         uEyePosition: GPUVariable<GLSLVec3>,
         uLightDirection: GPUVariable<GLSLVec3>,
@@ -128,7 +125,6 @@ extension DefaultScopes {
         let tbnMatrix = GPUVariable<GLSLMat3>(name: "tbnMatrix")
         let worldSpacePosition = GPUVariable<GLSLVec4>(name: "worldSpacePosition")
         let worldSpacePositionVector = GPUVariable<GLSLVec3>(name: "worldSpacePositionVector")
-        let viewProjectionMatrix = GPUVariable<GLSLMat4>(name: "viewProjectionMatrix")
         
         mainScope ✍ vLightColor ⬅ uLightColor
         mainScope ✍ vShininess ⬅ uShininess
@@ -145,8 +141,6 @@ extension DefaultScopes {
         mainScope ✍ vViewVector ⬅ (uEyePosition - worldSpacePositionVector)
 //        mainScope ✍ vViewVector ⬅ uNormalMatrix * vViewVector
         mainScope ✍ vViewVector ⬅ tbnMatrix * vViewVector
-        mainScope ↳ viewProjectionMatrix
-        mainScope ✍ viewProjectionMatrix ⬅ uProjectionMatrix * uViewMatrix
         
         
         let lightVersor = GPUVariable<GLSLVec3>(name: "lightVersor")
@@ -166,7 +160,7 @@ extension DefaultScopes {
         
         
         
-        mainScope ✍ glPosition ⬅ viewProjectionMatrix * worldSpacePosition
+        mainScope ✍ glPosition ⬅ uViewProjectionMatrix * worldSpacePosition
         
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
@@ -174,8 +168,7 @@ extension DefaultScopes {
         globalScope ⥤ aTbnMatrixCol2
         globalScope ⥤ aTbnMatrixCol3
         globalScope ⥥ uModelMatrix
-        globalScope ⥥ uViewMatrix
-        globalScope ⥥ uProjectionMatrix
+        globalScope ⥥ uViewProjectionMatrix
         globalScope ⥥ uNormalMatrix
         globalScope ⥥ uEyePosition
         globalScope ⥥ uLightDirection

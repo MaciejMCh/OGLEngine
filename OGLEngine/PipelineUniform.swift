@@ -48,8 +48,7 @@ class GPUUniform<T: GLSLType> : AnyGPUUniform {
 
 struct GPUUniforms {
     static let modelMatrix = GPUVariable<GLSLMat4>(name: "uModelMatrix")
-    static let viewMatrix = GPUVariable<GLSLMat4>(name: "uViewMatrix")
-    static let projectionMatrix = GPUVariable<GLSLMat4>(name: "uProjectionMatrix")
+    static let viewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uviewProjectionMatrix")
     static let modelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uModelViewProjectionMatrix")
     static let normalMatrix = GPUVariable<GLSLMat3>(name: "uNormalMatrix")
     static let eyePosition = GPUVariable<GLSLVec3>(name: "uEyePosition")

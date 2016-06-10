@@ -40,8 +40,7 @@ class CloseShotProgram: GPUProgram {
             self.bindNormalMap(renderable)
             
             self.passModelMatrix(renderable)
-            self.passViewMatrix(camera)
-            self.passProjectionMatrix(camera)
+            self.passViewProjectionMatrix(camera)
             self.passNormalMatrix(renderable)
             
             self.triggerPass(GetterPass<Float>(subjectGetter: { () -> Float in

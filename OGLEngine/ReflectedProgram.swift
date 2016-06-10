@@ -30,8 +30,7 @@ class ReflectedProgram: GPUProgram {
                 return renderable.textureScale
             }), uniform: .TextureScale)
             self.passModelMatrix(renderable)
-            self.passViewMatrix(self.camera)
-            self.passProjectionMatrix(self.camera)
+            self.passViewProjectionMatrix(self.camera)
             self.draw(renderable)
             self.unbindAttributes(renderable)
         }

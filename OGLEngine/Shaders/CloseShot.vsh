@@ -14,8 +14,7 @@ attribute vec3 aTangentMatrixCol2;
 attribute vec3 aTangentMatrixCol3;
 
 uniform mat4 uModelMatrix;
-uniform mat4 uViewMatrix;
-uniform mat4 uProjectionMatrix;
+uniform mat4 uViewProjectionMatrix;
 uniform mat3 uNormalMatrix;
 
 uniform vec3 uEyePosition;
@@ -36,12 +35,11 @@ void main() {
     vDirectionalLightDirection = tangentMatrix * vDirectionalLightDirection;
     
     vNormalMatrix = uNormalMatrix;
-    mat4 viewProjectionMatrix = uProjectionMatrix * uViewMatrix;
     vec4 modelSpacePosition = uModelMatrix * aPosition;
     
     vViewVector = tangentMatrix * (uEyePosition - vec3(modelSpacePosition));
     
-    vec4 position = viewProjectionMatrix * modelSpacePosition;
+    vec4 position = uViewProjectionMatrix * modelSpacePosition;
     
     gl_Position = position;
 }
