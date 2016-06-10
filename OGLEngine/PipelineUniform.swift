@@ -51,6 +51,7 @@ struct GPUUniforms {
     static let viewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uviewProjectionMatrix")
     static let modelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uModelViewProjectionMatrix")
     static let normalMatrix = GPUVariable<GLSLMat3>(name: "uNormalMatrix")
+    static let tangentNormalMatrix = GPUVariable<GLSLMat3>(name: "uTangentNormalMatrix")
     static let eyePosition = GPUVariable<GLSLVec3>(name: "uEyePosition")
     static let position = GPUVariable<GLSLVec3>(name: "uPosition")
     static let lightDirection = GPUVariable<GLSLVec3>(name: "uLightDirection")

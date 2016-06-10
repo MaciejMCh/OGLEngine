@@ -42,6 +42,11 @@ extension Model {
     func normalMatrix() -> GLKMatrix3 {
         return invertAndTransposeMatrix(self.geometryModel.modelMatrix())
     }
+    
+    func tangentNormalMatrix() -> GLKMatrix3 {
+        let normalMatrix = self.normalMatrix()
+        return GLKMatrix3Transpose(normalMatrix)
+    }
 }
 
 extension PipelineProgram where RenderableType: Model {

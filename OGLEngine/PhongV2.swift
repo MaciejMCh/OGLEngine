@@ -27,7 +27,7 @@ extension DefaultPipelines {
         let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
             GPUUniform(variable: GPUUniforms.modelMatrix),
             GPUUniform(variable: GPUUniforms.viewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.normalMatrix),
+            GPUUniform(variable: GPUUniforms.tangentNormalMatrix),
             GPUUniform(variable: GPUUniforms.eyePosition),
             GPUUniform(variable: GPUUniforms.colorMap)
             ])
@@ -51,7 +51,7 @@ extension DefaultVertexShaders {
             aTBNCol3: attributes.get(GPUAttributes.tbnCol3),
             uModelMatrix: uniforms.get(GPUUniforms.modelMatrix),
             uViewProjectionMatrix: uniforms.get(GPUUniforms.viewProjectionMatrix),
-            uNormalMatrix: uniforms.get(GPUUniforms.normalMatrix),
+            uTangentNormalMatrix: uniforms.get(GPUUniforms.tangentNormalMatrix),
             uEyePosition: uniforms.get(GPUUniforms.eyePosition),
             vTexel: interpolation.vTexel,
             vLightVersor: interpolation.vLightVersor,
@@ -98,7 +98,7 @@ extension DefaultScopes {
         aTBNCol3: GPUVariable<GLSLVec3>,
         uModelMatrix: GPUVariable<GLSLMat4>,
         uViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        uNormalMatrix: GPUVariable<GLSLMat3>,
+        uTangentNormalMatrix: GPUVariable<GLSLMat3>,
         uEyePosition: GPUVariable<GLSLVec3>,
         vTexel: GPUVariable<GLSLVec2>,
         vLightVersor: GPUVariable<GLSLVec3>,
@@ -116,7 +116,7 @@ extension DefaultScopes {
         globalScope ⥤ aTBNCol3
         globalScope ⥥ uModelMatrix
         globalScope ⥥ uViewProjectionMatrix
-        globalScope ⥥ uNormalMatrix
+        globalScope ⥥ uTangentNormalMatrix
         globalScope ⥥ uEyePosition
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vLightVersor
@@ -145,6 +145,9 @@ extension DefaultScopes {
         // Half versor
         mainScope ✍ vHalfVersor ⬅ (vLightVersor + viewVersor)
         mainScope ✍ vHalfVersor ⬅ ^vHalfVersor
+        // To model tandent space
+        mainScope ✍ vHalfVersor ⬅ uTangentNormalMatrix * vHalfVersor
+        mainScope ✍ vLightVersor ⬅ uTangentNormalMatrix * vLightVersor
         
         return globalScope
     }
