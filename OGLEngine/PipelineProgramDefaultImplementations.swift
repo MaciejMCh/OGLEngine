@@ -40,12 +40,13 @@ extension Model {
     }
     
     func normalMatrix() -> GLKMatrix3 {
-        return invertAndTransposeMatrix(self.geometryModel.modelMatrix())
+        return trimToMat3(self.geometryModel.modelMatrix())
     }
     
     func tangentNormalMatrix() -> GLKMatrix3 {
         let normalMatrix = self.normalMatrix()
-        return GLKMatrix3Transpose(normalMatrix)
+        let transposedNormalMatrix = transpose(normalMatrix)
+        return transposedNormalMatrix
     }
 }
 
@@ -59,7 +60,7 @@ extension PipelineProgram where RenderableType: Model {
     }
     
     func passNormalMatrix(model: Model) {
-        var normalMatrix = invertAndTransposeMatrix(model.geometryModel.modelMatrix())
+        var normalMatrix = model.normalMatrix()
         withUnsafePointer(&normalMatrix, {
             glUniformMatrix3fv(self.pipeline.uniform(GPUUniforms.normalMatrix).location, 1, 0, UnsafePointer($0))
         })

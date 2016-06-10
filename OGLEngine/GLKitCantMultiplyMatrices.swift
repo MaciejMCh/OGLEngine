@@ -70,21 +70,18 @@ func multiplyMatrices(lhs: GLKMatrix4, rhs: GLKMatrix4) -> GLKMatrix4 {
     return glkResult
 }
 
-func invertAndTransposeMatrix(matrix: GLKMatrix4) -> GLKMatrix3 {
-    
-    let A = Matrix<Float>([
-        [matrix.m00, matrix.m01, matrix.m02],
-        [matrix.m10, matrix.m11, matrix.m12],
-        [matrix.m20, matrix.m21, matrix.m22],
-        ])         
-    
-    let inverted = inv(A)
-    let transposed = transpose(inverted)
-    return GLKMatrix3Make(transposed.elements[0], transposed.elements[1], transposed.elements[2],
-                          transposed.elements[3], transposed.elements[4], transposed.elements[5],
-                          transposed.elements[6], transposed.elements[7], transposed.elements[8])
-    
-    
+func trimToMat3(matrix: GLKMatrix4) -> GLKMatrix3 {
+    let m = matrix
+    return GLKMatrix3Make(m.m00, m.m01, m.m02,
+                          m.m10, m.m11, m.m12,
+                          m.m20, m.m21, m.m22)
+}
+
+func transpose(matrix: GLKMatrix3) -> GLKMatrix3 {
+    let m = matrix
+    return GLKMatrix3Make(m.m00, m.m10, m.m20,
+                          m.m01, m.m11, m.m21,
+                          m.m02, m.m12, m.m22)
 }
 
 func * (left: GLKMatrix4, right: GLKMatrix4) -> GLKMatrix4 {
