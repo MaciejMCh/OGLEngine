@@ -48,6 +48,8 @@
 		C269D5E21CA898E900E56E67 /* VAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D5E11CA898E900E56E67 /* VAO.swift */; };
 		C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */ = {isa = PBXBuildFile; fileRef = C269D5F01CA89B6E00E56E67 /* IPAddress */; };
 		C26A3F8C1CFEC8ED0080AE12 /* CloseShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */; };
+		C26CD52D1D0AC83D007105EB /* LookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CD52C1D0AC83D007105EB /* LookAtCamera.swift */; };
+		C26CD52F1D0ACA5E007105EB /* 3DIntegrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CD52E1D0ACA5E007105EB /* 3DIntegrator.swift */; };
 		C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */; };
 		C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C31D07192000FC9632 /* PhongV2.swift */; };
 		C27E42C81D07199200FC9632 /* PhongV2PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */; };
@@ -145,6 +147,8 @@
 		C269D5E11CA898E900E56E67 /* VAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VAO.swift; sourceTree = "<group>"; };
 		C269D5F01CA89B6E00E56E67 /* IPAddress */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = IPAddress; path = OtherSources/IPAddress; sourceTree = "<group>"; };
 		C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShot.swift; sourceTree = "<group>"; };
+		C26CD52C1D0AC83D007105EB /* LookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LookAtCamera.swift; sourceTree = "<group>"; };
+		C26CD52E1D0ACA5E007105EB /* 3DIntegrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3DIntegrator.swift; sourceTree = "<group>"; };
 		C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderedTexture.swift; sourceTree = "<group>"; };
 		C27E42C31D07192000FC9632 /* PhongV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2.swift; sourceTree = "<group>"; };
 		C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2PipelineProgram.swift; sourceTree = "<group>"; };
@@ -380,6 +384,8 @@
 				C269D5B41CA898DD00E56E67 /* Camera.swift */,
 				C269D5B31CA898DD00E56E67 /* BasicCamera.swift */,
 				C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */,
+				C26CD52C1D0AC83D007105EB /* LookAtCamera.swift */,
+				C26CD52E1D0ACA5E007105EB /* 3DIntegrator.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -781,6 +787,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C26CD52D1D0AC83D007105EB /* LookAtCamera.swift in Sources */,
 				C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */,
 				C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */,
 				C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */,
@@ -788,6 +795,7 @@
 				C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */,
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
 				C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */,
+				C26CD52F1D0ACA5E007105EB /* 3DIntegrator.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
 				C2FDAF551CF7551800ED63DC /* GLSLCodeSource.swift in Sources */,
 				C29219961CA9D76B00B78343 /* Program.swift in Sources */,
