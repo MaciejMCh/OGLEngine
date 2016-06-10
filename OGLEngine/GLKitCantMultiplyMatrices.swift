@@ -53,6 +53,15 @@ func transformatrionMatrix(position: GLKVector3, orientation: GLKVector3) -> GLK
     return transformation.toGLK()
 }
 
+func modelTransformatrionMatrix(position: GLKVector3, orientation: GLKVector3) -> GLKMatrix4 {
+    var transformation = CATransform3DIdentity
+    transformation = CATransform3DTranslate(transformation, CGFloat(position.x), CGFloat(position.y), CGFloat(position.z))
+    transformation = CATransform3DRotate(transformation, CGFloat(orientation.x), 1, 0, 0)
+    transformation = CATransform3DRotate(transformation, CGFloat(orientation.y), 0, 1, 0)
+    transformation = CATransform3DRotate(transformation, CGFloat(orientation.z), 0, 0, 1)
+    return transformation.toGLK()
+}
+
 func multiplyMatrices(lhs: GLKMatrix4, rhs: GLKMatrix4) -> GLKMatrix4 {
     let caLhs = lhs.toCA()
     let caRhs = rhs.toCA()

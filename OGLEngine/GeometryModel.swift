@@ -35,7 +35,7 @@ class GeometryModel {
     }
     
     func modelMatrix() -> GLKMatrix4 {
-        return transformatrionMatrix(self.position, orientation: self.orientation)
+        return modelTransformatrionMatrix(self.position, orientation: self.orientation)
     }
     
 }
