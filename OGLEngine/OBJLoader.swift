@@ -9,6 +9,74 @@
 import Foundation
 import GLKit
 
+struct Vec3 {
+    let x: Float
+    let y: Float
+    let z: Float
+    
+    init(line: String) {
+        let c = line.componentsSeparatedByString(" ")
+        self.x = Float(c[1])!
+        self.y = Float(c[2])!
+        self.z = Float(c[3])!
+    }
+}
+
+struct Vec2 {
+    let u: Float
+    let v: Float
+    
+    init(line: String) {
+        let c = line.componentsSeparatedByString(" ")
+        self.u = Float(c[1])!
+        self.v = Float(c[2])!
+    }
+}
+
+struct Vertex {
+    let indexIdentifier: String
+    let position: Vec3
+    let texel: Vec2
+    let normal: Vec3
+    let tangent: Vec3?
+}
+
+struct VertexIndices {
+    let p: Int
+    let t: Int
+    let n: Int
+    
+    init(line: String) {
+        let c = line.componentsSeparatedByString("/")
+        self.p = Int(c[0])!
+        self.t = Int(c[1])!
+        self.n = Int(c[2])!
+    }
+    
+    func indexIdentifier() -> String {
+        return "\(self.p)/\(self.t)/\(self.n)"
+    }
+}
+
+struct FaceIndices {
+    let v1: VertexIndices
+    let v2: VertexIndices
+    let v3: VertexIndices
+    
+    init(line: String) {
+        let c = line.componentsSeparatedByString(" ")
+        self.v1 = VertexIndices(line: c[1])
+        self.v2 = VertexIndices(line: c[2])
+        self.v3 = VertexIndices(line: c[3])
+    }
+}
+
+struct Face {
+    let v1: Vertex
+    let v2: Vertex
+    let v3: Vertex
+}
+
 class OBJLoader : NSObject {
     
     class func objFromFileNamed(fileName: String) -> OBJ {
@@ -21,131 +89,81 @@ class OBJLoader : NSObject {
         }
         let lines: [String] = payload.componentsSeparatedByString("\n")
         
-        typealias Position = (x: Float, y: Float, z: Float)
-        typealias Normal = (x: Float, y: Float, z: Float)
-        typealias Texel = (u: Float, v: Float)
-        
-        var positions: [Position] = []
-        var texels: [Texel] = []
-        var normals: [Normal] = []
-        
-        typealias VertexIndices = (p: Int, t: Int, n: Int)
-        typealias FaceIndices = (v1: VertexIndices, v2: VertexIndices, v3: VertexIndices)
-        
+        var positions: [Vec3] = []
+        var texels: [Vec2] = []
+        var normals: [Vec3] = []
         var facesIndices: [FaceIndices] = []
-        
-        let stringToVec3 = { (string: String) -> (Float, Float, Float) in
-            let c = string.componentsSeparatedByString(" ")
-            return (Float(c[1])!, Float(c[2])!, Float(c[3])!)
-        }
-        let stringToVec2 = { (string: String) -> (Float, Float) in
-            let c = string.componentsSeparatedByString(" ")
-            return (Float(c[1])!, Float(c[2])!)
-        }
-        
-        let stringToStrideIndices = { (string: String) -> (Int, Int, Int) in
-            let c = string.componentsSeparatedByString("/")
-            return (Int(c[0])!, Int(c[1])!, Int(c[2])!)
-        }
-        let stringToFace = { (string: String) -> FaceIndices in
-            let c = string.componentsSeparatedByString(" ")
-            return (stringToStrideIndices(c[1]), stringToStrideIndices(c[2]), stringToStrideIndices(c[3]))
-        }
-        
         
         for line in lines {
             if line.startIndex.distanceTo(line.endIndex) < 2 {
                 continue
             }
             switch line.substringToIndex(line.startIndex.advancedBy(2)) {
-            case "v ": positions.append(stringToVec3(line))
-            case "vt": texels.append(stringToVec2(line))
-            case "vn": normals.append(stringToVec3(line))
-            case "f ": facesIndices.append(stringToFace(line))
+            case "v ": positions.append(Vec3(line: line))
+            case "vt": texels.append(Vec2(line: line))
+            case "vn": normals.append(Vec3(line: line))
+            case "f ": facesIndices.append(FaceIndices(line: line))
             default: break
             }
         }
         
-        typealias Stride = (p: Position, t: Texel, n: Normal)
+        debugPrint("\(positions.count) positions \(texels.count) texels \(normals.count) normals \(facesIndices.count) faces")
         
-        let strideToIndices = { (indices: VertexIndices) -> Stride in
-            return Stride(p: positions[indices.p - 1], t: texels[indices.t - 1], n: normals[indices.n - 1])
+        let indicesToVertex = { (indices: VertexIndices) -> Vertex in
+            return Vertex(indexIdentifier: indices.indexIdentifier(),
+                          position: positions[indices.p - 1],
+                          texel: texels[indices.t - 1],
+                          normal: normals[indices.n - 1],
+                          tangent: nil)
         }
         
-        var strides: [Stride] = []
-        
-        for faceIndices in facesIndices {
-            strides.append(strideToIndices(faceIndices.v1))
-            strides.append(strideToIndices(faceIndices.v2))
-            strides.append(strideToIndices(faceIndices.v3))
+        let faces = facesIndices.map{
+            Face(v1: indicesToVertex($0.v1), v2: indicesToVertex($0.v2), v3: indicesToVertex($0.v3))
         }
         
-        var ps: [Position] = []
-        var ts: [Texel] = []
-        var ns: [Normal] = []
         
-        var tbns1: [Float] = []
-        var tbns2: [Float] = []
-        var tbns3: [Float] = []
+        let verticesInOrder = faces.map{[$0.v1, $0.v2, $0.v3]}.stomp()
         
-        let strideIndices = facesIndices.map{return [$0.v1, $0.v2, $0.v3]}.stomp()
+        var vertexDrawOrder: [Int] = []
+        var drawnVertices: [String] = []
         
-        let indicesComparator = { (e1: VertexIndices, e2: VertexIndices) -> (Bool) in
-            return e1.p == e2.p && e1.t == e2.t && e1.n == e2.n
-        }
-        let indicesProcessor = { (entity: VertexIndices) -> (Void) in
-            let normal = normals[entity.n - 1];
-            ps.append(positions[entity.p - 1])
-            ts.append(texels[entity.t - 1])
-            ns.append(normal)
-            
-            let tangentMatrix = rotationFromVector(GLKVector3Make(normal.x, normal.y, normal.z), toVector: GLKVector3Make(0, 0, 1))
-            
-            let col1 = GLKMatrix3GetColumn(tangentMatrix, 0)
-            let col2 = GLKMatrix3GetColumn(tangentMatrix, 1)
-            let col3 = GLKMatrix3GetColumn(tangentMatrix, 2)
-            
-            tbns1.appendContentsOf([col1.x, col1.y, col1.z])
-            tbns2.appendContentsOf([col2.x, col2.y, col2.z])
-            tbns3.appendContentsOf([col3.x, col3.y, col3.z])
-            
+        let nonRepeatingVerticesInOrder = verticesInOrder.filter{
+            if (drawnVertices.contains($0.indexIdentifier)) {
+                let existingIndex = drawnVertices.indexOf($0.indexIdentifier)!
+                vertexDrawOrder.append(existingIndex)
+                return false
+            } else {
+                drawnVertices.append($0.indexIdentifier)
+                vertexDrawOrder.append(drawnVertices.count - 1)
+                return true
+            }
         }
         
-        let indices: [Int] = strideIndices.indexify(indicesComparator, processor: indicesProcessor)
+        debugPrint("elements: \(nonRepeatingVerticesInOrder.count)")
         
-        let arrayToArray = { (array: [Int]) -> GLIntArray in
-            let glArray = GLIntArray()
-            glArray.data = array.map{return UInt($0)}
-            glArray.count = UInt(array.count)
-            return glArray
-        }
+        let positionsArray = nonRepeatingVerticesInOrder.map{$0.position}.map{[$0.x, $0.y, $0.z]}.stomp()
+        let texelsArray = nonRepeatingVerticesInOrder.map{$0.texel}.map{[$0.u, $0.v]}.stomp()
+        let normalsArray = nonRepeatingVerticesInOrder.map{$0.normal}.map{[$0.x, $0.y, $0.z]}.stomp()
         
-        let floatArrayToArray = { (array: [Float]) -> GLFloatArray in
-            let glArray = GLFloatArray()
-            glArray.data = array
-            glArray.count = UInt(array.count)
-            return glArray
-        }
+        let indicesBuffer = GLIntArray()
+        indicesBuffer.data = vertexDrawOrder.map{UInt($0)}
+        indicesBuffer.count = UInt(vertexDrawOrder.count)
         
-        let pz = ps.map { (position: (x: Float, y: Float, z: Float)) -> [Float] in
-            return [position.x, position.y, position.z]
-        }.stomp()
-        let tz = ts.map { (texel: (u: Float, v: Float)) -> [Float] in
-            return [texel.u, texel.v]
-        }.stomp()
-        let nz = ns.map { (normal: (x: Float, y: Float, z: Float)) -> [Float] in
-            return [normal.x, normal.y, normal.z]
-        }.stomp()
+        let positionsBuffer = GLFloatArray()
+        positionsBuffer.data = positionsArray
+        positionsBuffer.count = UInt(positionsArray.count)
         
-        return OBJ(
-            indices: arrayToArray(indices),
-            positions: floatArrayToArray(pz),
-            texels: floatArrayToArray(tz),
-            normals: floatArrayToArray(nz),
-            tbnMatrices1: floatArrayToArray(tbns1),
-            tbnMatrices2: floatArrayToArray(tbns2),
-            tbnMatrices3: floatArrayToArray(tbns3))
+        let texelsBuffer = GLFloatArray()
+        texelsBuffer.data = texelsArray
+        texelsBuffer.count = UInt(texelsArray.count)
+        
+        let normalsBuffer = GLFloatArray()
+        normalsBuffer.data = normalsArray
+        normalsBuffer.count = UInt(normalsArray.count)
+        
+        return OBJ(indices: indicesBuffer, positions: positionsBuffer, texels: texelsBuffer, normals: normalsBuffer, tbnMatrices1: nil, tbnMatrices2: nil, tbnMatrices3: nil)
     }
+    
 }
 
 func rotationFromVector(formVector: GLKVector3, toVector: GLKVector3) -> GLKMatrix3 {
@@ -169,47 +187,5 @@ extension Array where Element : CollectionType {
             result.appendContentsOf(element)
         }
         return result
-    }
-}
-
-extension Array {
-    func indexify(identificator: ((e1: Element, e2: Element)->(Bool)), processor: (processingEntity: Element) -> (Void)) -> [Int] {
-        var indices: [Int] = []
-        var stack: [Element] = []
-        
-        for element in self {
-            if let index = stack.firstOccurence(element, identificator: identificator) {
-                indices.append(index)
-            } else {
-                indices.append(stack.count)
-                stack.append(element)
-                processor(processingEntity: element)
-            }
-        }
-        
-        return indices
-    }
-    
-    func filterDuplicates(identificator: ((e1: Element, e2: Element)->(Bool))) -> [Element] {
-        var result: [Element] = []
-        var i: Int = 0
-        for element in self {
-            if self.firstOccurence(element, identificator: identificator) == i {
-                result.append(element)
-            }
-            i += 1
-        }
-        return result
-    }
-
-    func firstOccurence(element: Element, identificator: ((e1: Element, e2: Element)->(Bool))) -> Int? {
-        var i: Int = 0
-        for iteratingElement in self {
-            if (identificator(e1: element, e2: iteratingElement)) {
-                return i;
-            }
-            i += 1
-        }
-        return nil
     }
 }

@@ -27,7 +27,7 @@ class VAO {
     
     convenience init(obj: OBJ) {
         self.init()
-        self.vboAttributes = [.Position, .Texel, .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3]
+        self.vboAttributes = [.Position, .Texel, .Normal]
         self.obj = obj
         
         self.setup()
