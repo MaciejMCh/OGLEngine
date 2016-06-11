@@ -107,8 +107,6 @@ class OBJLoader : NSObject {
             }
         }
         
-        debugPrint("\(positions.count) positions \(texels.count) texels \(normals.count) normals \(facesIndices.count) faces")
-        
         let indicesToVertex = { (indices: VertexIndices) -> Vertex in
             return Vertex(indexIdentifier: indices.indexIdentifier(),
                           position: positions[indices.p - 1],
@@ -139,29 +137,11 @@ class OBJLoader : NSObject {
             }
         }
         
-        debugPrint("elements: \(nonRepeatingVerticesInOrder.count)")
-        
         let positionsArray = nonRepeatingVerticesInOrder.map{$0.position}.map{[$0.x, $0.y, $0.z]}.stomp()
         let texelsArray = nonRepeatingVerticesInOrder.map{$0.texel}.map{[$0.u, $0.v]}.stomp()
         let normalsArray = nonRepeatingVerticesInOrder.map{$0.normal}.map{[$0.x, $0.y, $0.z]}.stomp()
         
-        let indicesBuffer = GLIntArray()
-        indicesBuffer.data = vertexDrawOrder.map{UInt($0)}
-        indicesBuffer.count = UInt(vertexDrawOrder.count)
-        
-        let positionsBuffer = GLFloatArray()
-        positionsBuffer.data = positionsArray
-        positionsBuffer.count = UInt(positionsArray.count)
-        
-        let texelsBuffer = GLFloatArray()
-        texelsBuffer.data = texelsArray
-        texelsBuffer.count = UInt(texelsArray.count)
-        
-        let normalsBuffer = GLFloatArray()
-        normalsBuffer.data = normalsArray
-        normalsBuffer.count = UInt(normalsArray.count)
-        
-        return OBJ(indices: indicesBuffer, positions: positionsBuffer, texels: texelsBuffer, normals: normalsBuffer, tbnMatrices1: nil, tbnMatrices2: nil, tbnMatrices3: nil)
+        return OBJ(indices: vertexDrawOrder, positions: positionsArray, texels: texelsArray, normals: normalsArray, tangents: [])
     }
     
 }

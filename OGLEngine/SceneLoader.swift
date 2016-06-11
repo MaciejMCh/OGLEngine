@@ -121,9 +121,9 @@ extension ReflectiveSurfaceRenderable {
         self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
         self.reflectionColorMap = RenderedTexture()
         
-        let p1 = transformVector(GLKVector3Make(obj.positions!.data[0], obj.positions!.data[1], obj.positions!.data[2]), transformation: self.geometryModel.modelMatrix())
-        let p2 = transformVector(GLKVector3Make(obj.positions!.data[3], obj.positions!.data[4], obj.positions!.data[5]), transformation: self.geometryModel.modelMatrix())
-        let p3 = transformVector(GLKVector3Make(obj.positions!.data[6], obj.positions!.data[7], obj.positions!.data[8]), transformation: self.geometryModel.modelMatrix())
+        let p1 = transformVector(GLKVector3Make(obj.positions[0], obj.positions[1], obj.positions[2]), transformation: self.geometryModel.modelMatrix())
+        let p2 = transformVector(GLKVector3Make(obj.positions[3], obj.positions[4], obj.positions[5]), transformation: self.geometryModel.modelMatrix())
+        let p3 = transformVector(GLKVector3Make(obj.positions[6], obj.positions[7], obj.positions[8]), transformation: self.geometryModel.modelMatrix())
         self.reflectionPlane = ReflectionPlane( p1: p1, p2: p2, p3: p3)
     }
 }

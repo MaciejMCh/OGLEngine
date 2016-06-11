@@ -12,7 +12,7 @@ import GLKit
 struct VBO {
     let attribute: Attribute
     let glName: GLuint
-    let data: GLFloatArray
+    let data: [Float]
 }
 
 class VAO {
@@ -44,18 +44,18 @@ class VAO {
         var indicesVboGLName: GLuint = 0
         glGenBuffers(1, &indicesVboGLName)
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indicesVboGLName)
-        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Int(obj.indices.count) * sizeof(GLuint), obj.indices.data, GLenum(GL_STATIC_DRAW))
+        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Int(obj.indices.count) * sizeof(GLuint), obj.indices, GLenum(GL_STATIC_DRAW))
         
         self.vbos = self.vboAttributes.map{return self.generateVbo($0, data: obj.dataForAttribute($0))}
         
         glBindVertexArrayOES(0)
     }
     
-    func generateVbo(attribute: Attribute, data: GLFloatArray) -> VBO {
+    func generateVbo(attribute: Attribute, data: [Float]) -> VBO {
         var vboGLName: GLuint = 0
         glGenBuffers(1, &vboGLName)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vboGLName)
-        glBufferData(GLenum(GL_ARRAY_BUFFER), Int(data.count) * sizeof(GLfloat), data.data, GLenum(GL_STATIC_DRAW))
+        glBufferData(GLenum(GL_ARRAY_BUFFER), Int(data.count) * sizeof(GLfloat), data, GLenum(GL_STATIC_DRAW))
         glVertexAttribPointer(attribute.location(), GLint(attribute.size()), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
         return VBO(attribute: attribute, glName: vboGLName, data: data)

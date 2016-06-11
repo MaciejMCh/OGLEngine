@@ -42,18 +42,14 @@ enum Attribute: GLSLEnum {
     case Position
     case Texel
     case Normal
-    case TangentMatrixCol1
-    case TangentMatrixCol2
-    case TangentMatrixCol3
+    case Tangent
     
     func name() -> String {
         switch self {
         case .Position: return "position"
         case .Texel: return "texel"
         case .Normal: return "normal"
-        case .TangentMatrixCol1: return "tangentMatrixCol1"
-        case .TangentMatrixCol2: return "tangentMatrixCol2"
-        case .TangentMatrixCol3: return "tangentMatrixCol3"
+        case .Tangent: return "tangent"
         }
     }
     
@@ -62,9 +58,7 @@ enum Attribute: GLSLEnum {
         case .Position: return 0
         case .Texel: return 1
         case .Normal: return 2
-        case .TangentMatrixCol1: return 3
-        case .TangentMatrixCol2: return 4
-        case .TangentMatrixCol3: return 5
+        case .Tangent: return 3
         }
     }
     
@@ -73,15 +67,13 @@ enum Attribute: GLSLEnum {
         case .Position: return 3
         case .Texel: return 2
         case .Normal: return 3
-        case .TangentMatrixCol1: return 3
-        case .TangentMatrixCol2: return 3
-        case .TangentMatrixCol3: return 3
+        case .Tangent: return 3
         }
     }
     
     func gpuType() -> GPUType {
         switch self {
-        case .Normal, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3: return .Vec3
+        case .Normal, .Tangent: return .Vec3
         case .Texel: return .Vec2
         case .Position: return .Vec4
         }
@@ -157,7 +149,7 @@ struct DefaultInterfaces {
     }
     
     static func detailInterface() -> GPUInterface {
-        return GPUInterface(attributes: [.Position, .Texel, .TangentMatrixCol1, .TangentMatrixCol2, .TangentMatrixCol3], uniforms: [.ModelMatrix, .ViewProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap, .TextureScale])
+        return GPUInterface(attributes: [.Position, .Texel, .Normal, .Tangent], uniforms: [.ModelMatrix, .ViewProjectionMatrix, .NormalMatrix, .EyePosition, .LightDirection, .ColorMap, .NormalMap, .TextureScale])
     }
     
     static func mediumShotInterface() -> GPUInterface {

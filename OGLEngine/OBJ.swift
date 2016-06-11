@@ -11,32 +11,26 @@ import GLKit
 
 struct OBJ {
     
-    let indices : GLIntArray
+    let indices : [Int]
+    let positions : [Float]
+    let texels : [Float]!
+    let normals : [Float]!
+    let tangents : [Float]!
     
-    let positions : GLFloatArray?
-    let texels : GLFloatArray?
-    let normals : GLFloatArray?
-    let tbnMatrices1 : GLFloatArray?
-    let tbnMatrices2 : GLFloatArray?
-    let tbnMatrices3 : GLFloatArray?
+    init(indices: [Int], positions: [Float], texels: [Float]! = nil, normals: [Float]! = nil, tangents: [Float]! = nil) {
+        self.indices = indices
+        self.positions = positions
+        self.texels = texels
+        self.normals = normals
+        self.tangents = tangents
+    }
     
-    func dataForAttribute(attribute: Attribute) -> GLFloatArray {
+    func dataForAttribute(attribute: Attribute) -> [Float] {
         switch attribute {
-        case .Position: return self.positions!
-        case .Texel: return self.texels!
-        case .Normal: return self.normals!
-        case .TangentMatrixCol1: return self.tbnMatrices1!
-        case .TangentMatrixCol2: return self.tbnMatrices2!
-        case .TangentMatrixCol3: return self.tbnMatrices3!
+        case .Position: return self.positions
+        case .Texel: return self.texels
+        case .Normal: return self.normals
+        case .Tangent: return self.tangents
         }
     }
-}
-
-class GLFloatArray: NSObject {
-    var data: [GLfloat] = []
-    var count: UInt = 0
-}
-class GLIntArray: NSObject {
-    var data: [UInt] = []
-    var count: UInt = 0
 }
