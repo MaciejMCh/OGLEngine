@@ -40,7 +40,8 @@ struct GPUAttributes {
     static let position = GPUAttribute(variable: GPUVariable<GLSLVec4>(name: "aPosition"), location: 0)
     static let texel = GPUAttribute(variable: GPUVariable<GLSLVec2>(name: "aTexel"), location: 1)
     static let normal = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aNormal"), location: 2)
-    static let tbnCol1 = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aTBNCol1"), location: 3)
-    static let tbnCol2 = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aTBNCol2"), location: 4)
-    static let tbnCol3 = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aTBNCol3"), location: 5)
+    static let tangent = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aTangent"), location: 3)
+    static let tbnCol1 = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aTBNCol1"), location: 4)
+    static let tbnCol2 = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aTBNCol2"), location: 5)
+    static let tbnCol3 = GPUAttribute(variable: GPUVariable<GLSLVec3>(name: "aTBNCol3"), location: 6)
 }

@@ -175,8 +175,9 @@ class OBJLoader : NSObject {
         let positionsArray = nonRepeatingVerticesInOrder.map{$0.position}.map{[$0.x, $0.y, $0.z]}.stomp()
         let texelsArray = nonRepeatingVerticesInOrder.map{$0.texel}.map{[$0.u, $0.v]}.stomp()
         let normalsArray = nonRepeatingVerticesInOrder.map{$0.normal}.map{[$0.x, $0.y, $0.z]}.stomp()
+        let tangentsArray = nonRepeatingVerticesInOrder.map{$0.tangent}.map{[$0!.x, $0!.y, $0!.z]}.stomp()
         
-        return OBJ(indices: vertexDrawOrder, positions: positionsArray, texels: texelsArray, normals: normalsArray, tangents: [])
+        return OBJ(indices: vertexDrawOrder, positions: positionsArray, texels: texelsArray, normals: normalsArray, tangents: tangentsArray)
     }
     
 }

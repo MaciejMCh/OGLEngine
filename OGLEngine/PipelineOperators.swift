@@ -89,6 +89,11 @@ public func ⋅ (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUE
     return GPUEvaluation<GLSLFloat>(function: GPUFunction<GLSLFloat>(signature: "dot", input: [lhs, rhs]))
 }
 
+// Cross product
+public func ✖ (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUEvaluation<GLSLVec3> {
+    return GPUEvaluation<GLSLVec3>(function: GPUFunction<GLSLVec3>(signature: "cross", input: [lhs, rhs]))
+}
+
 // Difference
 infix operator - { associativity left precedence 200 }
 public func - (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec3> {
