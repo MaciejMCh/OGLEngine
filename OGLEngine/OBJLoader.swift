@@ -20,6 +20,14 @@ struct Vec3 {
         self.y = Float(c[2])!
         self.z = Float(c[3])!
     }
+    
+    func sub(vec3: Vec3) -> Vec3 {
+        return self
+    }
+    
+    func scale(s: Float) -> Vec3 {
+        return self
+    }
 }
 
 struct Vec2 {
@@ -30,6 +38,10 @@ struct Vec2 {
         let c = line.componentsSeparatedByString(" ")
         self.u = Float(c[1])!
         self.v = Float(c[2])!
+    }
+    
+    func sub(vec2: Vec2) -> Vec2 {
+        return self
     }
 }
 
@@ -120,7 +132,30 @@ class OBJLoader : NSObject {
         }
         
         
-        let verticesInOrder = faces.map{[$0.v1, $0.v2, $0.v3]}.stomp()
+        let tangentFaces = faces.map { (let face) -> Face in
+            let tangent = calculateTangents(face.v1, v1: face.v2, v2: face.v3)
+                return Face(
+                    v1: Vertex(
+                        indexIdentifier: "",
+                        position: face.v1.position,
+                        texel: face.v1.texel,
+                        normal: face.v1.normal,
+                        tangent: tangent),
+                    v2: Vertex(
+                        indexIdentifier: "",
+                        position: face.v1.position,
+                        texel: face.v1.texel,
+                        normal: face.v1.normal,
+                        tangent: tangent),
+                    v3: Vertex(
+                        indexIdentifier: "",
+                        position: face.v1.position,
+                        texel: face.v1.texel,
+                        normal: face.v1.normal,
+                        tangent: tangent))
+        }
+        
+        let verticesInOrder = tangentFaces.map{[$0.v1, $0.v2, $0.v3]}.stomp()
         
         var vertexDrawOrder: [Int] = []
         var drawnVertices: [String] = []
@@ -144,6 +179,37 @@ class OBJLoader : NSObject {
         return OBJ(indices: vertexDrawOrder, positions: positionsArray, texels: texelsArray, normals: normalsArray, tangents: [])
     }
     
+}
+
+func calculateTangents(v0: Vertex, v1: Vertex, v2: Vertex) -> Vec3 {
+    var delatPos1 = v1.position.sub(v0.position)
+//    Vector3f delatPos1 = Vector3f.sub(v1.getPosition(), v0.getPosition(), null);
+    var delatPos2 = v2.position.sub(v0.position)
+//    Vector3f delatPos2 = Vector3f.sub(v2.getPosition(), v0.getPosition(), null);
+    
+//    Vector2f uv0 = textures.get(v0.getTextureIndex());
+//    Vector2f uv1 = textures.get(v1.getTextureIndex());
+//    Vector2f uv2 = textures.get(v2.getTextureIndex());
+    let deltaUv1 = v1.texel.sub(v0.texel)
+//    Vector2f deltaUv1 = Vector2f.sub(uv1, uv0, null);
+    let deltaUv2 = v2.texel.sub(v0.texel)
+//    Vector2f deltaUv2 = Vector2f.sub(uv2, uv0, null);
+//    
+//    float r = 1.0f / (deltaUv1.x * deltaUv2.y - deltaUv1.y * deltaUv2.x);
+    let r = 1 / (deltaUv1.u * deltaUv2.v - deltaUv1.v * deltaUv2.u)
+//    delatPos1.scale(deltaUv2.y);
+    delatPos1 = delatPos1.scale(deltaUv2.v)
+//    delatPos2.scale(deltaUv1.y);
+    delatPos2 = delatPos2.scale(deltaUv1.v)
+//    Vector3f tangent = Vector3f.sub(delatPos1, delatPos2, null);
+    var tangent = delatPos1.sub(delatPos2)
+//    tangent.scale(r);
+    tangent = tangent.scale(r)
+//    v0.addTangent(tangent);
+//    v1.addTangent(tangent);
+//    v2.addTangent(tangent);
+    
+    return tangent
 }
 
 func rotationFromVector(formVector: GLKVector3, toVector: GLKVector3) -> GLKMatrix3 {
