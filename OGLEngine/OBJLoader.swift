@@ -136,22 +136,22 @@ class OBJLoader : NSObject {
             let tangent = calculateTangents(face.v1, v1: face.v2, v2: face.v3)
                 return Face(
                     v1: Vertex(
-                        indexIdentifier: "",
+                        indexIdentifier: face.v1.indexIdentifier,
                         position: face.v1.position,
                         texel: face.v1.texel,
                         normal: face.v1.normal,
                         tangent: tangent),
                     v2: Vertex(
-                        indexIdentifier: "",
-                        position: face.v1.position,
-                        texel: face.v1.texel,
-                        normal: face.v1.normal,
+                        indexIdentifier: face.v2.indexIdentifier,
+                        position: face.v2.position,
+                        texel: face.v2.texel,
+                        normal: face.v2.normal,
                         tangent: tangent),
                     v3: Vertex(
-                        indexIdentifier: "",
-                        position: face.v1.position,
-                        texel: face.v1.texel,
-                        normal: face.v1.normal,
+                        indexIdentifier: face.v3.indexIdentifier,
+                        position: face.v3.position,
+                        texel: face.v3.texel,
+                        normal: face.v3.normal,
                         tangent: tangent))
         }
         
