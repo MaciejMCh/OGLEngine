@@ -152,6 +152,10 @@ prefix func ⤺ (sample: GPUVariable<GLSLColor>) -> FixedGPUEvaluation<GLSLVec3>
     return FixedGPUEvaluation(glslCode: "normalize(vec3(" + sample.name! + ") * 2.0 - vec3(1.0, 1.0, 1.0));")
 }
 
+prefix func ⤺ (vector: GPUVariable<GLSLVec3>) -> FixedGPUEvaluation<GLSLColor> {
+    return FixedGPUEvaluation(glslCode: "vec4((\(vector.name!) + vec3(1.0, 1.0, 1.0)) * 0.5, 1.0)")
+}
+
 // Float operations
 infix operator ^ { associativity left precedence 200 }
 public func ^ (lhs: GPUVariable<GLSLFloat>, rhs: GPUVariable<GLSLFloat>) -> GPUEvaluation<GLSLFloat> {

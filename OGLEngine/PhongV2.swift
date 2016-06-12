@@ -111,6 +111,7 @@ extension DefaultScopes {
         let tangent = GPUVariable<GLSLVec3>(name: "tangent")
         let bitangent = GPUVariable<GLSLVec3>(name: "bitangent")
         let normal = GPUVariable<GLSLVec3>(name: "normal")
+        let vDebug = GPUVariable<GLSLVec3>(name: "vDebug")
         
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
@@ -124,6 +125,7 @@ extension DefaultScopes {
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vLightVersor
         globalScope ⟿↘ vHalfVersor
+        globalScope ⟿↘ vDebug
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ↳ worldSpacePosition
@@ -163,6 +165,8 @@ extension DefaultScopes {
 //        mainScope ✍ vHalfVersor ⬅ uTangentNormalMatrix * vHalfVersor
 //        mainScope ✍ vLightVersor ⬅ uTangentNormalMatrix * vLightVersor
         
+        mainScope ✍ vDebug ⬅ tangent
+        
         return globalScope
     }
     
@@ -182,6 +186,7 @@ extension DefaultScopes {
         let fullDiffuseColor = GPUVariable<GLSLColor>(name: "fullDiffuseColor")
         let lightColor = GPUVariable<GLSLColor>(name: "lightColor")
         let shininess = GPUVariable<GLSLFloat>(name: "shininess")
+        let vDebug = GPUVariable<GLSLVec3>(name: "vDebug")
         let phongScope = DefaultScopes.PhongReflectionColorScope(
             fixedNormal,
             lightVector: lightVersor,
@@ -194,6 +199,7 @@ extension DefaultScopes {
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vLightVersor
         globalScope ⟿↘ vHalfVersor
+        globalScope ⟿↘ vDebug
         globalScope ⥥ uColorMap
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
@@ -210,6 +216,7 @@ extension DefaultScopes {
         mainScope ↳↘ fixedNormal
         mainScope ✍ fixedNormal ⬅ GPUVariable<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
         mainScope ⎘ phongScope
+        mainScope ✍ glFragColor ⬅ ⤺vDebug
         
         return globalScope
     }
