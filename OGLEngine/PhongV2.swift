@@ -174,7 +174,7 @@ extension DefaultScopes {
 //        mainScope ✍ vHalfVersor ⬅ ttbnMatrix * vHalfVersor
 //        mainScope ✍ vLightVersor ⬅ ttbnMatrix * vLightVersor
         
-        mainScope ✍ vTBN ⬅ tbnMatrix
+        mainScope ✍ vTBN ⬅ uTangentNormalMatrix * tbnMatrix
         
         let vNormal = GPUVariable<GLSLVec3>(name: "vNormal")
         mainScope ↳ vNormal
@@ -234,6 +234,7 @@ extension DefaultScopes {
         mainScope ✍ shininess ⬅ GPUVariable<GLSLFloat>(value: 100.0)
         mainScope ↳↘ fixedNormal
         mainScope ✍ fixedNormal ⬅ GPUVariable<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
+        mainScope ✍ fixedNormal ⬅ ^fixedNormal
         mainScope ✍ fixedNormal ⬅ vTBN * fixedNormal
         mainScope ✍ fixedNormal ⬅ ^fixedNormal
         mainScope ⎘ phongScope
@@ -254,7 +255,7 @@ extension DefaultScopes {
         
 //        mainScope ⎘ phong2
         
-//        mainScope ✍ glFragColor ⬅ ⤺halfVersor
+//        mainScope ✍ glFragColor ⬅ ⤺fixedNormal
         
 //        mainScope ✍ glFragColor ⬅
         
