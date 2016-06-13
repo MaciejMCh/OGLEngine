@@ -65,12 +65,9 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        let program = PhongV2PipelineProgram()
+        let program = CloseShotPipelineProgram()
         NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
         NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
-        
-        
-//        program.compile()
         
         self.scene = Scene.loadScene("test")
         

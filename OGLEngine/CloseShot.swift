@@ -177,6 +177,7 @@ extension DefaultScopes {
         let fullDiffuseColor = GPUVariable<GLSLColor>(name: "fullDiffuseColor")
         let lightColor = GPUVariable<GLSLColor>(name: "lightColor")
         let shininess = GPUVariable<GLSLFloat>(name: "shininess")
+        let normalMapSample = GPUVariable<GLSLColor>(name: "normalMapSample")
         let phongScope = DefaultScopes.PhongReflectionColorScope(
             fixedNormal,
             lightVector: lightVersor,
@@ -191,6 +192,7 @@ extension DefaultScopes {
         globalScope ⟿↘ vHalfVersor
         globalScope ⟿↘ vTBNMatrix
         globalScope ⥥ uColorMap
+        globalScope ⥥ uNormalMap
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ↳↘ lightVersor
@@ -203,8 +205,10 @@ extension DefaultScopes {
         mainScope ✍ lightColor ⬅ GPUVariable<GLSLColor>(value: (r: 1.0, g: 1.0, b: 1.0, a: 1.0))
         mainScope ↳↘ shininess
         mainScope ✍ shininess ⬅ GPUVariable<GLSLFloat>(value: 100.0)
+        mainScope ↳↘ normalMapSample
+        mainScope ✍ normalMapSample ⬅ uNormalMap ☒ vTexel
         mainScope ↳↘ fixedNormal
-        mainScope ✍ fixedNormal ⬅ GPUVariable<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
+        mainScope ✍ fixedNormal ⬅ ⤺normalMapSample
         mainScope ✍ fixedNormal ⬅ ^fixedNormal
         mainScope ✍ fixedNormal ⬅ vTBNMatrix * fixedNormal
         mainScope ✍ fixedNormal ⬅ ^fixedNormal
