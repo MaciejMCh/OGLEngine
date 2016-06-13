@@ -108,6 +108,7 @@ extension DefaultScopes {
         let mainScope = GPUScope()
         let worldSpacePosition = GPUVariable<GLSLVec4>(name: "worldSpacePosition")
         let tbnMatrix = GPUVariable<GLSLMat3>(name: "tbnMatrix")
+        let ttbnMatrix = GPUVariable<GLSLMat3>(name: "ttbnMatrix")
         let tangent = GPUVariable<GLSLVec3>(name: "tangent")
         let bitangent = GPUVariable<GLSLVec3>(name: "bitangent")
         let normal = GPUVariable<GLSLVec3>(name: "normal")
@@ -145,9 +146,15 @@ extension DefaultScopes {
         
         mainScope ↳ tbnMatrix
         mainScope ✍ tbnMatrix ⬅ GPUEvaluation(function: GPUFunction<GLSLMat3>(signature: "mat3", input: [tangent, bitangent, normal]))
+        
+        mainScope ↳ ttbnMatrix
+        mainScope ✍ ttbnMatrix ⬅ FixedGPUEvaluation(glslCode: "mat3(tangent.x, bitangent.x, normal.x, tangent.y, bitangent.y, normal.y, tangent.z, bitangent.z, normal.z)")
+        
+//        mainScope ✍ tbnMatrix ⬅ GPUEvaluation(function: GPUFunction<GLSLMat3>(signature: "inverse", input: [tbnMatrix]))
         // Light versor
         mainScope ✍ vLightVersor ⬅ GPUVariable<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
-        mainScope ✍ vLightVersor ⬅ (tbnMatrix * vLightVersor)
+        mainScope ✍ vLightVersor ⬅ ^vLightVersor
+//        mainScope ✍ vLightVersor ⬅ ttbnMatrix * vLightVersor
         // Position vector
         let positionVector = GPUVariable<GLSLVec3>(name: "positionVector")
         mainScope ↳ positionVector
@@ -157,15 +164,21 @@ extension DefaultScopes {
         mainScope ↳ viewVersor
         mainScope ✍ viewVersor ⬅ (uEyePosition - positionVector)
         mainScope ✍ viewVersor ⬅ ^viewVersor
-        mainScope ✍ viewVersor ⬅ (tbnMatrix * viewVersor)
+//        mainScope ✍ viewVersor ⬅ ttbnMatrix * viewVersor
         // Half versor
         mainScope ✍ vHalfVersor ⬅ (vLightVersor + viewVersor)
         mainScope ✍ vHalfVersor ⬅ ^vHalfVersor
         // To model tandent space
-//        mainScope ✍ vHalfVersor ⬅ uTangentNormalMatrix * vHalfVersor
-//        mainScope ✍ vLightVersor ⬅ uTangentNormalMatrix * vLightVersor
+        mainScope ✍ vHalfVersor ⬅ ttbnMatrix * vHalfVersor
+        mainScope ✍ vLightVersor ⬅ ttbnMatrix * vLightVersor
         
-        mainScope ✍ vDebug ⬅ tangent
+        let vNormal = GPUVariable<GLSLVec3>(name: "vNormal")
+        mainScope ↳ vNormal
+        mainScope ✍ vNormal ⬅ tbnMatrix * GPUVariable<GLSLVec3>(value: GLKVector3Make(0, 0, 1))
+        
+        mainScope ✍ vNormal ⬅ ttbnMatrix * vNormal
+        
+        mainScope ✍ vDebug ⬅ vLightVersor
         
         return globalScope
     }
@@ -216,7 +229,26 @@ extension DefaultScopes {
         mainScope ↳↘ fixedNormal
         mainScope ✍ fixedNormal ⬅ GPUVariable<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
         mainScope ⎘ phongScope
+        
+        
+//        let nnormal = GPUVariable<GLSLVec3>(name: "nnormal")
+//        mainScope ↳↘ nnormal
+//        mainScope ✍ nnormal ⬅ ^vDebug
+//        
+//        let phong2 = DefaultScopes.PhongReflectionColorScope(
+//            nnormal,
+//            lightVector: vLightVersor,
+//            halfVector: vHalfVersor,
+//            fullDiffuseColor: fullDiffuseColor,
+//            lightColor: lightColor,
+//            shininess: shininess,
+//            phongColor: glFragColor)
+        
+//        mainScope ⎘ phong2
+        
         mainScope ✍ glFragColor ⬅ ⤺vDebug
+        
+//        mainScope ✍ glFragColor ⬅
         
         return globalScope
     }

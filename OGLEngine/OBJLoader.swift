@@ -21,12 +21,22 @@ struct Vec3 {
         self.z = Float(c[3])!
     }
     
+    init(x: Float, y: Float, z: Float) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+    
     func sub(vec3: Vec3) -> Vec3 {
-        return self
+        return Vec3(x: self.x - vec3.x,
+                    y: self.y - vec3.y,
+                    z: self.z - vec3.z)
     }
     
     func scale(s: Float) -> Vec3 {
-        return self
+        return Vec3(x: self.x * s,
+                    y: self.y * s,
+                    z: self.z * s)
     }
 }
 
@@ -40,8 +50,13 @@ struct Vec2 {
         self.v = Float(c[2])!
     }
     
+    init(u: Float, v: Float) {
+        self.u = u
+        self.v = v
+    }
+    
     func sub(vec2: Vec2) -> Vec2 {
-        return self
+        return Vec2(u: self.u - vec2.u, v: self.v - vec2.v)
     }
 }
 
@@ -52,6 +67,19 @@ struct Vertex {
     let normal: Vec3
     let tangent: Vec3?
 }
+
+func normalVersor(v1: Vec3, v2: Vec3) -> Vec3 {
+    let gv1 = GLKVector3Make(v1.x, v1.y, v1.z)
+    let gv2 = GLKVector3Make(v2.x, v2.y, v2.z)
+    let res = GLKVector3Normalize(GLKVector3CrossProduct(gv1, gv2))
+    return Vec3(x: res.x, y: res.y, z: res.z)
+}
+
+func dot(v1: Vec3, gv2: GLKVector3) -> Float {
+    let gv1 = GLKVector3Make(v1.x, v1.y, v1.z)
+    return GLKVector3DotProduct(gv1, gv2)
+}
+
 
 struct VertexIndices {
     let p: Int
@@ -133,26 +161,49 @@ class OBJLoader : NSObject {
         
         
         let tangentFaces = faces.map { (let face) -> Face in
-            let tangent = calculateTangents(face.v1, v1: face.v2, v2: face.v3)
+//            let tangent = calculateTangents(face.v1, v1: face.v2, v2: face.v3)
+//            let e1 = face.v2.position.sub(face.v1.position)
+//            let e2 = face.v3.position.sub(face.v1.position)
+//            var normal = normalVersor(e1, v2: e2)
+//            var potential: GLKVector3 = GLKVector3Make(0, 0, 0)
+//            while true {
+//                potential = GLKVector3Normalize(GLKVector3Make(Float(arc4random()), Float(arc4random()), Float(arc4random())))
+//                let dot1 = dot(face.v1.normal, gv2: potential)
+//                let dot2 = dot(face.v2.normal, gv2: potential)
+//                let dot3 = dot(face.v3.normal, gv2: potential)
+//                
+//                if (dot1 != 0 && dot1 != 1 && dot1 != -1 &&
+//                    dot2 != 0 && dot2 != 1 && dot2 != -1 &&
+//                    dot3 != 0 && dot3 != 1 && dot3 != -1) {
+//                    break
+//                }
+//            }
+//            let independent = Vec3(x: potential.x, y: potential.y, z: potential.z)
+            
+            let independent = Vec3(x: 0, y: 0, z: 1)
+            
+            let tangent1 = normalVersor(face.v1.normal, v2: independent)
+            let tangent2 = normalVersor(face.v2.normal, v2: independent)
+            let tangent3 = normalVersor(face.v3.normal, v2: independent)
                 return Face(
                     v1: Vertex(
                         indexIdentifier: face.v1.indexIdentifier,
                         position: face.v1.position,
                         texel: face.v1.texel,
                         normal: face.v1.normal,
-                        tangent: tangent),
+                        tangent: tangent1),
                     v2: Vertex(
                         indexIdentifier: face.v2.indexIdentifier,
                         position: face.v2.position,
                         texel: face.v2.texel,
                         normal: face.v2.normal,
-                        tangent: tangent),
+                        tangent: tangent2),
                     v3: Vertex(
                         indexIdentifier: face.v3.indexIdentifier,
                         position: face.v3.position,
                         texel: face.v3.texel,
                         normal: face.v3.normal,
-                        tangent: tangent))
+                        tangent: tangent3))
         }
         
         let verticesInOrder = tangentFaces.map{[$0.v1, $0.v2, $0.v3]}.stomp()
