@@ -22,6 +22,7 @@
 		C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */; };
 		C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */; };
 		C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */; };
+		C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25642831D0EDEDA0043EE6E /* TangentSpace.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* CloseShot.fsh */; };
@@ -117,6 +118,7 @@
 		C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLDefaultVariables.swift; sourceTree = "<group>"; };
 		C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShot.swift; sourceTree = "<group>"; };
 		C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongReflection.swift; sourceTree = "<group>"; };
+		C25642831D0EDEDA0043EE6E /* TangentSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangentSpace.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */,
+				C25642831D0EDEDA0043EE6E /* TangentSpace.swift */,
 			);
 			name = Functionalities;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,
 				C2B188F31CF1CC8B008BB626 /* PipelineModels.swift in Sources */,
 				C2E1581C1CFD9BE800BB3805 /* PipelineShader.swift in Sources */,
+				C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */,
 				C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */,
 				C2B188FD1CF20844008BB626 /* GLSLParser.swift in Sources */,
 				C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */,

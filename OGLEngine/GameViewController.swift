@@ -15,7 +15,7 @@ class GameViewController: GLKViewController {
     var closeShotProgram: CloseShotProgram!
     var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
     var reflectedProgram: ReflectedProgram!
-    var pipelineProgram: PhongV2PipelineProgram!
+    var pipelineProgram: CloseShotPipelineProgram!
     
     var context: EAGLContext? = nil
     
@@ -86,9 +86,9 @@ class GameViewController: GLKViewController {
         self.reflectedProgram = ReflectedProgram()
         self.reflectedProgram.compile()
         
-        self.pipelineProgram = PhongV2PipelineProgram()
+        self.pipelineProgram = CloseShotPipelineProgram()
         self.pipelineProgram.camera = self.scene.camera
-//        self.pipelineProgram.directionalLight = self.scene.directionalLight
+        self.pipelineProgram.directionalLight = self.scene.directionalLight
         self.pipelineProgram.compile()
         
         

@@ -109,10 +109,10 @@ extension DefaultScopes {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
         let worldSpacePosition = GPUVariable<GLSLVec4>(name: "worldSpacePosition")
-        let tbnMatrix = GPUVariable<GLSLMat3>(name: "tbnMatrix")
-        let tangent = GPUVariable<GLSLVec3>(name: "tangent")
-        let bitangent = GPUVariable<GLSLVec3>(name: "bitangent")
-        let normal = GPUVariable<GLSLVec3>(name: "normal")
+        let tbnScope = DefaultScopes.FragmentTBNMatrixScope(aNormal, aTangent: aTangent, uNormalMatrix: uNormalMatrix, vTBNMatrix: vTBNMatrix)
+        let viewVersor = GPUVariable<GLSLVec3>(name: "viewVector")
+        let positionVector = GPUVariable<GLSLVec3>(name: "positionVector")
+        let halfVersorScope = DefaultScopes.PhongHalfVersor(vLightVersor, modelPosition: positionVector, eyePosition: uEyePosition, viewVersor: viewVersor, halfVersor: vHalfVersor)
         
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
@@ -132,37 +132,12 @@ extension DefaultScopes {
         mainScope ✍ worldSpacePosition ⬅ uModelMatrix * aPosition
         mainScope ✍ glPosition ⬅ uViewProjectionMatrix * worldSpacePosition
         mainScope ✍ vTexel ⬅ aTexel
-        
-        // TBN
-        mainScope ↳ normal
-        mainScope ✍ normal ⬅ ^aNormal
-        
-        mainScope ↳ tangent
-        mainScope ✍ tangent ⬅ ^aTangent
-        
-        mainScope ↳ bitangent
-        mainScope ✍ bitangent ⬅ normal ✖ tangent
-        mainScope ✍ bitangent ⬅ ^bitangent
-        
-        mainScope ↳ tbnMatrix
-        mainScope ✍ tbnMatrix ⬅ GPUEvaluation(function: GPUFunction<GLSLMat3>(signature: "mat3", input: [tangent, bitangent, normal]))
-        mainScope ✍ vTBNMatrix ⬅ uNormalMatrix * tbnMatrix
-        
-        // Light versor
         mainScope ✍ vLightVersor ⬅ GPUVariable<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
-        mainScope ✍ vLightVersor ⬅ ^vLightVersor
-        // Position vector
-        let positionVector = GPUVariable<GLSLVec3>(name: "positionVector")
         mainScope ↳ positionVector
         mainScope ✍ positionVector ⬅ GPUEvaluation(function: GPUFunction(signature: "vec3", input: [worldSpacePosition]))
-        // View versor
-        let viewVersor = GPUVariable<GLSLVec3>(name: "viewVector")
+        mainScope ⎘ tbnScope
         mainScope ↳ viewVersor
-        mainScope ✍ viewVersor ⬅ (uEyePosition - positionVector)
-        mainScope ✍ viewVersor ⬅ ^viewVersor
-        // Half versor
-        mainScope ✍ vHalfVersor ⬅ (vLightVersor + viewVersor)
-        mainScope ✍ vHalfVersor ⬅ ^vHalfVersor
+        mainScope ⎘ halfVersorScope
         
         return globalScope
     }

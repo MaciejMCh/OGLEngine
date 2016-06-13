@@ -18,11 +18,10 @@ class CloseShotPipelineProgram: PipelineProgram {
     var directionalLight: DirectionalLight!
     
     func willRender(renderable: RenderableType) {
-//        NSLog("\(directionalLight.lightDirection.x) \(directionalLight.lightDirection.y) \(directionalLight.lightDirection.z)")
-        self.pipeline.uniform(GPUUniforms.lightDirection).cpuVariableGetter = {self.directionalLight.lightDirection}
+        self.pipeline.uniform(GPUUniforms.lightVersor).cpuVariableGetter = {self.directionalLight.lightVersor()}
         self.pipeline.uniform(GPUUniforms.modelMatrix).cpuVariableGetter = {renderable.geometryModel.modelMatrix()}
         self.pipeline.uniform(GPUUniforms.viewProjectionMatrix).cpuVariableGetter = {self.camera.viewProjectionMatrix()}
-        self.pipeline.uniform(GPUUniforms.normalMatrix).cpuVariableGetter = {renderable.tangentNormalMatrix()}
+        self.pipeline.uniform(GPUUniforms.normalMatrix).cpuVariableGetter = {renderable.normalMatrix()}
         self.pipeline.uniform(GPUUniforms.eyePosition).cpuVariableGetter = {self.camera.cameraPosition()}
         self.pipeline.uniform(GPUUniforms.colorMap).cpuVariableGetter = {(texture: renderable.colorMap, index: 0)}
         self.pipeline.uniform(GPUUniforms.normalMap).cpuVariableGetter = {(texture: renderable.normalMap, index: 1)}
@@ -31,5 +30,3 @@ class CloseShotPipelineProgram: PipelineProgram {
         self.pipeline.uniform(GPUUniforms.shininess).cpuVariableGetter = {100.0}
     }
 }
-
-//self.pipeline.uniform(GPUUniforms.).cpuVariableGetter = {}

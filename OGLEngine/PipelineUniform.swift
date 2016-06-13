@@ -55,6 +55,7 @@ struct GPUUniforms {
     static let eyePosition = GPUVariable<GLSLVec3>(name: "uEyePosition")
     static let position = GPUVariable<GLSLVec3>(name: "uPosition")
     static let lightDirection = GPUVariable<GLSLVec3>(name: "uLightDirection")
+    static let lightVersor = GPUVariable<GLSLVec3>(name: "uLightVersor")
     static let lightHalfVector = GPUVariable<GLSLVec3>(name: "uLightHalfVector")
     static let colorMap = GPUVariable<GLSLTexture>(name: "uColorMap")
     static let normalMap = GPUVariable<GLSLTexture>(name: "uNormalMap")
