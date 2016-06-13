@@ -69,7 +69,7 @@ class GameViewController: GLKViewController {
         NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
         NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
-        self.scene = Scene.loadScene("test")
+        self.scene = Scene.loadScene("house_on_cliff")
         
         self.mediumShotProgram = MediumShotProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight)
         self.mediumShotProgram.compile()

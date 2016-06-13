@@ -11,13 +11,13 @@ import GLKit
 
 struct LoadedGeometry {
     let position: GLKVector3
-    let orientation: GLKVector3
+    let orientation: AxesRotation
     
     init(json: [String: AnyObject]) {
         let positionArray = json["position"] as! [Float]
-        let orientationArray = json["rotation"] as! [Float]
+        let orientationModel = json["rotation"] as! [String: Float]
         self.position = GLKVector3Make(positionArray[0], positionArray[1], positionArray[2])
-        self.orientation = GLKVector3Make(orientationArray[0], orientationArray[1], orientationArray[2])
+        self.orientation = AxesRotation(angle: orientationModel["angle"]!, x: orientationModel["x"]!, y: orientationModel["y"]!, z: orientationModel["z"]!)
     }
 }
 
@@ -71,7 +71,6 @@ extension Scene {
             for loadedRenderable in loadedRenderables {
                 switch loadedRenderable.type {
                 case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
-//                case .Default: mediumShotRenderables.append(MediumShotRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
                 }
             }
@@ -93,7 +92,7 @@ extension Scene {
 extension CloseShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
-        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
+        self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         
         self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
@@ -106,7 +105,7 @@ extension CloseShotRenderable {
 extension MediumShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
-        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
+        self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         
         self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
@@ -118,7 +117,7 @@ extension ReflectiveSurfaceRenderable {
     init(loadedRenderable: LoadedRenderable) {
         let obj = OBJLoader.objFromFileNamed(loadedRenderable.mesh)
         self.vao = VAO(obj: obj)
-        self.geometryModel = StaticGeometryModel(position: loadedRenderable.geometry.position, orientation: loadedRenderable.geometry.orientation)
+        self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         self.reflectionColorMap = RenderedTexture()
         
         let p1 = transformVector(GLKVector3Make(obj.positions[0], obj.positions[1], obj.positions[2]), transformation: self.geometryModel.modelMatrix())
