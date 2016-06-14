@@ -10,9 +10,8 @@ import Foundation
 import GLKit
 
 class LookAtCamera: Camera {
-    internal var azimutalAngle: Float = 0
-    internal var polarAngle: Float = 0
-    internal var position: GLKVector3 = GLKVector3Make(0, -1, 0)
+    var eyePosition: GLKVector3 = GLKVector3Make(0, -1, 0)
+    var focusPosition: GLKVector3 = GLKVector3Make(0, 0, 0)
     private var staticProjectionMatrix: GLKMatrix4
     
     init() {
@@ -21,31 +20,22 @@ class LookAtCamera: Camera {
     }
     
     func cameraPosition() -> GLKVector3 {
-        let position = self.position
+        let position = self.eyePosition
         return GLKVector3Make(position.x, position.y, position.z)
     }
     
     func viewProjectionMatrix() -> GLKMatrix4 {
-        let position = self.cameraPosition()
-        let lookAtVersor = versorFromAngles(azimutalAngle, polarAngle: polarAngle)
+        let position = self.eyePosition
+        let focusPosition = self.focusPosition
         let viewMatrix = GLKMatrix4MakeLookAt(
             position.x,
             position.y,
             position.z,
-            
-            position.x + lookAtVersor.x,
-            position.y + lookAtVersor.y,
-            position.z + lookAtVersor.z,
-            
+            focusPosition.x,
+            focusPosition.y,
+            focusPosition.z,
             0, 0, 1)
         return viewMatrix * self.staticProjectionMatrix
     }
     
-}
-
-func versorFromAngles(azimuthalAngle: Float, polarAngle: Float) -> GLKVector3 {
-    let x = sin(polarAngle) * cos(azimuthalAngle)
-    let y = sin(polarAngle) * sin(azimuthalAngle)
-    let z = cos(polarAngle)
-    return GLKVector3Make(x, y, z)
 }

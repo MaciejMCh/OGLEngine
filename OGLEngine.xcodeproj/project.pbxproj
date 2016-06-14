@@ -17,6 +17,7 @@
 		C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */ = {isa = PBXBuildFile; fileRef = C22824BE1CCD93AC006EBCE3 /* 3dAssets */; };
 		C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */; };
 		C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */; };
+		C228FF931D103DC9000D6414 /* SphericalLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
 		C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */; };
 		C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */; };
@@ -114,6 +115,7 @@
 		C22824BE1CCD93AC006EBCE3 /* 3dAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 3dAssets; sourceTree = "<group>"; };
 		C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.vsh; path = Shaders/MediumShot.vsh; sourceTree = "<group>"; };
 		C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.fsh; path = Shaders/MediumShot.fsh; sourceTree = "<group>"; };
+		C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphericalLookAtCamera.swift; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
 		C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLDefaultVariables.swift; sourceTree = "<group>"; };
 		C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShot.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				C26CD52C1D0AC83D007105EB /* LookAtCamera.swift */,
 				C26CD52E1D0ACA5E007105EB /* 3DIntegrator.swift */,
 				C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */,
+				C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -809,6 +812,7 @@
 				C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
 				C2E158241CFD9D2400BB3805 /* PipelineInterpolation.swift in Sources */,
+				C228FF931D103DC9000D6414 /* SphericalLookAtCamera.swift in Sources */,
 				C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
 				C269D5941CA8981D00E56E67 /* GameViewController.swift in Sources */,

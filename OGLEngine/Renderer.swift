@@ -34,8 +34,7 @@ struct Renderer {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.reflectedProgram.glName)
-//        self.reflectedProgram.camera = scene.camera
-        self.reflectedProgram.camera = scene.camera
+        self.reflectedProgram.camera = reflectionPlane.reflectedCamera(scene.camera as! LookAtCamera)
         self.reflectedProgram.render(scene.reflecteds())
     }
     

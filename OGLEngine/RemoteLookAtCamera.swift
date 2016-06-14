@@ -9,13 +9,13 @@
 import Foundation
 import GLKit
 
-class RemoteLookAtCamera: LookAtCamera {
+class RemoteLookAtCamera: SphericalLookAtCamera {
     private let integrator = RemoteVectorIntegrator()
     private var eventHandler: EventHandler!
     private var xMouse: Float = 0
     private var yMouse: Float = 0
     
-    override var position: GLKVector3 {
+    override var eyePosition: GLKVector3 {
         get {
             let position = integrator.currentValue
             return GLKVector3Make(position.x, position.y, position.z)

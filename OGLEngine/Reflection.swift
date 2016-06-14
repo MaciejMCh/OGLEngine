@@ -41,19 +41,14 @@ struct ReflectionPlane {
     }
     
     func reflectedCamera(camera: LookAtCamera) -> LookAtCamera {
-        return LookAtCamera()
-    }
-    
-    func reflectedCamera(camera: BasicCamera) -> BasicCamera {
-        let position = reflectedPoint(camera.position)
-        
-        var orientation = camera.orientation
-        let moduloAngle = fmod(orientation.x, Float(M_PI * 2))
-        let angleDiff = moduloAngle - Float(M_PI_2 * 3)
-        let fixedAngle = moduloAngle - (angleDiff * 2)
-        orientation = GLKVector3Make(fixedAngle, orientation.y, orientation.z)
-        
-        return BasicCamera(position: position, orientation: orientation)
+        let eyePosition = camera.eyePosition
+        let focusPosition = camera.focusPosition
+        let mirroredEyePosition = self.reflectedPoint(eyePosition)
+        let mirroredFocusPosition = self.reflectedPoint(focusPosition)
+        let reflectedCamera = LookAtCamera()
+        reflectedCamera.eyePosition = mirroredEyePosition
+        reflectedCamera.focusPosition = mirroredFocusPosition
+        return reflectedCamera
     }
     
     func distanceToPoint(point: GLKVector3) -> Float {
