@@ -124,7 +124,7 @@ class GameViewController: GLKViewController {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.pipelineProgram.glName)
-        self.pipelineProgram.render(scene.closeShots)
+        self.pipelineProgram.render(scene.closeShots, scene: self.scene)
     }
     
     func renderTexture() {

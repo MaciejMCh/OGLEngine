@@ -85,6 +85,7 @@
 		C2E158221CFD9D0200BB3805 /* PipelineScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E158211CFD9D0200BB3805 /* PipelineScope.swift */; };
 		C2E158241CFD9D2400BB3805 /* PipelineInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E158231CFD9D2400BB3805 /* PipelineInterpolation.swift */; };
 		C2E17FE51D0F1DB500CB2D2D /* AxesGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */; };
+		C2E17FE71D0F325500CB2D2D /* ReflectiveSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
 		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
@@ -186,6 +187,7 @@
 		C2E158211CFD9D0200BB3805 /* PipelineScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineScope.swift; sourceTree = "<group>"; };
 		C2E158231CFD9D2400BB3805 /* PipelineInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineInterpolation.swift; sourceTree = "<group>"; };
 		C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxesGeometryModel.swift; sourceTree = "<group>"; };
+		C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurface.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */,
 				C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */,
 				C27E42C31D07192000FC9632 /* PhongV2.swift */,
+				C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				C2E1581A1CFD9B8F00BB3805 /* PipelineInstruction.swift in Sources */,
 				C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,
+				C2E17FE71D0F325500CB2D2D /* ReflectiveSurface.swift in Sources */,
 				C29DFAE91D06F8C00003B7A2 /* PhongV1PipelineProgram.swift in Sources */,
 				C2E158221CFD9D0200BB3805 /* PipelineScope.swift in Sources */,
 				C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */,

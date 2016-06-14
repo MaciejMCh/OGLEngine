@@ -18,9 +18,10 @@ protocol PipelineProgram {
 }
 
 extension PipelineProgram where RenderableType: Mesh  {
-    func render(renderables: [RenderableType]) {
+    func render(renderables: [RenderableType], scene: Scene) {
         for renderable in renderables {
             self.bindAttributes(renderable)
+            performDefaultPasses(renderable, scene: scene)
             self.willRender(renderable)
             for uniform in self.pipeline.fragmentShader.uniforms.collection {
                 uniform.passToGPU()
@@ -32,6 +33,20 @@ extension PipelineProgram where RenderableType: Mesh  {
 }
 
 extension PipelineProgram {
+    
+    func performDefaultPasses(renderable: RenderableType, scene: Scene) {
+        self.defaultSceneBindings(scene)
+        if let model = renderable as? Model {
+            self.defaultModelBindings(model, scene: scene)
+        }
+        if let colorMapped = renderable as? ColorMapped {
+            self.defaultColorMappedBindings(colorMapped)
+        }
+        if let normalMapped = renderable as? NormalMapped {
+            self.defaultNormalMappedBindings(normalMapped)
+        }
+    }
+    
     mutating func compile() {
         self.loadShaders()
         self.validate()

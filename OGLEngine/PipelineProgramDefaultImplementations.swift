@@ -50,46 +50,52 @@ extension Model {
     }
 }
 
-extension PipelineProgram where RenderableType: Model {
-    
-    func passModelMatrix(model: Model) {
-        var modelMatrix = model.geometryModel.modelMatrix()
-        withUnsafePointer(&modelMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.modelMatrix).location, 1, 0, UnsafePointer($0))
-        })
+extension PipelineProgram {
+    func defaultSceneBindings(scene: Scene) {
+        if let eyePosition = self.pipeline.uniform(GPUUniforms.eyePosition) {
+            eyePosition.cpuVariableGetter = {scene.camera.cameraPosition()}
+        }
+        if let lightVersor = self.pipeline.uniform(GPUUniforms.lightVersor) {
+            lightVersor.cpuVariableGetter = {scene.directionalLight.lightVersor()}
+        }
+        if let lightColor = self.pipeline.uniform(GPUUniforms.lightColor) {
+            lightColor.cpuVariableGetter = {(r: 1.0, g: 1.0, b:1.0, a:1.0)}
+        }
+        if let shininess = self.pipeline.uniform(GPUUniforms.shininess) {
+            shininess.cpuVariableGetter = {100.0}
+        }
     }
     
-    func passNormalMatrix(model: Model) {
-        var normalMatrix = model.normalMatrix()
-        withUnsafePointer(&normalMatrix, {
-            glUniformMatrix3fv(self.pipeline.uniform(GPUUniforms.normalMatrix).location, 1, 0, UnsafePointer($0))
-        })
+    func defaultModelBindings(model: Model, scene: Scene) {
+        if let modelMatrix = self.pipeline.uniform(GPUUniforms.modelMatrix) {
+            modelMatrix.cpuVariableGetter = {model.geometryModel.modelMatrix()}
+        }
+        if let viewProjectionMatrix = self.pipeline.uniform(GPUUniforms.viewProjectionMatrix) {
+            viewProjectionMatrix.cpuVariableGetter = {scene.camera.viewProjectionMatrix()}
+        }
+        if let modelViewProjectionMatrix = self.pipeline.uniform(GPUUniforms.modelViewProjectionMatrix) {
+            modelViewProjectionMatrix.cpuVariableGetter = {model.modelViewProjectionMatrix(scene.camera)}
+        }
+        if let normalMatrix = self.pipeline.uniform(GPUUniforms.normalMatrix) {
+            normalMatrix.cpuVariableGetter = {model.normalMatrix()}
+        }
     }
     
-    func passViewProjectionMatrix(camera: Camera) {
-        var viewProjectionMatrix = camera.viewProjectionMatrix()
-        withUnsafePointer(&viewProjectionMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.viewProjectionMatrix).location, 1, 0, UnsafePointer($0))
-        })
+    func defaultColorMappedBindings(colorMapped: ColorMapped) {
+        if let colorMap = self.pipeline.uniform(GPUUniforms.colorMap) {
+            colorMap.cpuVariableGetter = {(colorMapped.colorMap, 0)}
+        }
+        if let textureScale = self.pipeline.uniform(GPUUniforms.textureScale) {
+            textureScale.cpuVariableGetter = {colorMapped.textureScale}
+        }
     }
     
-    func passModelViewProjectionMatrix(model: Model, camera: Camera) {
-        let modelMatrix = model.geometryModel.modelMatrix()
-        let viewProjectionMatrix = camera.viewProjectionMatrix()
-        
-        var modelViewProjectionMatrix = modelMatrix * viewProjectionMatrix
-        
-        withUnsafePointer(&modelViewProjectionMatrix, {
-            glUniformMatrix4fv(self.pipeline.uniform(GPUUniforms.modelViewProjectionMatrix).location, 1, 0, UnsafePointer($0))
-        })
+    func defaultNormalMappedBindings(normalMapped: NormalMapped) {
+        if let normalMap = self.pipeline.uniform(GPUUniforms.normalMap) {
+            normalMap.cpuVariableGetter = {(normalMapped.normalMap, 1)}
+        }
+        if let textureScale = self.pipeline.uniform(GPUUniforms.textureScale) {
+            textureScale.cpuVariableGetter = {normalMapped.textureScale}
+        }
     }
-    
-    func passLightHalfVector(model: Model, camera: Camera, light: DirectionalLight) {
-        let visibleReflectionContext = VisibleReflectionContext(model: model.geometryModel, camera: camera, light: light)
-        var halfVector = visibleReflectionContext.halfVector()
-        withUnsafePointer(&halfVector, {
-            glUniform3fv(self.pipeline.uniform(GPUUniforms.lightHalfVector).location, 1, UnsafePointer($0))
-        })
-    }
-    
 }
