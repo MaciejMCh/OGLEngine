@@ -10,40 +10,24 @@ import Foundation
 import GLKit
 
 class LookAtCamera: Camera {
-    private var azimutalAngle: Float = 0
-    private var polarAngle: Float = 0
-    private var position: GLKVector3 = GLKVector3Make(0, -1, 0)
+    internal var azimutalAngle: Float = 0
+    internal var polarAngle: Float = 0
+    internal var position: GLKVector3 = GLKVector3Make(0, -1, 0)
     private var staticProjectionMatrix: GLKMatrix4
-    private let integrator = RemoteVectorIntegrator()
-    private var eventHandler: EventHandler!
-    private var xMouse: Float = 0
-    private var yMouse: Float = 0
     
     init() {
         let aspect: Float = fabs(Float(UIScreen.mainScreen().bounds.size.width) / Float(UIScreen.mainScreen().bounds.size.height))
         self.staticProjectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0), aspect, 0.1, 100.0)
-        
-        self.eventHandler = {(eventSubject: Any!) -> () in
-            if (eventSubject is RemoteMouse) {
-                self.mouseMoved(eventSubject as! RemoteMouse)
-            }
-        }
-        RemoteController.controller.addEventHandler(self.eventHandler)
-    }
-    
-    func mouseMoved(mouse: RemoteMouse) {
-        self.xMouse = mouse.xPosition / 100
-        self.yMouse = mouse.yPosition / 100
     }
     
     func cameraPosition() -> GLKVector3 {
-        let remoteVector = integrator.currentValue
-        return GLKVector3Make(remoteVector.x, remoteVector.y, remoteVector.z)
+        let position = self.position
+        return GLKVector3Make(position.x, position.y, position.z)
     }
     
     func viewProjectionMatrix() -> GLKMatrix4 {
         let position = self.cameraPosition()
-        let lookAtVersor = versorFromAngles(xMouse, polarAngle: yMouse)
+        let lookAtVersor = versorFromAngles(azimutalAngle, polarAngle: polarAngle)
         let viewMatrix = GLKMatrix4MakeLookAt(
             position.x,
             position.y,

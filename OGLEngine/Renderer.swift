@@ -10,8 +10,8 @@ import Foundation
 import GLKit
 
 struct Renderer {
-    static var closeShotProgram: CloseShotProgram!
-    static var mediumShotProgram: MediumShotProgram!
+    static var closeShotProgram: CloseShotPipelineProgram!
+    static var mediumShotProgram: MediumShotPipelineProgram!
     static var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
     static var reflectedProgram: ReflectedProgram!
     
@@ -20,10 +20,10 @@ struct Renderer {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.mediumShotProgram.glName)
-        self.mediumShotProgram.render(scene.mediumShots)
+        self.mediumShotProgram.render(scene.mediumShots, scene: scene)
         
         glUseProgram(self.closeShotProgram.glName)
-        self.closeShotProgram.render(scene.closeShots)
+        self.closeShotProgram.render(scene.closeShots, scene: scene)
         
         glUseProgram(self.reflectiveSurfaceProgram.glName)
         self.reflectiveSurfaceProgram.render(scene.reflectiveSurfaces)
@@ -35,7 +35,7 @@ struct Renderer {
         
         glUseProgram(self.reflectedProgram.glName)
 //        self.reflectedProgram.camera = scene.camera
-        self.reflectedProgram.camera = reflectionPlane.reflectedCamera(scene.camera as! BasicCamera)
+        self.reflectedProgram.camera = scene.camera
         self.reflectedProgram.render(scene.reflecteds())
     }
     

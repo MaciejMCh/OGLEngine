@@ -79,7 +79,7 @@ extension Scene {
             let directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, 0, -1))
             
             // Camera
-            let camera = LookAtCamera()
+            let camera = RemoteLookAtCamera()
             
             return Scene(closeShots: closeShotRenderables, mediumShots: mediumShotRenderables, reflectiveSurfaces: reflectiveSurfaces, directionalLight: directionalLight, camera: camera)
             

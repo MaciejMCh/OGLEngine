@@ -64,6 +64,9 @@ extension PipelineProgram {
         if let shininess = self.pipeline.uniform(GPUUniforms.shininess) {
             shininess.cpuVariableGetter = {100.0}
         }
+        if let lightHalfVector = self.pipeline.uniform(GPUUniforms.lightHalfVector) {
+            lightHalfVector.cpuVariableGetter = {scene.directionalLight.halfVectorWithCamera(scene.camera)}
+        }
     }
     
     func defaultModelBindings(model: Model, scene: Scene) {

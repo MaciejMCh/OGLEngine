@@ -15,7 +15,6 @@
 		C21C51CF1D02FA2000F41A61 /* MediumShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */; };
 		C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */; };
 		C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */ = {isa = PBXBuildFile; fileRef = C22824BE1CCD93AC006EBCE3 /* 3dAssets */; };
-		C22824C11CCD9659006EBCE3 /* MediumShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */; };
 		C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */; };
 		C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
@@ -24,6 +23,7 @@
 		C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */; };
 		C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25642831D0EDEDA0043EE6E /* TangentSpace.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
+		C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* CloseShot.fsh */; };
 		C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D5911CA8981D00E56E67 /* CloseShot.vsh */; };
@@ -55,7 +55,6 @@
 		C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C31D07192000FC9632 /* PhongV2.swift */; };
 		C27E42C81D07199200FC9632 /* PhongV2PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */; };
 		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
-		C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219981CA9E18A00B78343 /* CloseShotProgram.swift */; };
 		C29755771CEA21E3001D8E6D /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755761CEA21E3001D8E6D /* Renderer.swift */; };
 		C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */; };
 		C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */; };
@@ -113,7 +112,6 @@
 		C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C22824BE1CCD93AC006EBCE3 /* 3dAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 3dAssets; sourceTree = "<group>"; };
-		C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShotProgram.swift; sourceTree = "<group>"; };
 		C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.vsh; path = Shaders/MediumShot.vsh; sourceTree = "<group>"; };
 		C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.fsh; path = Shaders/MediumShot.fsh; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
@@ -122,6 +120,7 @@
 		C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongReflection.swift; sourceTree = "<group>"; };
 		C25642831D0EDEDA0043EE6E /* TangentSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangentSpace.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
+		C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteLookAtCamera.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C269D58F1CA8981D00E56E67 /* CloseShot.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = CloseShot.fsh; path = Shaders/CloseShot.fsh; sourceTree = "<group>"; };
@@ -157,7 +156,6 @@
 		C27E42C31D07192000FC9632 /* PhongV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2.swift; sourceTree = "<group>"; };
 		C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2PipelineProgram.swift; sourceTree = "<group>"; };
 		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
-		C29219981CA9E18A00B78343 /* CloseShotProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotProgram.swift; sourceTree = "<group>"; };
 		C29755761CEA21E3001D8E6D /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurfaceProgram.swift; sourceTree = "<group>"; };
 		C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.vsh; path = Shaders/ReflectiveSurface.vsh; sourceTree = "<group>"; };
@@ -394,6 +392,7 @@
 				C269D5BF1CA898DD00E56E67 /* RemoteControlledCamera.swift */,
 				C26CD52C1D0AC83D007105EB /* LookAtCamera.swift */,
 				C26CD52E1D0ACA5E007105EB /* 3DIntegrator.swift */,
+				C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -520,8 +519,6 @@
 		C2AB3E591CEC73BA00D43544 /* Concrete */ = {
 			isa = PBXGroup;
 			children = (
-				C22824C01CCD9659006EBCE3 /* MediumShotProgram.swift */,
-				C29219981CA9E18A00B78343 /* CloseShotProgram.swift */,
 				C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */,
 				C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */,
 			);
@@ -811,7 +808,6 @@
 				C2AFAE661CFC4DFD00C2F8D0 /* PipelineUniform.swift in Sources */,
 				C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
-				C22824C11CCD9659006EBCE3 /* MediumShotProgram.swift in Sources */,
 				C2E158241CFD9D2400BB3805 /* PipelineInterpolation.swift in Sources */,
 				C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */,
 				C269D5CF1CA898DD00E56E67 /* DirectionalLight.swift in Sources */,
@@ -849,6 +845,7 @@
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
 				C2E1581E1CFD9C1800BB3805 /* PipelineFunction.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
+				C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */,
 				C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */,
 				C2E158201CFD9C4A00BB3805 /* PipelineVarying.swift in Sources */,
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,
@@ -863,7 +860,6 @@
 				C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */,
 				C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */,
 				C2B188FD1CF20844008BB626 /* GLSLParser.swift in Sources */,
-				C29219991CA9E18A00B78343 /* CloseShotProgram.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

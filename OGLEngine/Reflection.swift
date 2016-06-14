@@ -40,6 +40,10 @@ struct ReflectionPlane {
         d = D / N
     }
     
+    func reflectedCamera(camera: LookAtCamera) -> LookAtCamera {
+        return LookAtCamera()
+    }
+    
     func reflectedCamera(camera: BasicCamera) -> BasicCamera {
         let position = reflectedPoint(camera.position)
         

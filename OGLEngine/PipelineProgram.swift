@@ -53,6 +53,10 @@ extension PipelineProgram {
         self.programDidCompile()
     }
     
+    func willRender(renderable: RenderableType) {
+        
+    }
+    
     func programDidCompile() {
         
     }

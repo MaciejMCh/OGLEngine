@@ -13,11 +13,4 @@ class CloseShotPipelineProgram: PipelineProgram {
     typealias RenderableType = CloseShotRenderable
     var glName: GLuint = 0
     var pipeline = DefaultPipelines.CloseShot()
-    
-    var camera: Camera!
-    var directionalLight: DirectionalLight!
-    
-    func willRender(renderable: RenderableType) {
-        
-    }
 }
