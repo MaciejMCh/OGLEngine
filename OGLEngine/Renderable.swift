@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GLKit
 
 protocol Mesh {
     var vao: VAO {get}
@@ -58,7 +59,12 @@ struct ReflectiveSurfaceRenderable: Mesh, Model, ReflectiveSurface {
     let vao: VAO
     let geometryModel: GeometryModel
     let reflectionColorMap: RenderedTexture
-    let reflectionPlane: ReflectionPlane
+    var reflectionPlane: ReflectionPlane {
+        let p1 = transformVector(GLKVector3Make(-1,-1,0), transformation: self.geometryModel.modelMatrix())
+        let p2 = transformVector(GLKVector3Make(1,-1,0), transformation: self.geometryModel.modelMatrix())
+        let p3 = transformVector(GLKVector3Make(-1,1,0), transformation: self.geometryModel.modelMatrix())
+        return ReflectionPlane( p1: p1, p2: p2, p3: p3)
+    }
 }
 
 struct ReflectedRenderable: Mesh, Model, ColorMapped {

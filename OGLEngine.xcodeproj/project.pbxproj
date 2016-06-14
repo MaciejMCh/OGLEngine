@@ -18,6 +18,7 @@
 		C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */; };
 		C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */; };
 		C228FF931D103DC9000D6414 /* SphericalLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */; };
+		C228FF951D10455C000D6414 /* OscilatingGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C228FF941D10455C000D6414 /* OscilatingGeometryModel.swift */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
 		C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */; };
 		C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */; };
@@ -116,6 +117,7 @@
 		C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.vsh; path = Shaders/MediumShot.vsh; sourceTree = "<group>"; };
 		C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.fsh; path = Shaders/MediumShot.fsh; sourceTree = "<group>"; };
 		C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphericalLookAtCamera.swift; sourceTree = "<group>"; };
+		C228FF941D10455C000D6414 /* OscilatingGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OscilatingGeometryModel.swift; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
 		C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLDefaultVariables.swift; sourceTree = "<group>"; };
 		C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShot.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				C269D5C61CA898DD00E56E67 /* StaticGeometryModel.swift */,
 				C269D5C51CA898DD00E56E67 /* SpinningGeometryModel.swift */,
 				C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */,
+				C228FF941D10455C000D6414 /* OscilatingGeometryModel.swift */,
 			);
 			name = GeometryModel;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 				C2E17FE51D0F1DB500CB2D2D /* AxesGeometryModel.swift in Sources */,
 				C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */,
 				C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */,
+				C228FF951D10455C000D6414 /* OscilatingGeometryModel.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */,
 				C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */,

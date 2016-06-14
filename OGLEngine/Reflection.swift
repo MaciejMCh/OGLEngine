@@ -28,9 +28,9 @@ struct ReflectionPlane {
         self.A = normal.x
         self.B = normal.y
         self.C = normal.z
-        self.D = self.A * p1.x + self.B * p1.y + self.C * p1.z
+        self.D = (self.A * p1.x + self.B * p1.y + self.C * p1.z) * -1.0
         
-        NSLog("\(A) \(B) \(C) \(D)")
+//        debugPrint("\(A) \(B) \(C) \(D)")
         
         let N = sqrt(A * A + B * B + C * C)
         
@@ -48,6 +48,7 @@ struct ReflectionPlane {
         let reflectedCamera = LookAtCamera()
         reflectedCamera.eyePosition = mirroredEyePosition
         reflectedCamera.focusPosition = mirroredFocusPosition
+//        debugPrint("\(eyePosition.z) -> \(focusPosition.z) || \(mirroredEyePosition.z) -> \(mirroredFocusPosition.z)")
         return reflectedCamera
     }
     
@@ -57,6 +58,7 @@ struct ReflectionPlane {
     
     func reflectedPoint(point: GLKVector3) -> GLKVector3 {
         let distance = distanceToPoint(point)
+//        debugPrint("point \(point.x) \(point.y) \(point.z) is \(distance) from plane \(A) \(B) \(C) \(D)")
         return GLKVector3Add(point, GLKVector3Make(A * distance * -2, B * distance * -2, C * distance * -2))
     }
 }

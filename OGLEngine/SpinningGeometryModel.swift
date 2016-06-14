@@ -10,7 +10,6 @@ import Foundation
 import GLKit
 
 class SpinningGeometryModel: GeometryModel {
-    
     override var orientation: GLKVector3 {
         get {
             let time = Float(CACurrentMediaTime())
@@ -20,5 +19,4 @@ class SpinningGeometryModel: GeometryModel {
             
         }
     }
-    
 }
