@@ -26,6 +26,7 @@
 		C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25642831D0EDEDA0043EE6E /* TangentSpace.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */; };
+		C267A7021D11F03C00ACBAD2 /* ReflectedCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */; };
 		C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269D58D1CA8981D00E56E67 /* AppDelegate.swift */; };
 		C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D58F1CA8981D00E56E67 /* CloseShot.fsh */; };
 		C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C269D5911CA8981D00E56E67 /* CloseShot.vsh */; };
@@ -125,6 +126,7 @@
 		C25642831D0EDEDA0043EE6E /* TangentSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangentSpace.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteLookAtCamera.swift; sourceTree = "<group>"; };
+		C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedCamera.swift; sourceTree = "<group>"; };
 		C269D58A1CA8981D00E56E67 /* OGLEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OGLEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C269D58D1CA8981D00E56E67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C269D58F1CA8981D00E56E67 /* CloseShot.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = CloseShot.fsh; path = Shaders/CloseShot.fsh; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				C26CD52E1D0ACA5E007105EB /* 3DIntegrator.swift */,
 				C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */,
 				C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */,
+				C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -808,6 +811,7 @@
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
 				C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */,
 				C26CD52F1D0ACA5E007105EB /* 3DIntegrator.swift in Sources */,
+				C267A7021D11F03C00ACBAD2 /* ReflectedCamera.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
 				C2FDAF551CF7551800ED63DC /* GLSLCodeSource.swift in Sources */,
 				C29219961CA9D76B00B78343 /* Program.swift in Sources */,

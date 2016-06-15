@@ -12,6 +12,8 @@ import GLKit
 protocol Camera {
     
     func viewProjectionMatrix() -> GLKMatrix4
+    func viewMatrix() -> GLKMatrix4
+    func projectionMatrix() -> GLKMatrix4
     func cameraPosition() -> GLKVector3
     
 }

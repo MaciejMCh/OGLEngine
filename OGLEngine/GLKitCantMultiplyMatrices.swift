@@ -62,6 +62,12 @@ func modelTransformatrionMatrix(position: GLKVector3, orientation: GLKVector3) -
     return transformation.toGLK()
 }
 
+func invertMatrix(matrix: GLKMatrix4) -> GLKMatrix4 {
+    let ca = matrix.toCA()
+    let inverted = CATransform3DInvert(ca)
+    return inverted.toGLK()
+}
+
 func modelTransformatrionMatrix(position: GLKVector3, rotation: AxesRotation) -> GLKMatrix4 {
     var transformation = CATransform3DIdentity
     transformation = CATransform3DTranslate(transformation, CGFloat(position.x), CGFloat(position.y), CGFloat(position.z))

@@ -38,4 +38,22 @@ class LookAtCamera: Camera {
         return viewMatrix * self.staticProjectionMatrix
     }
     
+    func viewMatrix() -> GLKMatrix4 {
+        let position = self.eyePosition
+        let focusPosition = self.focusPosition
+        let viewMatrix = GLKMatrix4MakeLookAt(
+            position.x,
+            position.y,
+            position.z,
+            focusPosition.x,
+            focusPosition.y,
+            focusPosition.z,
+            0, 0, 1)
+        return viewMatrix
+    }
+    
+    func projectionMatrix() -> GLKMatrix4 {
+        return staticProjectionMatrix
+    }
+    
 }

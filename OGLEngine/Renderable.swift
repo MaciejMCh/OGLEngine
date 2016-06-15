@@ -60,10 +60,7 @@ struct ReflectiveSurfaceRenderable: Mesh, Model, ReflectiveSurface {
     let geometryModel: GeometryModel
     let reflectionColorMap: RenderedTexture
     var reflectionPlane: ReflectionPlane {
-        let p1 = transformVector(GLKVector3Make(-1,-1,0), transformation: self.geometryModel.modelMatrix())
-        let p2 = transformVector(GLKVector3Make(1,-1,0), transformation: self.geometryModel.modelMatrix())
-        let p3 = transformVector(GLKVector3Make(-1,1,0), transformation: self.geometryModel.modelMatrix())
-        return ReflectionPlane( p1: p1, p2: p2, p3: p3)
+        return ReflectionPlane(model: self.geometryModel)
     }
 }
 

@@ -20,6 +20,7 @@ varying lowp vec4 vModelSpacePosition;
 void main() {
     vTexel = aTexel * uTextureScale;
     vec4 modelSpacePosition = uModelMatrix * aPosition;
+    modelSpacePosition = modelSpacePosition + vec4(0.0, 0.0, -0.25, 0.0);
     vec4 position = uViewProjectionMatrix * modelSpacePosition;
     vModelSpacePosition = modelSpacePosition;
     gl_Position = position;

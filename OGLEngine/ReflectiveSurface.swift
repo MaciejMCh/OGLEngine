@@ -93,7 +93,7 @@ extension DefaultScopes {
         
         mainScope ✍ vTexel ⬅ aTexel
         mainScope ✍ vClipSpace ⬅ uModelViewProjectionMatrix * aPosition
-        mainScope ✍ glPosition ⬅ vClipSpace
+        mainScope ✍ glPosition ⬅ FixedGPUEvaluation(glslCode: "vClipSpace + vec4(0.0, 0.0, 0.25, 0.0)");
         
         return globalScope
     }
