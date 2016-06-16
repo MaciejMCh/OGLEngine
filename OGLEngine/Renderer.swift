@@ -13,7 +13,7 @@ struct Renderer {
     static var closeShotProgram: CloseShotPipelineProgram!
     static var mediumShotProgram: MediumShotPipelineProgram!
     static var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
-    static var reflectedProgram: ReflectedProgram!
+    static var reflectedProgram: ReflectedPipelineProgram!
     
     static func render(scene: Scene) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
@@ -34,10 +34,9 @@ struct Renderer {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.reflectedProgram.glName)
-//        self.reflectedProgram.camera = reflectionPlane.reflectedCamera(scene.camera as! LookAtCamera)
         self.reflectedProgram.camera = ReflectedCamera(camera: scene.camera as! LookAtCamera, reflectionPlane: reflectionPlane)
         self.reflectedProgram.reflectionPlane = reflectionPlane
-        self.reflectedProgram.render(scene.reflecteds())
+        self.reflectedProgram.render(scene.reflecteds(), scene: scene)
     }
     
 }

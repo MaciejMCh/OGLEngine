@@ -14,7 +14,7 @@ class GameViewController: GLKViewController {
     var mediumShotProgram: MediumShotPipelineProgram!
     var closeShotProgram: CloseShotPipelineProgram!
     var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
-    var reflectedProgram: ReflectedProgram!
+    var reflectedProgram: ReflectedPipelineProgram!
     
     var context: EAGLContext? = nil
     
@@ -79,7 +79,7 @@ class GameViewController: GLKViewController {
         self.reflectiveSurfaceProgram = ReflectiveSurfaceProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight, scene: self.scene)
         self.reflectiveSurfaceProgram.compile()
         
-        self.reflectedProgram = ReflectedProgram()
+        self.reflectedProgram = ReflectedPipelineProgram()
         self.reflectedProgram.compile()
         
         glEnable(GLenum(GL_DEPTH_TEST))

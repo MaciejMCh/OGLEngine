@@ -105,6 +105,7 @@ extension DefaultScopes {
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ✍ vTexel ⬅ aTexel * uTextureScale
+        mainScope ↳ planeSpaceModelPosition
         mainScope ✍ planeSpaceModelPosition ⬅ uPlaneSpaceModelMatrix * aPosition
         mainScope ✍ vPlaneDistance ⬅ FixedGPUEvaluation(glslCode: "\(planeSpaceModelPosition.name!).z")
         mainScope ✍ glPosition ⬅ uPlaneSpaceViewProjectionMatrix * planeSpaceModelPosition
