@@ -36,6 +36,7 @@ struct Renderer {
         glUseProgram(self.reflectedProgram.glName)
 //        self.reflectedProgram.camera = reflectionPlane.reflectedCamera(scene.camera as! LookAtCamera)
         self.reflectedProgram.camera = ReflectedCamera(camera: scene.camera as! LookAtCamera, reflectionPlane: reflectionPlane)
+        self.reflectedProgram.reflectionPlane = reflectionPlane
         self.reflectedProgram.render(scene.reflecteds())
     }
     

@@ -14,7 +14,7 @@ class OscilatingGeometryModel: GeometryModel {
         get {
             let time = Float(CACurrentMediaTime())
 //            return GLKVector3Make(0, 0, sin(time))
-            return GLKVector3Make(0, 0, 0)
+            return GLKVector3Make(0, 0, 0.4)
         }
         set {
             

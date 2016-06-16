@@ -54,7 +54,8 @@ extension DefaultVertexShaders {
                 OpenGLDefaultVariables.glPosition(),
                 aPosition: attributes.get(GPUAttributes.position),
                 aTexel: attributes.get(GPUAttributes.texel),
-                uModelViewProjectionMatrix: uniforms.get(GPUUniforms.modelViewProjectionMatrix),
+                uModelMatrix: uniforms.get(GPUUniforms.modelMatrix),
+                uViewProjectionMatrix: uniforms.get(GPUUniforms.viewProjectionMatrix),
                 vTexel: interpolation.vTexel,
                 vClipSpace: interpolation.vClipSpace)))
     }
@@ -77,23 +78,30 @@ extension DefaultScopes {
         glPosition: GPUVariable<GLSLVec4>,
         aPosition: GPUVariable<GLSLVec4>,
         aTexel: GPUVariable<GLSLVec2>,
-        uModelViewProjectionMatrix: GPUVariable<GLSLMat4>,
+        uModelMatrix: GPUVariable<GLSLMat4>,
+        uViewProjectionMatrix: GPUVariable<GLSLMat4>,
         vTexel: GPUVariable<GLSLVec2>,
         vClipSpace: GPUVariable<GLSLVec4>
     ) -> GPUScope {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
+        let modelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "modelViewProjectionMatrix")
         
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
-        globalScope ⥥ uModelViewProjectionMatrix
+        globalScope ⥥ uModelMatrix
+        globalScope ⥥ uViewProjectionMatrix
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vClipSpace
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ✍ vTexel ⬅ aTexel
-        mainScope ✍ vClipSpace ⬅ uModelViewProjectionMatrix * aPosition
-        mainScope ✍ glPosition ⬅ FixedGPUEvaluation(glslCode: "vClipSpace + vec4(0.0, 0.0, 0.25, 0.0)");
+        mainScope ✍ vClipSpace ⬅ uViewProjectionMatrix * aPosition
+        
+        globalScope ↳ modelViewProjectionMatrix
+        mainScope ✍ modelViewProjectionMatrix ⬅ uViewProjectionMatrix * uModelMatrix
+        mainScope ✍ glPosition ⬅ modelViewProjectionMatrix * aPosition
+        
         
         return globalScope
     }

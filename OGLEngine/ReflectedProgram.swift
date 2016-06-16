@@ -18,6 +18,8 @@ class ReflectedProgram: GPUProgram {
     
     var camera: Camera!
     
+    var reflectionPlane: ReflectionPlane!
+    
     func programDidCompile() {
         
     }
@@ -29,7 +31,15 @@ class ReflectedProgram: GPUProgram {
             self.triggerPass(GetterPass<Float>(subjectGetter: { () -> Float in
                 return renderable.textureScale
             }), uniform: .TextureScale)
-            self.passModelMatrix(renderable)
+            
+            
+//            var modelMatrix = renderable.geometryModel.modelMatrix() * invertMatrix(reflectionPlane.geometryModel.modelMatrix())
+            var modelMatrix = renderable.geometryModel.modelMatrix()
+            withUnsafePointer(&modelMatrix, {
+                glUniformMatrix4fv(self.implementation.instances.get(.ModelMatrix).location, 1, 0, UnsafePointer($0))
+            })
+            
+            
             self.passViewProjectionMatrix(self.camera)
             self.draw(renderable)
             self.unbindAttributes(renderable)
