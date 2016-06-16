@@ -16,13 +16,13 @@ uniform mat4 uViewProjectionMatrix;
 uniform lowp float uTextureScale;
 
 varying lowp vec2 vTexel;
-varying lowp vec4 vModelSpacePosition;
+varying lowp float vZPosition;
 
 void main() {
     vTexel = aTexel * uTextureScale;
     vec4 modelSpacePosition = uModelMatrix * aPosition;
+    vZPosition = modelSpacePosition.z;
     modelSpacePosition = uModelMatrix2 * modelSpacePosition;
     vec4 position = uViewProjectionMatrix * modelSpacePosition;
-    vModelSpacePosition = modelSpacePosition;
     gl_Position = position;
 }

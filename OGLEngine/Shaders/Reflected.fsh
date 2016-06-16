@@ -9,11 +9,11 @@
 uniform sampler2D uColorMap;
 
 varying lowp vec2 vTexel;
-varying lowp vec4 vModelSpacePosition;
+varying lowp float vZPosition;
 
 void main() {
-    if (vModelSpacePosition.z < 0.0) {
-//        discard;
+    if (vZPosition < 0.0) {
+        discard;
     }
     gl_FragColor = texture2D(uColorMap, vTexel);
 }
