@@ -13,7 +13,7 @@ class GameViewController: GLKViewController {
     
     var mediumShotProgram: MediumShotPipelineProgram!
     var closeShotProgram: CloseShotPipelineProgram!
-    var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
+    var reflectiveSurfaceProgram: ReflectiveSurfacePipelineProgram!
     var reflectedProgram: ReflectedPipelineProgram!
     
     var context: EAGLContext? = nil
@@ -64,7 +64,7 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        let program = CloseShotPipelineProgram()
+        let program = ReflectiveSurfacePipelineProgram()
         NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
         NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
@@ -76,7 +76,7 @@ class GameViewController: GLKViewController {
         self.closeShotProgram = CloseShotPipelineProgram()
         self.closeShotProgram.compile()
         
-        self.reflectiveSurfaceProgram = ReflectiveSurfaceProgram(camera: self.scene.camera, directionalLight: self.scene.directionalLight, scene: self.scene)
+        self.reflectiveSurfaceProgram = ReflectiveSurfacePipelineProgram()
         self.reflectiveSurfaceProgram.compile()
         
         self.reflectedProgram = ReflectedPipelineProgram()

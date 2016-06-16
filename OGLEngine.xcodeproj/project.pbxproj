@@ -15,6 +15,7 @@
 		C21C51CF1D02FA2000F41A61 /* MediumShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */; };
 		C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */; };
 		C2229DB91D12F81F007F5856 /* ReflectedPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */; };
+		C2229DBB1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2229DBA1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift */; };
 		C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */ = {isa = PBXBuildFile; fileRef = C22824BE1CCD93AC006EBCE3 /* 3dAssets */; };
 		C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */; };
 		C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */; };
@@ -117,6 +118,7 @@
 		C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedPipelineProgram.swift; sourceTree = "<group>"; };
+		C2229DBA1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurfacePipelineProgram.swift; sourceTree = "<group>"; };
 		C22824BE1CCD93AC006EBCE3 /* 3dAssets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 3dAssets; sourceTree = "<group>"; };
 		C22824C21CCD96C0006EBCE3 /* MediumShot.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.vsh; path = Shaders/MediumShot.vsh; sourceTree = "<group>"; };
 		C22824C31CCD96C0006EBCE3 /* MediumShot.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = MediumShot.fsh; path = Shaders/MediumShot.fsh; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */,
 				C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */,
 				C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */,
+				C2229DBA1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift */,
 			);
 			name = Concrete;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
 				C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */,
+				C2229DBB1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift in Sources */,
 				C2E1581A1CFD9B8F00BB3805 /* PipelineInstruction.swift in Sources */,
 				C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */,
 				C269D5DD1CA898DD00E56E67 /* SpinningGeometryModel.swift in Sources */,

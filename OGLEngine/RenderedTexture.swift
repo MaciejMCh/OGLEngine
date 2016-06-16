@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-struct RenderedTexture {
+class RenderedTexture {
     var frameBufferGlName: GLuint = 0
     var depthBufferGlName: GLuint = 0
     var textureGlName: GLuint = 0

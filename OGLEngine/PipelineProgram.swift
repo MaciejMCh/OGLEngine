@@ -45,6 +45,9 @@ extension PipelineProgram {
         if let normalMapped = renderable as? NormalMapped {
             self.defaultNormalMappedBindings(normalMapped)
         }
+        if let reflectiveSurface = renderable as? ReflectiveSurface {
+            self.defaultReflectiveSurfaceBindings(reflectiveSurface)
+        }
     }
     
     mutating func compile() {

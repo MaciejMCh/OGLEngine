@@ -54,9 +54,7 @@ extension DefaultVertexShaders {
                 OpenGLDefaultVariables.glPosition(),
                 aPosition: attributes.get(GPUAttributes.position),
                 aTexel: attributes.get(GPUAttributes.texel),
-                uModelMatrix: uniforms.get(GPUUniforms.modelMatrix),
-                uViewProjectionMatrix: uniforms.get(GPUUniforms.viewProjectionMatrix),
-                vTexel: interpolation.vTexel,
+                uModelViewProjectionMatrix: uniforms.get(GPUUniforms.modelViewProjectionMatrix),
                 vClipSpace: interpolation.vClipSpace)))
     }
 }
@@ -78,30 +76,20 @@ extension DefaultScopes {
         glPosition: GPUVariable<GLSLVec4>,
         aPosition: GPUVariable<GLSLVec4>,
         aTexel: GPUVariable<GLSLVec2>,
-        uModelMatrix: GPUVariable<GLSLMat4>,
-        uViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        vTexel: GPUVariable<GLSLVec2>,
+        uModelViewProjectionMatrix: GPUVariable<GLSLMat4>,
         vClipSpace: GPUVariable<GLSLVec4>
     ) -> GPUScope {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        let modelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "modelViewProjectionMatrix")
         
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
-        globalScope ⥥ uModelMatrix
-        globalScope ⥥ uViewProjectionMatrix
-        globalScope ⟿↘ vTexel
+        globalScope ⥥ uModelViewProjectionMatrix
         globalScope ⟿↘ vClipSpace
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
-        mainScope ✍ vTexel ⬅ aTexel
-        mainScope ✍ vClipSpace ⬅ uViewProjectionMatrix * aPosition
-        
-        globalScope ↳ modelViewProjectionMatrix
-        mainScope ✍ modelViewProjectionMatrix ⬅ uViewProjectionMatrix * uModelMatrix
-        mainScope ✍ glPosition ⬅ modelViewProjectionMatrix * aPosition
-        
+        mainScope ✍ vClipSpace ⬅ uModelViewProjectionMatrix * aPosition
+        mainScope ✍ glPosition ⬅ vClipSpace
         
         return globalScope
     }
@@ -127,7 +115,9 @@ extension DefaultScopes {
         
         mainScope ↳↘ ndc
         mainScope ✍ ndc ⬅ FixedGPUEvaluation(glslCode: "(\(vClipSpace.name!).xy / \(vClipSpace.name!).w) / 2.0 + 0.5")
+        mainScope ↳↘ reflectionColor
         mainScope ✍ reflectionColor ⬅ FixedGPUEvaluation(glslCode: "texture2D(\(uReflectionColorMap.name!), vec2(\(ndc.name!).x, 1.0 - \(ndc.name!).y))")
+        mainScope ↳↘ surfaceColor
         mainScope ✍ surfaceColor ⬅ GPUVariable<GLSLColor>(value: (r: 0.0, g: 0.1, b: 0.1, a: 1.0))
         mainScope ✍ glFragColor ⬅ reflectionColor ✖ surfaceColor
         

@@ -101,4 +101,10 @@ extension PipelineProgram {
             textureScale.cpuVariableGetter = {normalMapped.textureScale}
         }
     }
+    
+    func defaultReflectiveSurfaceBindings(reflectiveSurface: ReflectiveSurface) {
+        if let reflectionColorMap = self.pipeline.uniform(GPUUniforms.reflectionColorMap) {
+            reflectionColorMap.cpuVariableGetter = {(reflectiveSurface.reflectionColorMap, 0)}
+        }
+    }
 }

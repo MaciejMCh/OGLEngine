@@ -12,7 +12,7 @@ import GLKit
 struct Renderer {
     static var closeShotProgram: CloseShotPipelineProgram!
     static var mediumShotProgram: MediumShotPipelineProgram!
-    static var reflectiveSurfaceProgram: ReflectiveSurfaceProgram!
+    static var reflectiveSurfaceProgram: ReflectiveSurfacePipelineProgram!
     static var reflectedProgram: ReflectedPipelineProgram!
     
     static func render(scene: Scene) {
@@ -26,7 +26,7 @@ struct Renderer {
         self.closeShotProgram.render(scene.closeShots, scene: scene)
         
         glUseProgram(self.reflectiveSurfaceProgram.glName)
-        self.reflectiveSurfaceProgram.render(scene.reflectiveSurfaces)
+        self.reflectiveSurfaceProgram.render(scene.reflectiveSurfaces, scene: scene)
     }
     
     static func renderReflected(scene: Scene, reflectionPlane: ReflectionPlane) {
