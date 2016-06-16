@@ -13,8 +13,8 @@ class OscilatingGeometryModel: GeometryModel {
     override var position: GLKVector3 {
         get {
             let time = Float(CACurrentMediaTime())
-//            return GLKVector3Make(0, 0, sin(time))
-            return GLKVector3Make(0, 0, 0.4)
+            return GLKVector3Make(0, 0, sin(time))
+//            return GLKVector3Make(0, 0, 0.4)
         }
         set {
             

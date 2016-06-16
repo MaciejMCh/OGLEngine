@@ -32,9 +32,13 @@ class ReflectedProgram: GPUProgram {
                 return renderable.textureScale
             }), uniform: .TextureScale)
             
+            var modelMatrix2 = invertMatrix(reflectionPlane.geometryModel.modelMatrix())
+            withUnsafePointer(&modelMatrix2, {
+                glUniformMatrix4fv(self.implementation.instances.get(.ModelMatrix2).location, 1, 0, UnsafePointer($0))
+            })
+            
             
             var modelMatrix = renderable.geometryModel.modelMatrix() * invertMatrix(reflectionPlane.geometryModel.modelMatrix())
-//            var modelMatrix = renderable.geometryModel.modelMatrix()
             withUnsafePointer(&modelMatrix, {
                 glUniformMatrix4fv(self.implementation.instances.get(.ModelMatrix).location, 1, 0, UnsafePointer($0))
             })

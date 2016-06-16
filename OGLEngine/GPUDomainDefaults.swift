@@ -90,6 +90,7 @@ enum Attribute: GLSLEnum {
 
 enum Uniform: GLSLEnum {
     case ModelMatrix
+    case ModelMatrix2
     case ViewProjectionMatrix
     case ModelViewProjectionMatrix
     case NormalMatrix
@@ -106,6 +107,7 @@ enum Uniform: GLSLEnum {
     func name() -> String {
         switch self {
         case .ModelMatrix: return "modelMatrix"
+        case .ModelMatrix2: return "modelMatrix2"
         case .ViewProjectionMatrix: return "viewProjectionMatrix"
         case .ModelViewProjectionMatrix: return "modelViewProjectionMatrix"
         case .NormalMatrix: return "normalMatrix"
@@ -123,7 +125,7 @@ enum Uniform: GLSLEnum {
         
     func gpuType() -> GPUType {
         switch self {
-        case .ModelMatrix, .ViewProjectionMatrix, .ModelViewProjectionMatrix: return .Mat4
+        case .ModelMatrix, .ModelMatrix2, .ViewProjectionMatrix, .ModelViewProjectionMatrix: return .Mat4
         case .NormalMatrix: return .Mat3
         case .EyePosition, .Position, .LightDirection, .LightHalfVector: return .Vec3
         case .TextureScale: return .Float
@@ -165,7 +167,7 @@ struct DefaultInterfaces {
     }
     
     static func reflectedInterface() -> GPUInterface {
-        return GPUInterface(attributes: [.Position, .Normal, .Texel], uniforms: [.ModelMatrix, .ViewProjectionMatrix, .ColorMap, .TextureScale])
+        return GPUInterface(attributes: [.Position, .Normal, .Texel], uniforms: [.ModelMatrix, .ModelMatrix2, .ViewProjectionMatrix, .ColorMap, .TextureScale])
     }
     
 }
