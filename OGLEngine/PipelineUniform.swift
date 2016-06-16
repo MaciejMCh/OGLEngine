@@ -64,4 +64,7 @@ struct GPUUniforms {
     static let shininess = GPUVariable<GLSLFloat>(name: "uShininess")
     static let clippingPlane = GPUVariable<GLSLPlane>(name: "uClippingPlane")
     static let lightColor = GPUVariable<GLSLColor>(name: "uLightColor")
+    static let planeSpaceModelMatrix = GPUVariable<GLSLMat4>(name: "uPlaneSpaceModelMatrix")
+    static let planeSpaceViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uPlaneSpaceViewProjectionMatrix")
+    
 }
