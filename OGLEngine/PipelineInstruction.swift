@@ -12,6 +12,14 @@ public protocol GPUInstruction {
     func glslRepresentation() -> String
 }
 
+public struct FixedGPUInstruction: GPUInstruction {
+    let code: String
+    
+    public func glslRepresentation() -> String {
+        return code
+    }
+}
+
 public struct GPUDeclaration: GPUInstruction {
     let variable: AnyGPUVariable
     let precision: GPUVariablePrecision?

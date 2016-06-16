@@ -22,7 +22,6 @@ void main() {
     vTexel = aTexel * uTextureScale;
     vec4 modelSpacePosition = uModelMatrix * aPosition;
     vZPosition = modelSpacePosition.z;
-    modelSpacePosition = uModelMatrix2 * modelSpacePosition;
     vec4 position = uViewProjectionMatrix * modelSpacePosition;
     gl_Position = position;
 }

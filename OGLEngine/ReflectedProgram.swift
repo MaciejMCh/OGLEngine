@@ -44,7 +44,13 @@ class ReflectedProgram: GPUProgram {
             })
             
             
-            self.passViewProjectionMatrix(self.camera)
+//            self.passViewProjectionMatrix(self.camera)
+            var viewProjectionMatrix = modelMatrix2 * camera.viewProjectionMatrix()
+            withUnsafePointer(&viewProjectionMatrix, {
+                glUniformMatrix4fv(self.implementation.instances.get(.ViewProjectionMatrix).location, 1, 0, UnsafePointer($0))
+            })
+            
+            
             self.draw(renderable)
             self.unbindAttributes(renderable)
         }

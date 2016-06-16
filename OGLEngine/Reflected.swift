@@ -15,8 +15,7 @@ extension DefaultScopes {
         aTexel: GPUVariable<GLSLVec2>,
         aNormal: GPUVariable<GLSLVec3>,
         uPlaneSpaceModelMatrix: GPUVariable<GLSLMat4>,
-        uPlaneModelMatrix: GPUVariable<GLSLMat4>,
-        uViewProjectionMatrix: GPUVariable<GLSLMat4>,
+        uPlaneSpaceViewProjectionMatrix: GPUVariable<GLSLMat4>,
         uTextureScale: GPUVariable<GLSLFloat>,
         vTexel: GPUVariable<GLSLVec2>,
         vPlaneDistance: GPUVariable<GLSLFloat>
@@ -30,8 +29,7 @@ extension DefaultScopes {
         globalScope ⥤ aTexel
         globalScope ⥤ aNormal
         globalScope ⥥ uPlaneSpaceModelMatrix
-        globalScope ⥥ uPlaneModelMatrix
-        globalScope ⥥ uViewProjectionMatrix
+        globalScope ⥥ uPlaneSpaceViewProjectionMatrix
         globalScope ⥥ uTextureScale
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vPlaneDistance
@@ -40,17 +38,30 @@ extension DefaultScopes {
         mainScope ✍ vTexel ⬅ aTexel * uTextureScale
         mainScope ✍ planeSpaceModelPosition ⬅ uPlaneSpaceModelMatrix * aPosition
         mainScope ✍ vPlaneDistance ⬅ FixedGPUEvaluation(glslCode: "\(planeSpaceModelPosition.name!).z")
-//        mainScope ✍ glPosition ⬅ 
+        mainScope ✍ glPosition ⬅ uPlaneSpaceViewProjectionMatrix * planeSpaceModelPosition
         
         return globalScope
     }
+    
+    static func ReflectedFragment(
+        glFragColor glFragColor: GPUVariable<GLSLColor>,
+        uColorMap: GPUVariable<GLSLTexture>,
+        vTexel: GPUVariable<GLSLVec2>,
+        vPlaneDistance: GPUVariable<GLSLFloat>
+        ) -> GPUScope {
+        
+        let globalScope = GPUScope()
+        let mainScope = GPUScope()
+        
+        globalScope ⥥ uColorMap
+        globalScope ⟿↘ vTexel
+        globalScope ⟿↘ vPlaneDistance
+        globalScope ↳ MainGPUFunction(scope: mainScope)
+        
+        mainScope ✍ vPlaneDistance > GPUVariable<GLSLFloat>(value: 0.0)
+        mainScope ✍ glFragColor ⬅ uColorMap ☒ vTexel
+        
+        return globalScope
+    }
+    
 }
-
-//void main() {
-//    vTexel = aTexel * uTextureScale;
-//    vec4 modelSpacePosition = uModelMatrix * aPosition;
-//    vZPosition = modelSpacePosition.z;
-//    modelSpacePosition = uModelMatrix2 * modelSpacePosition;
-//    vec4 position = uViewProjectionMatrix * modelSpacePosition;
-//    gl_Position = position;
-//}
