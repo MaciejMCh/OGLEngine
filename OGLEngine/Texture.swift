@@ -9,7 +9,12 @@
 import Foundation
 import UIKit
 
-public class Texture : NSObject {
+public protocol Texture {
+    var glName: GLuint {get}
+    func bind()
+}
+
+public class ImageTexture: Texture {
     
     var image : UIImage!
     public var glName : GLuint = 0
@@ -21,10 +26,10 @@ public class Texture : NSObject {
     
     convenience init(color: UIColor) {
         self.init()
-        self.image = Texture.imageWithColor(color)
+        self.image = ImageTexture.imageWithColor(color)
     }
     
-    func bind() {
+    public func bind() {
         if self.glName > 0 {
             return
         }

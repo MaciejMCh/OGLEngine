@@ -94,9 +94,9 @@ extension CloseShotRenderable {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
         self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         
-        self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
+        self.colorMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
-        self.normalMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/normal.png")
+        self.normalMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/normal.png")
         self.normalMap.bind()
         self.textureScale = 1
     }
@@ -107,7 +107,7 @@ extension MediumShotRenderable {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
         self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         
-        self.colorMap = Texture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
+        self.colorMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
         self.textureScale = 1
     }

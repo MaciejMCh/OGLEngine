@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 extension DefaultPipelines {
     static func ReflectiveSurface() -> GPUPipeline {
@@ -36,7 +37,6 @@ extension DefaultFragmentShaders {
             function: MainGPUFunction(scope: DefaultScopes.ReflectiveSurfaceFragment(
                 OpenGLDefaultVariables.glFragColor(),
                 uReflectionColorMap: uniforms.get(GPUUniforms.reflectionColorMap),
-                vTexel: interpolation.vTexel,
                 vClipSpace: interpolation.vClipSpace)))
     }
 }
@@ -60,12 +60,10 @@ extension DefaultVertexShaders {
 }
 
 struct ReflectiveSurfaceInterpolation: GPUInterpolation {
-    let vTexel: GPUVariable<GLSLVec2> = GPUVariable<GLSLVec2>(name: "vTexel")
     let vClipSpace: GPUVariable<GLSLVec4> = GPUVariable<GLSLVec4>(name: "vClipSpace")
     
     func varyings() -> [GPUVarying] {
         return [
-            GPUVarying(variable: vTexel, precision: .Low),
             GPUVarying(variable: vClipSpace, precision: .Low)
         ]
     }
@@ -97,7 +95,6 @@ extension DefaultScopes {
     static func ReflectiveSurfaceFragment(
         glFragColor: GPUVariable<GLSLColor>,
         uReflectionColorMap: GPUVariable<GLSLTexture>,
-        vTexel: GPUVariable<GLSLVec2>,
         vClipSpace: GPUVariable<GLSLVec4>
         ) -> GPUScope {
         
@@ -109,7 +106,6 @@ extension DefaultScopes {
         
         
         globalScope ⥥ uReflectionColorMap
-        globalScope ⟿↘ vTexel
         globalScope ⟿↘ vClipSpace
         globalScope ↳ MainGPUFunction(scope: mainScope)
         

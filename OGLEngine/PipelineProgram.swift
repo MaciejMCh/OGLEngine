@@ -14,7 +14,7 @@ protocol PipelineProgram {
     
     var glName: GLuint {get set}
     var pipeline: GPUPipeline {get}
-    func willRender(renderable: RenderableType)
+    func willRender(renderable: RenderableType, scene: Scene)
 }
 
 extension PipelineProgram where RenderableType: Mesh  {
@@ -22,7 +22,7 @@ extension PipelineProgram where RenderableType: Mesh  {
         for renderable in renderables {
             self.bindAttributes(renderable)
             performDefaultPasses(renderable, scene: scene)
-            self.willRender(renderable)
+            self.willRender(renderable, scene: scene)
             for uniform in self.pipeline.fragmentShader.uniforms.collection {
                 uniform.passToGPU()
             }
@@ -56,7 +56,7 @@ extension PipelineProgram {
         self.programDidCompile()
     }
     
-    func willRender(renderable: RenderableType) {
+    func willRender(renderable: RenderableType, scene: Scene) {
         
     }
     

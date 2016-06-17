@@ -17,7 +17,7 @@ class PhongV2PipelineProgram: PipelineProgram {
     
     var camera: Camera!
     
-    func willRender(renderable: RenderableType) {
+    func willRender(renderable: RenderableType, scene: Scene) {
         self.pipeline.uniform(GPUUniforms.modelMatrix).cpuVariableGetter = {renderable.geometryModel.modelMatrix()}
         self.pipeline.uniform(GPUUniforms.viewProjectionMatrix).cpuVariableGetter = {self.camera.viewProjectionMatrix()}
         self.pipeline.uniform(GPUUniforms.normalMatrix).cpuVariableGetter = {renderable.normalMatrix()}

@@ -25,8 +25,8 @@ extension DefaultScenes {
         let rockyGroundVao = VAO(obj: OBJLoader.objFromFileNamed("rocky_ground"))
         
         // Textures
-        let rockyGroundColors = Texture(imageNamed: "cliff color")
-        let rockyGroundNormals = Texture(imageNamed: "cliff normal")
+        let rockyGroundColors = ImageTexture(imageNamed: "cliff color")
+        let rockyGroundNormals = ImageTexture(imageNamed: "cliff normal")
         
         rockyGroundColors.bind()
         rockyGroundNormals.bind()

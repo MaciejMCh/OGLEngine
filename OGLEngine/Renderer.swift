@@ -25,6 +25,12 @@ struct Renderer {
         glUseProgram(self.closeShotProgram.glName)
         self.closeShotProgram.render(scene.closeShots, scene: scene)
         
+        for reflectiveSurface in scene.reflectiveSurfaces {
+            reflectiveSurface.reflectionColorMap.withFbo({
+                Renderer.renderReflected(scene, reflectionPlane: reflectiveSurface.reflectionPlane)
+            })
+        }
+        
         glUseProgram(self.reflectiveSurfaceProgram.glName)
         self.reflectiveSurfaceProgram.render(scene.reflectiveSurfaces, scene: scene)
     }

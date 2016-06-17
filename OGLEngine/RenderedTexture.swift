@@ -9,17 +9,17 @@
 import Foundation
 import GLKit
 
-class RenderedTexture {
+class RenderedTexture: Texture {
     var frameBufferGlName: GLuint = 0
     var depthBufferGlName: GLuint = 0
-    var textureGlName: GLuint = 0
+    var glName: GLuint = 0
     
     init() {
         var t = GLuint()
         var f = GLuint()
         generateTextureFromFramebuffer(&t, f: &f, w: 512, h: 512)
         frameBufferGlName = f
-        textureGlName = t
+        glName = t
     }
     
     func bindFrameBuffer(frameBufferGlName: GLuint, width: Int = 512, height: Int = 512) {

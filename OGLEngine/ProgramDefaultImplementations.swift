@@ -94,7 +94,7 @@ extension GPUProgram where RenderableType: Model {
 extension GPUProgram where RenderableType: ReflectiveSurface {
     func passReflectionColorMap(reflectiveSurface: ReflectiveSurface) {
         glActiveTexture(GLenum(GL_TEXTURE0));
-        glBindTexture(GLenum(GL_TEXTURE_2D), reflectiveSurface.reflectionColorMap.textureGlName)
+        glBindTexture(GLenum(GL_TEXTURE_2D), reflectiveSurface.reflectionColorMap.glName)
         glUniform1i(self.implementation.instances.get(.ReflectionColorMap).location, 0);
     }
 }

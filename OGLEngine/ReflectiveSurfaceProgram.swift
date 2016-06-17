@@ -38,7 +38,10 @@ class ReflectiveSurfaceProgram: GPUProgram {
             glUseProgram(self.glName)
 
             self.bindAttributes(renderable)
-            self.passReflectionColorMap(renderable)
+//            self.passReflectionColorMap(renderable)
+            
+            GPUPassFunctions.texturePass(renderable.reflectionColorMap, index: 0, location: self.implementation.instances.get(.ReflectionColorMap).location)
+            
             self.passModelViewProjectionMatrix(renderable, camera: self.camera)
             self.draw(renderable)
             self.unbindAttributes(renderable)

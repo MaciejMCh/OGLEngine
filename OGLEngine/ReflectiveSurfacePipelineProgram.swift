@@ -13,4 +13,9 @@ class ReflectiveSurfacePipelineProgram: PipelineProgram {
     typealias RenderableType = ReflectiveSurfaceRenderable
     var glName: GLuint = 0
     var pipeline = DefaultPipelines.ReflectiveSurface()
+    
+    func willRender(renderable: RenderableType, scene: Scene) {
+        GPUPassFunctions.texturePass(renderable.reflectionColorMap, index: 0, location: self.pipeline.uniform(GPUUniforms.reflectionColorMap).location)
+    }
+    
 }
