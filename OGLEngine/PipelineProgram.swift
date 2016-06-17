@@ -66,7 +66,7 @@ extension PipelineProgram {
     
     func validate() {
         for uniform in self.pipeline.vertexShader.uniforms.collection {
-//            assert(uniform.location != -1, uniform.glslName + " failed to bind.")
+            assert(uniform.location != -1, uniform.glslName + " failed to bind.")
         }
     }
     

@@ -137,17 +137,24 @@ extension DefaultScopes {
         globalScope ⥥ uNormalMatrix
         globalScope ⥥ uLightVersor
         globalScope ⥥ uEyePosition
+        globalScope ⥥ uTextureScale
+        globalScope ⥥ uLightColor
+        globalScope ⥥ uShininess
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vLightVersor
         globalScope ⟿↘ vHalfVersor
         globalScope ⟿↘ vTBNMatrix
+        globalScope ⟿↘ vLightColor
+        globalScope ⟿↘ vShininess
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ↳ worldSpacePosition
         mainScope ✍ worldSpacePosition ⬅ uModelMatrix * aPosition
         mainScope ✍ glPosition ⬅ uViewProjectionMatrix * worldSpacePosition
-        mainScope ✍ vTexel ⬅ aTexel
+        mainScope ✍ vTexel ⬅ aTexel * uTextureScale
         mainScope ✍ vLightVersor ⬅ uLightVersor
+        mainScope ✍ vLightColor ⬅ uLightColor
+        mainScope ✍ vShininess ⬅ uShininess
         mainScope ↳ positionVector
         mainScope ✍ positionVector ⬅ GPUEvaluation(function: GPUFunction(signature: "vec3", input: [worldSpacePosition]))
         mainScope ⎘ tbnScope
@@ -191,6 +198,8 @@ extension DefaultScopes {
         globalScope ⟿↘ vLightVersor
         globalScope ⟿↘ vHalfVersor
         globalScope ⟿↘ vTBNMatrix
+        globalScope ⟿↘ vLightColor
+        globalScope ⟿↘ vShininess
         globalScope ⥥ uColorMap
         globalScope ⥥ uNormalMap
         globalScope ↳ MainGPUFunction(scope: mainScope)
@@ -202,9 +211,9 @@ extension DefaultScopes {
         mainScope ↳↘ fullDiffuseColor
         mainScope ✍ fullDiffuseColor ⬅ uColorMap ☒ vTexel
         mainScope ↳↘ lightColor
-        mainScope ✍ lightColor ⬅ GPUVariable<GLSLColor>(value: (r: 1.0, g: 1.0, b: 1.0, a: 1.0))
+        mainScope ✍ lightColor ⬅ vLightColor
         mainScope ↳↘ shininess
-        mainScope ✍ shininess ⬅ GPUVariable<GLSLFloat>(value: 100.0)
+        mainScope ✍ shininess ⬅ vShininess
         mainScope ↳↘ normalMapSample
         mainScope ✍ normalMapSample ⬅ uNormalMap ☒ vTexel
         mainScope ↳↘ fixedNormal
