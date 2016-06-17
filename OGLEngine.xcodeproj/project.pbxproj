@@ -11,7 +11,6 @@
 		C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20687E91CF4AEEB008E8793 /* GPUTypes.swift */; };
 		C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */; };
 		C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */; };
-		C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */; };
 		C21C51CF1D02FA2000F41A61 /* MediumShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */; };
 		C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */; };
 		C2229DB91D12F81F007F5856 /* ReflectedPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */; };
@@ -59,14 +58,11 @@
 		C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */; };
 		C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C31D07192000FC9632 /* PhongV2.swift */; };
 		C27E42C81D07199200FC9632 /* PhongV2PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */; };
-		C29219961CA9D76B00B78343 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29219951CA9D76B00B78343 /* Program.swift */; };
 		C29755771CEA21E3001D8E6D /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755761CEA21E3001D8E6D /* Renderer.swift */; };
-		C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */; };
 		C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */; };
 		C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */; };
 		C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */; };
 		C29DFAE91D06F8C00003B7A2 /* PhongV1PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */; };
-		C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */; };
 		C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */; };
 		C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */; };
 		C2AFAE661CFC4DFD00C2F8D0 /* PipelineUniform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */; };
@@ -81,7 +77,6 @@
 		C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */; };
 		C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */; };
 		C2CD6A831CEC877F001F3A7E /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD6A821CEC877F001F3A7E /* Reflection.swift */; };
-		C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */; };
 		C2E158181CFD9B2D00BB3805 /* PipelineVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E158171CFD9B2D00BB3805 /* PipelineVariable.swift */; };
 		C2E1581A1CFD9B8F00BB3805 /* PipelineInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E158191CFD9B8F00BB3805 /* PipelineInstruction.swift */; };
 		C2E1581C1CFD9BE800BB3805 /* PipelineShader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E1581B1CFD9BE800BB3805 /* PipelineShader.swift */; };
@@ -94,7 +89,6 @@
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
 		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
-		C2FDAF551CF7551800ED63DC /* GLSLCodeSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +108,6 @@
 		C20687E91CF4AEEB008E8793 /* GPUTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUTypes.swift; sourceTree = "<group>"; };
 		C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLKitCantMultiplyMatrices.swift; sourceTree = "<group>"; };
 		C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainDefaults.swift; sourceTree = "<group>"; };
-		C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainModels.swift; sourceTree = "<group>"; };
 		C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedPipelineProgram.swift; sourceTree = "<group>"; };
@@ -166,14 +159,11 @@
 		C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderedTexture.swift; sourceTree = "<group>"; };
 		C27E42C31D07192000FC9632 /* PhongV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2.swift; sourceTree = "<group>"; };
 		C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2PipelineProgram.swift; sourceTree = "<group>"; };
-		C29219951CA9D76B00B78343 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		C29755761CEA21E3001D8E6D /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
-		C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurfaceProgram.swift; sourceTree = "<group>"; };
 		C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.vsh; path = Shaders/ReflectiveSurface.vsh; sourceTree = "<group>"; };
 		C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.fsh; path = Shaders/ReflectiveSurface.fsh; sourceTree = "<group>"; };
 		C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1.swift; sourceTree = "<group>"; };
 		C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1PipelineProgram.swift; sourceTree = "<group>"; };
-		C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedProgram.swift; sourceTree = "<group>"; };
 		C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineAttribute.swift; sourceTree = "<group>"; };
 		C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineVariablesCollection.swift; sourceTree = "<group>"; };
 		C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineUniform.swift; sourceTree = "<group>"; };
@@ -188,7 +178,6 @@
 		C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.vsh; path = Shaders/Reflected.vsh; sourceTree = "<group>"; };
 		C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.fsh; path = Shaders/Reflected.fsh; sourceTree = "<group>"; };
 		C2CD6A821CEC877F001F3A7E /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
-		C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2E158171CFD9B2D00BB3805 /* PipelineVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineVariable.swift; sourceTree = "<group>"; };
 		C2E158191CFD9B8F00BB3805 /* PipelineInstruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineInstruction.swift; sourceTree = "<group>"; };
 		C2E1581B1CFD9BE800BB3805 /* PipelineShader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineShader.swift; sourceTree = "<group>"; };
@@ -201,7 +190,6 @@
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
-		C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLCodeSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +241,6 @@
 			children = (
 				C29219971CA9E17000B78343 /* Program */,
 				C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */,
-				C20EA33D1CA9BC230076F979 /* GPUDomainModels.swift */,
 				C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */,
 				C20687E91CF4AEEB008E8793 /* GPUTypes.swift */,
 			);
@@ -528,29 +515,8 @@
 			isa = PBXGroup;
 			children = (
 				C2AFAE601CFC484C00C2F8D0 /* Pipeline */,
-				C2AB3E5A1CEC73C900D43544 /* Foundation */,
-				C2AB3E591CEC73BA00D43544 /* Concrete */,
 			);
 			name = Program;
-			sourceTree = "<group>";
-		};
-		C2AB3E591CEC73BA00D43544 /* Concrete */ = {
-			isa = PBXGroup;
-			children = (
-				C29755781CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift */,
-				C2AB3E5C1CEC743C00D43544 /* ReflectedProgram.swift */,
-			);
-			name = Concrete;
-			sourceTree = "<group>";
-		};
-		C2AB3E5A1CEC73C900D43544 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				C29219951CA9D76B00B78343 /* Program.swift */,
-				C2D766631CB51BB800346136 /* ProgramDefaultImplementations.swift */,
-				C2FDAF541CF7551800ED63DC /* GLSLCodeSource.swift */,
-			);
-			name = Foundation;
 			sourceTree = "<group>";
 		};
 		C2AFAE601CFC484C00C2F8D0 /* Pipeline */ = {
@@ -816,14 +782,10 @@
 				C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */,
 				C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */,
 				C2CD6A831CEC877F001F3A7E /* Reflection.swift in Sources */,
-				C29755791CEA2493001D8E6D /* ReflectiveSurfaceProgram.swift in Sources */,
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
-				C2D766641CB51BB800346136 /* ProgramDefaultImplementations.swift in Sources */,
 				C26CD52F1D0ACA5E007105EB /* 3DIntegrator.swift in Sources */,
 				C267A7021D11F03C00ACBAD2 /* ReflectedCamera.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
-				C2FDAF551CF7551800ED63DC /* GLSLCodeSource.swift in Sources */,
-				C29219961CA9D76B00B78343 /* Program.swift in Sources */,
 				C2AFAE661CFC4DFD00C2F8D0 /* PipelineUniform.swift in Sources */,
 				C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
@@ -859,7 +821,6 @@
 				C2E17FE71D0F325500CB2D2D /* ReflectiveSurface.swift in Sources */,
 				C29DFAE91D06F8C00003B7A2 /* PhongV1PipelineProgram.swift in Sources */,
 				C2E158221CFD9D0200BB3805 /* PipelineScope.swift in Sources */,
-				C20EA33F1CA9BC230076F979 /* GPUDomainModels.swift in Sources */,
 				C2B188FF1CF2799E008BB626 /* PipelineProgram.swift in Sources */,
 				C269D5D91CA898DD00E56E67 /* RemoteControllerModels.swift in Sources */,
 				C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */,
@@ -876,7 +837,6 @@
 				C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */,
 				C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */,
 				C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */,
-				C2AB3E5D1CEC743C00D43544 /* ReflectedProgram.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,
 				C269D58E1CA8981D00E56E67 /* AppDelegate.swift in Sources */,
 				C2B188F31CF1CC8B008BB626 /* PipelineModels.swift in Sources */,

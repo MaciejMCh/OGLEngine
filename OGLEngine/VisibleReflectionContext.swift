@@ -23,11 +23,3 @@ struct VisibleReflectionContext {
         return halfVersor
     }
 }
-
-extension VisibleReflectionContext: Vector3Pass {
-    var vector3Pass: GLKVector3 {
-        get {
-            return self.halfVector()
-        }
-    }
-}

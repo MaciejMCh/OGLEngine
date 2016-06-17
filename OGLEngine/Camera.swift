@@ -17,11 +17,3 @@ protocol Camera {
     func cameraPosition() -> GLKVector3
     
 }
-
-extension Camera {
-    func cameraPositionPass() -> GetterPass<GLKVector3> {
-        return GetterPass<GLKVector3> { () -> GLKVector3 in
-            return self.cameraPosition()
-        }
-    }
-}

@@ -114,19 +114,6 @@ struct GLSLParser {
         }
     }
     
-    static func gpuType(type: GPUType) -> String {
-        switch type {
-        case .Mat3: return "mat3"
-        case .Mat4: return "mat4"
-        case .Vec2: return "vec2"
-        case .Vec3: return "vec3"
-        case .Vec4: return "vec4"
-        case .Float: return "float"
-        case .Texture: return "sampler2D"
-        case .Plane: return "vec4"
-        }
-    }
-    
     static func precision(precision: GPUVariablePrecision) -> String {
         switch precision {
         case .Low: return "lowp"
@@ -134,23 +121,4 @@ struct GLSLParser {
         }
     }
     
-    static func attributesDeclaration(attributes: [Attribute]) -> String {
-        var string = ""
-        
-        for attribute in attributes {
-            string = string + "attribute " + GLSLParser.gpuType(attribute.gpuType()) + " " + attribute.gpuDomainName() + ";\n"
-        }
-        
-        return string
-    }
-    
-    static func uniformsDeclaration(uniforms: [Uniform]) -> String {
-        var string = ""
-        
-        for uniform in uniforms {
-            string = string + "uniform " + GLSLParser.gpuType(uniform.gpuType()) + " " + uniform.gpuDomainName() + ";\n"
-        }
-        
-        return string
-    }
 }
