@@ -100,7 +100,7 @@ extension DefaultFragmentShaders {
 extension DefaultScopes {
     static func CloseShotVertex(
         glPosition: GPUVariable<GLSLVec4>,
-        aPosition: GPUVariable<GLSLVec4>,
+        aPosition: GPUVariable<GLSLVec3>,
         aTexel: GPUVariable<GLSLVec2>,
         aNormal: GPUVariable<GLSLVec3>,
         aTangent: GPUVariable<GLSLVec3>,

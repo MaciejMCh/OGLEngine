@@ -10,14 +10,14 @@ import Foundation
 import GLKit
 
 struct VBO {
-    let attribute: Attribute
+    let attribute: AnyGPUAttribute
     let glName: GLuint
     let data: [Float]
 }
 
 class VAO {
     
-    var vboAttributes: [Attribute]!
+    var vboAttributes: [AnyGPUAttribute]!
     var obj: OBJ!
     var vbos: [VBO] = []
     
@@ -27,7 +27,7 @@ class VAO {
     
     convenience init(obj: OBJ) {
         self.init()
-        self.vboAttributes = [.Position, .Texel, .Normal, .Tangent]
+        self.vboAttributes = [GPUAttributes.position, GPUAttributes.texel, GPUAttributes.normal, GPUAttributes.tangent]
         self.obj = obj
         
         self.setup()
@@ -51,12 +51,12 @@ class VAO {
         glBindVertexArrayOES(0)
     }
     
-    func generateVbo(attribute: Attribute, data: [Float]) -> VBO {
+    func generateVbo(attribute: AnyGPUAttribute, data: [Float]) -> VBO {
         var vboGLName: GLuint = 0
         glGenBuffers(1, &vboGLName)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vboGLName)
         glBufferData(GLenum(GL_ARRAY_BUFFER), Int(data.count) * sizeof(GLfloat), data, GLenum(GL_STATIC_DRAW))
-        glVertexAttribPointer(attribute.location(), GLint(attribute.size()), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
+        glVertexAttribPointer(attribute.location, GLint(attribute.size), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
         return VBO(attribute: attribute, glName: vboGLName, data: data)
     }

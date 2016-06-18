@@ -141,6 +141,10 @@ public func * (lhs: GPUVariable<GLSLMat3>, rhs: GPUVariable<GLSLMat3>) -> GPUInf
     return GPUInfixEvaluation<GLSLMat3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
+public func * (lhs: GPUVariable<GLSLMat4>, rhs: GPUVariable<GLSLVec3>) -> FixedGPUEvaluation<GLSLVec4> {
+    return FixedGPUEvaluation(glslCode: "\(lhs.name!) * vec4(\(rhs.name!), 1.0)")
+}
+
 // Color operations
 public func * (lhs: GPUVariable<GLSLColor>, rhs: GPUVariable<GLSLFloat>) -> GPUInfixEvaluation<GLSLColor> {
     return GPUInfixEvaluation<GLSLColor>(operatorSymbol: "*", lhs: lhs, rhs: rhs)

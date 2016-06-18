@@ -80,7 +80,7 @@ struct ReflectedInterpolation: GPUInterpolation {
 extension DefaultScopes {
     static func ReflectedVertex(
         glPosition glPosition: GPUVariable<GLSLVec4>,
-        aPosition: GPUVariable<GLSLVec4>,
+        aPosition: GPUVariable<GLSLVec3>,
         aTexel: GPUVariable<GLSLVec2>,
         aNormal: GPUVariable<GLSLVec3>,
         uPlaneSpaceModelMatrix: GPUVariable<GLSLMat4>,

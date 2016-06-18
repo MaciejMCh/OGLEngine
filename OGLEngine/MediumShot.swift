@@ -142,7 +142,7 @@ extension DefaultScopes {
     static func MediumShotVertex(
         glPosition: GPUVariable<GLSLVec4>,
         
-        aPosition: GPUVariable<GLSLVec4>,
+        aPosition: GPUVariable<GLSLVec3>,
         aTexel: GPUVariable<GLSLVec2>,
         aNormal: GPUVariable<GLSLVec3>,
         

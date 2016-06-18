@@ -10,7 +10,6 @@
 		60140969A5CC91BB3B442B81 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A207DD5A794DC3A6F6E9B78 /* Pods_OGLEngine.framework */; };
 		C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20687E91CF4AEEB008E8793 /* GPUTypes.swift */; };
 		C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */; };
-		C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */; };
 		C21C51CF1D02FA2000F41A61 /* MediumShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */; };
 		C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */; };
 		C2229DB91D12F81F007F5856 /* ReflectedPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */; };
@@ -107,7 +106,6 @@
 		9205D7DBFBB1CE1C1FCD90A2 /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
 		C20687E91CF4AEEB008E8793 /* GPUTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUTypes.swift; sourceTree = "<group>"; };
 		C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLKitCantMultiplyMatrices.swift; sourceTree = "<group>"; };
-		C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUDomainDefaults.swift; sourceTree = "<group>"; };
 		C21C51CE1D02FA2000F41A61 /* MediumShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C21C51D01D02FA8000F41A61 /* CloseShotPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseShotPipelineProgram.swift; sourceTree = "<group>"; };
 		C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedPipelineProgram.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				C29219971CA9E17000B78343 /* Program */,
-				C20EA33C1CA9BC230076F979 /* GPUDomainDefaults.swift */,
 				C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */,
 				C20687E91CF4AEEB008E8793 /* GPUTypes.swift */,
 			);
@@ -779,7 +776,6 @@
 			files = (
 				C26CD52D1D0AC83D007105EB /* LookAtCamera.swift in Sources */,
 				C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */,
-				C20EA33E1CA9BC230076F979 /* GPUDomainDefaults.swift in Sources */,
 				C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */,
 				C2CD6A831CEC877F001F3A7E /* Reflection.swift in Sources */,
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,

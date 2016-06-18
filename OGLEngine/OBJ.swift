@@ -25,12 +25,13 @@ struct OBJ {
         self.tangents = tangents
     }
     
-    func dataForAttribute(attribute: Attribute) -> [Float] {
-        switch attribute {
-        case .Position: return self.positions
-        case .Texel: return self.texels
-        case .Normal: return self.normals
-        case .Tangent: return self.tangents
+    func dataForAttribute(attribute: AnyGPUAttribute) -> [Float]! {
+        switch attribute.location {
+        case 0: return self.positions
+        case 1: return self.texels
+        case 2: return self.normals
+        case 3: return self.tangents
+        default: return nil
         }
     }
 }

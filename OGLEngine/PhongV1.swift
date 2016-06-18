@@ -91,7 +91,7 @@ struct PhongV1Interpolation: GPUInterpolation {
 extension DefaultScopes {
     static func PhongV1Vertex(
         glPosition: GPUVariable<GLSLVec4>,
-        aPosition: GPUVariable<GLSLVec4>,
+        aPosition: GPUVariable<GLSLVec3>,
         aTexel: GPUVariable<GLSLVec2>,
         aNormal: GPUVariable<GLSLVec3>,
         uModelMatrix: GPUVariable<GLSLMat4>,

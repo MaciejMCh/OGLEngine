@@ -64,7 +64,7 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        let program = ReflectiveSurfacePipelineProgram()
+        let program = CloseShotPipelineProgram()
         NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
         NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
