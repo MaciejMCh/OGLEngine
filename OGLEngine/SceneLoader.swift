@@ -69,17 +69,20 @@ extension Scene {
             var mediumShotRenderables: [MediumShotRenderable] = []
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             for loadedRenderable in loadedRenderables {
+                debugPrint("loading object \(loadedRenderable.name)")
                 switch loadedRenderable.type {
                 case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
                 }
             }
+            debugPrint("vaos ready")
             
             // Light
-            let directionalLight = DirectionalLight(lightDirection: GLKVector3Make(0, 0, -1))
+            let directionalLight = DirectionalLight(lightDirection:  GLKVector3Normalize(GLKVector3Make(0, -1, -1)))
             
             // Camera
             let camera = RemoteLookAtCamera()
+            camera.lockAtPosition(GLKVector3Make(0, 0, 4))
             
             return Scene(closeShots: closeShotRenderables, mediumShots: mediumShotRenderables, reflectiveSurfaces: reflectiveSurfaces, directionalLight: directionalLight, camera: camera)
             
@@ -117,8 +120,7 @@ extension ReflectiveSurfaceRenderable {
     init(loadedRenderable: LoadedRenderable) {
         let obj = OBJLoader.objFromFileNamed(loadedRenderable.mesh)
         self.vao = VAO(obj: obj)
-//        self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
-        self.geometryModel = OscilatingGeometryModel()
+        self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         self.reflectionColorMap = RenderedTexture()
     }
 }

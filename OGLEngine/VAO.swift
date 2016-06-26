@@ -41,6 +41,8 @@ class VAO {
         glBindVertexArrayOES(vaoGLName)
         self.vaoGLName = vaoGLName
         
+        debugPrint("creating VAO")
+        
         var indicesVboGLName: GLuint = 0
         glGenBuffers(1, &indicesVboGLName)
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indicesVboGLName)

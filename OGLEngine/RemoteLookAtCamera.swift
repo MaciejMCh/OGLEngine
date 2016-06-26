@@ -53,9 +53,12 @@ class RemoteLookAtCamera: SphericalLookAtCamera {
         RemoteController.controller.addEventHandler(self.eventHandler)
     }
     
-    func mouseMoved(mouse: RemoteMouse) {
+    private func mouseMoved(mouse: RemoteMouse) {
         self.xMouse = mouse.xPosition / 100
         self.yMouse = mouse.yPosition / 100
     }
     
+    func lockAtPosition(position: GLKVector3) {
+        self.integrator.offset = RemoteVector(x: position.x, y: position.y, z: position.z)
+    }
 }

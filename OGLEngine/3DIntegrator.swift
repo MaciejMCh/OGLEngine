@@ -16,7 +16,7 @@ struct RemoteVector {
 }
 
 class RemoteVectorIntegrator {
-    private var offset = RemoteVector()
+    var offset = RemoteVector()
     private var eventHandler: EventHandler!
     private var toggles: [KeyToggle] = []
     

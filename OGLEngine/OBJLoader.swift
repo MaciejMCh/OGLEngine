@@ -61,7 +61,7 @@ struct Vec2 {
 }
 
 struct Vertex {
-    let indexIdentifier: String
+    let indexIdentifier: VertexIndices
     let position: Vec3
     let texel: Vec2
     let normal: Vec3
@@ -81,7 +81,20 @@ func dot(v1: Vec3, gv2: GLKVector3) -> Float {
 }
 
 
-struct VertexIndices {
+public func ==(lhs: VertexIndices, rhs: VertexIndices) -> Bool {
+    if (lhs.p != rhs.p) {
+        return false
+    }
+    if (lhs.t != rhs.t) {
+        return false
+    }
+    if (lhs.n != rhs.n) {
+        return false
+    }
+    return true
+}
+
+public struct VertexIndices: Equatable {
     let p: Int
     let t: Int
     let n: Int
@@ -91,10 +104,6 @@ struct VertexIndices {
         self.p = Int(c[0])!
         self.t = Int(c[1])!
         self.n = Int(c[2])!
-    }
-    
-    func indexIdentifier() -> String {
-        return "\(self.p)/\(self.t)/\(self.n)"
     }
 }
 
@@ -120,12 +129,14 @@ struct Face {
 class OBJLoader : NSObject {
     
     class func objFromFileNamed(fileName: String) -> OBJ {
+        debugPrint(" will load obj")
         let filePath: String = NSBundle.mainBundle().pathForResource("3dAssets/meshes/" + fileName, ofType: "obj")!
         
         var payload = ""
         do {
             try payload = String(contentsOfFile: filePath)
         } catch _ {
+            assert(false, "Could not read file")
         }
         let lines: [String] = payload.componentsSeparatedByString("\n")
         
@@ -146,9 +157,9 @@ class OBJLoader : NSObject {
             default: break
             }
         }
-        
+        debugPrint("  did read file")
         let indicesToVertex = { (indices: VertexIndices) -> Vertex in
-            return Vertex(indexIdentifier: indices.indexIdentifier(),
+            return Vertex(indexIdentifier: indices,
                           position: positions[indices.p - 1],
                           texel: texels[indices.t - 1],
                           normal: normals[indices.n - 1],
@@ -161,27 +172,7 @@ class OBJLoader : NSObject {
         
         
         let tangentFaces = faces.map { (let face) -> Face in
-//            let tangent = calculateTangents(face.v1, v1: face.v2, v2: face.v3)
-//            let e1 = face.v2.position.sub(face.v1.position)
-//            let e2 = face.v3.position.sub(face.v1.position)
-//            var normal = normalVersor(e1, v2: e2)
-//            var potential: GLKVector3 = GLKVector3Make(0, 0, 0)
-//            while true {
-//                potential = GLKVector3Normalize(GLKVector3Make(Float(arc4random()), Float(arc4random()), Float(arc4random())))
-//                let dot1 = dot(face.v1.normal, gv2: potential)
-//                let dot2 = dot(face.v2.normal, gv2: potential)
-//                let dot3 = dot(face.v3.normal, gv2: potential)
-//                
-//                if (dot1 != 0 && dot1 != 1 && dot1 != -1 &&
-//                    dot2 != 0 && dot2 != 1 && dot2 != -1 &&
-//                    dot3 != 0 && dot3 != 1 && dot3 != -1) {
-//                    break
-//                }
-//            }
-//            let independent = Vec3(x: potential.x, y: potential.y, z: potential.z)
-            
             let independent = Vec3(x: 0, y: 0, z: 1)
-            
             let tangent1 = normalVersor(face.v1.normal, v2: independent)
             let tangent2 = normalVersor(face.v2.normal, v2: independent)
             let tangent3 = normalVersor(face.v3.normal, v2: independent)
@@ -205,29 +196,35 @@ class OBJLoader : NSObject {
                         normal: face.v3.normal,
                         tangent: tangent3))
         }
+        debugPrint("  did calculate tangents")
         
         let verticesInOrder = tangentFaces.map{[$0.v1, $0.v2, $0.v3]}.stomp()
+        debugPrint("  did sort vertices")
         
         var vertexDrawOrder: [Int] = []
-        var drawnVertices: [String] = []
+        var drawnVertices: [VertexIndices] = []
         
+//        let count = verticesInOrder.count
+//        var i = 0
         let nonRepeatingVerticesInOrder = verticesInOrder.filter{
-            if (drawnVertices.contains($0.indexIdentifier)) {
-                let existingIndex = drawnVertices.indexOf($0.indexIdentifier)!
-                vertexDrawOrder.append(existingIndex)
-                return false
-            } else {
+//            debugPrint("\(i)/\(count)")
+//            i += 1;
+//            if let index = drawnVertices.indexOf($0.indexIdentifier) {
+//                vertexDrawOrder.append(index)
+//                return false
+//            } else {
                 drawnVertices.append($0.indexIdentifier)
                 vertexDrawOrder.append(drawnVertices.count - 1)
                 return true
-            }
+//            }
         }
-        
+        debugPrint("  did calculate indices")
         let positionsArray = nonRepeatingVerticesInOrder.map{$0.position}.map{[$0.x, $0.y, $0.z]}.stomp()
         let texelsArray = nonRepeatingVerticesInOrder.map{$0.texel}.map{[$0.u, $0.v]}.stomp()
         let normalsArray = nonRepeatingVerticesInOrder.map{$0.normal}.map{[$0.x, $0.y, $0.z]}.stomp()
         let tangentsArray = nonRepeatingVerticesInOrder.map{$0.tangent}.map{[$0!.x, $0!.y, $0!.z]}.stomp()
         
+        debugPrint("did load obj")
         return OBJ(indices: vertexDrawOrder, positions: positionsArray, texels: texelsArray, normals: normalsArray, tangents: tangentsArray)
     }
     
