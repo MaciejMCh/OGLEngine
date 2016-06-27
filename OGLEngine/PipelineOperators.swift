@@ -181,5 +181,5 @@ public func ☒ (lhs: GPUVariable<GLSLTexture>, rhs: GPUVariable<GLSLVec2>) -> G
 }
 
 public func ☒ (lhs: GPUVariable<GLSLTexture>, rhs: GPUVariable<GLSLVec2>) -> FixedGPUEvaluation<GLSLFloat> {
-    return FixedGPUEvaluation<GLSLFloat>(glslCode: "texture2D(\(lhs.name!), \(rhs.name!)).r * 100.0")
+    return FixedGPUEvaluation<GLSLFloat>(glslCode: "texture2D(\(lhs.name!), \(rhs.name!)).r * 80.0")
 }
