@@ -59,6 +59,7 @@ struct GPUUniforms {
     static let lightHalfVector = GPUVariable<GLSLVec3>(name: "uLightHalfVector")
     static let colorMap = GPUVariable<GLSLTexture>(name: "uColorMap")
     static let normalMap = GPUVariable<GLSLTexture>(name: "uNormalMap")
+    static let specularMap = GPUVariable<GLSLTexture>(name: "uSpecularMap")
     static let reflectionColorMap = GPUVariable<GLSLTexture>(name: "uReflectionColorMap")
     static let textureScale = GPUVariable<GLSLFloat>(name: "uTextureScale")
     static let shininess = GPUVariable<GLSLFloat>(name: "uShininess")

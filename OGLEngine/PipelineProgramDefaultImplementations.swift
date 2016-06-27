@@ -102,6 +102,12 @@ extension PipelineProgram {
         }
     }
     
+    func defaultSpecularMappedBindings(specularMapped: SpecularMapped) {
+        if let specularMap = self.pipeline.uniform(GPUUniforms.specularMap) {
+            specularMap.cpuVariableGetter = {(specularMapped.specularMap, 2)}
+        }
+    }
+    
     func defaultReflectiveSurfaceBindings(reflectiveSurface: ReflectiveSurface) {
         if let reflectionColorMap = self.pipeline.uniform(GPUUniforms.reflectionColorMap) {
             reflectionColorMap.cpuVariableGetter = {(reflectiveSurface.reflectionColorMap, 0)}

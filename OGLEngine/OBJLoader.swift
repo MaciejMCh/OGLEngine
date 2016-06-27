@@ -157,7 +157,6 @@ class OBJLoader : NSObject {
             default: break
             }
         }
-        debugPrint("  did read file")
         let indicesToVertex = { (indices: VertexIndices) -> Vertex in
             return Vertex(indexIdentifier: indices,
                           position: positions[indices.p - 1],
@@ -196,10 +195,7 @@ class OBJLoader : NSObject {
                         normal: face.v3.normal,
                         tangent: tangent3))
         }
-        debugPrint("  did calculate tangents")
-        
         let verticesInOrder = tangentFaces.map{[$0.v1, $0.v2, $0.v3]}.stomp()
-        debugPrint("  did sort vertices")
         
         var vertexDrawOrder: [Int] = []
         var drawnVertices: [VertexIndices] = []

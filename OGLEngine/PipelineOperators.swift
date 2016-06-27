@@ -179,3 +179,7 @@ infix operator ☒ { associativity left precedence 200 }
 public func ☒ (lhs: GPUVariable<GLSLTexture>, rhs: GPUVariable<GLSLVec2>) -> GPUEvaluation<GLSLColor> {
     return GPUEvaluation<GLSLColor>(function: GPUFunction<GLSLColor>(signature: "texture2D", input: [lhs, rhs]))
 }
+
+public func ☒ (lhs: GPUVariable<GLSLTexture>, rhs: GPUVariable<GLSLVec2>) -> FixedGPUEvaluation<GLSLFloat> {
+    return FixedGPUEvaluation<GLSLFloat>(glslCode: "texture2D(\(lhs.name!), \(rhs.name!)).r * 100.0")
+}

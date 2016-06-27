@@ -45,6 +45,9 @@ extension PipelineProgram {
         if let normalMapped = renderable as? NormalMapped {
             self.defaultNormalMappedBindings(normalMapped)
         }
+        if let specularMapped = renderable as? SpecularMapped {
+            self.defaultSpecularMappedBindings(specularMapped)
+        }
         if let reflectiveSurface = renderable as? ReflectiveSurface {
             self.defaultReflectiveSurfaceBindings(reflectiveSurface)
         }

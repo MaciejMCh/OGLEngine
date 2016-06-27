@@ -87,7 +87,6 @@
 		C2E17FE71D0F325500CB2D2D /* ReflectiveSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
 		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
-		C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,7 +186,6 @@
 		C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurface.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
 		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
-		C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseOnCliffScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -560,7 +558,6 @@
 			children = (
 				C269D5C41CA898DD00E56E67 /* Scene.swift */,
 				C2EFF1331CC043B200EF1486 /* TestScene.swift */,
-				C2EFF1351CC0443200EF1486 /* HouseOnCliffScene.swift */,
 				C2EA4B851CC83D030036B12D /* SceneLoader.swift */,
 			);
 			name = Scene;
@@ -805,7 +802,6 @@
 				C228FF951D10455C000D6414 /* OscilatingGeometryModel.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */,
-				C2EFF1361CC0443200EF1486 /* HouseOnCliffScene.swift in Sources */,
 				C2229DB91D12F81F007F5856 /* ReflectedPipelineProgram.swift in Sources */,
 				C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,

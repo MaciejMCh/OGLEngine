@@ -32,19 +32,20 @@ protocol NormalMapped {
     var textureScale: Float {get}
 }
 
+protocol SpecularMapped {
+    var specularMap: Texture {get}
+}
+
 protocol ReflectiveSurface {
     var reflectionColorMap: RenderedTexture {get}
 }
 
-protocol BumpMapped: ColorMapped, NormalMapped {
-    
-}
-
-struct CloseShotRenderable: Mesh, Model, BumpMapped {
+struct CloseShotRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped {
     let vao: VAO
     let geometryModel: GeometryModel
     let colorMap: Texture
     let normalMap: Texture
+    let specularMap: Texture
     let textureScale: GLfloat
 }
 

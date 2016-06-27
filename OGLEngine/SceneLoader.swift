@@ -78,7 +78,7 @@ extension Scene {
             debugPrint("vaos ready")
             
             // Light
-            let directionalLight = DirectionalLight(lightDirection:  GLKVector3Normalize(GLKVector3Make(0, -1, -1)))
+            let directionalLight = DirectionalLight(lightDirection:  GLKVector3Normalize(GLKVector3Make(0, 1, -1)))
             
             // Camera
             let camera = RemoteLookAtCamera()
@@ -101,6 +101,8 @@ extension CloseShotRenderable {
         self.colorMap.bind()
         self.normalMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/normal.png")
         self.normalMap.bind()
+        self.specularMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/specular.png")
+        self.specularMap.bind()
         self.textureScale = 1
     }
 }
