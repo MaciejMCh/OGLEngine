@@ -11,10 +11,9 @@ import GLKit
 
 class DirectionalLight {
     
-    var lightDirection : GLKVector3!
+    var lightDirection : GLKVector3
     
-    convenience init(lightDirection: GLKVector3) {
-        self.init()
+    init(lightDirection: GLKVector3 = GLKVector3Make(0, 1, -1)) {
         self.lightDirection = GLKVector3Normalize(lightDirection)
     }
     
