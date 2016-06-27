@@ -18,7 +18,6 @@ extension DefaultPipelines {
         let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
             GPUUniform(variable: GPUUniforms.planeSpaceModelMatrix),
             GPUUniform(variable: GPUUniforms.planeSpaceViewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.textureScale),
             GPUUniform(variable: GPUUniforms.colorMap)
             ])
         let interpolation = ReflectedInterpolation()
@@ -59,7 +58,6 @@ extension DefaultVertexShaders {
                 aNormal: attributes.get(GPUAttributes.normal),
                 uPlaneSpaceModelMatrix: uniforms.get(GPUUniforms.planeSpaceModelMatrix),
                 uPlaneSpaceViewProjectionMatrix: uniforms.get(GPUUniforms.planeSpaceViewProjectionMatrix),
-                uTextureScale: uniforms.get(GPUUniforms.textureScale),
                 vTexel: interpolation.vTexel,
                 vPlaneDistance: interpolation.vPlaneDistance)))
     }
@@ -85,7 +83,6 @@ extension DefaultScopes {
         aNormal: GPUVariable<GLSLVec3>,
         uPlaneSpaceModelMatrix: GPUVariable<GLSLMat4>,
         uPlaneSpaceViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        uTextureScale: GPUVariable<GLSLFloat>,
         vTexel: GPUVariable<GLSLVec2>,
         vPlaneDistance: GPUVariable<GLSLFloat>
         ) -> GPUScope {
@@ -99,12 +96,11 @@ extension DefaultScopes {
         globalScope ⥤ aNormal
         globalScope ⥥ uPlaneSpaceModelMatrix
         globalScope ⥥ uPlaneSpaceViewProjectionMatrix
-        globalScope ⥥ uTextureScale
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vPlaneDistance
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
-        mainScope ✍ vTexel ⬅ aTexel * uTextureScale
+        mainScope ✍ vTexel ⬅ aTexel
         mainScope ↳ planeSpaceModelPosition
         mainScope ✍ planeSpaceModelPosition ⬅ uPlaneSpaceModelMatrix * aPosition
         mainScope ✍ vPlaneDistance ⬅ FixedGPUEvaluation(glslCode: "\(planeSpaceModelPosition.name!).z")

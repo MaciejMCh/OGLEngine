@@ -24,12 +24,10 @@ protocol Colored {
 
 protocol ColorMapped {
     var colorMap: Texture {get}
-    var textureScale: Float {get}
 }
 
 protocol NormalMapped {
     var normalMap: Texture {get}
-    var textureScale: Float {get}
 }
 
 protocol SpecularMapped {
@@ -46,14 +44,12 @@ struct CloseShotRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapp
     let colorMap: Texture
     let normalMap: Texture
     let specularMap: Texture
-    let textureScale: GLfloat
 }
 
 struct MediumShotRenderable: Mesh, Model, ColorMapped {
     let vao: VAO
     let geometryModel: GeometryModel
     let colorMap: Texture
-    let textureScale: Float
 }
 
 struct ReflectiveSurfaceRenderable: Mesh, Model, ReflectiveSurface {
@@ -69,5 +65,4 @@ struct ReflectedRenderable: Mesh, Model, ColorMapped {
     let vao: VAO
     let geometryModel: GeometryModel
     let colorMap: Texture
-    let textureScale: Float
 }

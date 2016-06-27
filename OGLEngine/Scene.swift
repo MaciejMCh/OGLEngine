@@ -30,7 +30,7 @@ class Scene {
     func reflecteds() -> [ReflectedRenderable] {
         var reflecteds: [ReflectedRenderable] = []
         for closeShot in self.closeShots {
-            reflecteds.append(ReflectedRenderable(vao: closeShot.vao, geometryModel: closeShot.geometryModel, colorMap: closeShot.colorMap, textureScale: closeShot.textureScale))
+            reflecteds.append(ReflectedRenderable(vao: closeShot.vao, geometryModel: closeShot.geometryModel, colorMap: closeShot.colorMap))
         }
         return reflecteds
     }

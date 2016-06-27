@@ -86,7 +86,6 @@
 		C2E17FE51D0F1DB500CB2D2D /* AxesGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */; };
 		C2E17FE71D0F325500CB2D2D /* ReflectiveSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
-		C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFF1331CC043B200EF1486 /* TestScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,7 +184,6 @@
 		C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxesGeometryModel.swift; sourceTree = "<group>"; };
 		C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurface.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
-		C2EFF1331CC043B200EF1486 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,7 +555,6 @@
 			isa = PBXGroup;
 			children = (
 				C269D5C41CA898DD00E56E67 /* Scene.swift */,
-				C2EFF1331CC043B200EF1486 /* TestScene.swift */,
 				C2EA4B851CC83D030036B12D /* SceneLoader.swift */,
 			);
 			name = Scene;
@@ -826,7 +823,6 @@
 				C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */,
 				C2E158201CFD9C4A00BB3805 /* PipelineVarying.swift in Sources */,
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,
-				C2EFF1341CC043B200EF1486 /* TestScene.swift in Sources */,
 				C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */,
 				C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,

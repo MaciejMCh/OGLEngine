@@ -20,7 +20,6 @@ extension DefaultPipelines {
             GPUUniform(variable: GPUUniforms.lightHalfVector),
             GPUUniform(variable: GPUUniforms.normalMatrix),
             GPUUniform(variable: GPUUniforms.modelViewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.textureScale),
             GPUUniform(variable: GPUUniforms.shininess),
             GPUUniform(variable: GPUUniforms.lightColor),
             GPUUniform(variable: GPUUniforms.colorMap)
@@ -53,7 +52,6 @@ extension DefaultVertexShaders {
             uLighHalfVector: uniforms.get(GPUUniforms.lightHalfVector),
             uNormalMatrix: uniforms.get(GPUUniforms.normalMatrix),
             uModelViewProjectionMatrix: uniforms.get(GPUUniforms.modelViewProjectionMatrix),
-            uTextureScale: uniforms.get(GPUUniforms.textureScale),
             uShininess: uniforms.get(GPUUniforms.shininess),
             uLightColor: uniforms.get(GPUUniforms.lightColor))
         
@@ -157,7 +155,6 @@ extension DefaultScopes {
         uLighHalfVector: GPUVariable<GLSLVec3>,
         uNormalMatrix: GPUVariable<GLSLMat3>,
         uModelViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        uTextureScale: GPUVariable<GLSLFloat>,
         uShininess: GPUVariable<GLSLFloat>,
         uLightColor: GPUVariable<GLSLColor>
         ) -> GPUScope {
@@ -169,7 +166,6 @@ extension DefaultScopes {
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
         globalScope ⥤ aNormal
-        globalScope ⥥ uTextureScale
         globalScope ⥥ uLighDirection
         globalScope ⥥ uLighHalfVector
         globalScope ⥥ uNormalMatrix
@@ -185,7 +181,7 @@ extension DefaultScopes {
         globalScope ↳ mainFunction
         
         bodyScope ↳ scaledTexel
-        bodyScope ✍ scaledTexel ⬅ aTexel * uTextureScale
+        bodyScope ✍ scaledTexel ⬅ aTexel
         bodyScope ✍ vTexel ⬅ scaledTexel
         bodyScope ✍ vShininess ⬅ uShininess
         bodyScope ✍ vLightColor ⬅ uLightColor

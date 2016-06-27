@@ -88,17 +88,11 @@ extension PipelineProgram {
         if let colorMap = self.pipeline.uniform(GPUUniforms.colorMap) {
             colorMap.cpuVariableGetter = {(colorMapped.colorMap, 0)}
         }
-        if let textureScale = self.pipeline.uniform(GPUUniforms.textureScale) {
-            textureScale.cpuVariableGetter = {colorMapped.textureScale}
-        }
     }
     
     func defaultNormalMappedBindings(normalMapped: NormalMapped) {
         if let normalMap = self.pipeline.uniform(GPUUniforms.normalMap) {
             normalMap.cpuVariableGetter = {(normalMapped.normalMap, 1)}
-        }
-        if let textureScale = self.pipeline.uniform(GPUUniforms.textureScale) {
-            textureScale.cpuVariableGetter = {normalMapped.textureScale}
         }
     }
     

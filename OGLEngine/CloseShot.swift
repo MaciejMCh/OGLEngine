@@ -24,7 +24,6 @@ extension DefaultPipelines {
             GPUUniform(variable: GPUUniforms.normalMatrix),
             GPUUniform(variable: GPUUniforms.eyePosition),
             GPUUniform(variable: GPUUniforms.lightVersor),
-            GPUUniform(variable: GPUUniforms.textureScale),
             GPUUniform(variable: GPUUniforms.colorMap),
             GPUUniform(variable: GPUUniforms.normalMap),
             GPUUniform(variable: GPUUniforms.specularMap),
@@ -51,7 +50,6 @@ extension DefaultVertexShaders {
                                                   uNormalMatrix: uniforms.get(GPUUniforms.normalMatrix),
                                                   uLightVersor: uniforms.get(GPUUniforms.lightVersor),
                                                   uEyePosition: uniforms.get(GPUUniforms.eyePosition),
-                                                  uTextureScale: uniforms.get(GPUUniforms.textureScale),
                                                   uLightColor: uniforms.get(GPUUniforms.lightColor),
                                                   vTBNMatrix: interpolation.vTBNMatrix,
                                                   vTexel: interpolation.vTexel,
@@ -105,7 +103,6 @@ extension DefaultScopes {
         uNormalMatrix: GPUVariable<GLSLMat3>,
         uLightVersor: GPUVariable<GLSLVec3>,
         uEyePosition: GPUVariable<GLSLVec3>,
-        uTextureScale: GPUVariable<GLSLFloat>,
         uLightColor: GPUVariable<GLSLColor>,
         vTBNMatrix: GPUVariable<GLSLMat3>,
         vTexel: GPUVariable<GLSLVec2>,
@@ -131,7 +128,6 @@ extension DefaultScopes {
         globalScope ⥥ uNormalMatrix
         globalScope ⥥ uLightVersor
         globalScope ⥥ uEyePosition
-        globalScope ⥥ uTextureScale
         globalScope ⥥ uLightColor
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vLightVersor
@@ -143,7 +139,7 @@ extension DefaultScopes {
         mainScope ↳ worldSpacePosition
         mainScope ✍ worldSpacePosition ⬅ uModelMatrix * aPosition
         mainScope ✍ glPosition ⬅ uViewProjectionMatrix * worldSpacePosition
-        mainScope ✍ vTexel ⬅ aTexel * uTextureScale
+        mainScope ✍ vTexel ⬅ aTexel
         mainScope ✍ vLightVersor ⬅ uLightVersor
         mainScope ✍ vLightColor ⬅ uLightColor
         mainScope ↳ positionVector

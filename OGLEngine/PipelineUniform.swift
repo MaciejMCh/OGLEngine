@@ -61,7 +61,6 @@ struct GPUUniforms {
     static let normalMap = GPUVariable<GLSLTexture>(name: "uNormalMap")
     static let specularMap = GPUVariable<GLSLTexture>(name: "uSpecularMap")
     static let reflectionColorMap = GPUVariable<GLSLTexture>(name: "uReflectionColorMap")
-    static let textureScale = GPUVariable<GLSLFloat>(name: "uTextureScale")
     static let shininess = GPUVariable<GLSLFloat>(name: "uShininess")
     static let clippingPlane = GPUVariable<GLSLPlane>(name: "uClippingPlane")
     static let lightColor = GPUVariable<GLSLColor>(name: "uLightColor")

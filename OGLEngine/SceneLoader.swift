@@ -103,7 +103,6 @@ extension CloseShotRenderable {
         self.normalMap.bind()
         self.specularMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/specular.png")
         self.specularMap.bind()
-        self.textureScale = 1
     }
 }
 
@@ -114,7 +113,6 @@ extension MediumShotRenderable {
         
         self.colorMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
         self.colorMap.bind()
-        self.textureScale = 1
     }
 }
 
