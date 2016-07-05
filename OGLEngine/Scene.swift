@@ -18,6 +18,9 @@ class Scene {
     
     var directionalLight: DirectionalLight
     var camera: Camera
+    let elucidation = Elucidation()
+    
+    var skyBox: SkyBox
     
     init(closeShots: [CloseShotRenderable], mediumShots: [MediumShotRenderable], reflectiveSurfaces: [ReflectiveSurfaceRenderable], directionalLight: DirectionalLight, camera: Camera) {
         self.closeShots = closeShots
@@ -25,6 +28,7 @@ class Scene {
         self.reflectiveSurfaces = reflectiveSurfaces
         self.directionalLight = directionalLight
         self.camera = camera
+        self.skyBox = SkyBox()
     }
     
     func reflecteds() -> [ReflectedRenderable] {

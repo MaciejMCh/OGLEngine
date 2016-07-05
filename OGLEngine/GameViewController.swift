@@ -15,6 +15,7 @@ class GameViewController: GLKViewController {
     var closeShotProgram: CloseShotPipelineProgram!
     var reflectiveSurfaceProgram: ReflectiveSurfacePipelineProgram!
     var reflectedProgram: ReflectedPipelineProgram!
+    var skyBoxProgram: SkyBoxPipelineProgram!
     
     var context: EAGLContext? = nil
     
@@ -64,9 +65,9 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        let program = CloseShotPipelineProgram()
+//        let program = CloseShotPipelineProgram()
 //        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
-        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
+//        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
 //        self.scene = Scene.loadScene("house_on_cliff")
         self.scene = Scene.MaterialsPreviewScene("Icosphere")
@@ -83,12 +84,16 @@ class GameViewController: GLKViewController {
         self.reflectedProgram = ReflectedPipelineProgram()
         self.reflectedProgram.compile()
         
+        self.skyBoxProgram = SkyBoxPipelineProgram()
+        self.skyBoxProgram.compile()
+        
         glEnable(GLenum(GL_DEPTH_TEST))
         
         Renderer.closeShotProgram = closeShotProgram
         Renderer.mediumShotProgram = mediumShotProgram
         Renderer.reflectiveSurfaceProgram = reflectiveSurfaceProgram
         Renderer.reflectedProgram = reflectedProgram
+        Renderer.skyBoxProgram = skyBoxProgram
     }
     
     func tearDownGL() {

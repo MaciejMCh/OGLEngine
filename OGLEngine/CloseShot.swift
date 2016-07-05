@@ -27,7 +27,10 @@ extension DefaultPipelines {
             GPUUniform(variable: GPUUniforms.colorMap),
             GPUUniform(variable: GPUUniforms.normalMap),
             GPUUniform(variable: GPUUniforms.specularMap),
-            GPUUniform(variable: GPUUniforms.lightColor)
+            GPUUniform(variable: GPUUniforms.lightColor),
+            GPUUniform(variable: GPUUniforms.specularPower),
+            GPUUniform(variable: GPUUniforms.specularWidth),
+            GPUUniform(variable: GPUUniforms.ambiencePower)
             ])
         let interpolation = CloseShotInterpolation()
         let vertexShader = DefaultVertexShaders.CloseShot(attributes, uniforms: uniforms, interpolation: interpolation)
@@ -51,11 +54,18 @@ extension DefaultVertexShaders {
                                                   uLightVersor: uniforms.get(GPUUniforms.lightVersor),
                                                   uEyePosition: uniforms.get(GPUUniforms.eyePosition),
                                                   uLightColor: uniforms.get(GPUUniforms.lightColor),
+                                                  uSpecularPower: uniforms.get(GPUUniforms.specularPower),
+                                                  uSpecularWidth: uniforms.get(GPUUniforms.specularWidth),
+                                                  uAmbiencePower: uniforms.get(GPUUniforms.ambiencePower),
                                                   vTBNMatrix: interpolation.vTBNMatrix,
                                                   vTexel: interpolation.vTexel,
                                                   vLightVersor: interpolation.vLightVersor,
                                                   vHalfVersor: interpolation.vHalfVersor,
-                                                  vLightColor: interpolation.vLightColor)
+                                                  vLightColor: interpolation.vLightColor,
+                                                  vSpecularPower: interpolation.vSpecularPower,
+                                                  vSpecularWidth: interpolation.vSpecularWidth,
+                                                  vAmbiencePower: interpolation.vAmbientLightPower
+        )
         return GPUVertexShader(name: "CloseShot", attributes: attributes, uniforms: uniforms, interpolation: interpolation, function: MainGPUFunction(scope: scope))
     }
 }
@@ -67,11 +77,19 @@ struct CloseShotInterpolation: GPUInterpolation {
     let vLightVersor: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "vLightVersor")
     let vTBNMatrix: GPUVariable<GLSLMat3> = GPUVariable<GLSLMat3>(name: "vTBNMatrix")
     let vLightColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "vLightColor")
+    let vSpecularPower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "vReflectionPower")
+    let vSpecularWidth: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "vReflectionWidth")
+    let vAmbientLightPower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "vAmbientLightPower")
+    
     
     func varyings() -> [GPUVarying] {
         return [GPUVarying(variable: vTexel, precision: .Low),
                 GPUVarying(variable: vLightVersor, precision: .Low),
-                GPUVarying(variable: vLightColor, precision: .Low)]
+                GPUVarying(variable: vLightColor, precision: .Low),
+                GPUVarying(variable: vSpecularPower, precision: .Low),
+                GPUVarying(variable: vSpecularWidth, precision: .Low),
+                GPUVarying(variable: vAmbientLightPower, precision: .Low)
+        ]
     }
 }
 
@@ -86,7 +104,11 @@ extension DefaultFragmentShaders {
                                                     vTexel: interpolation.vTexel,
                                                     vLightVersor: interpolation.vLightVersor,
                                                     vHalfVersor: interpolation.vHalfVersor,
-                                                    vLightColor: interpolation.vLightColor)
+                                                    vLightColor: interpolation.vLightColor,
+                                                    vSpecularPower: interpolation.vSpecularPower,
+                                                    vSpecularWidth: interpolation.vSpecularWidth,
+                                                    vAmbiencePower: interpolation.vAmbientLightPower
+        )
         return GPUFragmentShader(name: "CloseShot", uniforms: uniforms, interpolation: interpolation, function: MainGPUFunction(scope: scope))
     }
 }
@@ -104,11 +126,17 @@ extension DefaultScopes {
         uLightVersor: GPUVariable<GLSLVec3>,
         uEyePosition: GPUVariable<GLSLVec3>,
         uLightColor: GPUVariable<GLSLColor>,
+        uSpecularPower: GPUVariable<GLSLFloat>,
+        uSpecularWidth: GPUVariable<GLSLFloat>,
+        uAmbiencePower: GPUVariable<GLSLFloat>,
         vTBNMatrix: GPUVariable<GLSLMat3>,
         vTexel: GPUVariable<GLSLVec2>,
         vLightVersor: GPUVariable<GLSLVec3>,
         vHalfVersor: GPUVariable<GLSLVec3>,
-        vLightColor: GPUVariable<GLSLColor>
+        vLightColor: GPUVariable<GLSLColor>,
+        vSpecularPower: GPUVariable<GLSLFloat>,
+        vSpecularWidth: GPUVariable<GLSLFloat>,
+        vAmbiencePower: GPUVariable<GLSLFloat>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
@@ -129,13 +157,22 @@ extension DefaultScopes {
         globalScope ⥥ uLightVersor
         globalScope ⥥ uEyePosition
         globalScope ⥥ uLightColor
+        globalScope ⥥ uSpecularPower
+        globalScope ⥥ uSpecularWidth
+        globalScope ⥥ uAmbiencePower
         globalScope ⟿↘ vTexel
         globalScope ⟿↘ vLightVersor
         globalScope ⟿↘ vHalfVersor
         globalScope ⟿↘ vTBNMatrix
         globalScope ⟿↘ vLightColor
+        globalScope ⟿↘ vSpecularPower
+        globalScope ⟿↘ vSpecularWidth
+        globalScope ⟿↘ vAmbiencePower
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
+        mainScope ✍ vSpecularPower ⬅ uSpecularPower
+        mainScope ✍ vSpecularWidth ⬅ uSpecularWidth
+        mainScope ✍ vAmbiencePower ⬅ uAmbiencePower
         mainScope ↳ worldSpacePosition
         mainScope ✍ worldSpacePosition ⬅ uModelMatrix * aPosition
         mainScope ✍ glPosition ⬅ uViewProjectionMatrix * worldSpacePosition
@@ -160,7 +197,10 @@ extension DefaultScopes {
         vTexel: GPUVariable<GLSLVec2>,
         vLightVersor: GPUVariable<GLSLVec3>,
         vHalfVersor: GPUVariable<GLSLVec3>,
-        vLightColor: GPUVariable<GLSLColor>
+        vLightColor: GPUVariable<GLSLColor>,
+        vSpecularPower: GPUVariable<GLSLFloat>,
+        vSpecularWidth: GPUVariable<GLSLFloat>,
+        vAmbiencePower: GPUVariable<GLSLFloat>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
@@ -170,15 +210,18 @@ extension DefaultScopes {
         let fixedNormal = GPUVariable<GLSLVec3>(name: "fixedNormal")
         let fullDiffuseColor = GPUVariable<GLSLColor>(name: "fullDiffuseColor")
         let lightColor = GPUVariable<GLSLColor>(name: "lightColor")
-        let shininess = GPUVariable<GLSLFloat>(name: "shininess")
+        let specularSample = GPUVariable<GLSLFloat>(name: "specularSample")
         let normalMapSample = GPUVariable<GLSLColor>(name: "normalMapSample")
-        let phongScope = DefaultScopes.PhongReflectionColorScope(
+        let phongScope = DefaultScopes.AdvancedPhongReflectionColorScope(
             fixedNormal,
             lightVector: lightVersor,
             halfVector: halfVersor,
             fullDiffuseColor: fullDiffuseColor,
             lightColor: lightColor,
-            shininess: shininess,
+            specularSample: specularSample,
+            specularPower: vSpecularPower,
+            specularWidth: vSpecularWidth,
+            ambiencePower: vAmbiencePower,
             phongColor: glFragColor)
         
         globalScope ⟿↘ vTexel
@@ -186,6 +229,9 @@ extension DefaultScopes {
         globalScope ⟿↘ vHalfVersor
         globalScope ⟿↘ vTBNMatrix
         globalScope ⟿↘ vLightColor
+        globalScope ⟿↘ vSpecularPower
+        globalScope ⟿↘ vSpecularWidth
+        globalScope ⟿↘ vAmbiencePower
         globalScope ⥥ uColorMap
         globalScope ⥥ uNormalMap
         globalScope ⥥ uSpecularMap
@@ -199,8 +245,8 @@ extension DefaultScopes {
         mainScope ✍ fullDiffuseColor ⬅ uColorMap ☒ vTexel
         mainScope ↳↘ lightColor
         mainScope ✍ lightColor ⬅ vLightColor
-        mainScope ↳↘ shininess
-        mainScope ✍ shininess ⬅ uSpecularMap ☒ vTexel
+        mainScope ↳↘ specularSample
+        mainScope ✍ specularSample ⬅ uSpecularMap ☒ vTexel
         mainScope ↳↘ normalMapSample
         mainScope ✍ normalMapSample ⬅ uNormalMap ☒ vTexel
         mainScope ↳↘ fixedNormal

@@ -78,4 +78,54 @@ extension DefaultScopes {
         
         return scope
     }
+    
+    static func AdvancedPhongReflectionColorScope(
+        normalVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "normalVector"),
+        lightVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "lightVector"),
+        halfVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "halfVector"),
+        fullDiffuseColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "fullDiffuseColor"),
+        lightColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "lightColor"),
+        specularSample: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "specularSample"),
+        specularPower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "specularPower"),
+        specularWidth: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "specularWidth"),
+        ambiencePower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "ambiencePower"),
+        phongColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "phongColor")
+        ) -> GPUScope {
+        
+        let scope = GPUScope()
+        let ndl = GPUVariable<GLSLFloat>(name: "ndl")
+        let ndh = GPUVariable<GLSLFloat>(name: "ndh")
+        let shininess = GPUVariable<GLSLFloat>(name: "shininess")
+        let reflectionPower = GPUVariable<GLSLFloat>(name: "reflectionPower")
+        let phongFactorsScope = DefaultScopes.PhongFactorsScope(normalVector,
+                                                                lightVector: lightVector,
+                                                                halfVector: halfVector,
+                                                                ndl: ndl,
+                                                                ndh: ndh)
+        
+        let diffuseColor = GPUVariable<GLSLColor>(name: "diffuseColor")
+        let specularColor = GPUVariable<GLSLColor>(name: "specularColor")
+        let ambientColor = GPUVariable<GLSLColor>(name: "ambientColor")
+        
+        scope ↳↘ ndl
+        scope ↳↘ ndh
+        scope ↳↘ reflectionPower
+        scope ↳↘ diffuseColor
+        scope ↳↘ specularColor
+        scope ↳↘ ambientColor
+        scope ⎘ phongFactorsScope
+        scope ↳↘ shininess
+        scope ✍ shininess ⬅ specularSample * specularPower
+        scope ✍ diffuseColor ⬅ fullDiffuseColor * ndl
+        scope ✍ reflectionPower ⬅ (ndh ^ shininess)
+        scope ✍ reflectionPower ⬅ reflectionPower * specularWidth
+        scope ✍ specularColor ⬅ lightColor * reflectionPower
+        scope ✍ ambientColor ⬅ lightColor * ambiencePower
+        scope ✍ phongColor ⬅ diffuseColor ✖ specularColor
+        scope ✍ phongColor ⬅ phongColor ✖ ambientColor
+        
+        return scope
+    }
+    
+    
 }

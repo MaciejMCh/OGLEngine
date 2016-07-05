@@ -14,10 +14,14 @@ struct Renderer {
     static var mediumShotProgram: MediumShotPipelineProgram!
     static var reflectiveSurfaceProgram: ReflectiveSurfacePipelineProgram!
     static var reflectedProgram: ReflectedPipelineProgram!
+    static var skyBoxProgram: SkyBoxPipelineProgram!
     
     static func render(scene: Scene) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+        
+        glUseProgram(self.skyBoxProgram.glName)
+        self.skyBoxProgram.render([scene.skyBox], scene: scene)
         
         glUseProgram(self.mediumShotProgram.glName)
         self.mediumShotProgram.render(scene.mediumShots, scene: scene)

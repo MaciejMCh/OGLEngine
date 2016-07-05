@@ -94,7 +94,7 @@ extension Scene {
 
 extension CloseShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
-        self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
+        self.vao = VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/" + loadedRenderable.mesh))
         self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         
         self.colorMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
@@ -108,7 +108,7 @@ extension CloseShotRenderable {
 
 extension MediumShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
-        self.vao = VAO(obj: OBJLoader.objFromFileNamed(loadedRenderable.mesh))
+        self.vao = VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/" + loadedRenderable.mesh))
         self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         
         self.colorMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
@@ -118,7 +118,7 @@ extension MediumShotRenderable {
 
 extension ReflectiveSurfaceRenderable {
     init(loadedRenderable: LoadedRenderable) {
-        let obj = OBJLoader.objFromFileNamed(loadedRenderable.mesh)
+        let obj = OBJLoader.objFromFileNamed("3dAssets/meshes/" + loadedRenderable.mesh)
         self.vao = VAO(obj: obj)
         self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         self.reflectionColorMap = RenderedTexture()

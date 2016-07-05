@@ -170,6 +170,10 @@ public func ^ (lhs: GPUVariable<GLSLFloat>, rhs: GPUVariable<GLSLFloat>) -> GPUE
     return GPUEvaluation<GLSLFloat>(function: GPUFunction<GLSLFloat>(signature: "pow", input: [lhs, rhs]))
 }
 
+public func * (lhs: GPUVariable<GLSLFloat>, rhs: GPUVariable<GLSLFloat>) -> GPUEvaluation<GLSLFloat> {
+    return GPUInfixEvaluation<GLSLFloat>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+}
+
 public func > (lhs: GPUVariable<GLSLFloat>, rhs: GPUVariable<GLSLFloat>) -> FixedGPUInstruction {
     return FixedGPUInstruction(code: "if (\(lhs.name!) < \(rhs.name!)) {discard;}")
 }

@@ -11,7 +11,7 @@ import GLKit
 
 extension Scene {
     static func MaterialsPreviewScene(meshName: String) -> Scene {
-        let vao = VAO(obj: OBJLoader.objFromFileNamed(meshName))
+        let vao = VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/" + meshName))
         
         var materialNames: [String] = []
         do {

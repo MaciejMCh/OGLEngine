@@ -20,10 +20,15 @@
 		C228FF931D103DC9000D6414 /* SphericalLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */; };
 		C228FF951D10455C000D6414 /* OscilatingGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C228FF941D10455C000D6414 /* OscilatingGeometryModel.swift */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
+		C22DCFAD1D2C1A9F00D04268 /* skybox.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DCFAB1D2C1A9F00D04268 /* skybox.png */; };
+		C22DCFAE1D2C1A9F00D04268 /* skybox.obj in Resources */ = {isa = PBXBuildFile; fileRef = C22DCFAC1D2C1A9F00D04268 /* skybox.obj */; };
+		C22DCFB01D2C1C0200D04268 /* SkyBoxPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */; };
+		C22DCFB21D2C23E200D04268 /* SkyBoxPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */; };
 		C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */; };
 		C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */; };
 		C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */; };
 		C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25642831D0EDEDA0043EE6E /* TangentSpace.swift */; };
+		C25A60721D2B9D410016FB7B /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A60711D2B9D410016FB7B /* SkyBox.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */; };
 		C267A7021D11F03C00ACBAD2 /* ReflectedCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */; };
@@ -87,6 +92,7 @@
 		C2E17FE51D0F1DB500CB2D2D /* AxesGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */; };
 		C2E17FE71D0F325500CB2D2D /* ReflectiveSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
+		C2FF72CD1D27BE6800A44D1E /* Lighting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF72CC1D27BE6800A44D1E /* Lighting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,10 +121,15 @@
 		C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphericalLookAtCamera.swift; sourceTree = "<group>"; };
 		C228FF941D10455C000D6414 /* OscilatingGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OscilatingGeometryModel.swift; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
+		C22DCFAB1D2C1A9F00D04268 /* skybox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skybox.png; path = Resources/SkyBox/skybox.png; sourceTree = "<group>"; };
+		C22DCFAC1D2C1A9F00D04268 /* skybox.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox.obj; path = Resources/SkyBox/skybox.obj; sourceTree = "<group>"; };
+		C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipeline.swift; sourceTree = "<group>"; };
+		C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipelineProgram.swift; sourceTree = "<group>"; };
 		C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLDefaultVariables.swift; sourceTree = "<group>"; };
 		C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShot.swift; sourceTree = "<group>"; };
 		C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongReflection.swift; sourceTree = "<group>"; };
 		C25642831D0EDEDA0043EE6E /* TangentSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangentSpace.swift; sourceTree = "<group>"; };
+		C25A60711D2B9D410016FB7B /* SkyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBox.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteLookAtCamera.swift; sourceTree = "<group>"; };
 		C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedCamera.swift; sourceTree = "<group>"; };
@@ -186,6 +197,7 @@
 		C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxesGeometryModel.swift; sourceTree = "<group>"; };
 		C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurface.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
+		C2FF72CC1D27BE6800A44D1E /* Lighting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lighting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,8 +263,18 @@
 				C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */,
 				C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */,
 				C2229DBA1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift */,
+				C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */,
 			);
 			name = Concrete;
+			sourceTree = "<group>";
+		};
+		C22DCFAA1D2C1A6100D04268 /* SkyBox */ = {
+			isa = PBXGroup;
+			children = (
+				C22DCFAB1D2C1A9F00D04268 /* skybox.png */,
+				C22DCFAC1D2C1A9F00D04268 /* skybox.obj */,
+			);
+			name = SkyBox;
 			sourceTree = "<group>";
 		};
 		C23FC5541CFDE6A100DE4A40 /* Defaults */ = {
@@ -275,6 +297,7 @@
 				C27E42C31D07192000FC9632 /* PhongV2.swift */,
 				C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */,
 				C2C0F4941D12D3A400CAD214 /* Reflected.swift */,
+				C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -286,6 +309,15 @@
 				C25642831D0EDEDA0043EE6E /* TangentSpace.swift */,
 			);
 			name = Functionalities;
+			sourceTree = "<group>";
+		};
+		C25A606E1D2B9C2B0016FB7B /* VAO */ = {
+			isa = PBXGroup;
+			children = (
+				C269D5E11CA898E900E56E67 /* VAO.swift */,
+				C25A60711D2B9D410016FB7B /* SkyBox.swift */,
+			);
+			name = VAO;
 			sourceTree = "<group>";
 		};
 		C269D5811CA8981D00E56E67 = {
@@ -356,9 +388,9 @@
 		C269D5E51CA89A5400E56E67 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C25A606E1D2B9C2B0016FB7B /* VAO */,
 				C2EFF1321CC0439E00EF1486 /* Scene */,
 				C20EA33B1CA9BC0C0076F979 /* GPUDomain */,
-				C269D5E11CA898E900E56E67 /* VAO.swift */,
 				C29755761CEA21E3001D8E6D /* Renderer.swift */,
 			);
 			name = Core;
@@ -377,6 +409,7 @@
 			children = (
 				C269D5B71CA898DD00E56E67 /* DirectionalLight.swift */,
 				C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */,
+				C2FF72CC1D27BE6800A44D1E /* Lighting.swift */,
 			);
 			name = Light;
 			sourceTree = "<group>";
@@ -429,6 +462,7 @@
 		C269D5EC1CA89B1300E56E67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C22DCFAA1D2C1A6100D04268 /* SkyBox */,
 				C22824BE1CCD93AC006EBCE3 /* 3dAssets */,
 				C269D5F41CA89BBA00E56E67 /* Shaders */,
 				C269D5EF1CA89B5800E56E67 /* Utilities */,
@@ -651,7 +685,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C22DCFAE1D2C1A9F00D04268 /* skybox.obj in Resources */,
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
+				C22DCFAD1D2C1A9F00D04268 /* skybox.png in Resources */,
 				C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */,
 				C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */,
 				C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */,
@@ -772,6 +808,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C26CD52D1D0AC83D007105EB /* LookAtCamera.swift in Sources */,
+				C22DCFB21D2C23E200D04268 /* SkyBoxPipelineProgram.swift in Sources */,
 				C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */,
 				C269D5D01CA898DD00E56E67 /* GeometryModel.swift in Sources */,
 				C2CD6A831CEC877F001F3A7E /* Reflection.swift in Sources */,
@@ -818,11 +855,13 @@
 				C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */,
 				C21C51CF1D02FA2000F41A61 /* MediumShotPipelineProgram.swift in Sources */,
 				C2D3A4A21D21C63600C1CB1A /* MaterialsPreviewScene.swift in Sources */,
+				C2FF72CD1D27BE6800A44D1E /* Lighting.swift in Sources */,
 				C269D5CB1CA898DD00E56E67 /* BasicCamera.swift in Sources */,
 				C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */,
 				C269D5D21CA898DD00E56E67 /* OBJ.swift in Sources */,
 				C2E1581E1CFD9C1800BB3805 /* PipelineFunction.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
+				C22DCFB01D2C1C0200D04268 /* SkyBoxPipeline.swift in Sources */,
 				C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */,
 				C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */,
 				C2E158201CFD9C4A00BB3805 /* PipelineVarying.swift in Sources */,
@@ -834,6 +873,7 @@
 				C2B188F31CF1CC8B008BB626 /* PipelineModels.swift in Sources */,
 				C2E1581C1CFD9BE800BB3805 /* PipelineShader.swift in Sources */,
 				C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */,
+				C25A60721D2B9D410016FB7B /* SkyBox.swift in Sources */,
 				C269D5DE1CA898DD00E56E67 /* StaticGeometryModel.swift in Sources */,
 				C2B188FD1CF20844008BB626 /* GLSLParser.swift in Sources */,
 			);

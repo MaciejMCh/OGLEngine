@@ -130,7 +130,7 @@ class OBJLoader : NSObject {
     
     class func objFromFileNamed(fileName: String) -> OBJ {
         debugPrint(" will load obj")
-        let filePath: String = NSBundle.mainBundle().pathForResource("3dAssets/meshes/" + fileName, ofType: "obj")!
+        let filePath: String = NSBundle.mainBundle().pathForResource(fileName, ofType: "obj")!
         
         var payload = ""
         do {

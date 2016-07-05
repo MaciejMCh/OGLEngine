@@ -36,6 +36,7 @@ extension PipelineProgram {
     
     func performDefaultPasses(renderable: RenderableType, scene: Scene) {
         self.defaultSceneBindings(scene)
+        self.defaultElucidationBindings(scene.elucidation)
         if let model = renderable as? Model {
             self.defaultModelBindings(model, scene: scene)
         }
@@ -50,6 +51,9 @@ extension PipelineProgram {
         }
         if let reflectiveSurface = renderable as? ReflectiveSurface {
             self.defaultReflectiveSurfaceBindings(reflectiveSurface)
+        }
+        if let skyBox = renderable as? SkyBox {
+            self.defaultSkyBoxBindings(skyBox)
         }
     }
     

@@ -107,4 +107,23 @@ extension PipelineProgram {
             reflectionColorMap.cpuVariableGetter = {(reflectiveSurface.reflectionColorMap, 0)}
         }
     }
+    
+    func defaultSkyBoxBindings(skyBox: SkyBox)  {
+        if let rotatedProjectionmatrix = self.pipeline.uniform(GPUUniforms.rotatedProjectionMatrix) {
+            rotatedProjectionmatrix.cpuVariableGetter = {GLKMatrix4Identity}
+        }
+    }
+    
+    func defaultElucidationBindings(elucidation: Elucidation) {
+        if let specularPower = self.pipeline.uniform(GPUUniforms.specularPower) {
+            specularPower.cpuVariableGetter = {elucidation.specularPower}
+        }
+        if let specularWidth = self.pipeline.uniform(GPUUniforms.specularWidth) {
+            specularWidth.cpuVariableGetter = {elucidation.specularWidth}
+        }
+        if let ambiencePower = self.pipeline.uniform(GPUUniforms.ambiencePower) {
+            ambiencePower.cpuVariableGetter = {elucidation.ambiencePower}
+        }
+        
+    }
 }

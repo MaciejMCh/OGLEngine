@@ -49,6 +49,7 @@ class GPUUniform<T: GLSLType> : AnyGPUUniform {
 struct GPUUniforms {
     static let modelMatrix = GPUVariable<GLSLMat4>(name: "uModelMatrix")
     static let viewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uViewProjectionMatrix")
+    static let rotatedProjectionMatrix = GPUVariable<GLSLMat4>(name: "uRotatedProjectionMatrix")
     static let modelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uModelViewProjectionMatrix")
     static let normalMatrix = GPUVariable<GLSLMat3>(name: "uNormalMatrix")
     static let tangentNormalMatrix = GPUVariable<GLSLMat3>(name: "uTangentNormalMatrix")
@@ -66,5 +67,9 @@ struct GPUUniforms {
     static let lightColor = GPUVariable<GLSLColor>(name: "uLightColor")
     static let planeSpaceModelMatrix = GPUVariable<GLSLMat4>(name: "uPlaneSpaceModelMatrix")
     static let planeSpaceViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uPlaneSpaceViewProjectionMatrix")
+    static let specularPower = GPUVariable<GLSLFloat>(name: "uSpecularPower")
+    static let specularWidth = GPUVariable<GLSLFloat>(name: "uSpecularWidth")
+    static let ambiencePower = GPUVariable<GLSLFloat>(name: "uAmbiencePower")
+    
     
 }
