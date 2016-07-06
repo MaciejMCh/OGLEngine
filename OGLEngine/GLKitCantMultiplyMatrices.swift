@@ -90,6 +90,16 @@ func trimToMat3(matrix: GLKMatrix4) -> GLKMatrix3 {
                           m.m20, m.m21, m.m22)
 }
 
+func trimToRotation(matrix: GLKMatrix4) -> GLKMatrix4 {
+    let m = matrix
+    return GLKMatrix4Make(m.m00, m.m01, m.m02, 0,
+                          m.m10, m.m11, m.m12, 0,
+                          m.m20, m.m21, m.m22, 0,
+                          0, 0, 0, 1)
+}
+
+
+
 func transpose(matrix: GLKMatrix3) -> GLKMatrix3 {
     let m = matrix
     return GLKMatrix3Make(m.m00, m.m10, m.m20,

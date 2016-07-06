@@ -29,6 +29,7 @@
 		C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */; };
 		C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25642831D0EDEDA0043EE6E /* TangentSpace.swift */; };
 		C25A60721D2B9D410016FB7B /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A60711D2B9D410016FB7B /* SkyBox.swift */; };
+		C2611AE21D2C87C200447E37 /* CameraRotatedProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2611AE11D2C87C200447E37 /* CameraRotatedProjection.swift */; };
 		C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */; };
 		C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */; };
 		C267A7021D11F03C00ACBAD2 /* ReflectedCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */; };
@@ -130,6 +131,7 @@
 		C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongReflection.swift; sourceTree = "<group>"; };
 		C25642831D0EDEDA0043EE6E /* TangentSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangentSpace.swift; sourceTree = "<group>"; };
 		C25A60711D2B9D410016FB7B /* SkyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBox.swift; sourceTree = "<group>"; };
+		C2611AE11D2C87C200447E37 /* CameraRotatedProjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRotatedProjection.swift; sourceTree = "<group>"; };
 		C2631C311CB9B4860016B968 /* GPUPassFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUPassFunctions.swift; sourceTree = "<group>"; };
 		C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteLookAtCamera.swift; sourceTree = "<group>"; };
 		C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectedCamera.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				C263847C1D103928004BE6E1 /* RemoteLookAtCamera.swift */,
 				C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */,
 				C267A7011D11F03C00ACBAD2 /* ReflectedCamera.swift */,
+				C2611AE11D2C87C200447E37 /* CameraRotatedProjection.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -862,6 +865,7 @@
 				C2E1581E1CFD9C1800BB3805 /* PipelineFunction.swift in Sources */,
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
 				C22DCFB01D2C1C0200D04268 /* SkyBoxPipeline.swift in Sources */,
+				C2611AE21D2C87C200447E37 /* CameraRotatedProjection.swift in Sources */,
 				C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */,
 				C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */,
 				C2E158201CFD9C4A00BB3805 /* PipelineVarying.swift in Sources */,
