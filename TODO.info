@@ -1,10 +1,9 @@
 - Move all calculations to GameViewController.update method
-- Write new indexification algorithm
+- Write new indexification algorithm (find repeating occurences in invered array)
 - GPUPipeline, Program validation: Find error cases before program compiles, because OpenGL logger doesn't precise error:
 	- Failed to link program: Varying is not declared in one of shaders
 	- Can't fin uniform location: Varying or uniform is never assigned
 - OpenGL ES3: Vertices are drawn in wrong order
 - Get rid of old GPU* classes (ie Uniform, Attribute enums)
 	- Cleanup
-- Change DirectionalLight to Weather model, which includes: light direction, ambient light, specular function with scaling component (related or not to shininess), light color
-- Wall material is horrible!!!
+- Implement lighting idea from sketch
