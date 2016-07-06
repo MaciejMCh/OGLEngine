@@ -11,7 +11,7 @@ import Foundation
 extension SkyBox {
     init() {
         vao = VAO(obj: OBJLoader.objFromFileNamed("skybox"))
-        colorMap = ImageTexture(imageNamed: "skybox")
+        colorMap = ImageTexture(imageNamed: "skybox.png")
         colorMap.bind()
     }
 }

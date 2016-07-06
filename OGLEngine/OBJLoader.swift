@@ -103,7 +103,12 @@ public struct VertexIndices: Equatable {
         let c = line.componentsSeparatedByString("/")
         self.p = Int(c[0])!
         self.t = Int(c[1])!
-        self.n = Int(c[2])!
+        
+        if c.count == 3 {
+            self.n = Int(c[2])!
+        } else {
+            self.n = 1
+        }
     }
 }
 
@@ -157,6 +162,11 @@ class OBJLoader : NSObject {
             default: break
             }
         }
+        
+        if normals.count == 0 {
+            normals = [Vec3(x: 0, y: 0, z: 0)]
+        }
+        
         let indicesToVertex = { (indices: VertexIndices) -> Vertex in
             return Vertex(indexIdentifier: indices,
                           position: positions[indices.p - 1],
