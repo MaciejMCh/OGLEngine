@@ -22,10 +22,6 @@ class FrameBufferViewerPipelineProgram: PipelineProgram {
     }
     
     func willRender(renderable: RenderableType, scene: Scene) {
-//        let g: () -> RenderableType.CP = {
-//            return (texture: renderable.frameBufferRenderedTexture, location: 0)
-//        }
         self.pipeline.uniform(GPUUniforms.colorMap).cpuVariableGetter = {(texture: renderable.frameBufferRenderedTexture, index: 0)}
-//        pipeline.uniform(GPUUniforms.colorMap).cpuVariableGetter = {(texture: renderable.frameBufferRenderedTexture, location: 0)}
     }
 }
