@@ -108,7 +108,7 @@ extension PipelineProgram {
         }
     }
     
-    func defaultSkyBoxBindings(skyBox: SkyBox, scene: Scene)  {
+    func defaultSkyBoxBindings(skyBox: SkyBoxRenderable, scene: Scene)  {
         if let rotatedProjectionmatrix = self.pipeline.uniform(GPUUniforms.rotatedProjectionMatrix) {
             rotatedProjectionmatrix.cpuVariableGetter = {scene.camera.rotatedProjectionMatrix()}
         }

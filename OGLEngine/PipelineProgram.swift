@@ -52,8 +52,8 @@ extension PipelineProgram {
         if let reflectiveSurface = renderable as? ReflectiveSurface {
             self.defaultReflectiveSurfaceBindings(reflectiveSurface)
         }
-        if let skyBox = renderable as? SkyBox {
-            self.defaultSkyBoxBindings(skyBox, scene: scene)
+        if let skyBoxRenderable = renderable as? SkyBoxRenderable {
+            self.defaultSkyBoxBindings(skyBoxRenderable, scene: scene)
         }
     }
     

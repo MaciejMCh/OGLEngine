@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension SkyBox {
+extension SkyBoxRenderable {
     init() {
         vao = VAO(obj: OBJLoader.objFromFileNamed("skybox"))
         colorMap = ImageTexture(imageNamed: "skybox.png")

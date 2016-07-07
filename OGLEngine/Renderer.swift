@@ -15,6 +15,7 @@ struct Renderer {
     static var reflectiveSurfaceProgram: ReflectiveSurfacePipelineProgram!
     static var reflectedProgram: ReflectedPipelineProgram!
     static var skyBoxProgram: SkyBoxPipelineProgram!
+    static var frameBufferViewerProgram: FrameBufferViewerPipelineProgram!
     
     static func render(scene: Scene) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
@@ -47,6 +48,16 @@ struct Renderer {
         self.reflectedProgram.camera = ReflectedCamera(camera: scene.camera as! LookAtCamera, reflectionPlane: reflectionPlane)
         self.reflectedProgram.reflectionPlane = reflectionPlane
         self.reflectedProgram.render(scene.reflecteds(), scene: scene)
+    }
+    
+    static func renderFrameBufferPreview(scene: Scene) {
+        
+        self.frameBufferViewerProgram.renderable.frameBufferRenderedTexture.withFbo {
+            Renderer.render(scene)
+        }
+        
+        glUseProgram(self.frameBufferViewerProgram.glName)
+        self.frameBufferViewerProgram.render([self.frameBufferViewerProgram.renderable], scene: scene)
     }
     
 }

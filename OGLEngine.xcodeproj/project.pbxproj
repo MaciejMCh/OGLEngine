@@ -78,6 +78,9 @@
 		C2B188FD1CF20844008BB626 /* GLSLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188FC1CF20844008BB626 /* GLSLParser.swift */; };
 		C2B188FF1CF2799E008BB626 /* PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */; };
 		C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */; };
+		C2C0BF3A1D2D7B6D0035D4A7 /* FrameBufferViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0BF391D2D7B6D0035D4A7 /* FrameBufferViewer.swift */; };
+		C2C0BF3C1D2D81BF0035D4A7 /* FrameBufferViewerPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0BF3B1D2D81BF0035D4A7 /* FrameBufferViewerPipelineProgram.swift */; };
+		C2C0BF3E1D2D9B330035D4A7 /* preview.obj in Resources */ = {isa = PBXBuildFile; fileRef = C2C0BF3D1D2D9B330035D4A7 /* preview.obj */; };
 		C2C0F4951D12D3A400CAD214 /* Reflected.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C0F4941D12D3A400CAD214 /* Reflected.swift */; };
 		C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */; };
 		C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */; };
@@ -184,6 +187,9 @@
 		C2B188FC1CF20844008BB626 /* GLSLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLSLParser.swift; sourceTree = "<group>"; };
 		C2B188FE1CF2799E008BB626 /* PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineProgram.swift; sourceTree = "<group>"; };
 		C2BD601C1CEB5E2400B51ECD /* RemoteProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteProperties.swift; sourceTree = "<group>"; };
+		C2C0BF391D2D7B6D0035D4A7 /* FrameBufferViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameBufferViewer.swift; sourceTree = "<group>"; };
+		C2C0BF3B1D2D81BF0035D4A7 /* FrameBufferViewerPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameBufferViewerPipelineProgram.swift; sourceTree = "<group>"; };
+		C2C0BF3D1D2D9B330035D4A7 /* preview.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = preview.obj; path = Resources/preview.obj; sourceTree = "<group>"; };
 		C2C0F4941D12D3A400CAD214 /* Reflected.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflected.swift; sourceTree = "<group>"; };
 		C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.vsh; path = Shaders/Reflected.vsh; sourceTree = "<group>"; };
 		C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.fsh; path = Shaders/Reflected.fsh; sourceTree = "<group>"; };
@@ -266,6 +272,7 @@
 				C2229DB81D12F81F007F5856 /* ReflectedPipelineProgram.swift */,
 				C2229DBA1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift */,
 				C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */,
+				C2C0BF3B1D2D81BF0035D4A7 /* FrameBufferViewerPipelineProgram.swift */,
 			);
 			name = Concrete;
 			sourceTree = "<group>";
@@ -293,6 +300,7 @@
 		C23FC55C1CFDE87C00DE4A40 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
+				C2C0BF391D2D7B6D0035D4A7 /* FrameBufferViewer.swift */,
 				C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */,
 				C26A3F8B1CFEC8ED0080AE12 /* CloseShot.swift */,
 				C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */,
@@ -465,6 +473,7 @@
 		C269D5EC1CA89B1300E56E67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C2C0BF3D1D2D9B330035D4A7 /* preview.obj */,
 				C22DCFAA1D2C1A6100D04268 /* SkyBox */,
 				C22824BE1CCD93AC006EBCE3 /* 3dAssets */,
 				C269D5F41CA89BBA00E56E67 /* Shaders */,
@@ -694,6 +703,7 @@
 				C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */,
 				C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */,
 				C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */,
+				C2C0BF3E1D2D9B330035D4A7 /* preview.obj in Resources */,
 				C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */,
 				C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */,
 				C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */,
@@ -819,6 +829,7 @@
 				C26CD52F1D0ACA5E007105EB /* 3DIntegrator.swift in Sources */,
 				C267A7021D11F03C00ACBAD2 /* ReflectedCamera.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
+				C2C0BF3A1D2D7B6D0035D4A7 /* FrameBufferViewer.swift in Sources */,
 				C2AFAE661CFC4DFD00C2F8D0 /* PipelineUniform.swift in Sources */,
 				C21C51D11D02FA8000F41A61 /* CloseShotPipelineProgram.swift in Sources */,
 				C269D5D71CA898DD00E56E67 /* RemoteControlledCamera.swift in Sources */,
@@ -839,6 +850,7 @@
 				C2E17FE51D0F1DB500CB2D2D /* AxesGeometryModel.swift in Sources */,
 				C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */,
 				C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */,
+				C2C0BF3C1D2D81BF0035D4A7 /* FrameBufferViewerPipelineProgram.swift in Sources */,
 				C228FF951D10455C000D6414 /* OscilatingGeometryModel.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */,

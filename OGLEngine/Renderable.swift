@@ -67,7 +67,12 @@ struct ReflectedRenderable: Mesh, Model, ColorMapped {
     let colorMap: Texture
 }
 
-struct SkyBox: Mesh, ColorMapped {
+struct SkyBoxRenderable: Mesh, ColorMapped {
     let vao: VAO
     let colorMap: Texture
+}
+
+struct FrameBufferViewerRenderable: Mesh {
+    let vao: VAO
+    let frameBufferRenderedTexture: RenderedTexture
 }

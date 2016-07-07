@@ -79,6 +79,10 @@ public func ⬅ <T>(lhs: GPUVariable<T>, rhs: GPUEvaluation<T>) -> GPUInstructio
     return GPUEvaluationAssignment(assignee: lhs, assignment: rhs)
 }
 
+public func ⬅ (lhs: GPUVariable<GLSLVec4>, rhs: GPUVariable<GLSLVec3>) -> FixedGPUEvaluation<GLSLVec4> {
+    return FixedGPUEvaluation(glslCode: "\(lhs.name!) = vec4(\(rhs.name!), 1.0);")
+}
+
 // MARK: Function
 
 // Vector Operations

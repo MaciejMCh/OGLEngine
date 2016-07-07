@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class SkyBoxPipelineProgram: PipelineProgram {
-    typealias RenderableType = SkyBox
+    typealias RenderableType = SkyBoxRenderable
     var glName: GLuint = 0
     var pipeline = DefaultPipelines.SkyBox()
 }
