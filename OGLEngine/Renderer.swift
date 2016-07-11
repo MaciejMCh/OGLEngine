@@ -50,10 +50,37 @@ struct Renderer {
         self.reflectedProgram.render(scene.reflecteds(), scene: scene)
     }
     
+    static func renderRayBox(scene: Scene, camera: Camera) {
+        glClearColor(0.65, 0.65, 0.65, 1.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+        renderRayWall(.Left, scene: scene, camera: camera)
+        renderRayWall(.Forward, scene: scene, camera: camera)
+        renderRayWall(.Back, scene: scene, camera: camera)
+        renderRayWall(.Right, scene: scene, camera: camera)
+        renderRayWall(.Down, scene: scene, camera: camera)
+        renderRayWall(.Up, scene: scene, camera: camera)
+    }
+    
+    static func renderRayWall(focusDirection: FocusDirection, scene: Scene, camera: Camera) {
+        let rayCamera = RayBoxCamera(eyePosition: camera.cameraPosition())
+        rayCamera.lookAt(focusDirection)
+        var rayScene = scene
+        rayScene.camera = rayCamera
+        focusDirection.applyViewPort()
+
+//        Renderer.render(rayScene)
+//        glClearColor(0.65, 0.65, 0.65, 1.0)
+//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+        glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
+        
+        glUseProgram(self.skyBoxProgram.glName)
+        self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
+    }
+    
     static func renderFrameBufferPreview(scene: Scene) {
         
         self.frameBufferViewerProgram.renderable.frameBufferRenderedTexture.withFbo {
-            Renderer.render(scene)
+            Renderer.renderRayBox(scene, camera: scene.camera)
         }
         
         glUseProgram(self.frameBufferViewerProgram.glName)

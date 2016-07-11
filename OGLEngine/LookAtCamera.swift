@@ -12,7 +12,7 @@ import GLKit
 class LookAtCamera: Camera {
     var eyePosition: GLKVector3 = GLKVector3Make(0, -1, 0)
     var focusPosition: GLKVector3 = GLKVector3Make(0, 0, 0)
-    private var staticProjectionMatrix: GLKMatrix4
+    internal var staticProjectionMatrix: GLKMatrix4
     
     init() {
         let aspect: Float = fabs(Float(UIScreen.mainScreen().bounds.size.width) / Float(UIScreen.mainScreen().bounds.size.height))

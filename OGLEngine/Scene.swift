@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import GLKit
 
-class Scene {
+struct Scene {
     
     var closeShots: [CloseShotRenderable]
     var mediumShots: [MediumShotRenderable]
