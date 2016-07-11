@@ -68,11 +68,7 @@ struct Renderer {
         rayScene.camera = rayCamera
         focusDirection.applyViewPort()
 
-//        Renderer.render(rayScene)
-//        glClearColor(0.65, 0.65, 0.65, 1.0)
-//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
-        
         glUseProgram(self.skyBoxProgram.glName)
         self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
     }

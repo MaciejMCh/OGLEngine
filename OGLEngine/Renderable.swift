@@ -38,6 +38,10 @@ protocol ReflectiveSurface {
     var reflectionColorMap: RenderedTexture {get}
 }
 
+protocol ReflectiveSolid {
+    var rayBoxColorMap: RenderedTexture {get}
+}
+
 struct CloseShotRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped {
     let vao: VAO
     let geometryModel: GeometryModel

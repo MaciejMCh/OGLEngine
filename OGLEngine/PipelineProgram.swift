@@ -55,6 +55,9 @@ extension PipelineProgram {
         if let skyBoxRenderable = renderable as? SkyBoxRenderable {
             self.defaultSkyBoxBindings(skyBoxRenderable, scene: scene)
         }
+        if let reflectiveSolid = renderable as? ReflectiveSolid {
+            self.defaultReflectiveSolidBindings(reflectiveSolid)
+        }
     }
     
     mutating func compile() {

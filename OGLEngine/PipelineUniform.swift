@@ -70,6 +70,5 @@ struct GPUUniforms {
     static let specularPower = GPUVariable<GLSLFloat>(name: "uSpecularPower")
     static let specularWidth = GPUVariable<GLSLFloat>(name: "uSpecularWidth")
     static let ambiencePower = GPUVariable<GLSLFloat>(name: "uAmbiencePower")
-    
-    
+    static let rayBoxColorMap = GPUVariable<GLSLTexture>(name: "uRayBoxColorMap")
 }

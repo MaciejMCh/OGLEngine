@@ -28,6 +28,8 @@
 		C23FC5561CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */; };
 		C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */; };
 		C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */; };
+		C248E3E41D342617008A9E9D /* RayBoxMappingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248E3E31D342617008A9E9D /* RayBoxMappingTest.swift */; };
+		C248E3E61D3433DC008A9E9D /* GPUFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248E3E51D3433DC008A9E9D /* GPUFunctions.swift */; };
 		C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25642831D0EDEDA0043EE6E /* TangentSpace.swift */; };
 		C25A60721D2B9D410016FB7B /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A60711D2B9D410016FB7B /* SkyBox.swift */; };
 		C2611AE21D2C87C200447E37 /* CameraRotatedProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2611AE11D2C87C200447E37 /* CameraRotatedProjection.swift */; };
@@ -136,6 +138,8 @@
 		C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenGLDefaultVariables.swift; sourceTree = "<group>"; };
 		C23FC5571CFDE6FE00DE4A40 /* MediumShot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediumShot.swift; sourceTree = "<group>"; };
 		C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongReflection.swift; sourceTree = "<group>"; };
+		C248E3E31D342617008A9E9D /* RayBoxMappingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayBoxMappingTest.swift; sourceTree = "<group>"; };
+		C248E3E51D3433DC008A9E9D /* GPUFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUFunctions.swift; sourceTree = "<group>"; };
 		C25642831D0EDEDA0043EE6E /* TangentSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangentSpace.swift; sourceTree = "<group>"; };
 		C25A60711D2B9D410016FB7B /* SkyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBox.swift; sourceTree = "<group>"; };
 		C2611AE11D2C87C200447E37 /* CameraRotatedProjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRotatedProjection.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 				C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */,
 				C2C0BF3B1D2D81BF0035D4A7 /* FrameBufferViewerPipelineProgram.swift */,
 				C2D956371D3105DE00135A4F /* RayBoxPipelineProgram.swift */,
+				C248E3E31D342617008A9E9D /* RayBoxMappingTest.swift */,
 			);
 			name = Concrete;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				C23FC55C1CFDE87C00DE4A40 /* Shaders */,
 				C2B188F61CF1D3E3008BB626 /* PipelineDefaults.swift */,
 				C23FC5551CFDE6E000DE4A40 /* OpenGLDefaultVariables.swift */,
+				C248E3E51D3433DC008A9E9D /* GPUFunctions.swift */,
 			);
 			name = Defaults;
 			sourceTree = "<group>";
@@ -836,6 +842,7 @@
 				C2CD6A831CEC877F001F3A7E /* Reflection.swift in Sources */,
 				C2CC21E61D2EEE4300D77B62 /* RayBoxCamera.swift in Sources */,
 				C269D5DC1CA898DD00E56E67 /* Scene.swift in Sources */,
+				C248E3E61D3433DC008A9E9D /* GPUFunctions.swift in Sources */,
 				C26CD52F1D0ACA5E007105EB /* 3DIntegrator.swift in Sources */,
 				C267A7021D11F03C00ACBAD2 /* ReflectedCamera.swift in Sources */,
 				C269D5E21CA898E900E56E67 /* VAO.swift in Sources */,
@@ -892,6 +899,7 @@
 				C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */,
 				C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */,
 				C2E158201CFD9C4A00BB3805 /* PipelineVarying.swift in Sources */,
+				C248E3E41D342617008A9E9D /* RayBoxMappingTest.swift in Sources */,
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,
 				C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */,
 				C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */,

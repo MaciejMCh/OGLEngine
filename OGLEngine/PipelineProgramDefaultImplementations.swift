@@ -52,6 +52,9 @@ extension Model {
 
 extension PipelineProgram {
     func defaultSceneBindings(scene: Scene) {
+        if let viewProjectionMatrix = self.pipeline.uniform(GPUUniforms.viewProjectionMatrix) {
+            viewProjectionMatrix.cpuVariableGetter = {scene.camera.viewProjectionMatrix()}
+        }
         if let eyePosition = self.pipeline.uniform(GPUUniforms.eyePosition) {
             eyePosition.cpuVariableGetter = {scene.camera.cameraPosition()}
         }
@@ -72,9 +75,6 @@ extension PipelineProgram {
     func defaultModelBindings(model: Model, scene: Scene) {
         if let modelMatrix = self.pipeline.uniform(GPUUniforms.modelMatrix) {
             modelMatrix.cpuVariableGetter = {model.geometryModel.modelMatrix()}
-        }
-        if let viewProjectionMatrix = self.pipeline.uniform(GPUUniforms.viewProjectionMatrix) {
-            viewProjectionMatrix.cpuVariableGetter = {scene.camera.viewProjectionMatrix()}
         }
         if let modelViewProjectionMatrix = self.pipeline.uniform(GPUUniforms.modelViewProjectionMatrix) {
             modelViewProjectionMatrix.cpuVariableGetter = {model.modelViewProjectionMatrix(scene.camera)}
@@ -125,5 +125,11 @@ extension PipelineProgram {
             ambiencePower.cpuVariableGetter = {elucidation.ambiencePower}
         }
         
+    }
+    
+    func defaultReflectiveSolidBindings(refleciveSolid: ReflectiveSolid) {
+        if let rayBoxColorMap = self.pipeline.uniform(GPUUniforms.rayBoxColorMap) {
+            rayBoxColorMap.cpuVariableGetter = {(refleciveSolid.rayBoxColorMap, 0)}
+        }
     }
 }

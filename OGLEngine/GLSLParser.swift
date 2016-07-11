@@ -74,7 +74,7 @@ struct GLSLParser {
     static func argumentsDeclaration(arguments: [AnyGPUVariable]) -> String {
         var string = ""
         for argument in arguments {
-            string = string + GLSLParser.variableType(argument) + " " + argument.name! + ", "
+            string = string + "lowp " + GLSLParser.variableType(argument) + " " + argument.name! + ", "
         }
         if (string.characters.count >= 2) {
             string = string.substringToIndex(string.endIndex.advancedBy(-2))
@@ -85,7 +85,8 @@ struct GLSLParser {
     static func functionType(function: AnyGPUFunction) -> String {
         switch function {
         case is GPUFunction<GLSLVoid>: return "void"
-        case is GPUFunction<GLSLVec3>: return "vec3"
+        case is GPUFunction<GLSLVec3>: return "lowp vec3"
+        case is GPUFunction<GLSLVec2>: return "lowp vec2"
         default:
             assert(false)
             return "unsupported type"
