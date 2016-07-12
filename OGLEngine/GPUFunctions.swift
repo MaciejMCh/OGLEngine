@@ -73,27 +73,27 @@ struct DefaultGPUFunction {
                 "intersection = (intersection + vec3(1.0, 1.0, 1.0)) * 0.5;",
                 
                 "if (wallIndex == 0) {",
-                "   return vec2(intersection.y, intersection.z);",
+                "   return vec2(intersection.y * 0.5, intersection.z / 3.0 + 2.0 / 3.0);",
                 "} else {",
                 "   if (wallIndex == 1) {",
-                "       return vec2(intersection.x, intersection.z);",
+                "       return vec2(intersection.x * 0.5 + 0.5, intersection.z / 3.0 + 2.0 / 3.0);",
                 "   } else {",
                 "       if (wallIndex == 2) {",
-                "           return vec2(1.0 - intersection.y, intersection.z);",
+                "           return vec2((1.0 - intersection.y) * 0.5, intersection.z / 3.0 + 1.0 / 3.0);",
                 "       } else {",
                 "           if (wallIndex == 3) {",
-                "               return vec2(1.0 - intersection.x, intersection.z);",
+                "               return vec2((1.0 - intersection.x) * 0.5 + 0.5, intersection.z / 3.0 + 1.0 / 3.0);",
                 "           } else {",
                 "               if (wallIndex == 4) {",
-                "                   return vec2(intersection.x, 1.0 - intersection.y);",
+                "                   return vec2(intersection.x * 0.5, (1.0 - intersection.y) / 3.0);",
                 "               } else {",
-                "                   return vec2(intersection.x, intersection.y);",
+                "                   return vec2(intersection.x * 0.5 + 0.5, intersection.y / 3.0);",
                 "               }",
                 "           }",
                 "       }",
                 "   }",
                 "}",
-                
+                "return vec2(0.0, 0.0);"
                 ]))
         
         return GPUFunction<GLSLVec2>(signature: "rayBoxTexelWithNormal", input: [normal], scope: scope)
