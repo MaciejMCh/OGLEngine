@@ -31,8 +31,10 @@ struct RayBoxMappingTest {
     
     static func Pipeline() -> GPUPipeline {
         let aPosition = GPUVariable<GLSLVec3>(name: "aPosition")
+        let vViewVector = GPUVariable<GLSLVec3>(name: "vViewVector")
         let aNormal = GPUVariable<GLSLVec3>(name: "aNormal")
         let vNormal = GPUVariable<GLSLVec3>(name: "vNormal")
+        let uEyePosition = GPUUniforms.eyePosition;
         let uModelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uModelViewProjectionMatrix")
         let uRayBoxColorMap = GPUVariable<GLSLTexture>(name: "uRayBoxColorMap")
         
@@ -42,7 +44,8 @@ struct RayBoxMappingTest {
             ])
         let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
             GPUUniform(variable: GPUUniforms.modelViewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.rayBoxColorMap)
+            GPUUniform(variable: GPUUniforms.rayBoxColorMap),
+            GPUUniform(variable: GPUUniforms.eyePosition)
             ])
         
         let vertexScope = GPUScope()
@@ -50,20 +53,30 @@ struct RayBoxMappingTest {
         vertexScope ⥤ aPosition
         vertexScope ⥤ aNormal
         vertexScope ⥥ uModelViewProjectionMatrix
+        vertexScope ⥥ uEyePosition
         vertexScope ⟿↘ vNormal
+        vertexScope ⟿↘ vViewVector
         vertexScope ↳ MainGPUFunction(scope: vertexMainScope)
         vertexMainScope ✍ vNormal ⬅ aNormal
+        vertexMainScope ✍ vViewVector ⬅ (aPosition - uEyePosition)
         vertexMainScope ✍ OpenGLDefaultVariables.glPosition() ⬅ uModelViewProjectionMatrix * aPosition
         
         let fragmentScope = GPUScope()
         let fragmentMainScope = GPUScope()
         let texelFunction = DefaultGPUFunction.rayBoxTexelWithNormal()
         fragmentScope ⟿↘ vNormal
+        fragmentScope ⟿↘ vViewVector
         fragmentScope ⥥ uRayBoxColorMap
         fragmentScope ↳ texelFunction
         fragmentScope ↳ MainGPUFunction(scope: fragmentMainScope)
         fragmentMainScope ✍ FixedGPUInstruction(code: stringFromLines([
-            "gl_FragColor = texture2D(uRayBoxColorMap, rayBoxTexelWithNormal(vNormal));"
+            "lowp vec3 viewVector = normalize(vViewVector);",
+            "lowp vec3 normal = normalize(vNormal);",
+//            d−2(d⋅n)n
+            "lowp vec3 ray = viewVector - (normal * (dot(normal, viewVector) * 2.0));"
+            ]))
+        fragmentMainScope ✍ FixedGPUInstruction(code: stringFromLines([
+            "gl_FragColor = texture2D(uRayBoxColorMap, rayBoxTexelWithNormal(ray));"
             ]))
         
         let interpolation = RayBoxMappingTestInterpolation()
