@@ -69,6 +69,8 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
+        DefaultPipelines.LightingIdeaImplementation()
+        
         let program = RayBoxMappingTestProgram()
         NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
         NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))

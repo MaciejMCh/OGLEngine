@@ -110,6 +110,8 @@ public func + (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUInf
     return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
 }
 
+// Vec3 Inits
+
 
 // Normalization
 prefix operator ^ {}

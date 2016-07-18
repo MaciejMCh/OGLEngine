@@ -89,6 +89,8 @@
 		C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */; };
 		C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */; };
 		C2CD6A831CEC877F001F3A7E /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CD6A821CEC877F001F3A7E /* Reflection.swift */; };
+		C2D07D7D1D3D3DFC0016CF4B /* SmartPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D07D7C1D3D3DFC0016CF4B /* SmartPipeline.swift */; };
+		C2D07D7F1D3D40080016CF4B /* LightingIdeaImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D07D7E1D3D40080016CF4B /* LightingIdeaImplementation.swift */; };
 		C2D3A4A21D21C63600C1CB1A /* MaterialsPreviewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D3A4A11D21C63600C1CB1A /* MaterialsPreviewScene.swift */; };
 		C2D956381D3105DE00135A4F /* RayBoxPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D956371D3105DE00135A4F /* RayBoxPipelineProgram.swift */; };
 		C2E158181CFD9B2D00BB3805 /* PipelineVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E158171CFD9B2D00BB3805 /* PipelineVariable.swift */; };
@@ -203,6 +205,8 @@
 		C2CD6A7D1CEC7B0D001F3A7E /* Reflected.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.vsh; path = Shaders/Reflected.vsh; sourceTree = "<group>"; };
 		C2CD6A7E1CEC7B0D001F3A7E /* Reflected.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Reflected.fsh; path = Shaders/Reflected.fsh; sourceTree = "<group>"; };
 		C2CD6A821CEC877F001F3A7E /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
+		C2D07D7C1D3D3DFC0016CF4B /* SmartPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartPipeline.swift; sourceTree = "<group>"; };
+		C2D07D7E1D3D40080016CF4B /* LightingIdeaImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightingIdeaImplementation.swift; sourceTree = "<group>"; };
 		C2D3A4A11D21C63600C1CB1A /* MaterialsPreviewScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialsPreviewScene.swift; sourceTree = "<group>"; };
 		C2D956371D3105DE00135A4F /* RayBoxPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayBoxPipelineProgram.swift; sourceTree = "<group>"; };
 		C2E158171CFD9B2D00BB3805 /* PipelineVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineVariable.swift; sourceTree = "<group>"; };
@@ -322,6 +326,7 @@
 				C2C0F4941D12D3A400CAD214 /* Reflected.swift */,
 				C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */,
 				C219E3811D2F0DE10026678B /* RayBox.swift */,
+				C2D07D7E1D3D40080016CF4B /* LightingIdeaImplementation.swift */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 			isa = PBXGroup;
 			children = (
 				C23FC5541CFDE6A100DE4A40 /* Defaults */,
+				C2D07D7C1D3D3DFC0016CF4B /* SmartPipeline.swift */,
 				C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */,
 				C2E1581B1CFD9BE800BB3805 /* PipelineShader.swift */,
 				C2E158231CFD9D2400BB3805 /* PipelineInterpolation.swift */,
@@ -873,7 +879,9 @@
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */,
 				C2229DB91D12F81F007F5856 /* ReflectedPipelineProgram.swift in Sources */,
+				C2D07D7F1D3D40080016CF4B /* LightingIdeaImplementation.swift in Sources */,
 				C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */,
+				C2D07D7D1D3D3DFC0016CF4B /* SmartPipeline.swift in Sources */,
 				C269D5D31CA898DD00E56E67 /* OBJLoader.swift in Sources */,
 				C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */,
 				C2229DBB1D12FBD1007F5856 /* ReflectiveSurfacePipelineProgram.swift in Sources */,
