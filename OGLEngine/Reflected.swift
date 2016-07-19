@@ -103,7 +103,7 @@ extension DefaultScopes {
         mainScope ✍ vTexel ⬅ aTexel
         mainScope ↳ planeSpaceModelPosition
         mainScope ✍ planeSpaceModelPosition ⬅ uPlaneSpaceModelMatrix * aPosition
-        mainScope ✍ vPlaneDistance ⬅ FixedGPUEvaluation(glslCode: "\(planeSpaceModelPosition.name!).z")
+        mainScope ✍ vPlaneDistance ⬅ FixedGPUEvaluation(glslCode: "\(planeSpaceModelPosition.name!).z", usedVariables: [planeSpaceModelPosition])
         mainScope ✍ glPosition ⬅ uPlaneSpaceViewProjectionMatrix * planeSpaceModelPosition
         
         return globalScope

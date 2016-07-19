@@ -80,7 +80,7 @@ public func ⬅ <T>(lhs: GPUVariable<T>, rhs: GPUEvaluation<T>) -> GPUInstructio
 }
 
 public func ⬅ (lhs: GPUVariable<GLSLVec4>, rhs: GPUVariable<GLSLVec3>) -> FixedGPUEvaluation<GLSLVec4> {
-    return FixedGPUEvaluation(glslCode: "\(lhs.name!) = vec4(\(rhs.name!), 1.0);")
+    return FixedGPUEvaluation(glslCode: "\(lhs.name!) = vec4(\(rhs.name!), 1.0);", usedVariables: [lhs, rhs])
 }
 
 // MARK: Function
@@ -148,7 +148,7 @@ public func * (lhs: GPUVariable<GLSLMat3>, rhs: GPUVariable<GLSLMat3>) -> GPUInf
 }
 
 public func * (lhs: GPUVariable<GLSLMat4>, rhs: GPUVariable<GLSLVec3>) -> FixedGPUEvaluation<GLSLVec4> {
-    return FixedGPUEvaluation(glslCode: "\(lhs.name!) * vec4(\(rhs.name!), 1.0)")
+    return FixedGPUEvaluation(glslCode: "\(lhs.name!) * vec4(\(rhs.name!), 1.0)", usedVariables: [lhs, rhs])
 }
 
 // Color operations
@@ -163,11 +163,11 @@ public func ✖ (lhs: GPUVariable<GLSLColor>, rhs: GPUVariable<GLSLColor>) -> GP
 
 prefix operator ⤺ {}
 prefix func ⤺ (sample: GPUVariable<GLSLColor>) -> FixedGPUEvaluation<GLSLVec3> {
-    return FixedGPUEvaluation(glslCode: "normalize(vec3(" + sample.name! + ") * 2.0 - vec3(1.0, 1.0, 1.0));")
+    return FixedGPUEvaluation(glslCode: "normalize(vec3(" + sample.name! + ") * 2.0 - vec3(1.0, 1.0, 1.0));", usedVariables: [sample])
 }
 
 prefix func ⤺ (vector: GPUVariable<GLSLVec3>) -> FixedGPUEvaluation<GLSLColor> {
-    return FixedGPUEvaluation(glslCode: "vec4((\(vector.name!) + vec3(1.0, 1.0, 1.0)) * 0.5, 1.0)")
+    return FixedGPUEvaluation(glslCode: "vec4((\(vector.name!) + vec3(1.0, 1.0, 1.0)) * 0.5, 1.0)", usedVariables: [vector])
 }
 
 // Float operations
@@ -191,5 +191,5 @@ public func ☒ (lhs: GPUVariable<GLSLTexture>, rhs: GPUVariable<GLSLVec2>) -> G
 }
 
 public func ☒ (lhs: GPUVariable<GLSLTexture>, rhs: GPUVariable<GLSLVec2>) -> FixedGPUEvaluation<GLSLFloat> {
-    return FixedGPUEvaluation<GLSLFloat>(glslCode: "texture2D(\(lhs.name!), \(rhs.name!)).r * 80.0")
+    return FixedGPUEvaluation<GLSLFloat>(glslCode: "texture2D(\(lhs.name!), \(rhs.name!)).r * 80.0", usedVariables: [lhs, rhs])
 }

@@ -102,19 +102,25 @@ public class GPUEvaluation<ReturnType: GLSLType>: GPUInstruction {
     }
 }
 
-//public class FixedGPUEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType> {
-//    private(set) var glslCode: String
-//    
-//    init(glslCode: String) {
-//        self.glslCode = glslCode
-//        super.init(function: GPUFunction<ReturnType>(signature: "", input: []))
-//    }
-//    
-//    public override func glslRepresentation() -> String {
-//        return self.glslCode
-//    }
-//    
-//}
+public class FixedGPUEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType> {
+    private(set) var glslCode: String
+    private(set) var usedVariables: [AnyGPUVariable]
+    
+    init(glslCode: String, usedVariables: [AnyGPUVariable]) {
+        self.glslCode = glslCode
+        self.usedVariables = usedVariables
+        super.init(function: GPUFunction<ReturnType>(signature: "", input: []))
+    }
+    
+    public override func glslRepresentation() -> String {
+        return self.glslCode
+    }
+    
+    public override func variablesUsed() -> [AnyGPUVariable] {
+        return usedVariables
+    }
+    
+}
 
 public class GPUInfixEvaluation<ReturnType: GLSLType>: GPUEvaluation<ReturnType> {
     private(set) var operatorSymbol: String
