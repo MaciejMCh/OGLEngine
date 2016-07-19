@@ -56,3 +56,68 @@ public enum GPUVariableAccessKind {
     case Varying
     case Local
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+protocol AnyEvaluation {
+    func glslFace() -> String
+}
+
+class Evaluation<T: GLSLType>: AnyEvaluation {
+    func glslFace() -> String {
+        return ""
+    }
+}
+
+protocol AnyVariable {
+    var name: String {get}
+}
+
+class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class Primitive<T: GLSLType>: Evaluation<T> {
+    var value: T.CPUCounterpart
+    
+    init(value: T.CPUCounterpart) {
+        self.value = value
+    }
+}
+
+class Function<T: GLSLType>: Evaluation<T> {
+    var signature: String
+    var arguments: [AnyVariable]
+    
+    init(signature: String, arguments: [AnyVariable]) {
+        self.signature = signature
+        self.arguments = arguments
+    }
+}
+
+class InfixFunction<T: GLSLType>: Evaluation<T> {
+    var lhs: AnyVariable
+    var rhs: AnyVariable
+    
+    init(lhs: AnyVariable, rhs: AnyVariable) {
+        self.lhs = lhs
+        self.rhs = rhs
+    }
+}
+
+
