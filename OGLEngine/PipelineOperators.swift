@@ -205,7 +205,7 @@ public func * (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> GPUInf
 }
 
 public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> FixedGPUInstruction {
-    return FixedGPUInstruction(code: "if (\(lhs.glslFace()) < \(rhs.glslFace())) {discard;}")
+    return FixedGPUInstruction(code: "if (\(lhs.glslFace()) < \(rhs.glslFace())) {discard;}", usedVariables: [])
 }
 
 // Texture operations

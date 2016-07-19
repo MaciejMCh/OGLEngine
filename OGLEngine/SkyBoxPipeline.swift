@@ -80,7 +80,7 @@ extension DefaultScopes {
         globalScope ⟿↘ vTexel
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
-        mainScope ✍ FixedGPUInstruction(code: "vTexel = vec2(aTexel.x, 1.0 - aTexel.y);")
+        mainScope ✍ FixedGPUInstruction(code: "vTexel = vec2(aTexel.x, 1.0 - aTexel.y);", usedVariables: [])
         mainScope ✍ glPosition ⬅ uRotatedProjectionMatrix * aPosition
         
         return globalScope

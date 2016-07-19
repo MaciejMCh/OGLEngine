@@ -94,7 +94,7 @@ struct DefaultGPUFunction {
                 "   }",
                 "}",
                 "return vec2(0.0, 0.0);"
-                ]))
+                ]), usedVariables: [])
         
         return GPUFunction<GLSLVec2>(signature: "rayBoxTexelWithNormal", arguments: [normal], scope: scope)
     }

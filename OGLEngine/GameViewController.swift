@@ -72,8 +72,8 @@ class GameViewController: GLKViewController {
         DefaultPipelines.LightingIdeaImplementation()
         
         let program = RayBoxMappingTestProgram()
-        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
-        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
+//        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
+//        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
 //        self.scene = Scene.loadScene("house_on_cliff")
 //        self.scene = Scene.MaterialsPreviewScene("Icosphere")

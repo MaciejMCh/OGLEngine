@@ -17,25 +17,44 @@ extension GPUPipeline {
 extension GPUScope {
     func completedAsVertexShaderScope() -> GPUScope {
         let globalScope = GPUScope()
-//        let mainScope = GPUScope()
-//        var variables = instructions.map{$0.variablesUsed()}.stomp()
-//        
-//        for variable in variables {
-//            if variable.name == "gl_Position" {continue}
-//            if variable.name == "gl_FragColor" {continue}
-//            
-//            switch variable.name!.characters.first! {
-//            case "a": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Attribute))
-//            case "u": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Uniform))
-//            case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Varying))
-//            default: mainScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Local))
-//            }
-//        }
-//        
-//        globalScope.appendFunction(MainGPUFunction(scope: mainScope))
-//        
-//        NSLog("\n" + GLSLParser.scope(self))
-//        NSLog("\n" + GLSLParser.scope(globalScope))
+        let mainScope = GPUScope()
+        var variables = instructions.map{$0.variablesUsed()}.stomp()
+        var declaredVariables: [AnyVariable] = []
+        
+        for variable in variables {
+            if variable.name == "gl_Position" {continue}
+            if variable.name == "gl_FragColor" {continue}
+            
+            var isDuplicate = false
+            for declaredVariable in declaredVariables {
+                if declaredVariable.name == variable.name {
+                    isDuplicate = true
+                    break
+                }
+            }
+            if isDuplicate {
+                continue
+            }
+            
+            switch variable.name.characters.first! {
+            case "a": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Attribute))
+            case "u": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Uniform))
+            case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Varying))
+            default: mainScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Local))
+            }
+            declaredVariables.append(variable)
+        }
+        
+        let notDeclarations = instructions.filter{!($0 is GPUDeclaration)}
+        for notDeclaration in notDeclarations {
+            mainScope.appendInstruction(notDeclaration)
+        }
+        
+        
+        globalScope.appendFunction(MainGPUFunction(scope: mainScope))
+        
+        NSLog("\n" + GLSLParser.scope(self))
+        NSLog("\n\n" + GLSLParser.scope(globalScope))
         return globalScope
     }
     

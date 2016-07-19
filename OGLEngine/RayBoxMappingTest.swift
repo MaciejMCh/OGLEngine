@@ -74,10 +74,10 @@ struct RayBoxMappingTest {
             "lowp vec3 normal = normalize(vNormal);",
 //            d−2(d⋅n)n
             "lowp vec3 ray = viewVector - (normal * (dot(normal, viewVector) * 2.0));"
-            ]))
+            ]), usedVariables: [])
         fragmentMainScope ✍ FixedGPUInstruction(code: stringFromLines([
             "gl_FragColor = texture2D(uRayBoxColorMap, rayBoxTexelWithNormal(ray));"
-            ]))
+            ]), usedVariables: [])
         
         let interpolation = RayBoxMappingTestInterpolation()
         let vertexShader = GPUVertexShader(

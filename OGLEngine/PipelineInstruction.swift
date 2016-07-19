@@ -10,13 +10,19 @@ import Foundation
 
 public protocol GPUInstruction {
     func glslRepresentation() -> String
+    func variablesUsed() -> [AnyVariable]
 }
 
 public struct FixedGPUInstruction: GPUInstruction {
     let code: String
+    let usedVariables: [AnyVariable]
     
     public func glslRepresentation() -> String {
         return code
+    }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        return usedVariables
     }
 }
 
@@ -51,6 +57,10 @@ public struct GPUDeclaration: GPUInstruction {
         
         return result
     }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        return [variable]
+    }
 }
 
 public struct GPUAssignment<T: GLSLType>: GPUInstruction {
@@ -59,6 +69,14 @@ public struct GPUAssignment<T: GLSLType>: GPUInstruction {
     
     public func glslRepresentation() -> String {
         return assignee.name + " = " + assignment.glslFace() + ";"
+    }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        var variables: [AnyVariable] = [assignee]
+        if let instructionAssignment = assignment as? GPUInstruction {
+            variables.appendContentsOf(instructionAssignment.variablesUsed())
+        }
+        return variables
     }
 }
 
@@ -126,5 +144,23 @@ public class GPUInfixEvaluation<ReturnType: GLSLType>: Evaluation<ReturnType>, G
     
     public override func glslFace() -> String {
         return glslRepresentation()
+    }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        var variables: [AnyVariable] = []
+        if let lhs = lhs as? AnyVariable {
+            variables.append(lhs)
+        }
+        if let rhs = lhs as? AnyVariable {
+            variables.append(rhs)
+        }
+        if let lhs = lhs as? GPUInstruction {
+            variables.appendContentsOf(lhs.variablesUsed())
+        }
+        if let rhs = lhs as? GPUInstruction {
+            variables.appendContentsOf(rhs.variablesUsed())
+        }
+        
+        return variables
     }
 }
