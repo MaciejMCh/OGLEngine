@@ -123,4 +123,8 @@ public class GPUInfixEvaluation<ReturnType: GLSLType>: Evaluation<ReturnType>, G
     public func glslRepresentation() -> String {
         return self.lhs.glslFace() + " " + self.operatorSymbol + " " + self.rhs.glslFace()
     }
+    
+    public override func glslFace() -> String {
+        return glslRepresentation()
+    }
 }

@@ -76,6 +76,7 @@ public protocol AnyEvaluation {
 
 public class Evaluation<T: GLSLType>: AnyEvaluation {
     public func glslFace() -> String {
+        assert(false)
         return ""
     }
 }
@@ -102,6 +103,10 @@ public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
     init(name: String) {
         self.name = name
     }
+    
+    public override func glslFace() -> String {
+        return name
+    }
 }
 
 class Primitive<T: GLSLType>: Evaluation<T> {
@@ -109,6 +114,10 @@ class Primitive<T: GLSLType>: Evaluation<T> {
     
     init(value: T.CPUCounterpart) {
         self.value = value
+    }
+    
+    override func glslFace() -> String {
+        return T.primitiveFace(value)
     }
 }
 
@@ -124,6 +133,18 @@ public class Function<T: GLSLType>: Evaluation<T>, AnyFunction {
     init(signature: String, arguments: [AnyEvaluation]) {
         self.signature = signature
         self.arguments = arguments
+    }
+    
+    public override func glslFace() -> String {
+        var face = signature + "("
+        for argument in arguments {
+            face = face + argument.glslFace() + ", "
+        }
+        if face.characters.count > 3 {
+            face = face.substringToIndex(face.endIndex.advancedBy(-2))
+        }
+        face = face + ")"
+        return face
     }
 }
 

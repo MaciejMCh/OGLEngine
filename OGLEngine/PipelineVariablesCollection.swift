@@ -23,24 +23,24 @@ struct GPUVariableCollection<T: AnyVariable> {
     
     // TODO: Very ugly
     func get<T where T: GLSLType>(uniform: Variable<T>) -> Variable<T>! {
-//        for element in self.collection {
-//            if element.name == uniform.name {
+        for element in self.collection {
+            if element.name == uniform.name {
 //                if self is GPUVariableCollection<AnyVariable> {
 //                    return element as! Variable<T>
 //                } else if self is GPUVariableCollection<AnyGPUUniform> {
-//                    return (element as! GPUUniform<T>).typedVariable
+                    return (element as! GPUUniform<T>).typedVariable
 //                }
-//            }
-//        }
+            }
+        }
         return nil
     }
     
     func get<T where T: GLSLType>(attribute: GPUAttribute<T>) -> Variable<T>! {
-//        for element in self.collection {
-//            if element.glslName == attribute.glslName {
-//                return (element as! GPUAttribute<T>).typedVariable
-//            }
-//        }
+        for element in self.collection {
+            if element.name == attribute.name {
+                return (element as! GPUAttribute<T>).typedVariable
+            }
+        }
         return nil
     }
     
