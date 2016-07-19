@@ -9,11 +9,15 @@
 import Foundation
 import GLKit
 
-class AnyGPUUniform {
-    var variable: AnyGPUVariable
+class AnyGPUUniform: AnyVariable {
+    var variable: AnyVariable
     var location: GLint!
     
-    init(variable: AnyGPUVariable) {
+    var name: String {
+        return variable.name
+    }
+    
+    init(variable: AnyVariable) {
         self.variable = variable
     }
     
@@ -23,52 +27,52 @@ class AnyGPUUniform {
     }
 }
 
-extension AnyGPUUniform: GPURepresentable {
-    var glslName: String {
-        get {
-            return self.variable.name!
-        }
-    }
-}
+//extension AnyGPUUniform: GPURepresentable {
+//    var glslName: String {
+//        get {
+//            return self.variable.name!
+//        }
+//    }
+//}
 
 class GPUUniform<T: GLSLType> : AnyGPUUniform {
-    var typedVariable: GPUVariable<T>
+    var typedVariable: Variable<T>
     var cpuVariableGetter: (() -> T.CPUCounterpart)!
     
-    init(variable: GPUVariable<T>) {
+    init(variable: Variable<T>) {
         self.typedVariable = variable
         super.init(variable: variable)
     }
     
     override func passToGPU() {
-        assert(self.cpuVariableGetter != nil, self.variable.name! + " uniform has no assigned cpu counterpart getter.")
+        assert(self.cpuVariableGetter != nil, self.variable.name + " uniform has no assigned cpu counterpart getter.")
         T.passValueToGPU(self.cpuVariableGetter(), location: self.location)
     }
 }
 
 struct GPUUniforms {
-    static let modelMatrix = GPUVariable<GLSLMat4>(name: "uModelMatrix")
-    static let viewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uViewProjectionMatrix")
-    static let rotatedProjectionMatrix = GPUVariable<GLSLMat4>(name: "uRotatedProjectionMatrix")
-    static let modelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uModelViewProjectionMatrix")
-    static let normalMatrix = GPUVariable<GLSLMat3>(name: "uNormalMatrix")
-    static let tangentNormalMatrix = GPUVariable<GLSLMat3>(name: "uTangentNormalMatrix")
-    static let eyePosition = GPUVariable<GLSLVec3>(name: "uEyePosition")
-    static let position = GPUVariable<GLSLVec3>(name: "uPosition")
-    static let lightDirection = GPUVariable<GLSLVec3>(name: "uLightDirection")
-    static let lightVersor = GPUVariable<GLSLVec3>(name: "uLightVersor")
-    static let lightHalfVector = GPUVariable<GLSLVec3>(name: "uLightHalfVector")
-    static let colorMap = GPUVariable<GLSLTexture>(name: "uColorMap")
-    static let normalMap = GPUVariable<GLSLTexture>(name: "uNormalMap")
-    static let specularMap = GPUVariable<GLSLTexture>(name: "uSpecularMap")
-    static let reflectionColorMap = GPUVariable<GLSLTexture>(name: "uReflectionColorMap")
-    static let shininess = GPUVariable<GLSLFloat>(name: "uShininess")
-    static let clippingPlane = GPUVariable<GLSLPlane>(name: "uClippingPlane")
-    static let lightColor = GPUVariable<GLSLColor>(name: "uLightColor")
-    static let planeSpaceModelMatrix = GPUVariable<GLSLMat4>(name: "uPlaneSpaceModelMatrix")
-    static let planeSpaceViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uPlaneSpaceViewProjectionMatrix")
-    static let specularPower = GPUVariable<GLSLFloat>(name: "uSpecularPower")
-    static let specularWidth = GPUVariable<GLSLFloat>(name: "uSpecularWidth")
-    static let ambiencePower = GPUVariable<GLSLFloat>(name: "uAmbiencePower")
-    static let rayBoxColorMap = GPUVariable<GLSLTexture>(name: "uRayBoxColorMap")
+    static let modelMatrix = Variable<GLSLMat4>(name: "uModelMatrix")
+    static let viewProjectionMatrix = Variable<GLSLMat4>(name: "uViewProjectionMatrix")
+    static let rotatedProjectionMatrix = Variable<GLSLMat4>(name: "uRotatedProjectionMatrix")
+    static let modelViewProjectionMatrix = Variable<GLSLMat4>(name: "uModelViewProjectionMatrix")
+    static let normalMatrix = Variable<GLSLMat3>(name: "uNormalMatrix")
+    static let tangentNormalMatrix = Variable<GLSLMat3>(name: "uTangentNormalMatrix")
+    static let eyePosition = Variable<GLSLVec3>(name: "uEyePosition")
+    static let position = Variable<GLSLVec3>(name: "uPosition")
+    static let lightDirection = Variable<GLSLVec3>(name: "uLightDirection")
+    static let lightVersor = Variable<GLSLVec3>(name: "uLightVersor")
+    static let lightHalfVector = Variable<GLSLVec3>(name: "uLightHalfVector")
+    static let colorMap = Variable<GLSLTexture>(name: "uColorMap")
+    static let normalMap = Variable<GLSLTexture>(name: "uNormalMap")
+    static let specularMap = Variable<GLSLTexture>(name: "uSpecularMap")
+    static let reflectionColorMap = Variable<GLSLTexture>(name: "uReflectionColorMap")
+    static let shininess = Variable<GLSLFloat>(name: "uShininess")
+    static let clippingPlane = Variable<GLSLPlane>(name: "uClippingPlane")
+    static let lightColor = Variable<GLSLColor>(name: "uLightColor")
+    static let planeSpaceModelMatrix = Variable<GLSLMat4>(name: "uPlaneSpaceModelMatrix")
+    static let planeSpaceViewProjectionMatrix = Variable<GLSLMat4>(name: "uPlaneSpaceViewProjectionMatrix")
+    static let specularPower = Variable<GLSLFloat>(name: "uSpecularPower")
+    static let specularWidth = Variable<GLSLFloat>(name: "uSpecularWidth")
+    static let ambiencePower = Variable<GLSLFloat>(name: "uAmbiencePower")
+    static let rayBoxColorMap = Variable<GLSLTexture>(name: "uRayBoxColorMap")
 }

@@ -13,7 +13,7 @@ public struct GPUPipeline {
     let vertexShader: GPUVertexShader
     let fragmentShader: GPUFragmentShader
     
-    func uniform<T>(variable: GPUVariable<T>) -> GPUUniform<T>! {
+    func uniform<T>(variable: Variable<T>) -> GPUUniform<T>! {
         for uniform in vertexShader.uniforms.collection {
             if uniform.glslName == variable.glslName {
                 return uniform as! GPUUniform<T>

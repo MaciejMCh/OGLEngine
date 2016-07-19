@@ -8,42 +8,42 @@
 
 import Foundation
 
-public class AnyGPUVariable {
-    private(set) var name: String?
-    
-    init(name: String? = nil) {
-        self.name = name
-    }
-}
+//public class AnyGPUVariable {
+//    private(set) var name: String?
+//    
+//    init(name: String? = nil) {
+//        self.name = name
+//    }
+//}
+//
+//extension AnyGPUVariable: GPURepresentable {
+//    var glslName: String {
+//        get {
+//            return self.name!
+//        }
+//    }
+//}
 
-extension AnyGPUVariable: GPURepresentable {
-    var glslName: String {
-        get {
-            return self.name!
-        }
-    }
-}
-
-public class GPUVariable<T: GLSLType>: AnyGPUVariable {
-    private(set) var value: T.CPUCounterpart?
-    override var name: String? {
-        get {
-            if let value = self.value {
-                return T.primitiveFace(value)
-            } else {
-                return super.name
-            }
-        }
-        set {
-            self.name = newValue
-        }
-    }
-    
-    init(value: T.CPUCounterpart? = nil, name: String? = nil) {
-        super.init(name: name)
-        self.value = value
-    }   
-}
+//public class GPUVariable<T: GLSLType>: AnyGPUVariable {
+//    private(set) var value: T.CPUCounterpart?
+//    override var name: String? {
+//        get {
+//            if let value = self.value {
+//                return T.primitiveFace(value)
+//            } else {
+//                return super.name
+//            }
+//        }
+//        set {
+//            self.name = newValue
+//        }
+//    }
+//    
+//    init(value: T.CPUCounterpart? = nil, name: String? = nil) {
+//        super.init(name: name)
+//        self.value = value
+//    }   
+//}
 
 public enum GPUVariablePrecision {
     case Low
@@ -74,17 +74,29 @@ protocol AnyEvaluation {
     func glslFace() -> String
 }
 
-class Evaluation<T: GLSLType>: AnyEvaluation {
+public class Evaluation<T: GLSLType>: AnyEvaluation {
     func glslFace() -> String {
         return ""
     }
 }
 
-protocol AnyVariable {
+public class FixedEvaluation<T: GLSLType>: Evaluation<T> {
+    var code: String
+    
+    init(code: String) {
+        self.code = code
+    }
+    
+    override func glslFace() -> String {
+        return code
+    }
+}
+
+public protocol AnyVariable {
     var name: String {get}
 }
 
-class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
+public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
     var name: String
     
     init(name: String) {
@@ -100,11 +112,16 @@ class Primitive<T: GLSLType>: Evaluation<T> {
     }
 }
 
-class Function<T: GLSLType>: Evaluation<T> {
+protocol AnyFunction {
+    var signature: String {get}
+    var arguments: [AnyEvaluation] {get}
+}
+
+public class Function<T: GLSLType>: Evaluation<T>, AnyFunction {
     var signature: String
-    var arguments: [AnyVariable]
+    var arguments: [AnyEvaluation]
     
-    init(signature: String, arguments: [AnyVariable]) {
+    init(signature: String, arguments: [AnyEvaluation]) {
         self.signature = signature
         self.arguments = arguments
     }

@@ -8,12 +8,16 @@
 
 import Foundation
 
-public class AnyGPUFunction {
+public class AnyGPUFunction: AnyFunction {
     var signature: String
-    var input: [AnyGPUVariable]
+    var input: [AnyVariable]
     var scope: GPUScope? = nil
     
-    public init(signature: String, input: [AnyGPUVariable], scope: GPUScope? = nil) {
+    var arguments: [AnyVariable] {
+        return input
+    }
+    
+    public init(signature: String, input: [AnyVariable], scope: GPUScope? = nil) {
         self.signature = signature
         self.input = input
         self.scope = scope
@@ -21,7 +25,7 @@ public class AnyGPUFunction {
 }
 
 public class GPUFunction<ReturnType: GLSLType>: AnyGPUFunction {
-    override init(signature: String, input: [AnyGPUVariable], scope: GPUScope? = nil) {
+    override init(signature: String, input: [AnyVariable], scope: GPUScope? = nil) {
         super.init(signature: signature, input: input, scope: scope)
     }
 }

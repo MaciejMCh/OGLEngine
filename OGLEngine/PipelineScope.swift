@@ -10,13 +10,13 @@ import Foundation
 
 public class GPUScope {
     var instructions: [GPUInstruction] = []
-    var functions: [AnyGPUFunction] = []
+    var functions: [AnyFunction] = []
     
     func appendInstruction(instruction: GPUInstruction) {
         self.instructions.append(instruction)
     }
     
-    func appendFunction(function: AnyGPUFunction) {
+    func appendFunction(function: AnyFunction) {
         self.functions.append(function)
     }
     
