@@ -8,43 +8,6 @@
 
 import Foundation
 
-//public class AnyGPUVariable {
-//    private(set) var name: String?
-//    
-//    init(name: String? = nil) {
-//        self.name = name
-//    }
-//}
-//
-//extension AnyGPUVariable: GPURepresentable {
-//    var glslName: String {
-//        get {
-//            return self.name!
-//        }
-//    }
-//}
-
-//public class Variable<T: GLSLType>: AnyGPUVariable {
-//    private(set) var value: T.CPUCounterpart?
-//    override var name: String? {
-//        get {
-//            if let value = self.value {
-//                return T.primitiveFace(value)
-//            } else {
-//                return super.name
-//            }
-//        }
-//        set {
-//            self.name = newValue
-//        }
-//    }
-//    
-//    init(value: T.CPUCounterpart? = nil, name: String? = nil) {
-//        super.init(name: name)
-//        self.value = value
-//    }   
-//}
-
 public enum GPUVariablePrecision {
     case Low
     case High
@@ -56,19 +19,6 @@ public enum GPUVariableAccessKind {
     case Varying
     case Local
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 public protocol AnyEvaluation {
     func glslFace() -> String
@@ -148,14 +98,36 @@ public class Function<T: GLSLType>: Evaluation<T>, AnyFunction {
     }
 }
 
-class InfixFunction<T: GLSLType>: Evaluation<T> {
-    var lhs: AnyVariable
-    var rhs: AnyVariable
+public class InfixFunction<ReturnType: GLSLType>: Evaluation<ReturnType> {
+    private(set) var operatorSymbol: String
+    private(set) var lhs: AnyEvaluation
+    private(set) var rhs: AnyEvaluation
     
-    init(lhs: AnyVariable, rhs: AnyVariable) {
+    init(operatorSymbol: String, lhs: AnyEvaluation, rhs: AnyEvaluation) {
+        self.operatorSymbol = operatorSymbol
         self.lhs = lhs
         self.rhs = rhs
     }
+    
+    public override func glslFace() -> String {
+        return self.lhs.glslFace() + " " + self.operatorSymbol + " " + self.rhs.glslFace()
+    }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        var variables: [AnyVariable] = []
+        if let lhs = lhs as? AnyVariable {
+            variables.append(lhs)
+        }
+        if let rhs = lhs as? AnyVariable {
+            variables.append(rhs)
+        }
+        if let lhs = lhs as? GPUInstruction {
+            variables.appendContentsOf(lhs.variablesUsed())
+        }
+        if let rhs = lhs as? GPUInstruction {
+            variables.appendContentsOf(rhs.variablesUsed())
+        }
+        
+        return variables
+    }
 }
-
-

@@ -97,14 +97,14 @@ public func ✖ (lhs: Variable<GLSLVec3>, rhs: Variable<GLSLVec3>) -> Function<G
 
 // Difference
 infix operator - { associativity left precedence 200 }
-public func - (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec3> {
-    return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
+public func - (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLVec3>) -> InfixFunction<GLSLVec3> {
+    return InfixFunction<GLSLVec3>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
 }
 
 // Sum
 infix operator + { associativity left precedence 200 }
-public func + (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec3> {
-    return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
+public func + (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLVec3>) -> InfixFunction<GLSLVec3> {
+    return InfixFunction<GLSLVec3>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
 }
 
 // Inits
@@ -116,46 +116,46 @@ prefix func ^ (vector: Evaluation<GLSLVec3>) -> Function<GLSLVec3> {
 }
 
 // Scaling
-public func * (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLFloat>) -> GPUInfixEvaluation<GLSLVec2> {
-    return GPUInfixEvaluation<GLSLVec2>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLVec2> {
+    return InfixFunction<GLSLVec2>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
 // Primitive Scaling
-public func * (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLFloat>) -> GPUInfixEvaluation<GLSLVec3> {
-    return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLVec3> {
+    return InfixFunction<GLSLVec3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
 // Matrix operations
 infix operator * { associativity left precedence 140 }
-public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLVec4>) -> GPUInfixEvaluation<GLSLVec4> {
-    return GPUInfixEvaluation<GLSLVec4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLVec4>) -> InfixFunction<GLSLVec4> {
+    return InfixFunction<GLSLVec4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
-public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLMat4>) -> GPUInfixEvaluation<GLSLMat4> {
-    return GPUInfixEvaluation<GLSLMat4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLMat4>) -> InfixFunction<GLSLMat4> {
+    return InfixFunction<GLSLMat4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
-public func * (lhs: Evaluation<GLSLMat3>, rhs: Evaluation<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec3> {
-    return GPUInfixEvaluation<GLSLVec3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLMat3>, rhs: Evaluation<GLSLVec3>) -> InfixFunction<GLSLVec3> {
+    return InfixFunction<GLSLVec3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
-public func * (lhs: Evaluation<GLSLMat3>, rhs: Evaluation<GLSLMat3>) -> GPUInfixEvaluation<GLSLMat3> {
-    return GPUInfixEvaluation<GLSLMat3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLMat3>, rhs: Evaluation<GLSLMat3>) -> InfixFunction<GLSLMat3> {
+    return InfixFunction<GLSLMat3>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
-public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLVec3>) -> GPUInfixEvaluation<GLSLVec4> {
+public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLVec3>) -> InfixFunction<GLSLVec4> {
     let vec4 = VecInits.vec4(rhs)
     return lhs * vec4
 }
 
 // Color operations
-public func * (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLFloat>) -> GPUInfixEvaluation<GLSLColor> {
-    return GPUInfixEvaluation<GLSLColor>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLColor> {
+    return InfixFunction<GLSLColor>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
 infix operator ✖ { associativity left precedence 200 }
-public func ✖ (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLColor>) -> GPUInfixEvaluation<GLSLColor> {
-    return GPUInfixEvaluation<GLSLColor>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
+public func ✖ (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLColor>) -> InfixFunction<GLSLColor> {
+    return InfixFunction<GLSLColor>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
 }
 
 prefix operator ⤺ {}
@@ -200,8 +200,8 @@ public func ^ (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Functi
     return Function<GLSLFloat>(signature: "pow", arguments: [lhs, rhs])
 }
 
-public func * (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> GPUInfixEvaluation<GLSLFloat> {
-    return GPUInfixEvaluation<GLSLFloat>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+public func * (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLFloat> {
+    return InfixFunction<GLSLFloat>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
 public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> FixedGPUInstruction {
