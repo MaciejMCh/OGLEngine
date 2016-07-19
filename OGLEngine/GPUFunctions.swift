@@ -11,7 +11,7 @@ import Foundation
 struct DefaultGPUFunction {
     static func rayBoxTexelWithNormal() -> GPUFunction<GLSLVec2> {
         let scope = GPUScope()
-        let normal = GPUVariable<GLSLVec3>(name: "normal")
+        let normal = Variable<GLSLVec3>(name: "normal")
         
         scope ✍ FixedGPUInstruction(
             code: stringFromLines([
@@ -96,6 +96,6 @@ struct DefaultGPUFunction {
                 "return vec2(0.0, 0.0);"
                 ]))
         
-        return GPUFunction<GLSLVec2>(signature: "rayBoxTexelWithNormal", input: [normal], scope: scope)
+        return GPUFunction<GLSLVec2>(signature: "rayBoxTexelWithNormal", arguments: [normal], scope: scope)
     }
 }

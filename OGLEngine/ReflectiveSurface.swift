@@ -60,7 +60,7 @@ extension DefaultVertexShaders {
 }
 
 struct ReflectiveSurfaceInterpolation: GPUInterpolation {
-    let vClipSpace: GPUVariable<GLSLVec4> = GPUVariable<GLSLVec4>(name: "vClipSpace")
+    let vClipSpace: Variable<GLSLVec4> = Variable<GLSLVec4>(name: "vClipSpace")
     
     func varyings() -> [GPUVarying] {
         return [
@@ -71,11 +71,11 @@ struct ReflectiveSurfaceInterpolation: GPUInterpolation {
 
 extension DefaultScopes {
     static func ReflectiveSurfaceVertex(
-        glPosition: GPUVariable<GLSLVec4>,
-        aPosition: GPUVariable<GLSLVec3>,
-        aTexel: GPUVariable<GLSLVec2>,
-        uModelViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        vClipSpace: GPUVariable<GLSLVec4>
+        glPosition: Variable<GLSLVec4>,
+        aPosition: Variable<GLSLVec3>,
+        aTexel: Variable<GLSLVec2>,
+        uModelViewProjectionMatrix: Variable<GLSLMat4>,
+        vClipSpace: Variable<GLSLVec4>
     ) -> GPUScope {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
@@ -93,16 +93,16 @@ extension DefaultScopes {
     }
     
     static func ReflectiveSurfaceFragment(
-        glFragColor: GPUVariable<GLSLColor>,
-        uReflectionColorMap: GPUVariable<GLSLTexture>,
-        vClipSpace: GPUVariable<GLSLVec4>
+        glFragColor: Variable<GLSLColor>,
+        uReflectionColorMap: Variable<GLSLTexture>,
+        vClipSpace: Variable<GLSLVec4>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        let ndc = GPUVariable<GLSLVec2>(name: "ndc")
-        let reflectionColor = GPUVariable<GLSLColor>(name: "reflectionColor")
-        let surfaceColor = GPUVariable<GLSLColor>(name: "surfaceColor")
+        let ndc = Variable<GLSLVec2>(name: "ndc")
+        let reflectionColor = Variable<GLSLColor>(name: "reflectionColor")
+        let surfaceColor = Variable<GLSLColor>(name: "surfaceColor")
         
         
         globalScope ⥥ uReflectionColorMap
@@ -110,11 +110,11 @@ extension DefaultScopes {
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ↳↘ ndc
-        mainScope ✍ ndc ⬅ FixedGPUEvaluation(glslCode: "(\(vClipSpace.name!).xy / \(vClipSpace.name!).w) / 2.0 + 0.5", usedVariables: [vClipSpace])
+        mainScope ✍ ndc ⬅ FixedEvaluation(code: "(\(vClipSpace.name).xy / \(vClipSpace.name).w) / 2.0 + 0.5")
         mainScope ↳↘ reflectionColor
-        mainScope ✍ reflectionColor ⬅ FixedGPUEvaluation(glslCode: "texture2D(\(uReflectionColorMap.name!), vec2(\(ndc.name!).x, 1.0 - \(ndc.name!).y))", usedVariables: [uReflectionColorMap, ndc])
+        mainScope ✍ reflectionColor ⬅ FixedEvaluation(code: "texture2D(\(uReflectionColorMap.name), vec2(\(ndc.name).x, 1.0 - \(ndc.name).y))")
         mainScope ↳↘ surfaceColor
-        mainScope ✍ surfaceColor ⬅ GPUVariable<GLSLColor>(value: (r: 0.0, g: 0.1, b: 0.1, a: 1.0))
+        mainScope ✍ surfaceColor ⬅ Primitive<GLSLColor>(value: (r: 0.0, g: 0.1, b: 0.1, a: 1.0))
         mainScope ✍ glFragColor ⬅ reflectionColor ✖ surfaceColor
         
         return globalScope

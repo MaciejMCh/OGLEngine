@@ -69,8 +69,8 @@ public struct GPUAssignment<T: GLSLType>: GPUInstruction {
 //        self.function = function
 //    }
 //    
-//    func variable() -> GPUVariable<ReturnType> {
-//        return GPUVariable<ReturnType>(name: "")
+//    func variable() -> Variable<ReturnType> {
+//        return Variable<ReturnType>(name: "")
 //    }
 //    
 //    public func glslRepresentation() -> String {

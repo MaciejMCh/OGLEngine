@@ -67,7 +67,7 @@ public func ↳ (lhs: GPUScope, rhs: AnyGPUFunction) {
     lhs.appendFunction(rhs)
 }
 
-// MARK: GPUVariable
+// MARK: Variable
 
 // Assignment
 infix operator ⬅ { associativity left precedence 140 }
@@ -75,9 +75,9 @@ public func ⬅ <T>(lhs: Variable<T>, rhs: Evaluation<T>) -> GPUInstruction {
     return GPUAssignment(assignee: lhs, assignment: rhs)
 }
 
-public func ⬅ (lhs: Variable<GLSLVec4>, rhs: Evaluation<GLSLVec3>) -> GPUAssignment<GLSLVec4> {
+public func ⬅ (lhs: Variable<GLSLVec4>, rhs: Evaluation<GLSLVec3>) -> GPUInstruction {
     let extended = VecInits.vec4(rhs)
-    return lhs ⬅ rhs
+    return lhs ⬅ extended
 }
 
 // MARK: Function
@@ -86,13 +86,13 @@ public func ⬅ (lhs: Variable<GLSLVec4>, rhs: Evaluation<GLSLVec3>) -> GPUAssig
 
 // Dot product
 infix operator ⋅ { associativity left precedence 200 }
-public func ⋅ (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUEvaluation<GLSLFloat> {
-    return GPUEvaluation<GLSLFloat>(function: GPUFunction<GLSLFloat>(signature: "dot", input: [lhs, rhs]))
+public func ⋅ (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLVec3>) -> Function<GLSLFloat> {
+    return Function<GLSLFloat>(signature: "dot", arguments: [lhs, rhs])
 }
 
 // Cross product
-public func ✖ (lhs: GPUVariable<GLSLVec3>, rhs: GPUVariable<GLSLVec3>) -> GPUEvaluation<GLSLVec3> {
-    return GPUEvaluation<GLSLVec3>(function: GPUFunction<GLSLVec3>(signature: "cross", input: [lhs, rhs]))
+public func ✖ (lhs: Variable<GLSLVec3>, rhs: Variable<GLSLVec3>) -> Function<GLSLVec3> {
+    return Function<GLSLVec3>(signature: "cross", arguments: [lhs, rhs])
 }
 
 // Difference

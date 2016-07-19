@@ -56,7 +56,7 @@ extension DefaultFragmentShaders {
 }
 
 struct SkyBoxInterpolation: GPUInterpolation {
-    let vTexel: GPUVariable<GLSLVec2> = GPUVariable<GLSLVec2>(name: "vTexel")
+    let vTexel: Variable<GLSLVec2> = Variable<GLSLVec2>(name: "vTexel")
     
     func varyings() -> [GPUVarying] {
         return [GPUVarying(variable: vTexel, precision: .Low)]
@@ -65,11 +65,11 @@ struct SkyBoxInterpolation: GPUInterpolation {
 
 extension DefaultScopes {
     static func SkyBoxVertex(
-        glPosition glPosition: GPUVariable<GLSLVec4>,
-                   aPosition: GPUVariable<GLSLVec3>,
-                   aTexel: GPUVariable<GLSLVec2>,
-                   vTexel: GPUVariable<GLSLVec2>,
-                   uRotatedProjectionMatrix: GPUVariable<GLSLMat4>
+        glPosition glPosition: Variable<GLSLVec4>,
+                   aPosition: Variable<GLSLVec3>,
+                   aTexel: Variable<GLSLVec2>,
+                   vTexel: Variable<GLSLVec2>,
+                   uRotatedProjectionMatrix: Variable<GLSLMat4>
         ) -> GPUScope {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
@@ -88,9 +88,9 @@ extension DefaultScopes {
     
     
     static func SkyBoxFragment(
-        glFragColor glFragColor: GPUVariable<GLSLColor>,
-                    vTexel: GPUVariable<GLSLVec2>,
-                    uColorMap: GPUVariable<GLSLTexture>
+        glFragColor glFragColor: Variable<GLSLColor>,
+                    vTexel: Variable<GLSLVec2>,
+                    uColorMap: Variable<GLSLTexture>
         ) -> GPUScope {
         let globalScope = GPUScope()
         let mainScope = GPUScope()

@@ -60,12 +60,12 @@ extension DefaultVertexShaders {
 }
 
 struct MediumShotInterpolation: GPUInterpolation {
-    let vTexel = GPUVariable<GLSLVec2>(name: "vTexel")
-    let vLighDirection = GPUVariable<GLSLVec3>(name: "vLighDirection")
-    let vLighHalfVector = GPUVariable<GLSLVec3>(name: "vLighHalfVector")
-    let vNormal = GPUVariable<GLSLVec3>(name: "vNormal")
-    let vLightColor = GPUVariable<GLSLColor>(name: "vLightColor")
-    let vShininess = GPUVariable<GLSLFloat>(name: "vShininess")
+    let vTexel = Variable<GLSLVec2>(name: "vTexel")
+    let vLighDirection = Variable<GLSLVec3>(name: "vLighDirection")
+    let vLighHalfVector = Variable<GLSLVec3>(name: "vLighHalfVector")
+    let vNormal = Variable<GLSLVec3>(name: "vNormal")
+    let vLightColor = Variable<GLSLColor>(name: "vLightColor")
+    let vShininess = Variable<GLSLFloat>(name: "vShininess")
     
     func varyings() -> [GPUVarying] {
         return [
@@ -97,20 +97,20 @@ extension DefaultFragmentShaders {
 
 extension DefaultScopes {
     static func MediumShotFragment(
-        uColorMap: GPUVariable<GLSLTexture>,
-        vTexel: GPUVariable<GLSLVec2>,
-        vLighDirection: GPUVariable<GLSLVec3>,
-        vLighHalfVector: GPUVariable<GLSLVec3>,
-        vNormal: GPUVariable<GLSLVec3>,
-        vLightColor: GPUVariable<GLSLColor>,
-        vShininess: GPUVariable<GLSLFloat>
+        uColorMap: Variable<GLSLTexture>,
+        vTexel: Variable<GLSLVec2>,
+        vLighDirection: Variable<GLSLVec3>,
+        vLighHalfVector: Variable<GLSLVec3>,
+        vNormal: Variable<GLSLVec3>,
+        vLightColor: Variable<GLSLColor>,
+        vShininess: Variable<GLSLFloat>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
         let bodyScope = GPUScope()
         let mainFunction = MainGPUFunction(scope: bodyScope)
-        let normalizedNormal = GPUVariable<GLSLVec3>(name: "normalizedNormal")
-        let colorFromMap = GPUVariable<GLSLColor>(name: "colorFromMap")
+        let normalizedNormal = Variable<GLSLVec3>(name: "normalizedNormal")
+        let colorFromMap = Variable<GLSLColor>(name: "colorFromMap")
         
         globalScope ⥥ uColorMap
         globalScope ⟿↘ vTexel
@@ -138,29 +138,29 @@ extension DefaultScopes {
     }
     
     static func MediumShotVertex(
-        glPosition: GPUVariable<GLSLVec4>,
+        glPosition: Variable<GLSLVec4>,
         
-        aPosition: GPUVariable<GLSLVec3>,
-        aTexel: GPUVariable<GLSLVec2>,
-        aNormal: GPUVariable<GLSLVec3>,
+        aPosition: Variable<GLSLVec3>,
+        aTexel: Variable<GLSLVec2>,
+        aNormal: Variable<GLSLVec3>,
         
-        vTexel: GPUVariable<GLSLVec2>,
-        vLighDirection: GPUVariable<GLSLVec3>,
-        vLighHalfVector: GPUVariable<GLSLVec3>,
-        vNormal: GPUVariable<GLSLVec3>,
-        vShininess: GPUVariable<GLSLFloat>,
-        vLightColor: GPUVariable<GLSLColor>,
+        vTexel: Variable<GLSLVec2>,
+        vLighDirection: Variable<GLSLVec3>,
+        vLighHalfVector: Variable<GLSLVec3>,
+        vNormal: Variable<GLSLVec3>,
+        vShininess: Variable<GLSLFloat>,
+        vLightColor: Variable<GLSLColor>,
         
-        uLighDirection: GPUVariable<GLSLVec3>,
-        uLighHalfVector: GPUVariable<GLSLVec3>,
-        uNormalMatrix: GPUVariable<GLSLMat3>,
-        uModelViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        uShininess: GPUVariable<GLSLFloat>,
-        uLightColor: GPUVariable<GLSLColor>
+        uLighDirection: Variable<GLSLVec3>,
+        uLighHalfVector: Variable<GLSLVec3>,
+        uNormalMatrix: Variable<GLSLMat3>,
+        uModelViewProjectionMatrix: Variable<GLSLMat4>,
+        uShininess: Variable<GLSLFloat>,
+        uLightColor: Variable<GLSLColor>
         ) -> GPUScope {
         let bodyScope = GPUScope()
         let globalScope = GPUScope()
-        let scaledTexel = GPUVariable<GLSLVec2>(name: "scaledTexel")
+        let scaledTexel = Variable<GLSLVec2>(name: "scaledTexel")
         let mainFunction = MainGPUFunction(scope: bodyScope)
         
         globalScope ⥤ aPosition
@@ -185,7 +185,7 @@ extension DefaultScopes {
         bodyScope ✍ vTexel ⬅ scaledTexel
         bodyScope ✍ vShininess ⬅ uShininess
         bodyScope ✍ vLightColor ⬅ uLightColor
-        bodyScope ✍ vLighDirection ⬅ uLighDirection * (GPUVariable<GLSLFloat>(value: -1.0))
+        bodyScope ✍ vLighDirection ⬅ uLighDirection * (Primitive<GLSLFloat>(value: -1.0))
         bodyScope ✍ vLighHalfVector ⬅ uLighHalfVector
         bodyScope ✍ vNormal ⬅ uNormalMatrix * aNormal
         bodyScope ✍ vNormal ⬅ ^vNormal

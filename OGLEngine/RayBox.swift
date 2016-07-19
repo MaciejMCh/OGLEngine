@@ -60,7 +60,7 @@ extension DefaultVertexShaders {
 }
 
 struct RayBoxInterpolation: GPUInterpolation {
-    let vTexel: GPUVariable<GLSLVec2> = GPUVariable<GLSLVec2>(name: "vTexel")
+    let vTexel: Variable<GLSLVec2> = Variable<GLSLVec2>(name: "vTexel")
     
     func varyings() -> [GPUVarying] {
         return [
@@ -71,12 +71,12 @@ struct RayBoxInterpolation: GPUInterpolation {
 
 extension DefaultScopes {
     static func RayBoxVertex(
-        glPosition glPosition: GPUVariable<GLSLVec4>,
-                   aPosition: GPUVariable<GLSLVec3>,
-                   aTexel: GPUVariable<GLSLVec2>,
-                   aNormal: GPUVariable<GLSLVec3>,
-                   uModelViewProjectionMatrix: GPUVariable<GLSLMat4>,
-                   vTexel: GPUVariable<GLSLVec2>
+        glPosition glPosition: Variable<GLSLVec4>,
+                   aPosition: Variable<GLSLVec3>,
+                   aTexel: Variable<GLSLVec2>,
+                   aNormal: Variable<GLSLVec3>,
+                   uModelViewProjectionMatrix: Variable<GLSLMat4>,
+                   vTexel: Variable<GLSLVec2>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
@@ -96,9 +96,9 @@ extension DefaultScopes {
     }
     
     static func RayBoxFragment(
-        glFragColor glFragColor: GPUVariable<GLSLColor>,
-                    uColorMap: GPUVariable<GLSLTexture>,
-                    vTexel: GPUVariable<GLSLVec2>
+        glFragColor glFragColor: Variable<GLSLColor>,
+                    uColorMap: Variable<GLSLTexture>,
+                    vTexel: Variable<GLSLVec2>
         ) -> GPUScope {
         
         let globalScope = GPUScope()

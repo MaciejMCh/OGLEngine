@@ -24,7 +24,7 @@ import Foundation
 //    }
 //}
 
-//public class GPUVariable<T: GLSLType>: AnyGPUVariable {
+//public class Variable<T: GLSLType>: AnyGPUVariable {
 //    private(set) var value: T.CPUCounterpart?
 //    override var name: String? {
 //        get {
@@ -70,12 +70,12 @@ public enum GPUVariableAccessKind {
 
 
 
-protocol AnyEvaluation {
+public protocol AnyEvaluation {
     func glslFace() -> String
 }
 
 public class Evaluation<T: GLSLType>: AnyEvaluation {
-    func glslFace() -> String {
+    public func glslFace() -> String {
         return ""
     }
 }
@@ -87,7 +87,7 @@ public class FixedEvaluation<T: GLSLType>: Evaluation<T> {
         self.code = code
     }
     
-    override func glslFace() -> String {
+    override public func glslFace() -> String {
         return code
     }
 }
@@ -97,7 +97,7 @@ public protocol AnyVariable {
 }
 
 public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
-    var name: String
+    public var name: String
     
     init(name: String) {
         self.name = name

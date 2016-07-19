@@ -73,10 +73,10 @@ extension DefaultFragmentShaders {
 }
 
 struct PhongV1Interpolation: GPUInterpolation {
-    let vPosition: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "vPosition")
-    let vTexel: GPUVariable<GLSLVec2> = GPUVariable<GLSLVec2>(name: "vTexel")
-    let vNormal: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "vNormal")
-    let vEyePosition: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "vEyePosition")
+    let vPosition: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "vPosition")
+    let vTexel: Variable<GLSLVec2> = Variable<GLSLVec2>(name: "vTexel")
+    let vNormal: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "vNormal")
+    let vEyePosition: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "vEyePosition")
     
     func varyings() -> [GPUVarying] {
         return[
@@ -90,22 +90,22 @@ struct PhongV1Interpolation: GPUInterpolation {
 
 extension DefaultScopes {
     static func PhongV1Vertex(
-        glPosition: GPUVariable<GLSLVec4>,
-        aPosition: GPUVariable<GLSLVec3>,
-        aTexel: GPUVariable<GLSLVec2>,
-        aNormal: GPUVariable<GLSLVec3>,
-        uModelMatrix: GPUVariable<GLSLMat4>,
-        uViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        uNormalMatrix: GPUVariable<GLSLMat3>,
-        uEyePosition: GPUVariable<GLSLVec3>,
-        vTexel: GPUVariable<GLSLVec2>,
-        vPosition: GPUVariable<GLSLVec3>,
-        vNormal: GPUVariable<GLSLVec3>,
-        vEyePosition: GPUVariable<GLSLVec3>
+        glPosition: Variable<GLSLVec4>,
+        aPosition: Variable<GLSLVec3>,
+        aTexel: Variable<GLSLVec2>,
+        aNormal: Variable<GLSLVec3>,
+        uModelMatrix: Variable<GLSLMat4>,
+        uViewProjectionMatrix: Variable<GLSLMat4>,
+        uNormalMatrix: Variable<GLSLMat3>,
+        uEyePosition: Variable<GLSLVec3>,
+        vTexel: Variable<GLSLVec2>,
+        vPosition: Variable<GLSLVec3>,
+        vNormal: Variable<GLSLVec3>,
+        vEyePosition: Variable<GLSLVec3>
         ) -> GPUScope {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        let worldSpacePosition = GPUVariable<GLSLVec4>(name: "worldSpacePosition")
+        let worldSpacePosition = Variable<GLSLVec4>(name: "worldSpacePosition")
         
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
@@ -124,7 +124,7 @@ extension DefaultScopes {
         mainScope ✍ worldSpacePosition ⬅ uModelMatrix * aPosition
         mainScope ✍ glPosition ⬅ uViewProjectionMatrix * worldSpacePosition
         mainScope ✍ vTexel ⬅ aTexel
-        mainScope ✍ vPosition ⬅ GPUEvaluation(function: GPUFunction(signature: "vec3", input: [worldSpacePosition]))
+        mainScope ✍ vPosition ⬅ VecInits.vec3(worldSpacePosition)
         mainScope ✍ vNormal ⬅ uNormalMatrix * aNormal
         mainScope ✍ vEyePosition ⬅ uEyePosition
         
@@ -132,29 +132,29 @@ extension DefaultScopes {
     }
     
     static func PhongV1Fragment(
-        glFragColor: GPUVariable<GLSLColor>,
-        vTexel: GPUVariable<GLSLVec2>,
-        vPosition: GPUVariable<GLSLVec3>,
-        vNormal: GPUVariable<GLSLVec3>,
-        vEyePosition: GPUVariable<GLSLVec3>,
-        uColorMap: GPUVariable<GLSLTexture>
+        glFragColor: Variable<GLSLColor>,
+        vTexel: Variable<GLSLVec2>,
+        vPosition: Variable<GLSLVec3>,
+        vNormal: Variable<GLSLVec3>,
+        vEyePosition: Variable<GLSLVec3>,
+        uColorMap: Variable<GLSLTexture>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        let viewVersor = GPUVariable<GLSLVec3>(name: "viewVersor")
-        let halfVersor = GPUVariable<GLSLVec3>(name: "halfVersor")
-        let lightVersor = GPUVariable<GLSLVec3>(name: "lightVersor")
-        let fixedNormal = GPUVariable<GLSLVec3>(name: "fixedNormal")
+        let viewVersor = Variable<GLSLVec3>(name: "viewVersor")
+        let halfVersor = Variable<GLSLVec3>(name: "halfVersor")
+        let lightVersor = Variable<GLSLVec3>(name: "lightVersor")
+        let fixedNormal = Variable<GLSLVec3>(name: "fixedNormal")
         let halfVectorScope = DefaultScopes.PhongHalfVersor(
             lightVersor,
             modelPosition: vPosition,
             eyePosition: vEyePosition,
             viewVersor: viewVersor,
             halfVersor: halfVersor)
-        let fullDiffuseColor = GPUVariable<GLSLColor>(name: "fullDiffuseColor")
-        let lightColor = GPUVariable<GLSLColor>(name: "lightColor")
-        let shininess = GPUVariable<GLSLFloat>(name: "shininess")
+        let fullDiffuseColor = Variable<GLSLColor>(name: "fullDiffuseColor")
+        let lightColor = Variable<GLSLColor>(name: "lightColor")
+        let shininess = Variable<GLSLFloat>(name: "shininess")
         let phongScope = DefaultScopes.PhongReflectionColorScope(
             fixedNormal,
             lightVector: lightVersor,
@@ -172,15 +172,15 @@ extension DefaultScopes {
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ↳↘ lightVersor
-        mainScope ✍ lightVersor ⬅ GPUVariable<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
+        mainScope ✍ lightVersor ⬅ Primitive<GLSLVec3>(value: GLKVector3Make(0.0, 0.0, 1.0))
         mainScope ↳↘ viewVersor
         mainScope ↳↘ halfVersor
         mainScope ↳↘ fullDiffuseColor
         mainScope ✍ fullDiffuseColor ⬅ uColorMap ☒ vTexel
         mainScope ↳↘ lightColor
-        mainScope ✍ lightColor ⬅ GPUVariable<GLSLColor>(value: (r: 1.0, g: 1.0, b: 1.0, a: 1.0))
+        mainScope ✍ lightColor ⬅ Primitive<GLSLColor>(value: (r: 1.0, g: 1.0, b: 1.0, a: 1.0))
         mainScope ↳↘ shininess
-        mainScope ✍ shininess ⬅ GPUVariable<GLSLFloat>(value: 100.0)
+        mainScope ✍ shininess ⬅ Primitive<GLSLFloat>(value: 100.0)
         mainScope ↳↘ fixedNormal
         mainScope ✍ fixedNormal ⬅ ^vNormal
         mainScope ⎘ halfVectorScope

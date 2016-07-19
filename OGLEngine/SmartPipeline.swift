@@ -17,25 +17,25 @@ extension GPUPipeline {
 extension GPUScope {
     func completedAsVertexShaderScope() -> GPUScope {
         let globalScope = GPUScope()
-        let mainScope = GPUScope()
-        var variables = instructions.map{$0.variablesUsed()}.stomp()
-        
-        for variable in variables {
-            if variable.name == "gl_Position" {continue}
-            if variable.name == "gl_FragColor" {continue}
-            
-            switch variable.name!.characters.first! {
-            case "a": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Attribute))
-            case "u": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Uniform))
-            case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Varying))
-            default: mainScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Local))
-            }
-        }
-        
-        globalScope.appendFunction(MainGPUFunction(scope: mainScope))
-        
-        NSLog("\n" + GLSLParser.scope(self))
-        NSLog("\n" + GLSLParser.scope(globalScope))
+//        let mainScope = GPUScope()
+//        var variables = instructions.map{$0.variablesUsed()}.stomp()
+//        
+//        for variable in variables {
+//            if variable.name == "gl_Position" {continue}
+//            if variable.name == "gl_FragColor" {continue}
+//            
+//            switch variable.name!.characters.first! {
+//            case "a": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Attribute))
+//            case "u": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Uniform))
+//            case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Varying))
+//            default: mainScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Local))
+//            }
+//        }
+//        
+//        globalScope.appendFunction(MainGPUFunction(scope: mainScope))
+//        
+//        NSLog("\n" + GLSLParser.scope(self))
+//        NSLog("\n" + GLSLParser.scope(globalScope))
         return globalScope
     }
     

@@ -68,13 +68,13 @@ struct GLSLParser {
     }
     
     static func functionDeclaration(function: AnyGPUFunction) -> String {
-        return GLSLParser.functionType(function) + " " + function.signature + "(" + GLSLParser.argumentsDeclaration(function.input) + ")" + " {"
+        return GLSLParser.functionType(function) + " " + function.signature + "(" + GLSLParser.argumentsDeclaration(function.arguments.map{$0 as! AnyVariable}) + ")" + " {"
     }
     
-    static func argumentsDeclaration(arguments: [AnyGPUVariable]) -> String {
+    static func argumentsDeclaration(arguments: [AnyVariable]) -> String {
         var string = ""
         for argument in arguments {
-            string = string + "lowp " + GLSLParser.variableType(argument) + " " + argument.name! + ", "
+            string = string + "lowp " + GLSLParser.variableType(argument) + " " + argument.name + ", "
         }
         if (string.characters.count >= 2) {
             string = string.substringToIndex(string.endIndex.advancedBy(-2))
@@ -93,21 +93,21 @@ struct GLSLParser {
         }
     }
     
-    static func variableType(variable: AnyGPUVariable) -> String {
+    static func variableType(variable: AnyVariable) -> String {
         switch variable {
-        case is GPUVariable<GLSLVoid>: return "void"
-        case is GPUVariable<GLSLInt>: return "int"
-        case is GPUVariable<GLSLFloat>: return "float"
+        case is Variable<GLSLVoid>: return "void"
+        case is Variable<GLSLInt>: return "int"
+        case is Variable<GLSLFloat>: return "float"
             
-        case is GPUVariable<GLSLVec2>: return "vec2"
-        case is GPUVariable<GLSLVec3>: return "vec3"
-        case is GPUVariable<GLSLVec4>: return "vec4"
+        case is Variable<GLSLVec2>: return "vec2"
+        case is Variable<GLSLVec3>: return "vec3"
+        case is Variable<GLSLVec4>: return "vec4"
         
-        case is GPUVariable<GLSLMat3>: return "mat3"
-        case is GPUVariable<GLSLMat4>: return "mat4"
+        case is Variable<GLSLMat3>: return "mat3"
+        case is Variable<GLSLMat4>: return "mat4"
         
-        case is GPUVariable<GLSLColor>: return "vec4"
-        case is GPUVariable<GLSLTexture>: return "sampler2D"
+        case is Variable<GLSLColor>: return "vec4"
+        case is Variable<GLSLTexture>: return "sampler2D"
             
         default:
             assert(false)

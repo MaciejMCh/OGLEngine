@@ -64,8 +64,8 @@ extension DefaultVertexShaders {
 }
 
 struct ReflectedInterpolation: GPUInterpolation {
-    let vTexel: GPUVariable<GLSLVec2> = GPUVariable<GLSLVec2>(name: "vTexel")
-    let vPlaneDistance: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "vPlaneDistance")
+    let vTexel: Variable<GLSLVec2> = Variable<GLSLVec2>(name: "vTexel")
+    let vPlaneDistance: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "vPlaneDistance")
     
     func varyings() -> [GPUVarying] {
         return [
@@ -77,19 +77,19 @@ struct ReflectedInterpolation: GPUInterpolation {
 
 extension DefaultScopes {
     static func ReflectedVertex(
-        glPosition glPosition: GPUVariable<GLSLVec4>,
-        aPosition: GPUVariable<GLSLVec3>,
-        aTexel: GPUVariable<GLSLVec2>,
-        aNormal: GPUVariable<GLSLVec3>,
-        uPlaneSpaceModelMatrix: GPUVariable<GLSLMat4>,
-        uPlaneSpaceViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        vTexel: GPUVariable<GLSLVec2>,
-        vPlaneDistance: GPUVariable<GLSLFloat>
+        glPosition glPosition: Variable<GLSLVec4>,
+        aPosition: Variable<GLSLVec3>,
+        aTexel: Variable<GLSLVec2>,
+        aNormal: Variable<GLSLVec3>,
+        uPlaneSpaceModelMatrix: Variable<GLSLMat4>,
+        uPlaneSpaceViewProjectionMatrix: Variable<GLSLMat4>,
+        vTexel: Variable<GLSLVec2>,
+        vPlaneDistance: Variable<GLSLFloat>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        let planeSpaceModelPosition = GPUVariable<GLSLVec4>(name: "planeSpaceModelPosition")
+        let planeSpaceModelPosition = Variable<GLSLVec4>(name: "planeSpaceModelPosition")
         
         globalScope ⥤ aPosition
         globalScope ⥤ aTexel
@@ -103,17 +103,17 @@ extension DefaultScopes {
         mainScope ✍ vTexel ⬅ aTexel
         mainScope ↳ planeSpaceModelPosition
         mainScope ✍ planeSpaceModelPosition ⬅ uPlaneSpaceModelMatrix * aPosition
-        mainScope ✍ vPlaneDistance ⬅ FixedGPUEvaluation(glslCode: "\(planeSpaceModelPosition.name!).z", usedVariables: [planeSpaceModelPosition])
+        mainScope ✍ vPlaneDistance ⬅ FixedEvaluation<GLSLFloat>(code: "\(planeSpaceModelPosition.name).z")
         mainScope ✍ glPosition ⬅ uPlaneSpaceViewProjectionMatrix * planeSpaceModelPosition
         
         return globalScope
     }
     
     static func ReflectedFragment(
-        glFragColor glFragColor: GPUVariable<GLSLColor>,
-        uColorMap: GPUVariable<GLSLTexture>,
-        vTexel: GPUVariable<GLSLVec2>,
-        vPlaneDistance: GPUVariable<GLSLFloat>
+        glFragColor glFragColor: Variable<GLSLColor>,
+        uColorMap: Variable<GLSLTexture>,
+        vTexel: Variable<GLSLVec2>,
+        vPlaneDistance: Variable<GLSLFloat>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
@@ -124,7 +124,7 @@ extension DefaultScopes {
         globalScope ⟿↘ vPlaneDistance
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
-        mainScope ✍ vPlaneDistance > GPUVariable<GLSLFloat>(value: 0.0)
+        mainScope ✍ vPlaneDistance > Primitive<GLSLFloat>(value: 0.0)
         mainScope ✍ glFragColor ⬅ uColorMap ☒ vTexel
         
         return globalScope

@@ -11,11 +11,11 @@ import Foundation
 extension DefaultScopes {
 
     static func PhongHalfVersor(
-        lightVersor: GPUVariable<GLSLVec3>,
-        modelPosition: GPUVariable<GLSLVec3>,
-        eyePosition: GPUVariable<GLSLVec3>,
-        viewVersor: GPUVariable<GLSLVec3>,
-        halfVersor: GPUVariable<GLSLVec3>
+        lightVersor: Variable<GLSLVec3>,
+        modelPosition: Variable<GLSLVec3>,
+        eyePosition: Variable<GLSLVec3>,
+        viewVersor: Variable<GLSLVec3>,
+        halfVersor: Variable<GLSLVec3>
         ) -> GPUScope {
         let scope = GPUScope()
         
@@ -28,11 +28,11 @@ extension DefaultScopes {
     }
     
     static func PhongFactorsScope(
-        normalVector: GPUVariable<GLSLVec3>,
-        lightVector: GPUVariable<GLSLVec3>,
-        halfVector: GPUVariable<GLSLVec3>,
-        ndl: GPUVariable<GLSLFloat>,
-        ndh: GPUVariable<GLSLFloat>
+        normalVector: Variable<GLSLVec3>,
+        lightVector: Variable<GLSLVec3>,
+        halfVector: Variable<GLSLVec3>,
+        ndl: Variable<GLSLFloat>,
+        ndh: Variable<GLSLFloat>
         ) -> GPUScope {
         let scope = GPUScope()
         
@@ -43,27 +43,27 @@ extension DefaultScopes {
     }
     
     static func PhongReflectionColorScope(
-        normalVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "normalVector"),
-        lightVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "lightVector"),
-        halfVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "halfVector"),
-        fullDiffuseColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "fullDiffuseColor"),
-        lightColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "lightColor"),
-        shininess: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "shininess"),
-        phongColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "phongColor")
+        normalVector: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "normalVector"),
+        lightVector: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "lightVector"),
+        halfVector: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "halfVector"),
+        fullDiffuseColor: Variable<GLSLColor> = Variable<GLSLColor>(name: "fullDiffuseColor"),
+        lightColor: Variable<GLSLColor> = Variable<GLSLColor>(name: "lightColor"),
+        shininess: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "shininess"),
+        phongColor: Variable<GLSLColor> = Variable<GLSLColor>(name: "phongColor")
         ) -> GPUScope {
         
         let scope = GPUScope()
-        let ndl = GPUVariable<GLSLFloat>(name: "ndl")
-        let ndh = GPUVariable<GLSLFloat>(name: "ndh")
-        let reflectionPower = GPUVariable<GLSLFloat>(name: "reflectionPower")
+        let ndl = Variable<GLSLFloat>(name: "ndl")
+        let ndh = Variable<GLSLFloat>(name: "ndh")
+        let reflectionPower = Variable<GLSLFloat>(name: "reflectionPower")
         let phongFactorsScope = DefaultScopes.PhongFactorsScope(normalVector,
                                                                 lightVector: lightVector,
                                                                 halfVector: halfVector,
                                                                 ndl: ndl,
                                                                 ndh: ndh)
         
-        let diffuseColor = GPUVariable<GLSLColor>(name: "diffuseColor")
-        let specularColor = GPUVariable<GLSLColor>(name: "specularColor")
+        let diffuseColor = Variable<GLSLColor>(name: "diffuseColor")
+        let specularColor = Variable<GLSLColor>(name: "specularColor")
         
         scope ↳↘ ndl
         scope ↳↘ ndh
@@ -80,32 +80,32 @@ extension DefaultScopes {
     }
     
     static func AdvancedPhongReflectionColorScope(
-        normalVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "normalVector"),
-        lightVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "lightVector"),
-        halfVector: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "halfVector"),
-        fullDiffuseColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "fullDiffuseColor"),
-        lightColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "lightColor"),
-        specularSample: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "specularSample"),
-        specularPower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "specularPower"),
-        specularWidth: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "specularWidth"),
-        ambiencePower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "ambiencePower"),
-        phongColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "phongColor")
+        normalVector: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "normalVector"),
+        lightVector: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "lightVector"),
+        halfVector: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "halfVector"),
+        fullDiffuseColor: Variable<GLSLColor> = Variable<GLSLColor>(name: "fullDiffuseColor"),
+        lightColor: Variable<GLSLColor> = Variable<GLSLColor>(name: "lightColor"),
+        specularSample: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "specularSample"),
+        specularPower: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "specularPower"),
+        specularWidth: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "specularWidth"),
+        ambiencePower: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "ambiencePower"),
+        phongColor: Variable<GLSLColor> = Variable<GLSLColor>(name: "phongColor")
         ) -> GPUScope {
         
         let scope = GPUScope()
-        let ndl = GPUVariable<GLSLFloat>(name: "ndl")
-        let ndh = GPUVariable<GLSLFloat>(name: "ndh")
-        let shininess = GPUVariable<GLSLFloat>(name: "shininess")
-        let reflectionPower = GPUVariable<GLSLFloat>(name: "reflectionPower")
+        let ndl = Variable<GLSLFloat>(name: "ndl")
+        let ndh = Variable<GLSLFloat>(name: "ndh")
+        let shininess = Variable<GLSLFloat>(name: "shininess")
+        let reflectionPower = Variable<GLSLFloat>(name: "reflectionPower")
         let phongFactorsScope = DefaultScopes.PhongFactorsScope(normalVector,
                                                                 lightVector: lightVector,
                                                                 halfVector: halfVector,
                                                                 ndl: ndl,
                                                                 ndh: ndh)
         
-        let diffuseColor = GPUVariable<GLSLColor>(name: "diffuseColor")
-        let specularColor = GPUVariable<GLSLColor>(name: "specularColor")
-        let ambientColor = GPUVariable<GLSLColor>(name: "ambientColor")
+        let diffuseColor = Variable<GLSLColor>(name: "diffuseColor")
+        let specularColor = Variable<GLSLColor>(name: "specularColor")
+        let ambientColor = Variable<GLSLColor>(name: "ambientColor")
         
         scope ↳↘ ndl
         scope ↳↘ ndh

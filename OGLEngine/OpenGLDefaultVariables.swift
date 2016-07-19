@@ -9,11 +9,11 @@
 import Foundation
 
 public struct OpenGLDefaultVariables {
-    static func glPosition() -> GPUVariable<GLSLVec4> {
-        return GPUVariable<GLSLVec4>(name: "gl_Position")
+    static func glPosition() -> Variable<GLSLVec4> {
+        return Variable<GLSLVec4>(name: "gl_Position")
     }
     
-    static func glFragColor() -> GPUVariable<GLSLColor> {
-        return GPUVariable<GLSLColor>(name: "gl_FragColor")
+    static func glFragColor() -> Variable<GLSLColor> {
+        return Variable<GLSLColor>(name: "gl_FragColor")
     }
 }

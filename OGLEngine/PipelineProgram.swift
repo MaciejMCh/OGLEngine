@@ -76,7 +76,7 @@ extension PipelineProgram {
     
     func validate() {
         for uniform in self.pipeline.vertexShader.uniforms.collection {
-            assert(uniform.location != -1, uniform.glslName + " failed to bind.")
+            assert(uniform.location != -1, uniform.name + " failed to bind.")
         }
     }
     
@@ -113,7 +113,7 @@ extension PipelineProgram {
         // This needs to be done prior to linking.
         
         for attribute in self.pipeline.vertexShader.attributes.collection {
-            glBindAttribLocation(self.glName, attribute.location, attribute.variable.name!)
+            glBindAttribLocation(self.glName, attribute.location, attribute.variable.name)
         }
         
         // Link program.
@@ -139,7 +139,7 @@ extension PipelineProgram {
         // Get uniform locations.
         let uniforms = self.pipeline.vertexShader.uniforms.collection
         for uniform in uniforms {
-            let location = glGetUniformLocation(self.glName, uniform.glslName)
+            let location = glGetUniformLocation(self.glName, uniform.name)
             uniform.location = location
         }
         

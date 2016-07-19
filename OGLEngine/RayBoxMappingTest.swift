@@ -30,13 +30,13 @@ struct RayBoxMappingTest {
     }
     
     static func Pipeline() -> GPUPipeline {
-        let aPosition = GPUVariable<GLSLVec3>(name: "aPosition")
-        let vViewVector = GPUVariable<GLSLVec3>(name: "vViewVector")
-        let aNormal = GPUVariable<GLSLVec3>(name: "aNormal")
-        let vNormal = GPUVariable<GLSLVec3>(name: "vNormal")
+        let aPosition = Variable<GLSLVec3>(name: "aPosition")
+        let vViewVector = Variable<GLSLVec3>(name: "vViewVector")
+        let aNormal = Variable<GLSLVec3>(name: "aNormal")
+        let vNormal = Variable<GLSLVec3>(name: "vNormal")
         let uEyePosition = GPUUniforms.eyePosition;
-        let uModelViewProjectionMatrix = GPUVariable<GLSLMat4>(name: "uModelViewProjectionMatrix")
-        let uRayBoxColorMap = GPUVariable<GLSLTexture>(name: "uRayBoxColorMap")
+        let uModelViewProjectionMatrix = Variable<GLSLMat4>(name: "uModelViewProjectionMatrix")
+        let uRayBoxColorMap = Variable<GLSLTexture>(name: "uRayBoxColorMap")
         
         let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
             GPUAttributes.position,

@@ -12,7 +12,7 @@ import Foundation
 //    var glslName: String {get}
 //}
 //
-//extension GPUVariable {
+//extension Variable {
 //    convenience init(glslRepresentable: GPURepresentable) {
 //        self.init(name: glslRepresentable.glslName)
 //    }
@@ -26,7 +26,7 @@ struct GPUVariableCollection<T: AnyVariable> {
 //        for element in self.collection {
 //            if element.name == uniform.name {
 //                if self is GPUVariableCollection<AnyVariable> {
-//                    return element as! GPUVariable<T>
+//                    return element as! Variable<T>
 //                } else if self is GPUVariableCollection<AnyGPUUniform> {
 //                    return (element as! GPUUniform<T>).typedVariable
 //                }

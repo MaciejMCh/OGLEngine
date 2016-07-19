@@ -72,14 +72,14 @@ extension DefaultVertexShaders {
 
 struct CloseShotInterpolation: GPUInterpolation {
     
-    let vTexel: GPUVariable<GLSLVec2> = GPUVariable<GLSLVec2>(name: "vTexel")
-    let vHalfVersor: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "vHalfVersor")
-    let vLightVersor: GPUVariable<GLSLVec3> = GPUVariable<GLSLVec3>(name: "vLightVersor")
-    let vTBNMatrix: GPUVariable<GLSLMat3> = GPUVariable<GLSLMat3>(name: "vTBNMatrix")
-    let vLightColor: GPUVariable<GLSLColor> = GPUVariable<GLSLColor>(name: "vLightColor")
-    let vSpecularPower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "vReflectionPower")
-    let vSpecularWidth: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "vReflectionWidth")
-    let vAmbientLightPower: GPUVariable<GLSLFloat> = GPUVariable<GLSLFloat>(name: "vAmbientLightPower")
+    let vTexel: Variable<GLSLVec2> = Variable<GLSLVec2>(name: "vTexel")
+    let vHalfVersor: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "vHalfVersor")
+    let vLightVersor: Variable<GLSLVec3> = Variable<GLSLVec3>(name: "vLightVersor")
+    let vTBNMatrix: Variable<GLSLMat3> = Variable<GLSLMat3>(name: "vTBNMatrix")
+    let vLightColor: Variable<GLSLColor> = Variable<GLSLColor>(name: "vLightColor")
+    let vSpecularPower: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "vReflectionPower")
+    let vSpecularWidth: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "vReflectionWidth")
+    let vAmbientLightPower: Variable<GLSLFloat> = Variable<GLSLFloat>(name: "vAmbientLightPower")
     
     
     func varyings() -> [GPUVarying] {
@@ -115,36 +115,36 @@ extension DefaultFragmentShaders {
 
 extension DefaultScopes {
     static func CloseShotVertex(
-        glPosition: GPUVariable<GLSLVec4>,
-        aPosition: GPUVariable<GLSLVec3>,
-        aTexel: GPUVariable<GLSLVec2>,
-        aNormal: GPUVariable<GLSLVec3>,
-        aTangent: GPUVariable<GLSLVec3>,
-        uModelMatrix: GPUVariable<GLSLMat4>,
-        uViewProjectionMatrix: GPUVariable<GLSLMat4>,
-        uNormalMatrix: GPUVariable<GLSLMat3>,
-        uLightVersor: GPUVariable<GLSLVec3>,
-        uEyePosition: GPUVariable<GLSLVec3>,
-        uLightColor: GPUVariable<GLSLColor>,
-        uSpecularPower: GPUVariable<GLSLFloat>,
-        uSpecularWidth: GPUVariable<GLSLFloat>,
-        uAmbiencePower: GPUVariable<GLSLFloat>,
-        vTBNMatrix: GPUVariable<GLSLMat3>,
-        vTexel: GPUVariable<GLSLVec2>,
-        vLightVersor: GPUVariable<GLSLVec3>,
-        vHalfVersor: GPUVariable<GLSLVec3>,
-        vLightColor: GPUVariable<GLSLColor>,
-        vSpecularPower: GPUVariable<GLSLFloat>,
-        vSpecularWidth: GPUVariable<GLSLFloat>,
-        vAmbiencePower: GPUVariable<GLSLFloat>
+        glPosition: Variable<GLSLVec4>,
+        aPosition: Variable<GLSLVec3>,
+        aTexel: Variable<GLSLVec2>,
+        aNormal: Variable<GLSLVec3>,
+        aTangent: Variable<GLSLVec3>,
+        uModelMatrix: Variable<GLSLMat4>,
+        uViewProjectionMatrix: Variable<GLSLMat4>,
+        uNormalMatrix: Variable<GLSLMat3>,
+        uLightVersor: Variable<GLSLVec3>,
+        uEyePosition: Variable<GLSLVec3>,
+        uLightColor: Variable<GLSLColor>,
+        uSpecularPower: Variable<GLSLFloat>,
+        uSpecularWidth: Variable<GLSLFloat>,
+        uAmbiencePower: Variable<GLSLFloat>,
+        vTBNMatrix: Variable<GLSLMat3>,
+        vTexel: Variable<GLSLVec2>,
+        vLightVersor: Variable<GLSLVec3>,
+        vHalfVersor: Variable<GLSLVec3>,
+        vLightColor: Variable<GLSLColor>,
+        vSpecularPower: Variable<GLSLFloat>,
+        vSpecularWidth: Variable<GLSLFloat>,
+        vAmbiencePower: Variable<GLSLFloat>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        let worldSpacePosition = GPUVariable<GLSLVec4>(name: "worldSpacePosition")
+        let worldSpacePosition = Variable<GLSLVec4>(name: "worldSpacePosition")
         let tbnScope = DefaultScopes.FragmentTBNMatrixScope(aNormal, aTangent: aTangent, uNormalMatrix: uNormalMatrix, vTBNMatrix: vTBNMatrix)
-        let viewVersor = GPUVariable<GLSLVec3>(name: "viewVector")
-        let positionVector = GPUVariable<GLSLVec3>(name: "positionVector")
+        let viewVersor = Variable<GLSLVec3>(name: "viewVector")
+        let positionVector = Variable<GLSLVec3>(name: "positionVector")
         let halfVersorScope = DefaultScopes.PhongHalfVersor(vLightVersor, modelPosition: positionVector, eyePosition: uEyePosition, viewVersor: viewVersor, halfVersor: vHalfVersor)
         
         globalScope ⥤ aPosition
@@ -180,7 +180,7 @@ extension DefaultScopes {
         mainScope ✍ vLightVersor ⬅ uLightVersor
         mainScope ✍ vLightColor ⬅ uLightColor
         mainScope ↳ positionVector
-        mainScope ✍ positionVector ⬅ GPUEvaluation(function: GPUFunction(signature: "vec3", input: [worldSpacePosition]))
+        mainScope ✍ positionVector ⬅ VecInits.vec3(worldSpacePosition)
         mainScope ⎘ tbnScope
         mainScope ↳ viewVersor
         mainScope ⎘ halfVersorScope
@@ -189,29 +189,29 @@ extension DefaultScopes {
     }
     
     static func CloseShotFragment(
-        glFragColor: GPUVariable<GLSLColor>,
-        uColorMap: GPUVariable<GLSLTexture>,
-        uNormalMap: GPUVariable<GLSLTexture>,
-        uSpecularMap: GPUVariable<GLSLTexture>,
-        vTBNMatrix: GPUVariable<GLSLMat3>,
-        vTexel: GPUVariable<GLSLVec2>,
-        vLightVersor: GPUVariable<GLSLVec3>,
-        vHalfVersor: GPUVariable<GLSLVec3>,
-        vLightColor: GPUVariable<GLSLColor>,
-        vSpecularPower: GPUVariable<GLSLFloat>,
-        vSpecularWidth: GPUVariable<GLSLFloat>,
-        vAmbiencePower: GPUVariable<GLSLFloat>
+        glFragColor: Variable<GLSLColor>,
+        uColorMap: Variable<GLSLTexture>,
+        uNormalMap: Variable<GLSLTexture>,
+        uSpecularMap: Variable<GLSLTexture>,
+        vTBNMatrix: Variable<GLSLMat3>,
+        vTexel: Variable<GLSLVec2>,
+        vLightVersor: Variable<GLSLVec3>,
+        vHalfVersor: Variable<GLSLVec3>,
+        vLightColor: Variable<GLSLColor>,
+        vSpecularPower: Variable<GLSLFloat>,
+        vSpecularWidth: Variable<GLSLFloat>,
+        vAmbiencePower: Variable<GLSLFloat>
         ) -> GPUScope {
         
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        let halfVersor = GPUVariable<GLSLVec3>(name: "halfVersor")
-        let lightVersor = GPUVariable<GLSLVec3>(name: "lightVersor")
-        let fixedNormal = GPUVariable<GLSLVec3>(name: "fixedNormal")
-        let fullDiffuseColor = GPUVariable<GLSLColor>(name: "fullDiffuseColor")
-        let lightColor = GPUVariable<GLSLColor>(name: "lightColor")
-        let specularSample = GPUVariable<GLSLFloat>(name: "specularSample")
-        let normalMapSample = GPUVariable<GLSLColor>(name: "normalMapSample")
+        let halfVersor = Variable<GLSLVec3>(name: "halfVersor")
+        let lightVersor = Variable<GLSLVec3>(name: "lightVersor")
+        let fixedNormal = Variable<GLSLVec3>(name: "fixedNormal")
+        let fullDiffuseColor = Variable<GLSLColor>(name: "fullDiffuseColor")
+        let lightColor = Variable<GLSLColor>(name: "lightColor")
+        let specularSample = Variable<GLSLFloat>(name: "specularSample")
+        let normalMapSample = Variable<GLSLColor>(name: "normalMapSample")
         let phongScope = DefaultScopes.AdvancedPhongReflectionColorScope(
             fixedNormal,
             lightVector: lightVersor,

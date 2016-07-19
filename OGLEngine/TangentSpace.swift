@@ -10,16 +10,16 @@ import Foundation
 
 extension DefaultScopes {
     static func FragmentTBNMatrixScope(
-        aNormal: GPUVariable<GLSLVec3>,
-        aTangent: GPUVariable<GLSLVec3>,
-        uNormalMatrix: GPUVariable<GLSLMat3>,
-        vTBNMatrix: GPUVariable<GLSLMat3>
+        aNormal: Variable<GLSLVec3>,
+        aTangent: Variable<GLSLVec3>,
+        uNormalMatrix: Variable<GLSLMat3>,
+        vTBNMatrix: Variable<GLSLMat3>
         ) -> GPUScope {
         let scope = GPUScope()
-        let normal = GPUVariable<GLSLVec3>(name: "normal")
-        let tangent = GPUVariable<GLSLVec3>(name: "tangent")
-        let bitangent = GPUVariable<GLSLVec3>(name: "bitangent")
-        let tbnMatrix = GPUVariable<GLSLMat3>(name: "tbnMatrix")
+        let normal = Variable<GLSLVec3>(name: "normal")
+        let tangent = Variable<GLSLVec3>(name: "tangent")
+        let bitangent = Variable<GLSLVec3>(name: "bitangent")
+        let tbnMatrix = Variable<GLSLMat3>(name: "tbnMatrix")
         
         scope ↳ normal
         scope ✍ normal ⬅ ^aNormal
@@ -29,7 +29,7 @@ extension DefaultScopes {
         scope ✍ bitangent ⬅ normal ✖ tangent
         scope ✍ bitangent ⬅ ^bitangent
         scope ↳ tbnMatrix
-        scope ✍ tbnMatrix ⬅ GPUEvaluation(function: GPUFunction<GLSLMat3>(signature: "mat3", input: [tangent, bitangent, normal]))
+        scope ✍ tbnMatrix ⬅ Function(signature: "mat3", arguments: [tangent, bitangent, normal])
         scope ✍ vTBNMatrix ⬅ uNormalMatrix * tbnMatrix
         
         return scope
