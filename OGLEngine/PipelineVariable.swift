@@ -98,6 +98,15 @@ public class Function<T: GLSLType>: Evaluation<T>, AnyFunction {
     }
 }
 
+extension Function: GPUInstruction {
+    public func glslRepresentation() -> String {
+        return glslFace()
+    }
+    public func variablesUsed() -> [AnyVariable] {
+        return arguments.map{$0.variablesUsed()}.stomp()
+    }
+}
+
 public class InfixFunction<ReturnType: GLSLType>: Evaluation<ReturnType> {
     private(set) var operatorSymbol: String
     private(set) var lhs: AnyEvaluation
@@ -111,6 +120,12 @@ public class InfixFunction<ReturnType: GLSLType>: Evaluation<ReturnType> {
     
     public override func glslFace() -> String {
         return self.lhs.glslFace() + " " + self.operatorSymbol + " " + self.rhs.glslFace()
+    }
+}
+
+extension InfixFunction: GPUInstruction {
+    public func glslRepresentation() -> String {
+        return glslFace()
     }
     
     public func variablesUsed() -> [AnyVariable] {
