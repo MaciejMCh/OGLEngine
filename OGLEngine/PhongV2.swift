@@ -17,7 +17,7 @@ import GLKit
 
 extension DefaultPipelines {
     static func PhongV2() -> GPUPipeline {
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.texel,
             GPUAttributes.normal,
@@ -38,7 +38,7 @@ extension DefaultPipelines {
 }
 
 extension DefaultVertexShaders {
-    static func PhongV2(attributes: GPUVariableCollection<AnyGPUAttribute>,
+    static func PhongV2(attributes: GPUAttributesCollection,
                         uniforms: GPUVariableCollection<AnyGPUUniform>,
                         interpolation: PhongV2Interpolation) -> GPUVertexShader {
         let scope = DefaultScopes.PhongV2Vertex(

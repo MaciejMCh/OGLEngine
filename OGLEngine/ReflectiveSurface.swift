@@ -11,7 +11,7 @@ import GLKit
 
 extension DefaultPipelines {
     static func ReflectiveSurface() -> GPUPipeline {
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.texel
             ])
@@ -42,7 +42,7 @@ extension DefaultFragmentShaders {
 }
 
 extension DefaultVertexShaders {
-    static func ReflectiveSurface(attributes: GPUVariableCollection<AnyGPUAttribute>,
+    static func ReflectiveSurface(attributes: GPUAttributesCollection,
                                   uniforms: GPUVariableCollection<AnyGPUUniform>,
                                   interpolation: ReflectiveSurfaceInterpolation) -> GPUVertexShader {
         return GPUVertexShader(

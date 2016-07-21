@@ -38,7 +38,7 @@ struct RayBoxMappingTest {
         let uModelViewProjectionMatrix = Variable<GLSLMat4>(name: "uModelViewProjectionMatrix")
         let uRayBoxColorMap = Variable<GLSLTexture>(name: "uRayBoxColorMap")
         
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.normal,
             ])

@@ -31,7 +31,6 @@ class GPUAttribute<T: GLSLType>: Variable<T>, AnyGPUAttribute {
             size = 0
         }
     }
-    
 }
 
 struct GPUAttributes {
@@ -41,11 +40,15 @@ struct GPUAttributes {
     static let tangent = GPUAttribute<GLSLVec3>(name: "aTangent", location: 3)
 }
 
-extension Array where Element: AnyGPUAttribute {
-    func get(variable: AnyVariable) -> AnyGPUAttribute! {
+struct GPUAttributesCollection {
+    let collection: [AnyGPUAttribute]
+    
+    func get<T>(variable: Variable<T>) -> GPUAttribute<T>! {
+        for element in collection {
+            if element.name == variable.name {
+                return element as! GPUAttribute<T>
+            }
+        }
         return nil
     }
-//    func get<T>(variable: T) -> T! {
-//        return nil
-//    }
 }

@@ -12,7 +12,7 @@ import GLKit
 extension DefaultPipelines {
     static func CloseShot() -> GPUPipeline {
         
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.texel,
             GPUAttributes.normal,
@@ -40,7 +40,7 @@ extension DefaultPipelines {
 }
 
 extension DefaultVertexShaders {
-    static func CloseShot(attributes: GPUVariableCollection<AnyGPUAttribute>,
+    static func CloseShot(attributes: GPUAttributesCollection,
                           uniforms: GPUVariableCollection<AnyGPUUniform>,
                           interpolation: CloseShotInterpolation) -> GPUVertexShader {
         let scope = DefaultScopes.CloseShotVertex(OpenGLDefaultVariables.glPosition(),

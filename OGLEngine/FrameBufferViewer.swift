@@ -10,7 +10,7 @@ import Foundation
 
 extension DefaultPipelines {
     static func FrameBufferViewer() -> GPUPipeline {
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.texel
             ])
@@ -39,7 +39,7 @@ extension DefaultFragmentShaders {
 }
 
 extension DefaultVertexShaders {
-    static func FrameBufferViewer(attributes: GPUVariableCollection<AnyGPUAttribute>,
+    static func FrameBufferViewer(attributes: GPUAttributesCollection,
                                   uniforms: GPUVariableCollection<AnyGPUUniform>,
                                   interpolation: FrameBufferViewerInterpolation) -> GPUVertexShader {
         return GPUVertexShader(

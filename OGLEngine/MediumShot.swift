@@ -10,7 +10,7 @@ import Foundation
 
 extension DefaultPipelines {
     static func MediumShot() -> GPUPipeline {
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.texel,
             GPUAttributes.normal
@@ -33,7 +33,7 @@ extension DefaultPipelines {
 }
 
 extension DefaultVertexShaders {
-    static func MediumShot(attributes: GPUVariableCollection<AnyGPUAttribute>,
+    static func MediumShot(attributes: GPUAttributesCollection,
                            uniforms: GPUVariableCollection<AnyGPUUniform>,
                            interpolation: MediumShotInterpolation) -> GPUVertexShader {
         

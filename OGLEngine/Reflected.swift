@@ -10,7 +10,7 @@ import Foundation
 
 extension DefaultPipelines {
     static func Reflected() -> GPUPipeline {
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.texel,
             GPUAttributes.normal
@@ -43,7 +43,7 @@ extension DefaultFragmentShaders {
 
 extension DefaultVertexShaders {
     static func Reflected(
-        attributes attributes: GPUVariableCollection<AnyGPUAttribute>,
+        attributes attributes: GPUAttributesCollection,
         uniforms: GPUVariableCollection<AnyGPUUniform>,
         interpolation: ReflectedInterpolation) -> GPUVertexShader {
         return GPUVertexShader(

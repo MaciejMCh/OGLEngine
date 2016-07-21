@@ -12,9 +12,9 @@ extension DefaultPipelines {
     static func LightingIdeaImplementation() {
         let vertexScope = GPUScope()
         
-        vertexScope ✍ Variable<GLSLVec2>(name: "texel") ⬅ GPUAttributes.texel.typedVariable
-        vertexScope ✍ Variable<GLSLVec2>(name: "texel") ⬅ GPUAttributes.texel.typedVariable * Primitive<GLSLFloat>(value: 10)
-        vertexScope ✍ OpenGLDefaultVariables.glPosition() ⬅ GPUUniforms.modelViewProjectionMatrix * GPUAttributes.position.typedVariable
+        vertexScope ✍ Variable<GLSLVec2>(name: "texel") ⬅ GPUAttributes.texel
+        vertexScope ✍ Variable<GLSLVec2>(name: "texel") ⬅ GPUAttributes.texel * Primitive<GLSLFloat>(value: 10)
+        vertexScope ✍ OpenGLDefaultVariables.glPosition() ⬅ GPUUniforms.modelViewProjectionMatrix * GPUAttributes.position
         
         GPUPipeline.smartPipeline(vertexScope: vertexScope, fragmentScope: vertexScope)
     }

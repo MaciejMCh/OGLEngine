@@ -113,7 +113,7 @@ extension PipelineProgram {
         // This needs to be done prior to linking.
         
         for attribute in self.pipeline.vertexShader.attributes.collection {
-            glBindAttribLocation(self.glName, attribute.location, attribute.variable.name)
+            glBindAttribLocation(self.glName, attribute.location, attribute.name)
         }
         
         // Link program.

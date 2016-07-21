@@ -10,7 +10,7 @@ import Foundation
 
 extension DefaultPipelines {
     static func SkyBox() -> GPUPipeline {
-        let attributes = GPUVariableCollection<AnyGPUAttribute>(collection: [
+        let attributes = GPUAttributesCollection(collection: [
             GPUAttributes.position,
             GPUAttributes.texel
             ])
@@ -26,7 +26,7 @@ extension DefaultPipelines {
 }
 
 extension DefaultVertexShaders {
-    static func SkyBox(attributes: GPUVariableCollection<AnyGPUAttribute>, uniforms: GPUVariableCollection<AnyGPUUniform>, interpolation: SkyBoxInterpolation) -> GPUVertexShader {
+    static func SkyBox(attributes: GPUAttributesCollection, uniforms: GPUVariableCollection<AnyGPUUniform>, interpolation: SkyBoxInterpolation) -> GPUVertexShader {
         return GPUVertexShader(
             name: "SkyBox",
             attributes: attributes,

@@ -35,13 +35,13 @@ struct GPUVariableCollection<T: AnyVariable> {
         return nil
     }
     
-    func get<T where T: GLSLType>(attribute: GPUAttribute<T>) -> Variable<T>! {
-        for element in self.collection {
-            if element.name == attribute.name {
-                return (element as! GPUAttribute<T>).typedVariable
-            }
-        }
-        return nil
-    }
+//    func get<T where T: GLSLType>(attribute: GPUAttribute<T>) -> Variable<T>! {
+//        for element in self.collection {
+//            if element.name == attribute.name {
+//                return (element as! GPUAttribute<T>).typedVariable
+//            }
+//        }
+//        return nil
+//    }
     
 }
