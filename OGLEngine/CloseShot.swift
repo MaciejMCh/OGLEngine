@@ -18,19 +18,19 @@ extension DefaultPipelines {
             GPUAttributes.normal,
             GPUAttributes.tangent
             ])
-        let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
-            GPUUniform(variable: GPUUniforms.modelMatrix),
-            GPUUniform(variable: GPUUniforms.viewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.normalMatrix),
-            GPUUniform(variable: GPUUniforms.eyePosition),
-            GPUUniform(variable: GPUUniforms.lightVersor),
-            GPUUniform(variable: GPUUniforms.colorMap),
-            GPUUniform(variable: GPUUniforms.normalMap),
-            GPUUniform(variable: GPUUniforms.specularMap),
-            GPUUniform(variable: GPUUniforms.lightColor),
-            GPUUniform(variable: GPUUniforms.specularPower),
-            GPUUniform(variable: GPUUniforms.specularWidth),
-            GPUUniform(variable: GPUUniforms.ambiencePower)
+        let uniforms = UniformsCollection(collection: [
+            GPUUniforms.modelMatrix,
+            GPUUniforms.viewProjectionMatrix,
+            GPUUniforms.normalMatrix,
+            GPUUniforms.eyePosition,
+            GPUUniforms.lightVersor,
+            GPUUniforms.colorMap,
+            GPUUniforms.normalMap,
+            GPUUniforms.specularMap,
+            GPUUniforms.lightColor,
+            GPUUniforms.specularPower,
+            GPUUniforms.specularWidth,
+            GPUUniforms.ambiencePower
             ])
         let interpolation = CloseShotInterpolation()
         let vertexShader = DefaultVertexShaders.CloseShot(attributes, uniforms: uniforms, interpolation: interpolation)
@@ -41,7 +41,7 @@ extension DefaultPipelines {
 
 extension DefaultVertexShaders {
     static func CloseShot(attributes: GPUAttributesCollection,
-                          uniforms: GPUVariableCollection<AnyGPUUniform>,
+                          uniforms: UniformsCollection,
                           interpolation: CloseShotInterpolation) -> GPUVertexShader {
         let scope = DefaultScopes.CloseShotVertex(OpenGLDefaultVariables.glPosition(),
                                                   aPosition: attributes.get(GPUAttributes.position),
@@ -94,7 +94,7 @@ struct CloseShotInterpolation: GPUInterpolation {
 }
 
 extension DefaultFragmentShaders {
-    static func CloseShot(uniforms: GPUVariableCollection<AnyGPUUniform>,
+    static func CloseShot(uniforms: UniformsCollection,
                           interpolation: CloseShotInterpolation) -> GPUFragmentShader {
         let scope = DefaultScopes.CloseShotFragment(OpenGLDefaultVariables.glFragColor(),
                                                     uColorMap: uniforms.get(GPUUniforms.colorMap),

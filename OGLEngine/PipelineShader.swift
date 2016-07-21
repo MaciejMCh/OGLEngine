@@ -16,7 +16,7 @@ public protocol GPUShader {
 
 public struct GPUFragmentShader: GPUShader {
     public let name: String
-    let uniforms: GPUVariableCollection<AnyGPUUniform>
+    let uniforms: UniformsCollection
     public let interpolation: GPUInterpolation
     public let function: MainGPUFunction
 }
@@ -24,7 +24,7 @@ public struct GPUFragmentShader: GPUShader {
 public struct GPUVertexShader: GPUShader {
     public let name: String
     let attributes: GPUAttributesCollection
-    let uniforms: GPUVariableCollection<AnyGPUUniform>
+    let uniforms: UniformsCollection
     public let interpolation: GPUInterpolation
     public let function: MainGPUFunction
 }

@@ -138,7 +138,7 @@ extension PipelineProgram {
         
         // Get uniform locations.
         let uniforms = self.pipeline.vertexShader.uniforms.collection
-        for uniform in uniforms {
+        for var uniform in uniforms {
             let location = glGetUniformLocation(self.glName, uniform.name)
             uniform.location = location
         }

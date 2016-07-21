@@ -15,10 +15,10 @@ extension DefaultPipelines {
             GPUAttributes.texel,
             GPUAttributes.normal
             ])
-        let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
-            GPUUniform(variable: GPUUniforms.planeSpaceModelMatrix),
-            GPUUniform(variable: GPUUniforms.planeSpaceViewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.colorMap)
+        let uniforms = UniformsCollection(collection: [
+            GPUUniforms.planeSpaceModelMatrix,
+            GPUUniforms.planeSpaceViewProjectionMatrix,
+            GPUUniforms.colorMap
             ])
         let interpolation = ReflectedInterpolation()
         let vertexShader = DefaultVertexShaders.Reflected(attributes: attributes, uniforms: uniforms, interpolation: interpolation)
@@ -28,7 +28,7 @@ extension DefaultPipelines {
 }
 
 extension DefaultFragmentShaders {
-    static func Reflected(uniforms: GPUVariableCollection<AnyGPUUniform>, interpolation: ReflectedInterpolation) -> GPUFragmentShader {
+    static func Reflected(uniforms: UniformsCollection, interpolation: ReflectedInterpolation) -> GPUFragmentShader {
         return GPUFragmentShader(
             name: "Reflected",
             uniforms: uniforms,
@@ -44,7 +44,7 @@ extension DefaultFragmentShaders {
 extension DefaultVertexShaders {
     static func Reflected(
         attributes attributes: GPUAttributesCollection,
-        uniforms: GPUVariableCollection<AnyGPUUniform>,
+        uniforms: UniformsCollection,
         interpolation: ReflectedInterpolation) -> GPUVertexShader {
         return GPUVertexShader(
             name: "Reflected",

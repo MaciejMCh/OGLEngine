@@ -14,9 +14,9 @@ extension DefaultPipelines {
             GPUAttributes.position,
             GPUAttributes.texel
             ])
-        let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
-            GPUUniform(variable: GPUUniforms.rotatedProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.colorMap)
+        let uniforms = UniformsCollection(collection: [
+            GPUUniforms.rotatedProjectionMatrix,
+            GPUUniforms.colorMap
             ])
         let interpolation = SkyBoxInterpolation()
         return GPUPipeline(
@@ -26,7 +26,7 @@ extension DefaultPipelines {
 }
 
 extension DefaultVertexShaders {
-    static func SkyBox(attributes: GPUAttributesCollection, uniforms: GPUVariableCollection<AnyGPUUniform>, interpolation: SkyBoxInterpolation) -> GPUVertexShader {
+    static func SkyBox(attributes: GPUAttributesCollection, uniforms: UniformsCollection, interpolation: SkyBoxInterpolation) -> GPUVertexShader {
         return GPUVertexShader(
             name: "SkyBox",
             attributes: attributes,
@@ -43,7 +43,7 @@ extension DefaultVertexShaders {
 }
 
 extension DefaultFragmentShaders {
-    static func SkyBox(uniforms: GPUVariableCollection<AnyGPUUniform>, interpolation: SkyBoxInterpolation) -> GPUFragmentShader {
+    static func SkyBox(uniforms: UniformsCollection, interpolation: SkyBoxInterpolation) -> GPUFragmentShader {
         return GPUFragmentShader(
             name: "SkyBox",
             uniforms: uniforms,

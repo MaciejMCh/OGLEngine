@@ -23,12 +23,12 @@ extension DefaultPipelines {
             GPUAttributes.normal,
             GPUAttributes.tangent,
             ])
-        let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
-            GPUUniform(variable: GPUUniforms.modelMatrix),
-            GPUUniform(variable: GPUUniforms.viewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.normalMatrix),
-            GPUUniform(variable: GPUUniforms.eyePosition),
-            GPUUniform(variable: GPUUniforms.colorMap)
+        let uniforms = UniformsCollection(collection: [
+            GPUUniforms.modelMatrix,
+            GPUUniforms.viewProjectionMatrix,
+            GPUUniforms.normalMatrix,
+            GPUUniforms.eyePosition,
+            GPUUniforms.colorMap
             ])
         let interpolation = PhongV2Interpolation()
         let vertexShader = DefaultVertexShaders.PhongV2(attributes, uniforms: uniforms, interpolation: interpolation)
@@ -39,7 +39,7 @@ extension DefaultPipelines {
 
 extension DefaultVertexShaders {
     static func PhongV2(attributes: GPUAttributesCollection,
-                        uniforms: GPUVariableCollection<AnyGPUUniform>,
+                        uniforms: UniformsCollection,
                         interpolation: PhongV2Interpolation) -> GPUVertexShader {
         let scope = DefaultScopes.PhongV2Vertex(
             OpenGLDefaultVariables.glPosition(),
@@ -60,7 +60,7 @@ extension DefaultVertexShaders {
 }
 
 extension DefaultFragmentShaders {
-    static func PhongV2(uniforms: GPUVariableCollection<AnyGPUUniform>, interpolation: PhongV2Interpolation) -> GPUFragmentShader {
+    static func PhongV2(uniforms: UniformsCollection, interpolation: PhongV2Interpolation) -> GPUFragmentShader {
         return GPUFragmentShader(name: "PhongV2",
                                  uniforms: uniforms,
                                  interpolation: interpolation,

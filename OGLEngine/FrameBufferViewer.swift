@@ -14,8 +14,8 @@ extension DefaultPipelines {
             GPUAttributes.position,
             GPUAttributes.texel
             ])
-        let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
-            GPUUniform(variable: GPUUniforms.colorMap)
+        let uniforms = UniformsCollection(collection: [
+            GPUUniforms.colorMap
             ])
         let interpolation = FrameBufferViewerInterpolation()
         return GPUPipeline(
@@ -25,7 +25,7 @@ extension DefaultPipelines {
 }
 
 extension DefaultFragmentShaders {
-    static func FrameBufferViewer(uniforms: GPUVariableCollection<AnyGPUUniform>,
+    static func FrameBufferViewer(uniforms: UniformsCollection,
                                   interpolation: FrameBufferViewerInterpolation) -> GPUFragmentShader {
         return GPUFragmentShader(
             name: "FrameBufferViewer",
@@ -40,7 +40,7 @@ extension DefaultFragmentShaders {
 
 extension DefaultVertexShaders {
     static func FrameBufferViewer(attributes: GPUAttributesCollection,
-                                  uniforms: GPUVariableCollection<AnyGPUUniform>,
+                                  uniforms: UniformsCollection,
                                   interpolation: FrameBufferViewerInterpolation) -> GPUVertexShader {
         return GPUVertexShader(
             name: "FrameBufferViewer",

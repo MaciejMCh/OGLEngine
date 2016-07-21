@@ -15,14 +15,14 @@ extension DefaultPipelines {
             GPUAttributes.texel,
             GPUAttributes.normal
             ])
-        let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
-            GPUUniform(variable: GPUUniforms.lightDirection),
-            GPUUniform(variable: GPUUniforms.lightHalfVector),
-            GPUUniform(variable: GPUUniforms.normalMatrix),
-            GPUUniform(variable: GPUUniforms.modelViewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.shininess),
-            GPUUniform(variable: GPUUniforms.lightColor),
-            GPUUniform(variable: GPUUniforms.colorMap)
+        let uniforms = UniformsCollection(collection: [
+            GPUUniforms.lightDirection,
+            GPUUniforms.lightHalfVector,
+            GPUUniforms.normalMatrix,
+            GPUUniforms.modelViewProjectionMatrix,
+            GPUUniforms.shininess,
+            GPUUniforms.lightColor,
+            GPUUniforms.colorMap
             ])
         let interpolation = MediumShotInterpolation()
         
@@ -34,7 +34,7 @@ extension DefaultPipelines {
 
 extension DefaultVertexShaders {
     static func MediumShot(attributes: GPUAttributesCollection,
-                           uniforms: GPUVariableCollection<AnyGPUUniform>,
+                           uniforms: UniformsCollection,
                            interpolation: MediumShotInterpolation) -> GPUVertexShader {
         
         let scope = DefaultScopes.MediumShotVertex(
@@ -80,7 +80,7 @@ struct MediumShotInterpolation: GPUInterpolation {
 }
 
 extension DefaultFragmentShaders {
-    static func MediumShot(uniforms: GPUVariableCollection<AnyGPUUniform>, interpolation: MediumShotInterpolation) -> GPUFragmentShader {
+    static func MediumShot(uniforms: UniformsCollection, interpolation: MediumShotInterpolation) -> GPUFragmentShader {
         return GPUFragmentShader(name: "MediumShot",
                                  uniforms: uniforms,
                                  interpolation: interpolation,

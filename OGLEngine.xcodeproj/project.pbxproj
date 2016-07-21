@@ -72,7 +72,6 @@
 		C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */; };
 		C29DFAE91D06F8C00003B7A2 /* PhongV1PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */; };
 		C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */; };
-		C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */; };
 		C2AFAE661CFC4DFD00C2F8D0 /* PipelineUniform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */; };
 		C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */; };
 		C2B188F31CF1CC8B008BB626 /* PipelineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */; };
@@ -188,7 +187,6 @@
 		C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1.swift; sourceTree = "<group>"; };
 		C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1PipelineProgram.swift; sourceTree = "<group>"; };
 		C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineAttribute.swift; sourceTree = "<group>"; };
-		C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineVariablesCollection.swift; sourceTree = "<group>"; };
 		C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineUniform.swift; sourceTree = "<group>"; };
 		C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineProgramDefaultImplementations.swift; sourceTree = "<group>"; };
 		C2B188F21CF1CC8B008BB626 /* PipelineModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineModels.swift; sourceTree = "<group>"; };
@@ -605,7 +603,6 @@
 				C2B188FC1CF20844008BB626 /* GLSLParser.swift */,
 				C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */,
 				C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */,
-				C2AFAE631CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift */,
 				C2E1581D1CFD9C1800BB3805 /* PipelineFunction.swift */,
 				C2E158211CFD9D0200BB3805 /* PipelineScope.swift */,
 			);
@@ -873,7 +870,6 @@
 				C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */,
 				C2E17FE51D0F1DB500CB2D2D /* AxesGeometryModel.swift in Sources */,
 				C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */,
-				C2AFAE641CFC4D6B00C2F8D0 /* PipelineVariablesCollection.swift in Sources */,
 				C2C0BF3C1D2D81BF0035D4A7 /* FrameBufferViewerPipelineProgram.swift in Sources */,
 				C228FF951D10455C000D6414 /* OscilatingGeometryModel.swift in Sources */,
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,

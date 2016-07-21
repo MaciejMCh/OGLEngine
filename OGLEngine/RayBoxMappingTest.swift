@@ -42,10 +42,10 @@ struct RayBoxMappingTest {
             GPUAttributes.position,
             GPUAttributes.normal,
             ])
-        let uniforms = GPUVariableCollection<AnyGPUUniform>(collection: [
-            GPUUniform(variable: GPUUniforms.modelViewProjectionMatrix),
-            GPUUniform(variable: GPUUniforms.rayBoxColorMap),
-            GPUUniform(variable: GPUUniforms.eyePosition)
+        let uniforms = UniformsCollection(collection: [
+            GPUUniforms.modelViewProjectionMatrix,
+            GPUUniforms.rayBoxColorMap,
+            GPUUniforms.eyePosition
             ])
         
         let vertexScope = GPUScope()
