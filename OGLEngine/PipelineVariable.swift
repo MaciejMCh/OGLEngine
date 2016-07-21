@@ -115,19 +115,8 @@ public class InfixFunction<ReturnType: GLSLType>: Evaluation<ReturnType> {
     
     public func variablesUsed() -> [AnyVariable] {
         var variables: [AnyVariable] = []
-        if let lhs = lhs as? AnyVariable {
-            variables.append(lhs)
-        }
-        if let rhs = lhs as? AnyVariable {
-            variables.append(rhs)
-        }
-        if let lhs = lhs as? GPUInstruction {
-            variables.appendContentsOf(lhs.variablesUsed())
-        }
-        if let rhs = lhs as? GPUInstruction {
-            variables.appendContentsOf(rhs.variablesUsed())
-        }
-        
+        variables.appendContentsOf(lhs.variablesUsed())
+        variables.appendContentsOf(rhs.variablesUsed())
         return variables
     }
 }

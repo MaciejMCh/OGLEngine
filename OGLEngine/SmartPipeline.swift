@@ -50,7 +50,6 @@ extension GPUScope {
             mainScope.appendInstruction(notDeclaration)
         }
         
-        
         globalScope.appendFunction(MainGPUFunction(scope: mainScope))
         
         NSLog("\n" + GLSLParser.scope(self))

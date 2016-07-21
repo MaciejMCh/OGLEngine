@@ -73,8 +73,19 @@ public struct GPUAssignment<T: GLSLType>: GPUInstruction {
     
     public func variablesUsed() -> [AnyVariable] {
         var variables: [AnyVariable] = [assignee]
-        if let instructionAssignment = assignment as? GPUInstruction {
-            variables.appendContentsOf(instructionAssignment.variablesUsed())
+        variables.appendContentsOf(assignment.variablesUsed())
+        return variables
+    }
+}
+
+extension AnyEvaluation {
+    func variablesUsed() -> [AnyVariable] {
+        var variables: [AnyVariable] = []
+        if let variable = self as? AnyVariable {
+            variables.append(variable)
+        }
+        if let instruction = self as? GPUInstruction {
+            variables.appendContentsOf(instruction.variablesUsed())
         }
         return variables
     }
