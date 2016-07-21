@@ -9,43 +9,22 @@
 import Foundation
 import GLKit
 
-class AnyGPUUniform: AnyVariable {
-    var variable: AnyVariable
-    var location: GLint!
+protocol AnyGPUUniform: AnyVariable {
+    var location: GLint {get}
+    func passToGPU()
+}
+
+class GPUUniform<T: GLSLType> : Variable<T>, AnyGPUUniform {
+    var location: GLint
+    var cpuVariableGetter: (() -> T.CPUCounterpart)!
     
-    var name: String {
-        return variable.name
-    }
-    
-    init(variable: AnyVariable) {
-        self.variable = variable
+    init(name: String, location :GLint) {
+        self.location = location
+        super.init(name: name)
     }
     
     func passToGPU() {
-        assert(false)
-        // Why did you even instantiate it?
-    }
-}
-
-//extension AnyGPUUniform: GPURepresentable {
-//    var glslName: String {
-//        get {
-//            return self.variable.name!
-//        }
-//    }
-//}
-
-class GPUUniform<T: GLSLType> : AnyGPUUniform {
-    var typedVariable: Variable<T>
-    var cpuVariableGetter: (() -> T.CPUCounterpart)!
-    
-    init(variable: Variable<T>) {
-        self.typedVariable = variable
-        super.init(variable: variable)
-    }
-    
-    override func passToGPU() {
-        assert(self.cpuVariableGetter != nil, self.variable.name + " uniform has no assigned cpu counterpart getter.")
+        assert(self.cpuVariableGetter != nil, self.name + " uniform has no assigned cpu counterpart getter.")
         T.passValueToGPU(self.cpuVariableGetter(), location: self.location)
     }
 }
