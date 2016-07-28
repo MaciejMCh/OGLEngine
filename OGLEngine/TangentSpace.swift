@@ -10,10 +10,10 @@ import Foundation
 
 extension DefaultScopes {
     static func FragmentTBNMatrixScope(
-        aNormal: Variable<GLSLVec3>,
-        aTangent: Variable<GLSLVec3>,
-        uNormalMatrix: Variable<GLSLMat3>,
-        vTBNMatrix: Variable<GLSLMat3>
+        aNormal: Variable<GLSLVec3> = GPUAttributes.normal,
+        aTangent: Variable<GLSLVec3> = GPUAttributes.tangent,
+        uNormalMatrix: Variable<GLSLMat3> = GPUUniforms.normalMatrix,
+        vTBNMatrix: Variable<GLSLMat3> = Variable(name: "vTBNMatrix")
         ) -> GPUScope {
         let scope = GPUScope()
         let normal = Variable<GLSLVec3>(name: "normal")

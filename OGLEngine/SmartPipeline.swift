@@ -7,20 +7,109 @@
 //
 
 import Foundation
+import GLKit
+
+class SmartPipelineProgram: PipelineProgram {
+    typealias RenderableType = Mesh
+    var glName: GLuint = 0
+    var pipeline: GPUPipeline
+    
+    init(vertexScope: GPUScope, fragmentScope: GPUScope) {
+        self.pipeline = GPUPipeline.smartPipeline(vertexScope: vertexScope, fragmentScope: fragmentScope)
+    }
+}
 
 extension GPUPipeline {
-    static func smartPipeline(vertexScope vertexScope: GPUScope, fragmentScope: GPUScope) {
-        let f = vertexScope.completedAsVertexShaderScope()
+    
+    static func smartPipeline(vertexScope vertexScope: GPUScope, fragmentScope: GPUScope) -> GPUPipeline {
+        let vertexScope = vertexScope.completedShaderScope()
+        let fragmentScope = fragmentScope.completedShaderScope(fixedPrecision: .Low)
+        linkScopes(vertexScope: vertexScope, fragmentScope: fragmentScope)
+        
+        let vertexShader = GPUVertexShader(
+            name: "auto linked",
+            attributes: GPUAttributesCollection(collection: vertexScope.attributesUsed()),
+            uniforms: UniformsCollection(collection: vertexScope.uniformsUsed()),
+            interpolation: FixedGPUInterpolation(variables: vertexScope.varyingsUsed()),
+            function: MainGPUFunction(scope: vertexScope))
+        let fragmentShader = GPUFragmentShader(
+            name: "auto linked",
+            uniforms: UniformsCollection(collection: fragmentScope.uniformsUsed()),
+            interpolation: FixedGPUInterpolation(variables: fragmentScope.varyingsUsed()),
+            function: MainGPUFunction(scope: fragmentScope))
+        return GPUPipeline(vertexShader: vertexShader, fragmentShader: fragmentShader)
+    }
+    
+    static func linkScopes(vertexScope vertexScope: GPUScope, fragmentScope: GPUScope) {
+        let vertexVaryings = vertexScope.varyingsUsed()
+        let fragmentVaryings = fragmentScope.varyingsUsed()
+        
+        let vertexUndeclared = fragmentVaryings.filter{
+            for vertexDeclared in vertexVaryings {
+                if vertexDeclared.name == $0.name {
+                    return false
+                }
+            }
+            return true
+        }
+        
+        for vertexUndeclaredVarying in vertexUndeclared {
+            let correspondingUniform = vertexUndeclaredVarying.createUniform()
+            vertexScope.appendGlobalDeclaration(vertexUndeclaredVarying, precision: .Low ,accessKind: .Varying)
+            vertexScope.appendGlobalDeclaration(correspondingUniform, accessKind: .Uniform)
+            vertexScope.appendInstructionToMainFunction(FixedGPUInstruction(code: "\(vertexUndeclaredVarying.name) = \(correspondingUniform.name);", usedVariables: [vertexUndeclaredVarying, correspondingUniform]))
+        }
+    }
+}
+
+struct FixedGPUInterpolation: GPUInterpolation {
+    let variables: [AnyVariable]
+    
+    func varyings() -> [GPUVarying] {
+        var varyings: [GPUVarying] = []
+        for variable in variables {
+            varyings.append(GPUVarying(variable: variable, precision: .Low))
+        }
+        return varyings
     }
 }
 
 extension GPUScope {
-    func completedAsVertexShaderScope() -> GPUScope {
+    
+    func appendGlobalDeclaration(variable: AnyVariable, precision: GPUVariablePrecision? = nil, accessKind: GPUVariableAccessKind) {
+        appendInstruction(GPUDeclaration(variable: variable, precision: precision, accessKind: accessKind))
+    }
+    
+    func appendInstructionToMainFunction(instruction: GPUInstruction) {
+        for function in functions {
+            if function is MainGPUFunction {
+                function.scope?.appendInstruction(instruction)
+            }
+        }
+    }
+    
+    func variablesUsed() -> [AnyVariable] {
+        return instructions.map{$0.variablesUsed()}.stomp()
+    }
+
+    func attributesUsed() -> [AnyGPUAttribute] {
+        return variablesUsed().filter{$0 is AnyGPUAttribute}.map{$0 as! AnyGPUAttribute}
+    }
+
+    func uniformsUsed() -> [AnyGPUUniform] {
+        return variablesUsed().filter{$0 is AnyGPUUniform}.map{$0 as! AnyGPUUniform}
+    }
+
+    func varyingsUsed() -> [AnyVariable] {
+        return variablesUsed().filter{$0.name.hasPrefix("v")}
+    }
+    
+    func completedShaderScope(fixedPrecision fixedPrecision: GPUVariablePrecision? = nil) -> GPUScope {
         let globalScope = GPUScope()
         let mainScope = GPUScope()
-        var variables = instructions.map{$0.variablesUsed()}.stomp()
+        let variables = variablesUsed()
         var declaredVariables: [AnyVariable] = []
-        
+
         for variable in variables {
             if variable.name == "gl_Position" {continue}
             if variable.name == "gl_FragColor" {continue}
@@ -39,12 +128,12 @@ extension GPUScope {
             switch variable.name.characters.first! {
             case "a": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Attribute))
             case "u": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Uniform))
-            case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Varying))
-            default: mainScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Local))
+            case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, precision: .Low, accessKind: .Varying))
+            default: mainScope.appendInstruction(GPUDeclaration(variable: variable, precision: fixedPrecision, accessKind: .Local))
             }
             declaredVariables.append(variable)
         }
-        
+
         let notDeclarations = instructions.filter{!($0 is GPUDeclaration)}
         for notDeclaration in notDeclarations {
             mainScope.appendInstruction(notDeclaration)
@@ -72,4 +161,10 @@ extension Array {
         }
         return (including: including, excluding: excluding)
     }
+}
+
+public func + <T>(lhs: Array<T>, rhs: Array<T>) -> Array<T> {
+    var merged = lhs
+    merged.appendContentsOf(rhs)
+    return merged
 }

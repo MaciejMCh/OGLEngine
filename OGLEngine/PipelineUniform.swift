@@ -9,7 +9,7 @@
 import Foundation
 import GLKit
 
-protocol AnyGPUUniform: AnyVariable {
+public protocol AnyGPUUniform: AnyVariable {
     var location: GLint! {get set}
     func passToGPU()
 }

@@ -45,6 +45,7 @@ public class FixedEvaluation<T: GLSLType>: Evaluation<T> {
 
 public protocol AnyVariable {
     var name: String {get}
+    func createUniform() -> AnyGPUUniform
 }
 
 public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
@@ -56,6 +57,11 @@ public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
     
     public override func glslFace() -> String {
         return name
+    }
+    
+    public func createUniform() -> AnyGPUUniform {
+        let name = "u" + self.name.substringFromIndex(self.name.startIndex.advancedBy(1))
+        return GPUUniform<T>(name: name)
     }
 }
 
