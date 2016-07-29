@@ -214,8 +214,11 @@ public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Fun
     return Function<GLSLColor>(signature: "texture2D", arguments: [lhs, rhs])
 }
 
-public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> FixedEvaluation<GLSLFloat> {
-    return FixedEvaluation<GLSLFloat>(code: "texture2D(\(lhs.glslFace()), \(rhs.glslFace())).r * 80.0")
+public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Evaluation<GLSLFloat> {
+    let sample: Evaluation<GLSLColor> = lhs ☒ rhs
+    let monoSample: Evaluation<GLSLFloat> = sample.>"r"
+    let scaledSample = monoSample * Primitive(value: 80.0) // TODO: Remove this line, 80.0 should be parameter
+    return scaledSample
 }
 
 // Field
