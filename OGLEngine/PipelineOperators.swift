@@ -107,7 +107,9 @@ public func + (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLVec3>) -> InfixFun
     return InfixFunction<GLSLVec3>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
 }
 
-// Inits
+public func + (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLVec2> {
+    return InfixFunction<GLSLVec2>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
+}
 
 // Normalization
 prefix operator ^ {}
@@ -118,6 +120,10 @@ prefix func ^ (vector: Evaluation<GLSLVec3>) -> Function<GLSLVec3> {
 // Scaling
 public func * (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLVec2> {
     return InfixFunction<GLSLVec2>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+}
+
+public func / (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLVec2> {
+    return InfixFunction<GLSLVec2>(operatorSymbol: "/", lhs: lhs, rhs: rhs)
 }
 
 // Primitive Scaling
@@ -169,6 +175,10 @@ prefix func ⤺ (sample: Evaluation<GLSLColor>) -> Function<GLSLVec3> {
 }
 
 struct VecInits {
+    static func vec2(u u: Evaluation<GLSLFloat>, v: Evaluation<GLSLFloat>) -> Function<GLSLVec2> {
+        return Function<GLSLVec2>(signature: "vec2", arguments: [u, v])
+    }
+    
     static func vec4(vec3: Evaluation<GLSLVec3>) -> Function<GLSLVec4> {
         return Function<GLSLVec4>(signature: "vec4", arguments: [vec3, Primitive<GLSLFloat>(value: 1.0)])
     }
@@ -183,6 +193,16 @@ struct VecInits {
     
     static func vec3(color: Evaluation<GLSLColor>) -> Function<GLSLVec3> {
         return Function<GLSLVec3>(signature: "vec3", arguments: [color])
+    }
+    
+    static func ndc(position position: Variable<GLSLVec4>) -> Evaluation<GLSLVec2> {
+    // (position.xy / position.w) / 2.0 + 0.5
+        let xy: Evaluation<GLSLVec2> = position .> "xy"
+        let w: Evaluation<GLSLFloat> = position .> "w"
+        let scaled = xy / w
+        let halfed = scaled / Primitive(value: 2.0)
+        let centered = halfed + Primitive(value: 0.5)
+        return centered
     }
 }
 
@@ -204,6 +224,10 @@ public func * (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixF
     return InfixFunction<GLSLFloat>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
+public func - (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLFloat> {
+    return InfixFunction<GLSLFloat>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
+}
+
 public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> FixedGPUInstruction {
     return FixedGPUInstruction(code: "if (\(lhs.glslFace()) < \(rhs.glslFace())) {discard;}", usedVariables: [])
 }
@@ -212,6 +236,15 @@ public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> FixedG
 infix operator ☒ { associativity left precedence 200 }
 public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Function<GLSLColor> {
     return Function<GLSLColor>(signature: "texture2D", arguments: [lhs, rhs])
+}
+
+infix operator ^☒ { associativity left precedence 200 }
+public func ^☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Function<GLSLColor> {
+    let u: Evaluation<GLSLFloat> = rhs .> "u"
+    let v: Evaluation<GLSLFloat> = rhs .> "v"
+    let invertedV = Primitive(value: -1.0) - v
+    let invertedTexel = VecInits.vec2(u: u, v: invertedV)
+    return Function<GLSLColor>(signature: "texture2D", arguments: [lhs, invertedTexel])
 }
 
 public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Evaluation<GLSLFloat> {

@@ -31,18 +31,6 @@ public class Evaluation<T: GLSLType>: AnyEvaluation {
     }
 }
 
-public class FixedEvaluation<T: GLSLType>: Evaluation<T> {
-    var code: String
-    
-    init(code: String) {
-        self.code = code
-    }
-    
-    override public func glslFace() -> String {
-        return code
-    }
-}
-
 public protocol AnyVariable {
     var name: String {get}
     func createUniform() -> AnyGPUUniform

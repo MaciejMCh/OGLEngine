@@ -110,9 +110,9 @@ extension DefaultScopes {
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
         mainScope ↳↘ ndc
-        mainScope ✍ ndc ⬅ FixedEvaluation(code: "(\(vClipSpace.name).xy / \(vClipSpace.name).w) / 2.0 + 0.5")
+        mainScope ✍ ndc ⬅ VecInits.ndc(position: vClipSpace)
         mainScope ↳↘ reflectionColor
-        mainScope ✍ reflectionColor ⬅ FixedEvaluation(code: "texture2D(\(uReflectionColorMap.name), vec2(\(ndc.name).x, 1.0 - \(ndc.name).y))")
+        mainScope ✍ reflectionColor ⬅ uReflectionColorMap ^☒ ndc
         mainScope ↳↘ surfaceColor
         mainScope ✍ surfaceColor ⬅ Primitive<GLSLColor>(value: (r: 0.0, g: 0.1, b: 0.1, a: 1.0))
         mainScope ✍ glFragColor ⬅ reflectionColor ✖ surfaceColor
