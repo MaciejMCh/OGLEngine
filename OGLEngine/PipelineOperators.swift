@@ -217,3 +217,9 @@ public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Fun
 public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> FixedEvaluation<GLSLFloat> {
     return FixedEvaluation<GLSLFloat>(code: "texture2D(\(lhs.glslFace()), \(rhs.glslFace())).r * 80.0")
 }
+
+// Field
+infix operator .> { associativity left precedence 200 }
+public func .> <T>(lhs: AnyEvaluation, rhs: String) -> FieldEvaluation<T> {
+    return FieldEvaluation<T>(evaluation: lhs, fieldName: rhs)
+}
