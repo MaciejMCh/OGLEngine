@@ -109,7 +109,9 @@ extension GPUScope {
         let mainScope = GPUScope()
         let variables = variablesUsed()
         var declaredVariables: [AnyVariable] = []
-
+        
+        debugPrint(variables.map{$0.name})
+        
         for variable in variables {
             if variable.name == "gl_Position" {continue}
             if variable.name == "gl_FragColor" {continue}

@@ -63,7 +63,7 @@ public struct GPUDeclaration: GPUInstruction {
     }
 }
 
-public class FieldEvaluation<T: GLSLType>: Evaluation<T> {
+public class FieldEvaluation<T: GLSLType>: Evaluation<T>, GPUInstruction {
     var evaluation: AnyEvaluation
     var fieldName: String
     
@@ -74,6 +74,14 @@ public class FieldEvaluation<T: GLSLType>: Evaluation<T> {
     
     public override func glslFace() -> String {
         return evaluation.glslFace() + "." + fieldName
+    }
+    
+    public func glslRepresentation() -> String {
+        return glslFace()
+    }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        return evaluation.variablesUsed()
     }
 }
 
