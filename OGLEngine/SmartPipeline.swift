@@ -125,11 +125,16 @@ extension GPUScope {
                 continue
             }
             
-            switch variable.name.characters.first! {
-            case "a": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Attribute))
-            case "u": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Uniform))
-            case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, precision: .Low, accessKind: .Varying))
-            default: mainScope.appendInstruction(GPUDeclaration(variable: variable, precision: fixedPrecision, accessKind: .Local))
+            let secondCharacter = variable.name.substringWithRange(variable.name.startIndex.advancedBy(1) ..<  variable.name.startIndex.advancedBy(2))
+            if secondCharacter == secondCharacter.uppercaseString {
+                switch variable.name.characters.first! {
+                case "a": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Attribute))
+                case "u": globalScope.appendInstruction(GPUDeclaration(variable: variable, accessKind: .Uniform))
+                case "v": globalScope.appendInstruction(GPUDeclaration(variable: variable, precision: .Low, accessKind: .Varying))
+                default: mainScope.appendInstruction(GPUDeclaration(variable: variable, precision: fixedPrecision, accessKind: .Local))
+                }
+            } else {
+                mainScope.appendInstruction(GPUDeclaration(variable: variable, precision: fixedPrecision, accessKind: .Local))
             }
             declaredVariables.append(variable)
         }
@@ -140,9 +145,6 @@ extension GPUScope {
         }
         
         globalScope.appendFunction(MainGPUFunction(scope: mainScope))
-        
-        NSLog("\n" + GLSLParser.scope(self))
-        NSLog("\n\n" + GLSLParser.scope(globalScope))
         return globalScope
     }
     

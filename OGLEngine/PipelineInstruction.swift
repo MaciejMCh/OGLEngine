@@ -63,6 +63,20 @@ public struct GPUDeclaration: GPUInstruction {
     }
 }
 
+public class FieldEvaluation<T: GLSLType>: Evaluation<T> {
+    var evaluation: AnyEvaluation
+    var fieldName: String
+    
+    init(evaluation: AnyEvaluation, fieldName: String) {
+        self.evaluation = evaluation
+        self.fieldName = fieldName
+    }
+    
+    public override func glslFace() -> String {
+        return evaluation.glslFace() + "." + fieldName
+    }
+}
+
 public struct GPUAssignment<T: GLSLType>: GPUInstruction {
     let assignee: Variable<T>
     let assignment: Evaluation<T>
@@ -79,7 +93,7 @@ public struct GPUAssignment<T: GLSLType>: GPUInstruction {
 }
 
 extension AnyEvaluation {
-    func variablesUsed() -> [AnyVariable] {
+    public func variablesUsed() -> [AnyVariable] {
         var variables: [AnyVariable] = []
         if let variable = self as? AnyVariable {
             variables.append(variable)

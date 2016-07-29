@@ -74,6 +74,10 @@ extension DefaultPipelines {
         fragmentScope ⎘ phongScope
         
         var program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
+        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
+        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
         program.compile()
+        NSLog("")
+        
     }
 }
