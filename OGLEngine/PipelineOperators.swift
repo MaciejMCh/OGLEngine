@@ -240,9 +240,9 @@ public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Fun
 
 infix operator ^☒ { associativity left precedence 200 }
 public func ^☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Function<GLSLColor> {
-    let u: Evaluation<GLSLFloat> = rhs .> "u"
-    let v: Evaluation<GLSLFloat> = rhs .> "v"
-    let invertedV = Primitive(value: -1.0) - v
+    let u: Evaluation<GLSLFloat> = rhs .> "x"
+    let v: Evaluation<GLSLFloat> = rhs .> "y"
+    let invertedV = Primitive(value: 1.0) - v
     let invertedTexel = VecInits.vec2(u: u, v: invertedV)
     return Function<GLSLColor>(signature: "texture2D", arguments: [lhs, invertedTexel])
 }

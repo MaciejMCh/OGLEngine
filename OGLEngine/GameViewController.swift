@@ -71,7 +71,7 @@ class GameViewController: GLKViewController {
         
         DefaultPipelines.LightingIdeaImplementation()
         
-        let program = RayBoxMappingTestProgram()
+        let program = ReflectiveSurfacePipelineProgram()
 //        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
 //        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
