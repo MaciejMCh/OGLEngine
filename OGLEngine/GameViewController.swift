@@ -103,6 +103,8 @@ class GameViewController: GLKViewController {
         self.frameBufferViewerProgram = FrameBufferViewerPipelineProgram()
         self.frameBufferViewerProgram.compile()
         
+        self.scene.rayBoxColorMap = frameBufferViewerProgram.renderable.frameBufferRenderedTexture
+        
         glEnable(GLenum(GL_DEPTH_TEST))
         
         Renderer.closeShotProgram = closeShotProgram

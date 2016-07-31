@@ -29,7 +29,7 @@ struct Renderer {
         self.mediumShotProgram.render(scene.mediumShots, scene: scene)
         
         glUseProgram(self.lightingIdeaImplementationProgram.glName)
-        self.lightingIdeaImplementationProgram.render(scene.closeShots, scene: scene)
+        self.lightingIdeaImplementationProgram.render(scene.lighModelIdeaRenderables(), scene: scene)
         
         for reflectiveSurface in scene.reflectiveSurfaces {
             reflectiveSurface.reflectionColorMap.withFbo({

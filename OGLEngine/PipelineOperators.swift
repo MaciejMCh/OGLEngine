@@ -236,6 +236,10 @@ public func - (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixF
     return InfixFunction<GLSLFloat>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
 }
 
+public func + (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLFloat> {
+    return InfixFunction<GLSLFloat>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
+}
+
 public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> FixedGPUInstruction {
     return FixedGPUInstruction(code: "if (\(lhs.glslFace()) < \(rhs.glslFace())) {discard;}", usedVariables: [])
 }
@@ -265,4 +269,10 @@ public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Eva
 infix operator .> { associativity left precedence 200 }
 public func .> <T>(lhs: AnyEvaluation, rhs: String) -> FieldEvaluation<T> {
     return FieldEvaluation<T>(evaluation: lhs, fieldName: rhs)
+}
+
+// Function
+infix operator .< { associativity left precedence 200 }
+public func .< <T>(lhs: GPUFunction<T>, rhs: [AnyVariable]) -> Evaluation<T> {
+    return Function<T>(signature: lhs.signature, arguments: rhs.map{$0 as! AnyEvaluation})
 }

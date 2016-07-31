@@ -15,6 +15,8 @@ class Elucidation {
     var specularPower: Float = 1
     var specularWidth: Float = 1
     var ambiencePower: Float = 1
+    var fresnelMin: Float = 0
+    var fresnelMax: Float = 1
     
     init() {
         RemotePropertiesCenter.sharedInstance.listenToPropertyChange("power") { (property) in
@@ -25,6 +27,12 @@ class Elucidation {
         }
         RemotePropertiesCenter.sharedInstance.listenToPropertyChange("ambient") { (property) in
             self.ambiencePower = property as! Float
+        }
+        RemotePropertiesCenter.sharedInstance.listenToPropertyChange("fresnelMin") { (property) in
+            self.fresnelMin = property as! Float
+        }
+        RemotePropertiesCenter.sharedInstance.listenToPropertyChange("fresnelMax") { (property) in
+            self.fresnelMax = property as! Float
         }
         
     }

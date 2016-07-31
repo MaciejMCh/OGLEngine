@@ -42,6 +42,15 @@ protocol ReflectiveSolid {
     var rayBoxColorMap: RenderedTexture {get}
 }
 
+struct LighModelIdeaRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped, ReflectiveSolid {
+    let vao: VAO
+    let geometryModel: GeometryModel
+    let colorMap: Texture
+    let normalMap: Texture
+    let specularMap: Texture
+    let rayBoxColorMap: RenderedTexture
+}
+
 struct CloseShotRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped {
     let vao: VAO
     let geometryModel: GeometryModel

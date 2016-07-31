@@ -124,12 +124,18 @@ extension PipelineProgram {
         if let ambiencePower = self.pipeline.uniform(GPUUniforms.ambiencePower) {
             ambiencePower.cpuVariableGetter = {elucidation.ambiencePower}
         }
+        if let fresnelMin = self.pipeline.uniform(GPUUniforms.fresnelMin) {
+            fresnelMin.cpuVariableGetter = {elucidation.fresnelMin}
+        }
+        if let fresnelMax = self.pipeline.uniform(GPUUniforms.fresnelMax) {
+            fresnelMax.cpuVariableGetter = {elucidation.fresnelMax}
+        }
         
     }
     
     func defaultReflectiveSolidBindings(refleciveSolid: ReflectiveSolid) {
         if let rayBoxColorMap = self.pipeline.uniform(GPUUniforms.rayBoxColorMap) {
-            rayBoxColorMap.cpuVariableGetter = {(refleciveSolid.rayBoxColorMap, 0)}
+            rayBoxColorMap.cpuVariableGetter = {(refleciveSolid.rayBoxColorMap, 3)}
         }
     }
 }

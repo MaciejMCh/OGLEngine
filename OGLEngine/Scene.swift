@@ -22,6 +22,8 @@ struct Scene {
     
     var skyBox: SkyBoxRenderable
     
+    var rayBoxColorMap: RenderedTexture!
+    
     init(closeShots: [CloseShotRenderable], mediumShots: [MediumShotRenderable], reflectiveSurfaces: [ReflectiveSurfaceRenderable], directionalLight: DirectionalLight, camera: Camera) {
         self.closeShots = closeShots
         self.mediumShots = mediumShots
@@ -37,6 +39,16 @@ struct Scene {
             reflecteds.append(ReflectedRenderable(vao: closeShot.vao, geometryModel: closeShot.geometryModel, colorMap: closeShot.colorMap))
         }
         return reflecteds
+    }
+    
+    func lighModelIdeaRenderables() -> [LighModelIdeaRenderable] {
+        return closeShots.map{LighModelIdeaRenderable(
+            vao: $0.vao,
+            geometryModel: $0.geometryModel,
+            colorMap: $0.colorMap,
+            normalMap: $0.normalMap,
+            specularMap: $0.specularMap,
+            rayBoxColorMap: rayBoxColorMap)}
     }
     
 }

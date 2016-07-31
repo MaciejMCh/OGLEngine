@@ -14,14 +14,14 @@ extension DefaultPipelines {
         let worldSpacePosition = Variable<GLSLVec4>(name: "worldSpacePosition")
         let vLightVersor = Variable<GLSLVec3>(name: "vLightVersor")
         let positionVector = Variable<GLSLVec3>(name: "positionVector")
-        let viewVersor = Variable<GLSLVec3>(name: "viewVersor")
+        let vViewVersor = Variable<GLSLVec3>(name: "vViewVersor")
         let vHalfVersor = Variable<GLSLVec3>(name: "vHalfVersor")
         
         let halfVersorScope = DefaultScopes.PhongHalfVersor(
             vLightVersor,
             modelPosition: positionVector,
             eyePosition: GPUUniforms.eyePosition,
-            viewVersor: viewVersor,
+            viewVersor: vViewVersor,
             halfVersor: vHalfVersor)
         vertexScope ✍ Variable<GLSLVec2>(name: "vTexel") ⬅ GPUAttributes.texel
         vertexScope ✍ worldSpacePosition ⬅ GPUUniforms.modelMatrix * GPUAttributes.position
@@ -35,6 +35,7 @@ extension DefaultPipelines {
         let fixedNormal = Variable<GLSLVec3>(name: "fixedNormal")
         let lightVersor = Variable<GLSLVec3>(name: "lightVersor")
         let halfVersor = Variable<GLSLVec3>(name: "halfVersor")
+        let viewVersor = Variable<GLSLVec3>(name: "viewVersor")
         let lightColor = Variable<GLSLColor>(name: "lightColor")
         let fullDiffuseColor = Variable<GLSLColor>(name: "fullDiffuseColor")
         
@@ -53,6 +54,7 @@ extension DefaultPipelines {
         // Vectors
         fragmentScope ✍ lightVersor ⬅ ^vLightVersor
         fragmentScope ✍ halfVersor ⬅ ^vHalfVersor
+        fragmentScope ✍ viewVersor ⬅ ^vViewVersor
         fragmentScope ✍ lightColor ⬅ vLightColor
         fragmentScope ✍ specularSample ⬅ uSpecularMap ☒ vTexel
         fragmentScope ✍ normalMapSample ⬅ uNormalMap ☒ vTexel
@@ -81,9 +83,34 @@ extension DefaultPipelines {
         fragmentScope ✍ specularWidth ⬅ vSpecularWidth * specularSample
         fragmentScope ✍ specularColor ⬅ lightColor * ((ndh ^ specularPower) * specularWidth)
         
+        // Reflection color
+        let reflectionColor = Variable<GLSLColor>(name: "reflectionColor")
+        let rayBoxTexelWithNormal = DefaultGPUFunction.rayBoxTexelWithNormal()
+        fragmentScope ↳ rayBoxTexelWithNormal
+        fragmentScope ✍ reflectionColor ⬅ GPUUniforms.rayBoxColorMap ☒ (rayBoxTexelWithNormal .< [fixedNormal])
+        
+        // Surface color
+        let surfaceColor = Variable<GLSLColor>(name: "surfaceColor")
+        let reflectivityFactor = Variable<GLSLFloat>(name: "reflectivityFactor")
+        let diffuseFactor = Variable<GLSLFloat>(name: "diffuseFactor")
+        let vFresnelMin = Variable<GLSLFloat>(name: "vFresnelMin")
+        let vFresnelMax = Variable<GLSLFloat>(name: "vFresnelMax")
+        let fresnelFactor = Variable<GLSLFloat>(name: "fresnelFactor")
+        fragmentScope ✍ fresnelFactor ⬅ (vFresnelMax - vFresnelMin)
+        let fresnelPower = Variable<GLSLFloat>(name: "fresnelPower")
+        fragmentScope ✍ fresnelPower ⬅ (Primitive(value: 1.0) - (fixedNormal ⋅ viewVersor))
+        fragmentScope ✍ fresnelFactor ⬅ fresnelFactor * fresnelPower
+        fragmentScope ✍ fresnelFactor ⬅ (fresnelFactor + vFresnelMin)
+        fragmentScope ✍ reflectivityFactor ⬅ specularSample * fresnelFactor
+        fragmentScope ✍ diffuseFactor  ⬅ (Primitive(value: 1.0) - reflectivityFactor)
+        fragmentScope ✍ surfaceColor ⬅ ((reflectionColor * reflectivityFactor) + (diffuseColor * diffuseFactor))
+        
+        //
+        
 //        fragmentScope ✍  ⬅ 
         
-        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (specularColor + diffuseColor)
+//        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (specularColor + diffuseColor)
+        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ surfaceColor
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
         NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))

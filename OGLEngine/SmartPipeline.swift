@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class SmartPipelineProgram: PipelineProgram {
-    typealias RenderableType = CloseShotRenderable
+    typealias RenderableType = LighModelIdeaRenderable
     var glName: GLuint = 0
     var pipeline: GPUPipeline
     
@@ -119,6 +119,10 @@ extension GPUScope {
         let mainScope = GPUScope()
         let variables = variablesUsed()
         var declaredVariables: [AnyVariable] = []
+        
+        for function in functions {
+            globalScope.appendFunction(function)
+        }
         
         for variable in variables {
             if variable.name == "gl_Position" {continue}
