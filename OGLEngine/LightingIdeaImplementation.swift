@@ -93,30 +93,24 @@ extension DefaultPipelines {
         let surfaceColor = Variable<GLSLColor>(name: "surfaceColor")
         let reflectivityFactor = Variable<GLSLFloat>(name: "reflectivityFactor")
         let diffuseFactor = Variable<GLSLFloat>(name: "diffuseFactor")
-        let vFresnelMin = Variable<GLSLFloat>(name: "vFresnelMin")
-        let vFresnelMax = Variable<GLSLFloat>(name: "vFresnelMax")
+        let vfresnelA = Variable<GLSLFloat>(name: "vfresnelA")
+        let vfresnelB = Variable<GLSLFloat>(name: "vfresnelB")
         let fresnelFactor = Variable<GLSLFloat>(name: "fresnelFactor")
-        fragmentScope ✍ fresnelFactor ⬅ (vFresnelMax - vFresnelMin)
-        let fresnelPower = Variable<GLSLFloat>(name: "fresnelPower")
-        fragmentScope ✍ fresnelPower ⬅ (Primitive(value: 1.0) - (fixedNormal ⋅ viewVersor))
-        fragmentScope ✍ fresnelFactor ⬅ fresnelFactor * fresnelPower
-        fragmentScope ✍ fresnelFactor ⬅ (fresnelFactor + vFresnelMin)
+        // Fresnel factor
+        fragmentScope ✍ fresnelFactor ⬅ (fixedNormal ⋅ viewVersor)
+        fragmentScope ✍ fresnelFactor ⬅ ((fresnelFactor * Primitive(value: 1.0)) + Primitive(value: 0.25))
+        fragmentScope ✍ fresnelFactor ⬅ FloatFunctions.cut(fresnelFactor, from: 0.0, to: 1.0)
+        fragmentScope ✍ fresnelFactor ⬅ (Primitive(value: 1.0) - fresnelFactor)
+        // Mix surface and reflection
         fragmentScope ✍ reflectivityFactor ⬅ specularSample * fresnelFactor
         fragmentScope ✍ diffuseFactor  ⬅ (Primitive(value: 1.0) - reflectivityFactor)
         fragmentScope ✍ surfaceColor ⬅ ((reflectionColor * reflectivityFactor) + (diffuseColor * diffuseFactor))
         
-        //
-        
-//        fragmentScope ✍  ⬅ 
-        
-//        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (specularColor + diffuseColor)
         fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ surfaceColor
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
         NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
         NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
-//        program.compile()
-//        NSLog("")
         return program
     }
 }

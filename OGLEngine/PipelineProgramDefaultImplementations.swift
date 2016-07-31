@@ -124,11 +124,11 @@ extension PipelineProgram {
         if let ambiencePower = self.pipeline.uniform(GPUUniforms.ambiencePower) {
             ambiencePower.cpuVariableGetter = {elucidation.ambiencePower}
         }
-        if let fresnelMin = self.pipeline.uniform(GPUUniforms.fresnelMin) {
-            fresnelMin.cpuVariableGetter = {elucidation.fresnelMin}
+        if let fresnelA = self.pipeline.uniform(GPUUniforms.fresnelA) {
+            fresnelA.cpuVariableGetter = {elucidation.fresnelA}
         }
-        if let fresnelMax = self.pipeline.uniform(GPUUniforms.fresnelMax) {
-            fresnelMax.cpuVariableGetter = {elucidation.fresnelMax}
+        if let fresnelB = self.pipeline.uniform(GPUUniforms.fresnelB) {
+            fresnelB.cpuVariableGetter = {elucidation.fresnelB}
         }
         
     }
