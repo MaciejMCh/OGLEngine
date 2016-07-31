@@ -93,12 +93,12 @@ extension DefaultPipelines {
         let surfaceColor = Variable<GLSLColor>(name: "surfaceColor")
         let reflectivityFactor = Variable<GLSLFloat>(name: "reflectivityFactor")
         let diffuseFactor = Variable<GLSLFloat>(name: "diffuseFactor")
-        let vfresnelA = Variable<GLSLFloat>(name: "vfresnelA")
-        let vfresnelB = Variable<GLSLFloat>(name: "vfresnelB")
+        let vFresnelA = Variable<GLSLFloat>(name: "vFresnelA")
+        let vFresnelB = Variable<GLSLFloat>(name: "vFresnelB")
         let fresnelFactor = Variable<GLSLFloat>(name: "fresnelFactor")
         // Fresnel factor
         fragmentScope ✍ fresnelFactor ⬅ (fixedNormal ⋅ viewVersor)
-        fragmentScope ✍ fresnelFactor ⬅ ((fresnelFactor * Primitive(value: 1.0)) + Primitive(value: 0.25))
+        fragmentScope ✍ fresnelFactor ⬅ ((fresnelFactor * vFresnelA) + vFresnelB)
         fragmentScope ✍ fresnelFactor ⬅ FloatFunctions.cut(fresnelFactor, from: 0.0, to: 1.0)
         fragmentScope ✍ fresnelFactor ⬅ (Primitive(value: 1.0) - fresnelFactor)
         // Mix surface and reflection
@@ -106,7 +106,8 @@ extension DefaultPipelines {
         fragmentScope ✍ diffuseFactor  ⬅ (Primitive(value: 1.0) - reflectivityFactor)
         fragmentScope ✍ surfaceColor ⬅ ((reflectionColor * reflectivityFactor) + (diffuseColor * diffuseFactor))
         
-        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ surfaceColor
+        // Final color
+        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (surfaceColor + specularColor)
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
         NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))

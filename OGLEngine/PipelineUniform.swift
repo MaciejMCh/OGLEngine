@@ -53,8 +53,8 @@ struct GPUUniforms {
     static let specularWidth = GPUUniform<GLSLFloat>(name: "uSpecularWidth")
     static let ambiencePower = GPUUniform<GLSLFloat>(name: "uAmbiencePower")
     static let rayBoxColorMap = GPUUniform<GLSLTexture>(name: "uRayBoxColorMap")
-    static let fresnelA = GPUUniform<GLSLFloat>(name: "ufresnelA")
-    static let fresnelB = GPUUniform<GLSLFloat>(name: "ufresnelB")
+    static let fresnelA = GPUUniform<GLSLFloat>(name: "uFresnelA")
+    static let fresnelB = GPUUniform<GLSLFloat>(name: "uFresnelB")
 }
 
 struct UniformsCollection {
