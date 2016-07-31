@@ -159,6 +159,14 @@ public func * (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLFloat>) -> InfixF
     return InfixFunction<GLSLColor>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
+public func * (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLColor>) -> InfixFunction<GLSLColor> {
+    return InfixFunction<GLSLColor>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+}
+
+public func + (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLColor>) -> InfixFunction<GLSLColor> {
+    return InfixFunction<GLSLColor>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
+}
+
 infix operator ✖ { associativity left precedence 200 }
 public func ✖ (lhs: Evaluation<GLSLColor>, rhs: Evaluation<GLSLColor>) -> InfixFunction<GLSLColor> {
     return InfixFunction<GLSLColor>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
@@ -250,8 +258,7 @@ public func ^☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Fu
 public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Evaluation<GLSLFloat> {
     let sample: Evaluation<GLSLColor> = lhs ☒ rhs
     let monoSample: Evaluation<GLSLFloat> = sample.>"r"
-    let scaledSample = monoSample * Primitive(value: 80.0) // TODO: Remove this line, 80.0 should be parameter
-    return scaledSample
+    return monoSample
 }
 
 // Field

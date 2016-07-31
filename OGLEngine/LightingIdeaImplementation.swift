@@ -50,21 +50,9 @@ extension DefaultPipelines {
         let uNormalMap = Variable<GLSLTexture>(name: "uNormalMap")
         let vTBNMatrix = Variable<GLSLMat3>(name: "vTBNMatrix")
         
-        
-        let phongScope = DefaultScopes.AdvancedPhongReflectionColorScope(
-            fixedNormal,
-            lightVector: lightVersor,
-            halfVector: halfVersor,
-            fullDiffuseColor: fullDiffuseColor,
-            lightColor: lightColor,
-            specularSample: specularSample,
-            specularPower: vSpecularPower,
-            specularWidth: vSpecularWidth,
-            ambiencePower: vAmbiencePower,
-            phongColor: OpenGLDefaultVariables.glFragColor())
+        // Vectors
         fragmentScope ✍ lightVersor ⬅ ^vLightVersor
         fragmentScope ✍ halfVersor ⬅ ^vHalfVersor
-        fragmentScope ✍ fullDiffuseColor ⬅ uColorMap ☒ vTexel
         fragmentScope ✍ lightColor ⬅ vLightColor
         fragmentScope ✍ specularSample ⬅ uSpecularMap ☒ vTexel
         fragmentScope ✍ normalMapSample ⬅ uNormalMap ☒ vTexel
@@ -72,11 +60,34 @@ extension DefaultPipelines {
         fragmentScope ✍ fixedNormal ⬅ ^fixedNormal
         fragmentScope ✍ fixedNormal ⬅ vTBNMatrix * fixedNormal
         fragmentScope ✍ fixedNormal ⬅ ^fixedNormal
-        fragmentScope ⎘ phongScope
+        
+        // Phong factors
+        let ndl = Variable<GLSLFloat>(name: "ndl")
+        fragmentScope ✍ ndl ⬅ fixedNormal ⋅ lightVersor
+        let ndh = Variable<GLSLFloat>(name: "ndh")
+        fragmentScope ✍ ndh ⬅ fixedNormal ⋅ halfVersor
+        
+        // Diffuse color
+        let colorMapSample: Evaluation<GLSLColor> = uColorMap ☒ vTexel
+        let diffuseColor = Variable<GLSLColor>(name: "diffuseColor")
+        fragmentScope ✍ fullDiffuseColor ⬅ lightColor * colorMapSample
+        fragmentScope ✍ diffuseColor ⬅ fullDiffuseColor * ndl
+        
+        // Specular color
+        let specularPower = Variable<GLSLFloat>(name: "specularPower")
+        let specularWidth = Variable<GLSLFloat>(name: "specularWidth")
+        let specularColor = Variable<GLSLColor>(name: "specularColor")
+        fragmentScope ✍ specularPower ⬅ vSpecularPower * specularSample
+        fragmentScope ✍ specularWidth ⬅ vSpecularWidth * specularSample
+        fragmentScope ✍ specularColor ⬅ lightColor * ((ndh ^ specularPower) * specularWidth)
+        
+//        fragmentScope ✍  ⬅ 
+        
+        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (specularColor + diffuseColor)
         
         var program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
 //        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
-//        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
+        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
 //        program.compile()
 //        NSLog("")
         return program

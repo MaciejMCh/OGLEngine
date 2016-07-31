@@ -72,7 +72,7 @@ class GameViewController: GLKViewController {
         
         DefaultPipelines.LightingIdeaImplementation()
         
-        let program = ReflectiveSurfacePipelineProgram()
+//        let program = ReflectiveSurfacePipelineProgram()
 //        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
 //        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
@@ -85,23 +85,23 @@ class GameViewController: GLKViewController {
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
         self.lightingIdeaImplementationProgram.compile()
         
-//        self.mediumShotProgram = MediumShotPipelineProgram()
-//        self.mediumShotProgram.compile()
-//        
-//        self.closeShotProgram = CloseShotPipelineProgram()
-//        self.closeShotProgram.compile()
-//        
-//        self.reflectiveSurfaceProgram = ReflectiveSurfacePipelineProgram()
-//        self.reflectiveSurfaceProgram.compile()
-//        
-//        self.reflectedProgram = ReflectedPipelineProgram()
-//        self.reflectedProgram.compile()
-//        
-//        self.skyBoxProgram = SkyBoxPipelineProgram()
-//        self.skyBoxProgram.compile()
-//        
-//        self.frameBufferViewerProgram = FrameBufferViewerPipelineProgram()
-//        self.frameBufferViewerProgram.compile()
+        self.mediumShotProgram = MediumShotPipelineProgram()
+        self.mediumShotProgram.compile()
+        
+        self.closeShotProgram = CloseShotPipelineProgram()
+        self.closeShotProgram.compile()
+        
+        self.reflectiveSurfaceProgram = ReflectiveSurfacePipelineProgram()
+        self.reflectiveSurfaceProgram.compile()
+        
+        self.reflectedProgram = ReflectedPipelineProgram()
+        self.reflectedProgram.compile()
+        
+        self.skyBoxProgram = SkyBoxPipelineProgram()
+        self.skyBoxProgram.compile()
+        
+        self.frameBufferViewerProgram = FrameBufferViewerPipelineProgram()
+        self.frameBufferViewerProgram.compile()
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
