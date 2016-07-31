@@ -143,8 +143,6 @@ extension PipelineProgram {
             uniform.location = location
         }
         
-        debugPrint("locations + \(uniforms.map{$0.name})")
-        
         // Release vertex and fragment shaders.
         if vertShader != 0 {
             glDetachShader(glName, vertShader)

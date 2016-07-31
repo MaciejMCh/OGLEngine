@@ -27,6 +27,7 @@ extension DefaultPipelines {
         vertexScope ✍ worldSpacePosition ⬅ GPUUniforms.modelMatrix * GPUAttributes.position
         vertexScope ✍ positionVector ⬅ VecInits.vec3(worldSpacePosition)
         vertexScope ⎘ DefaultScopes.FragmentTBNMatrixScope()
+        vertexScope ✍ vLightVersor ⬅ GPUUniforms.lightVersor
         vertexScope ⎘ halfVersorScope
         vertexScope ✍ OpenGLDefaultVariables.glPosition() ⬅ GPUUniforms.viewProjectionMatrix * worldSpacePosition
         
@@ -85,9 +86,9 @@ extension DefaultPipelines {
         
         fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (specularColor + diffuseColor)
         
-        var program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
-//        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
-        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
+        let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
+        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
+//        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
 //        program.compile()
 //        NSLog("")
         return program

@@ -26,8 +26,6 @@ extension GPUPipeline {
         let fragmentScope = fragmentScope.completedShaderScope(fixedPrecision: .Low)
         linkScopes(vertexScope: vertexScope, fragmentScope: fragmentScope)
         
-        debugPrint("inits + \(fragmentScope.uniformsUsed().map{$0.name})")
-        
         let vertexShader = GPUVertexShader(
             name: "auto linked",
             attributes: GPUAttributesCollection(collection: vertexScope.attributesUsed()),
