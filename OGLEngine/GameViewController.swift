@@ -79,7 +79,8 @@ class GameViewController: GLKViewController {
 //        self.scene = Scene.loadScene("house_on_cliff")
 //        self.scene = Scene.MaterialsPreviewScene("Icosphere")
         
-        let scene = Scene.MaterialsPreviewScene("Icosphere")
+//        let scene = Scene.MaterialsPreviewScene("Icosphere")
+        let scene = Scene.materialBallSceneWithMaterial("copper")
         self.scene = scene
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
@@ -114,14 +115,6 @@ class GameViewController: GLKViewController {
         Renderer.skyBoxProgram = skyBoxProgram
         Renderer.frameBufferViewerProgram = frameBufferViewerProgram
         Renderer.lightingIdeaImplementationProgram = lightingIdeaImplementationProgram
-        
-//        let texture = frameBufferViewerProgram.renderable.frameBufferRenderedTexture
-//        self.rayBoxMappingTestProgram = RayBoxMappingTestProgram()
-//        self.rayBoxMappingTestProgram.compile()
-//        self.rayBoxMappingTestRenderable = RayBoxMappingTestRenderable(
-//            vao: VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/Icosphere")),
-//            geometryModel: StaticGeometryModel(),
-//            rayBoxColorMap: texture)
     }
     
     func tearDownGL() {
@@ -146,15 +139,7 @@ class GameViewController: GLKViewController {
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
         Renderer.render(scene)
-        Renderer.renderFrameBufferPreview(self.scene)
-        
-//        glClearColor(0.65, 0.65, 0.65, 1.0)
-//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
-//        glUseProgram(lightingIdeaImplementationProgram.glName)
-//        lightingIdeaImplementationProgram.render(scene.closeShots, scene: scene)
-        
-//        glUseProgram(self.rayBoxMappingTestProgram.glName)
-//        self.rayBoxMappingTestProgram.render([self.rayBoxMappingTestRenderable], scene: self.scene)
+//        Renderer.renderFrameBufferPreview(self.scene)
     }
     
     func renderTexture() {

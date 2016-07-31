@@ -22,6 +22,7 @@ public class ImageTexture: Texture {
     convenience init(imageNamed imageName: String) {
         self.init()
         self.image = UIImage(named: imageName)
+        assert(image != nil, "Could not find image named: \(imageName)")
     }
     
     convenience init(color: UIColor) {
