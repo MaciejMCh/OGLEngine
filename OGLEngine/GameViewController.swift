@@ -80,7 +80,7 @@ class GameViewController: GLKViewController {
 //        self.scene = Scene.MaterialsPreviewScene("Icosphere")
         
 //        let scene = Scene.MaterialsPreviewScene("Icosphere")
-        let scene = Scene.materialBallSceneWithMaterial("copper")
+        let scene = Scene.materialBallSceneWithMaterial("plastic")
         self.scene = scene
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
