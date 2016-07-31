@@ -143,13 +143,13 @@ class GameViewController: GLKViewController {
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
-//        Renderer.render(scene)
-//        Renderer.renderFrameBufferPreview(self.scene)
+        Renderer.render(scene)
+        Renderer.renderFrameBufferPreview(self.scene)
         
-        glClearColor(0.65, 0.65, 0.65, 1.0)
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
-        glUseProgram(lightingIdeaImplementationProgram.glName)
-        lightingIdeaImplementationProgram.render(scene.closeShots, scene: scene)
+//        glClearColor(0.65, 0.65, 0.65, 1.0)
+//        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+//        glUseProgram(lightingIdeaImplementationProgram.glName)
+//        lightingIdeaImplementationProgram.render(scene.closeShots, scene: scene)
         
 //        glUseProgram(self.rayBoxMappingTestProgram.glName)
 //        self.rayBoxMappingTestProgram.render([self.rayBoxMappingTestRenderable], scene: self.scene)

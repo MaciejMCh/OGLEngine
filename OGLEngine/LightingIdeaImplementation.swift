@@ -41,7 +41,6 @@ extension DefaultPipelines {
         let specularSample = Variable<GLSLFloat>(name: "specularSample")
         let vSpecularPower = Variable<GLSLFloat>(name: "vSpecularPower")
         let vSpecularWidth = Variable<GLSLFloat>(name: "vSpecularWidth")
-        let vAmbiencePower = Variable<GLSLFloat>(name: "vAmbiencePower")
         let uColorMap = Variable<GLSLTexture>(name: "uColorMap")
         let vTexel = Variable<GLSLVec2>(name: "vTexel")
         let vLightColor = Variable<GLSLColor>(name: "vLightColor")
@@ -88,7 +87,7 @@ extension DefaultPipelines {
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
         NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
-//        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
+        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
 //        program.compile()
 //        NSLog("")
         return program
