@@ -9,7 +9,7 @@
 import Foundation
 
 extension DefaultPipelines {
-    static func LightingIdeaImplementation() {
+    static func LightingIdeaImplementation() -> SmartPipelineProgram {
         let vertexScope = GPUScope()
         let worldSpacePosition = Variable<GLSLVec4>(name: "worldSpacePosition")
         let vLightVersor = Variable<GLSLVec3>(name: "vLightVersor")
@@ -23,6 +23,7 @@ extension DefaultPipelines {
             eyePosition: GPUUniforms.eyePosition,
             viewVersor: viewVersor,
             halfVersor: vHalfVersor)
+        vertexScope ✍ Variable<GLSLVec2>(name: "vTexel") ⬅ GPUAttributes.texel
         vertexScope ✍ worldSpacePosition ⬅ GPUUniforms.modelMatrix * GPUAttributes.position
         vertexScope ✍ positionVector ⬅ VecInits.vec3(worldSpacePosition)
         vertexScope ⎘ DefaultScopes.FragmentTBNMatrixScope()
@@ -74,10 +75,10 @@ extension DefaultPipelines {
         fragmentScope ⎘ phongScope
         
         var program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
-        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
-        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
-        program.compile()
-        NSLog("")
-        
+//        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
+//        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
+//        program.compile()
+//        NSLog("")
+        return program
     }
 }

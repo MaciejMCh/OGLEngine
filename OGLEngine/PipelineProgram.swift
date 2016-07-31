@@ -23,7 +23,7 @@ extension PipelineProgram where RenderableType: Mesh  {
             self.bindAttributes(renderable)
             performDefaultPasses(renderable, scene: scene)
             self.willRender(renderable, scene: scene)
-            for uniform in self.pipeline.fragmentShader.uniforms.collection {
+            for uniform in self.pipeline.uniforms {
                 uniform.passToGPU()
             }
             self.draw(renderable)
@@ -75,7 +75,7 @@ extension PipelineProgram {
     }
     
     func validate() {
-        for uniform in self.pipeline.vertexShader.uniforms.collection {
+        for uniform in self.pipeline.uniforms {
             assert(uniform.location != -1, uniform.name + " failed to bind.")
         }
     }
@@ -137,11 +137,13 @@ extension PipelineProgram {
         }
         
         // Get uniform locations.
-        let uniforms = self.pipeline.vertexShader.uniforms.collection
+        let uniforms = self.pipeline.uniforms
         for var uniform in uniforms {
             let location = glGetUniformLocation(self.glName, uniform.name)
             uniform.location = location
         }
+        
+        debugPrint("locations + \(uniforms.map{$0.name})")
         
         // Release vertex and fragment shaders.
         if vertShader != 0 {

@@ -16,6 +16,7 @@ struct Renderer {
     static var reflectedProgram: ReflectedPipelineProgram!
     static var skyBoxProgram: SkyBoxPipelineProgram!
     static var frameBufferViewerProgram: FrameBufferViewerPipelineProgram!
+    static var lightingIdeaImplementationProgram: SmartPipelineProgram!
     
     static func render(scene: Scene) {
         glClearColor(0.65, 0.65, 0.65, 1.0)

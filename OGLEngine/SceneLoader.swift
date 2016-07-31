@@ -69,13 +69,11 @@ extension Scene {
             var mediumShotRenderables: [MediumShotRenderable] = []
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             for loadedRenderable in loadedRenderables {
-                debugPrint("loading object \(loadedRenderable.name)")
                 switch loadedRenderable.type {
                 case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
                 }
             }
-            debugPrint("vaos ready")
             
             // Light
             let directionalLight = DirectionalLight(lightDirection:  GLKVector3Normalize(GLKVector3Make(0, 1, -1)))

@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class SmartPipelineProgram: PipelineProgram {
-    typealias RenderableType = Mesh
+    typealias RenderableType = CloseShotRenderable
     var glName: GLuint = 0
     var pipeline: GPUPipeline
     
@@ -25,6 +25,8 @@ extension GPUPipeline {
         let vertexScope = vertexScope.completedShaderScope()
         let fragmentScope = fragmentScope.completedShaderScope(fixedPrecision: .Low)
         linkScopes(vertexScope: vertexScope, fragmentScope: fragmentScope)
+        
+        debugPrint("inits + \(fragmentScope.uniformsUsed().map{$0.name})")
         
         let vertexShader = GPUVertexShader(
             name: "auto linked",
@@ -97,7 +99,17 @@ extension GPUScope {
     }
 
     func uniformsUsed() -> [AnyGPUUniform] {
-        return variablesUsed().filter{$0 is AnyGPUUniform}.map{$0 as! AnyGPUUniform}
+        let uniformVariables = variablesUsed().filter{
+            let secondCharacter = $0.name.substringWithRange($0.name.startIndex.advancedBy(1) ..<  $0.name.startIndex.advancedBy(2))
+            if secondCharacter == secondCharacter.uppercaseString {
+                if $0.name.characters.first! == "u" {
+                    return true
+                }
+            }
+            return false
+        }
+        let uniforms = uniformVariables.map{$0.createUniform()}
+        return uniforms
     }
 
     func varyingsUsed() -> [AnyVariable] {
@@ -109,8 +121,6 @@ extension GPUScope {
         let mainScope = GPUScope()
         let variables = variablesUsed()
         var declaredVariables: [AnyVariable] = []
-        
-        debugPrint(variables.map{$0.name})
         
         for variable in variables {
             if variable.name == "gl_Position" {continue}

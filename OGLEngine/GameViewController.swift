@@ -17,6 +17,7 @@ class GameViewController: GLKViewController {
     var reflectedProgram: ReflectedPipelineProgram!
     var skyBoxProgram: SkyBoxPipelineProgram!
     var frameBufferViewerProgram: FrameBufferViewerPipelineProgram!
+    var lightingIdeaImplementationProgram: SmartPipelineProgram!
     
     var rayBoxMappingTestProgram: RayBoxMappingTestProgram!
     var rayBoxMappingTestRenderable: RayBoxMappingTestRenderable!
@@ -78,28 +79,29 @@ class GameViewController: GLKViewController {
 //        self.scene = Scene.loadScene("house_on_cliff")
 //        self.scene = Scene.MaterialsPreviewScene("Icosphere")
         
-        var scene = Scene.MaterialsPreviewScene("Icosphere")
-        scene.closeShots = []
+        let scene = Scene.MaterialsPreviewScene("Icosphere")
         self.scene = scene
         
+        self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
+        self.lightingIdeaImplementationProgram.compile()
         
-        self.mediumShotProgram = MediumShotPipelineProgram()
-        self.mediumShotProgram.compile()
-        
-        self.closeShotProgram = CloseShotPipelineProgram()
-        self.closeShotProgram.compile()
-        
-        self.reflectiveSurfaceProgram = ReflectiveSurfacePipelineProgram()
-        self.reflectiveSurfaceProgram.compile()
-        
-        self.reflectedProgram = ReflectedPipelineProgram()
-        self.reflectedProgram.compile()
-        
-        self.skyBoxProgram = SkyBoxPipelineProgram()
-        self.skyBoxProgram.compile()
-        
-        self.frameBufferViewerProgram = FrameBufferViewerPipelineProgram()
-        self.frameBufferViewerProgram.compile()
+//        self.mediumShotProgram = MediumShotPipelineProgram()
+//        self.mediumShotProgram.compile()
+//        
+//        self.closeShotProgram = CloseShotPipelineProgram()
+//        self.closeShotProgram.compile()
+//        
+//        self.reflectiveSurfaceProgram = ReflectiveSurfacePipelineProgram()
+//        self.reflectiveSurfaceProgram.compile()
+//        
+//        self.reflectedProgram = ReflectedPipelineProgram()
+//        self.reflectedProgram.compile()
+//        
+//        self.skyBoxProgram = SkyBoxPipelineProgram()
+//        self.skyBoxProgram.compile()
+//        
+//        self.frameBufferViewerProgram = FrameBufferViewerPipelineProgram()
+//        self.frameBufferViewerProgram.compile()
         
         glEnable(GLenum(GL_DEPTH_TEST))
         
@@ -109,15 +111,15 @@ class GameViewController: GLKViewController {
         Renderer.reflectedProgram = reflectedProgram
         Renderer.skyBoxProgram = skyBoxProgram
         Renderer.frameBufferViewerProgram = frameBufferViewerProgram
+        Renderer.lightingIdeaImplementationProgram = lightingIdeaImplementationProgram
         
-        
-        let texture = frameBufferViewerProgram.renderable.frameBufferRenderedTexture
-        self.rayBoxMappingTestProgram = RayBoxMappingTestProgram()
-        self.rayBoxMappingTestProgram.compile()
-        self.rayBoxMappingTestRenderable = RayBoxMappingTestRenderable(
-            vao: VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/Icosphere")),
-            geometryModel: StaticGeometryModel(),
-            rayBoxColorMap: texture)
+//        let texture = frameBufferViewerProgram.renderable.frameBufferRenderedTexture
+//        self.rayBoxMappingTestProgram = RayBoxMappingTestProgram()
+//        self.rayBoxMappingTestProgram.compile()
+//        self.rayBoxMappingTestRenderable = RayBoxMappingTestRenderable(
+//            vao: VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/Icosphere")),
+//            geometryModel: StaticGeometryModel(),
+//            rayBoxColorMap: texture)
     }
     
     func tearDownGL() {
@@ -141,11 +143,16 @@ class GameViewController: GLKViewController {
     }
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
-        Renderer.render(scene)
-        Renderer.renderFrameBufferPreview(self.scene)
+//        Renderer.render(scene)
+//        Renderer.renderFrameBufferPreview(self.scene)
         
-        glUseProgram(self.rayBoxMappingTestProgram.glName)
-        self.rayBoxMappingTestProgram.render([self.rayBoxMappingTestRenderable], scene: self.scene)
+        glClearColor(0.65, 0.65, 0.65, 1.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+        glUseProgram(lightingIdeaImplementationProgram.glName)
+        lightingIdeaImplementationProgram.render(scene.closeShots, scene: scene)
+        
+//        glUseProgram(self.rayBoxMappingTestProgram.glName)
+//        self.rayBoxMappingTestProgram.render([self.rayBoxMappingTestRenderable], scene: self.scene)
     }
     
     func renderTexture() {

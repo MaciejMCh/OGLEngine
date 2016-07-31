@@ -12,9 +12,16 @@ import GLKit
 public struct GPUPipeline {
     let vertexShader: GPUVertexShader
     let fragmentShader: GPUFragmentShader
+    let uniforms: [AnyGPUUniform]
+    
+    init(vertexShader: GPUVertexShader, fragmentShader: GPUFragmentShader) {
+        self.vertexShader = vertexShader
+        self.fragmentShader = fragmentShader
+        uniforms = vertexShader.uniforms.collection + fragmentShader.uniforms.collection
+    }
     
     func uniform<T>(variable: Variable<T>) -> GPUUniform<T>! {
-        for uniform in vertexShader.uniforms.collection {
+        for uniform in uniforms {
             if uniform.name == variable.name {
                 return uniform as! GPUUniform<T>
             }
