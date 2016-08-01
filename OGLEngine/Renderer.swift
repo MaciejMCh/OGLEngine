@@ -19,6 +19,10 @@ struct Renderer {
     static var lightingIdeaImplementationProgram: SmartPipelineProgram!
     
     static func render(scene: Scene) {
+        scene.rayBoxColorMap.withFbo {
+            Renderer.renderRayBox(scene, camera: scene.camera)
+        }
+        
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         

@@ -82,6 +82,7 @@ class GameViewController: GLKViewController {
 //        let scene = Scene.MaterialsPreviewScene("Icosphere")
         let scene = Scene.materialBallSceneWithMaterial("plastic")
         self.scene = scene
+        self.scene.rayBoxColorMap = RenderedTexture()
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
         self.lightingIdeaImplementationProgram.compile()
@@ -103,8 +104,6 @@ class GameViewController: GLKViewController {
         
         self.frameBufferViewerProgram = FrameBufferViewerPipelineProgram()
         self.frameBufferViewerProgram.compile()
-        
-        self.scene.rayBoxColorMap = frameBufferViewerProgram.renderable.frameBufferRenderedTexture
         
         glEnable(GLenum(GL_DEPTH_TEST))
         

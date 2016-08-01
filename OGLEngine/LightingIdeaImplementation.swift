@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 extension DefaultPipelines {
     static func LightingIdeaImplementation() -> SmartPipelineProgram {

@@ -244,6 +244,16 @@ public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> FixedG
     return FixedGPUInstruction(code: "if (\(lhs.glslFace()) < \(rhs.glslFace())) {discard;}", usedVariables: [])
 }
 
+infix operator <| { associativity left precedence 200 }
+public func <| (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evaluation<GLSLFloat> {
+    return Function<GLSLFloat>(signature: "max", arguments: [lhs, rhs])
+}
+
+infix operator |< { associativity left precedence 200 }
+public func |< (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evaluation<GLSLFloat> {
+    return Function<GLSLFloat>(signature: "min", arguments: [lhs, rhs])
+}
+
 struct FloatFunctions {
     static func cut(variable: Variable<GLSLFloat>, from: Float, to: Float) -> Evaluation<GLSLFloat> {
         let minCut = Function<GLSLFloat>(signature: "max", arguments: [variable, Primitive<GLSLFloat>(value: 0.0)])
