@@ -240,8 +240,12 @@ public func + (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixF
     return InfixFunction<GLSLFloat>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
 }
 
-public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> FixedGPUInstruction {
-    return FixedGPUInstruction(code: "if (\(lhs.glslFace()) < \(rhs.glslFace())) {discard;}", usedVariables: [])
+public func > (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evaluation<GLSLBool> {
+    return InfixFunction<GLSLBool>(operatorSymbol: ">", lhs: lhs, rhs: rhs)
+}
+
+public func < (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evaluation<GLSLBool> {
+    return InfixFunction<GLSLBool>(operatorSymbol: "<", lhs: lhs, rhs: rhs)
 }
 
 infix operator <| { associativity left precedence 200 }

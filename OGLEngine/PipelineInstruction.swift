@@ -99,7 +99,7 @@ public struct ConditionInstruction: GPUInstruction {
     let successInstructions: [GPUInstruction]
     let failureInstructions: [GPUInstruction]?
     
-    init(bool: Variable<GLSLBool>, successInstructions: [GPUInstruction], failureInstructions: [GPUInstruction]? = nil) {
+    init(bool: Evaluation<GLSLBool>, successInstructions: [GPUInstruction], failureInstructions: [GPUInstruction]? = nil) {
         self.bool = bool
         self.successInstructions = successInstructions
         self.failureInstructions = failureInstructions

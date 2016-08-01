@@ -124,7 +124,7 @@ extension DefaultScopes {
         globalScope ⟿↘ vPlaneDistance
         globalScope ↳ MainGPUFunction(scope: mainScope)
         
-        mainScope ✍ vPlaneDistance > Primitive<GLSLFloat>(value: 0.0)
+        mainScope ✍ ConditionInstruction(bool: (vPlaneDistance < Primitive(value: 0.0)), successInstructions: [DiscardInstruction()])
         mainScope ✍ glFragColor ⬅ uColorMap ☒ vTexel
         
         return globalScope
