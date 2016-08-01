@@ -114,6 +114,13 @@ public struct GLSLFloat: GLSLType {
     }
 }
 
+public struct GLSLBool: GLSLType {
+    public typealias CPUCounterpart = Bool
+    public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        assert(false, "Just don't")
+    }
+}
+
 public struct GLSLPlane: GLSLType {
     public typealias CPUCounterpart = (A: Float, B: Float, C: Float, D: Float)
 }

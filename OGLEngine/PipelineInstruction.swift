@@ -94,6 +94,39 @@ public struct DiscardInstruction: GPUInstruction {
     }
 }
 
+public struct ConditionInstruction: GPUInstruction {
+    let bool: Evaluation<GLSLBool>
+    let successInstructions: [GPUInstruction]
+    let failureInstructions: [GPUInstruction]?
+    
+    init(bool: Variable<GLSLBool>, successInstructions: [GPUInstruction], failureInstructions: [GPUInstruction]? = nil) {
+        self.bool = bool
+        self.successInstructions = successInstructions
+        self.failureInstructions = failureInstructions
+    }
+    
+    public func glslRepresentation() -> String {
+        var lines: [String] = []
+        lines.append("if (\(bool.glslFace())) {")
+        lines.appendContentsOf(successInstructions.map{$0.glslRepresentation()})
+        if let failureInstructions = failureInstructions {
+            lines.append("} else {")
+            lines.appendContentsOf(failureInstructions.map{$0.glslRepresentation()})
+        }
+        lines.append("}")
+        return stringFromLines(lines)
+    }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        var variablesUsed =  successInstructions.map{$0.variablesUsed()}.stomp()
+        if let failureInstructions = failureInstructions {
+            variablesUsed.appendContentsOf(failureInstructions.map{$0.variablesUsed()}.stomp())
+        }
+        variablesUsed.appendContentsOf(bool.variablesUsed())
+        return variablesUsed
+    }
+}
+
 public struct GPUAssignment<T: GLSLType>: GPUInstruction {
     let assignee: Variable<T>
     let assignment: Evaluation<T>
