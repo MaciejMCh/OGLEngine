@@ -232,6 +232,10 @@ public func * (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixF
     return InfixFunction<GLSLFloat>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
+public func / (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLFloat> {
+    return InfixFunction<GLSLFloat>(operatorSymbol: "/", lhs: lhs, rhs: rhs)
+}
+
 public func - (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLFloat> {
     return InfixFunction<GLSLFloat>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
 }
@@ -250,7 +254,7 @@ public func < (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evalua
 
 infix operator <| { associativity left precedence 200 }
 public func <| (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evaluation<GLSLFloat> {
-    return Function<GLSLFloat>(signature: "max", arguments: [lhs, rhs])
+    return Function<GLSLFloat>(signature: "min", arguments: [lhs, rhs])
 }
 
 infix operator |< { associativity left precedence 200 }

@@ -80,9 +80,10 @@ extension DefaultPipelines {
         let specularPower = Variable<GLSLFloat>(name: "specularPower")
         let specularWidth = Variable<GLSLFloat>(name: "specularWidth")
         let specularColor = Variable<GLSLColor>(name: "specularColor")
-        fragmentScope ✍ specularPower ⬅ vSpecularPower * specularSample
-        fragmentScope ✍ specularWidth ⬅ vSpecularWidth * specularSample
-        fragmentScope ✍ specularColor ⬅ lightColor * ((ndh ^ specularPower) * specularWidth)
+        fragmentScope ✍ specularPower ⬅ (Primitive(value: 1.0) - specularSample)
+        fragmentScope ✍ specularPower ⬅ specularPower * vSpecularPower
+        fragmentScope ✍ specularWidth ⬅ vSpecularWidth
+        fragmentScope ✍ specularColor ⬅ lightColor * (ndh ^ specularPower) * specularWidth
         
         // Reflection color
         let reflectionColor = Variable<GLSLColor>(name: "reflectionColor")
