@@ -85,6 +85,15 @@ public class FieldEvaluation<T: GLSLType>: Evaluation<T>, GPUInstruction {
     }
 }
 
+public struct DiscardInstruction: GPUInstruction {
+    public func glslRepresentation() -> String {
+        return "discard;"
+    }
+    public func variablesUsed() -> [AnyVariable] {
+        return []
+    }
+}
+
 public struct GPUAssignment<T: GLSLType>: GPUInstruction {
     let assignee: Variable<T>
     let assignment: Evaluation<T>
