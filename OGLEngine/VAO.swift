@@ -44,7 +44,8 @@ class VAO {
         var indicesVboGLName: GLuint = 0
         glGenBuffers(1, &indicesVboGLName)
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), indicesVboGLName)
-        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), Int(obj.indices.count) * sizeof(GLuint), obj.indices, GLenum(GL_STATIC_DRAW))
+        let indices: [GLuint] = obj.indices.map{GLuint($0)}
+        glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER), indices.size(), indices, GLenum(GL_STATIC_DRAW))
         
         self.vbos = self.vboAttributes.map{return self.generateVbo($0, data: obj.dataForAttribute($0))}
         
@@ -55,9 +56,15 @@ class VAO {
         var vboGLName: GLuint = 0
         glGenBuffers(1, &vboGLName)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vboGLName)
-        glBufferData(GLenum(GL_ARRAY_BUFFER), Int(data.count) * sizeof(GLfloat), data, GLenum(GL_STATIC_DRAW))
+        glBufferData(GLenum(GL_ARRAY_BUFFER), data.size(), data, GLenum(GL_STATIC_DRAW))
         glVertexAttribPointer(attribute.location, GLint(attribute.size), GLenum(GL_FLOAT), GLboolean(GL_FALSE), 0, nil)
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), 0)
         return VBO(attribute: attribute, glName: vboGLName, data: data)
+    }
+}
+
+extension Array {
+    func size () -> Int {
+        return self.count * sizeofValue(self[0])
     }
 }
