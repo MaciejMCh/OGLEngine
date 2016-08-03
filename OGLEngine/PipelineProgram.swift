@@ -58,7 +58,7 @@ extension PipelineProgram {
         if let reflectiveSolid = renderable as? ReflectiveSolid {
             self.defaultReflectiveSolidBindings(reflectiveSolid)
         }
-        if let material = renderable as? Material where !scene.creator {
+        if let material = renderable as? Material {
             self.defaultMaterialBindings(material)
         }
     }

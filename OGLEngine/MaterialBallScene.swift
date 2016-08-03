@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 extension Scene {
-    static func materialBallSceneWithMaterial(material: String) -> Scene {
+    static func materialBallSceneWithMaterial(material: String, creatorMode: Bool) -> Scene {
         let pathToResource = "3dAssets/materials/\(material)/"
         let diffuse = ImageTexture(imageNamed: pathToResource + "diffuse.png")
         let normal = ImageTexture(imageNamed: pathToResource + "normal.png")
@@ -21,6 +21,7 @@ extension Scene {
         specular.bind()
         
         let geometryModel = StaticGeometryModel(position: GLKVector3Make(1.5, 3.0, -3.0))
+        let materialProperties = creatorMode ? CreatingMaterialProperties() : MaterialProperties(materialName: material)
         
         let core = LighModelIdeaRenderable(
             vao: VAO(obj: OBJLoader.objFromFileNamed("material_core")),
@@ -29,7 +30,7 @@ extension Scene {
             normalMap: normal,
             specularMap: specular,
             rayBoxColorMap: RayBox.instance.colorMap,
-            materialProperties: MaterialProperties(materialName: material))
+            materialProperties: materialProperties)
         
         let surface = LighModelIdeaRenderable(
             vao: VAO(obj: OBJLoader.objFromFileNamed("material_surface")),
@@ -38,7 +39,7 @@ extension Scene {
             normalMap: normal,
             specularMap: specular,
             rayBoxColorMap: RayBox.instance.colorMap,
-            materialProperties: MaterialProperties(materialName: material))
+            materialProperties: materialProperties)
         
         var scene = Scene(
             closeShots: [],
@@ -49,5 +50,23 @@ extension Scene {
         
         scene.idealRenderables = [core, surface]
         return scene
+    }
+}
+
+class CreatingMaterialProperties: MaterialProperties {
+    init() {
+        super.init(specularPower: -1.0, specularSharpness: -1.0, fresnelA: -1.0, fresnelB: -1.0)
+        RemotePropertiesCenter.sharedInstance.listenToPropertyChange("power") { (property) in
+            self.specularPower = property as! Float
+        }
+        RemotePropertiesCenter.sharedInstance.listenToPropertyChange("width") { (property) in
+            self.specularSharpness = property as! Float
+        }
+        RemotePropertiesCenter.sharedInstance.listenToPropertyChange("fresnelA") { (property) in
+            self.fresnelA = property as! Float
+        }
+        RemotePropertiesCenter.sharedInstance.listenToPropertyChange("fresnelB") { (property) in
+            self.fresnelB = property as! Float
+        }
     }
 }

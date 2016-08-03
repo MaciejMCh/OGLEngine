@@ -91,13 +91,14 @@ extension Scene {
 }
 
 extension MaterialProperties {
-    init!(materialName: String) {
+    convenience init!(materialName: String) {
         guard let fileData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("3dAssets/materials/\(materialName)/properties", ofType: "material")!) else {return nil}
         guard let json = try? NSJSONSerialization.JSONObjectWithData(fileData, options: .MutableContainers) as! [String: AnyObject] else {return nil}
-        self.specularPower = json["specular_power"] as? Float ?? -1.0
-        self.specularSharpness = json["specular_sharpness"] as? Float ?? -1.0
-        self.fresnelA = json["fresnel_a"] as? Float ?? -1.0
-        self.fresnelB = json["fresnel_b"] as? Float ?? -1.0
+        let specularPower = json["specular_power"] as? Float ?? -1.0
+        let specularSharpness = json["specular_sharpness"] as? Float ?? -1.0
+        let fresnelA = json["fresnel_a"] as? Float ?? -1.0
+        let fresnelB = json["fresnel_b"] as? Float ?? -1.0
+        self.init(specularPower: specularPower, specularSharpness: specularSharpness, fresnelA: fresnelA, fresnelB: fresnelB)
     }
 }
 

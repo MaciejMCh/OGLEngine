@@ -46,11 +46,18 @@ protocol Material {
     var materialProperties: MaterialProperties {get}
 }
 
-struct MaterialProperties {
-    let specularPower: Float
-    let specularSharpness: Float
-    let fresnelA: Float
-    let fresnelB: Float
+class MaterialProperties {
+    var specularPower: Float
+    var specularSharpness: Float
+    var fresnelA: Float
+    var fresnelB: Float
+    
+    init(specularPower: Float, specularSharpness: Float, fresnelA: Float, fresnelB: Float) {
+        self.specularPower = specularPower
+        self.specularSharpness = specularSharpness
+        self.fresnelA = fresnelA
+        self.fresnelB = fresnelB
+    }
 }
 
 struct LighModelIdeaRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped, ReflectiveSolid, Material {

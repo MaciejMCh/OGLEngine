@@ -11,7 +11,6 @@ import UIKit
 import GLKit
 
 struct Scene {
-    let creator = true
     var loadedRenderables: [LoadedRenderable]! = nil
     
     var closeShots: [CloseShotRenderable]

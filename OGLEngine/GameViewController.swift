@@ -78,7 +78,7 @@ class GameViewController: GLKViewController {
 //        self.scene = Scene.MaterialsPreviewScene("Icosphere")
         
 //        let scene = Scene.MaterialsPreviewScene("Icosphere")
-        let scene = Scene.materialBallSceneWithMaterial("plastic")
+        let scene = Scene.materialBallSceneWithMaterial("plastic", creatorMode: true)
         self.scene = scene
         self.scene.rayBoxColorMap = RayBox.instance.colorMap
         
