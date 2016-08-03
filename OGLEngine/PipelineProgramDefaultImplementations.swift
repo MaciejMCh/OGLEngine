@@ -114,15 +114,18 @@ extension PipelineProgram {
         }
     }
     
-    func defaultElucidationBindings(elucidation: Elucidation) {
+    func defaultElucidationBindings(elucidation: Elucidation, scene: Scene) {
+        if let ambiencePower = self.pipeline.uniform(GPUUniforms.ambiencePower) {
+            ambiencePower.cpuVariableGetter = {elucidation.ambiencePower}
+        }
+        
+        if !scene.creator {return}
+        
         if let specularPower = self.pipeline.uniform(GPUUniforms.specularPower) {
             specularPower.cpuVariableGetter = {elucidation.specularPower}
         }
         if let specularWidth = self.pipeline.uniform(GPUUniforms.specularWidth) {
             specularWidth.cpuVariableGetter = {elucidation.specularWidth}
-        }
-        if let ambiencePower = self.pipeline.uniform(GPUUniforms.ambiencePower) {
-            ambiencePower.cpuVariableGetter = {elucidation.ambiencePower}
         }
         if let fresnelA = self.pipeline.uniform(GPUUniforms.fresnelA) {
             fresnelA.cpuVariableGetter = {elucidation.fresnelA}
@@ -130,7 +133,21 @@ extension PipelineProgram {
         if let fresnelB = self.pipeline.uniform(GPUUniforms.fresnelB) {
             fresnelB.cpuVariableGetter = {elucidation.fresnelB}
         }
-        
+    }
+    
+    func defaultMaterialBindings(material: Material)  {
+        if let specularPower = self.pipeline.uniform(GPUUniforms.specularPower) {
+            specularPower.cpuVariableGetter = {material.materialProperties.specularPower}
+        }
+        if let specularWidth = self.pipeline.uniform(GPUUniforms.specularWidth) {
+            specularWidth.cpuVariableGetter = {material.materialProperties.specularSharpness}
+        }
+        if let fresnelA = self.pipeline.uniform(GPUUniforms.fresnelA) {
+            fresnelA.cpuVariableGetter = {material.materialProperties.fresnelA}
+        }
+        if let fresnelB = self.pipeline.uniform(GPUUniforms.fresnelB) {
+            fresnelB.cpuVariableGetter = {material.materialProperties.fresnelB}
+        }
     }
     
     func defaultReflectiveSolidBindings(refleciveSolid: ReflectiveSolid) {

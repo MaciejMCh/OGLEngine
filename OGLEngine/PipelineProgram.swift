@@ -36,7 +36,7 @@ extension PipelineProgram {
     
     func performDefaultPasses(renderable: RenderableType, scene: Scene) {
         self.defaultSceneBindings(scene)
-        self.defaultElucidationBindings(scene.elucidation)
+        self.defaultElucidationBindings(scene.elucidation, scene: scene)
         if let model = renderable as? Model {
             self.defaultModelBindings(model, scene: scene)
         }
@@ -57,6 +57,9 @@ extension PipelineProgram {
         }
         if let reflectiveSolid = renderable as? ReflectiveSolid {
             self.defaultReflectiveSolidBindings(reflectiveSolid)
+        }
+        if let material = renderable as? Material where !scene.creator {
+            self.defaultMaterialBindings(material)
         }
     }
     

@@ -114,3 +114,18 @@ extension DefaultScopes {
     }
     
 }
+
+struct RayBox {
+    static var instance = RayBox()
+    
+    private var map: RenderedTexture!
+    
+    var colorMap: RenderedTexture {
+        mutating get {
+            if map == nil {
+                map = RenderedTexture()
+            }
+            return map
+        }
+    }
+}

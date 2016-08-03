@@ -42,13 +42,25 @@ protocol ReflectiveSolid {
     var rayBoxColorMap: RenderedTexture {get}
 }
 
-struct LighModelIdeaRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped, ReflectiveSolid {
+protocol Material {
+    var materialProperties: MaterialProperties {get}
+}
+
+struct MaterialProperties {
+    let specularPower: Float
+    let specularSharpness: Float
+    let fresnelA: Float
+    let fresnelB: Float
+}
+
+struct LighModelIdeaRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped, ReflectiveSolid, Material {
     let vao: VAO
     let geometryModel: GeometryModel
     let colorMap: Texture
     let normalMap: Texture
     let specularMap: Texture
     let rayBoxColorMap: RenderedTexture
+    let materialProperties: MaterialProperties
 }
 
 struct CloseShotRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped {

@@ -90,6 +90,17 @@ extension Scene {
     }
 }
 
+extension MaterialProperties {
+    init!(materialName: String) {
+        guard let fileData = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("3dAssets/materials/\(materialName)/properties", ofType: "material")!) else {return nil}
+        guard let json = try? NSJSONSerialization.JSONObjectWithData(fileData, options: .MutableContainers) as! [String: AnyObject] else {return nil}
+        self.specularPower = json["specular_power"] as? Float ?? -1.0
+        self.specularSharpness = json["specular_sharpness"] as? Float ?? -1.0
+        self.fresnelA = json["fresnel_a"] as? Float ?? -1.0
+        self.fresnelB = json["fresnel_b"] as? Float ?? -1.0
+    }
+}
+
 extension CloseShotRenderable {
     init(loadedRenderable: LoadedRenderable) {
         self.vao = VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/" + loadedRenderable.mesh))

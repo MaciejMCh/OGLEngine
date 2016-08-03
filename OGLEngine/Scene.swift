@@ -11,10 +11,13 @@ import UIKit
 import GLKit
 
 struct Scene {
+    let creator = true
+    var loadedRenderables: [LoadedRenderable]! = nil
     
     var closeShots: [CloseShotRenderable]
     var mediumShots: [MediumShotRenderable]
     var reflectiveSurfaces: [ReflectiveSurfaceRenderable]
+    var idealRenderables: [LighModelIdeaRenderable]!
     
     var directionalLight: DirectionalLight
     var camera: Camera
@@ -40,17 +43,6 @@ struct Scene {
         }
         return reflecteds
     }
-    
-    func lighModelIdeaRenderables() -> [LighModelIdeaRenderable] {
-        return closeShots.map{LighModelIdeaRenderable(
-            vao: $0.vao,
-            geometryModel: $0.geometryModel,
-            colorMap: $0.colorMap,
-            normalMap: $0.normalMap,
-            specularMap: $0.specularMap,
-            rayBoxColorMap: rayBoxColorMap)}
-    }
-    
 }
 
 

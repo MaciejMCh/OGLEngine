@@ -22,24 +22,32 @@ extension Scene {
         
         let geometryModel = StaticGeometryModel(position: GLKVector3Make(1.5, 3.0, -3.0))
         
-        let core = CloseShotRenderable(
+        let core = LighModelIdeaRenderable(
             vao: VAO(obj: OBJLoader.objFromFileNamed("material_core")),
             geometryModel: geometryModel,
             colorMap: diffuse,
             normalMap: normal,
-            specularMap: specular)
+            specularMap: specular,
+            rayBoxColorMap: RayBox.instance.colorMap,
+            materialProperties: MaterialProperties(materialName: material))
         
-        let surface = CloseShotRenderable(
+        let surface = LighModelIdeaRenderable(
             vao: VAO(obj: OBJLoader.objFromFileNamed("material_surface")),
             geometryModel: geometryModel,
             colorMap: diffuse,
             normalMap: normal,
-            specularMap: specular)
-        return Scene(
-            closeShots: [surface, core],
+            specularMap: specular,
+            rayBoxColorMap: RayBox.instance.colorMap,
+            materialProperties: MaterialProperties(materialName: material))
+        
+        var scene = Scene(
+            closeShots: [],
             mediumShots: [],
             reflectiveSurfaces: [],
             directionalLight: DirectionalLight(),
             camera: RemoteLookAtCamera())
+        
+        scene.idealRenderables = [core, surface]
+        return scene
     }
 }

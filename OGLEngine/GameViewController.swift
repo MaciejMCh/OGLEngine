@@ -26,8 +26,6 @@ class GameViewController: GLKViewController {
     
     var scene: Scene! = nil
     
-    lazy var renderedTexture: RenderedTexture = RenderedTexture()
-    
     deinit {
         self.tearDownGL()
     
@@ -82,7 +80,7 @@ class GameViewController: GLKViewController {
 //        let scene = Scene.MaterialsPreviewScene("Icosphere")
         let scene = Scene.materialBallSceneWithMaterial("plastic")
         self.scene = scene
-        self.scene.rayBoxColorMap = RenderedTexture()
+        self.scene.rayBoxColorMap = RayBox.instance.colorMap
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
         self.lightingIdeaImplementationProgram.compile()
