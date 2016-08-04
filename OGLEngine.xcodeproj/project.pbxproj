@@ -663,7 +663,6 @@
 				C269D5861CA8981D00E56E67 /* Sources */,
 				C269D5871CA8981D00E56E67 /* Frameworks */,
 				C269D5F71CA89C8500E56E67 /* IP Address */,
-				C28D5F431CCECD90001E5B8B /* Make 3D Assets */,
 				C269D5881CA8981D00E56E67 /* Resources */,
 				C269D5F81CA89CA300E56E67 /* Run Remote Controller */,
 				75C2FE1A6C75E449CBCE434C /* [CP] Embed Pods Frameworks */,
@@ -890,20 +889,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/Controller.sh\"";
-		};
-		C28D5F431CCECD90001E5B8B /* Make 3D Assets */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Make 3D Assets";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/make_assets.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
