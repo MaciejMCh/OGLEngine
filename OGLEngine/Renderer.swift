@@ -17,6 +17,7 @@ struct Renderer {
     static var skyBoxProgram: SkyBoxPipelineProgram!
     static var frameBufferViewerProgram: FrameBufferViewerPipelineProgram!
     static var lightingIdeaImplementationProgram: SmartPipelineProgram!
+    static var emitterProgram: SmartPipelineProgram!
     
     static func render(scene: Scene) {
         scene.rayBoxColorMap.withFbo {

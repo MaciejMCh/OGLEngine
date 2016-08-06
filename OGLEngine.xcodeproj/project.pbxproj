@@ -105,6 +105,7 @@
 		C2E158241CFD9D2400BB3805 /* PipelineInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E158231CFD9D2400BB3805 /* PipelineInterpolation.swift */; };
 		C2E17FE51D0F1DB500CB2D2D /* AxesGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */; };
 		C2E17FE71D0F325500CB2D2D /* ReflectiveSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */; };
+		C2E7C3FD1D55D41900DC4AB6 /* EmitterPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E7C3FC1D55D41900DC4AB6 /* EmitterPipeline.swift */; };
 		C2EA4B861CC83D030036B12D /* SceneLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA4B851CC83D030036B12D /* SceneLoader.swift */; };
 		C2FF72CD1D27BE6800A44D1E /* Lighting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF72CC1D27BE6800A44D1E /* Lighting.swift */; };
 /* End PBXBuildFile section */
@@ -223,6 +224,7 @@
 		C2E158231CFD9D2400BB3805 /* PipelineInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineInterpolation.swift; sourceTree = "<group>"; };
 		C2E17FE41D0F1DB500CB2D2D /* AxesGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AxesGeometryModel.swift; sourceTree = "<group>"; };
 		C2E17FE61D0F325500CB2D2D /* ReflectiveSurface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReflectiveSurface.swift; sourceTree = "<group>"; };
+		C2E7C3FC1D55D41900DC4AB6 /* EmitterPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmitterPipeline.swift; sourceTree = "<group>"; };
 		C2EA4B851CC83D030036B12D /* SceneLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneLoader.swift; sourceTree = "<group>"; };
 		C2FF72CC1D27BE6800A44D1E /* Lighting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lighting.swift; sourceTree = "<group>"; };
 		CAD4B103C2F1E6387391A832 /* Pods-OGLEngineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngineTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngineTests/Pods-OGLEngineTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */,
 				C219E3811D2F0DE10026678B /* RayBox.swift */,
 				C2D07D7E1D3D40080016CF4B /* LightingIdeaImplementation.swift */,
+				C2E7C3FC1D55D41900DC4AB6 /* EmitterPipeline.swift */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -897,6 +900,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2E7C3FD1D55D41900DC4AB6 /* EmitterPipeline.swift in Sources */,
 				C26CD52D1D0AC83D007105EB /* LookAtCamera.swift in Sources */,
 				C22DCFB21D2C23E200D04268 /* SkyBoxPipelineProgram.swift in Sources */,
 				C269D5CC1CA898DD00E56E67 /* Camera.swift in Sources */,

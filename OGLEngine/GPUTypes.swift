@@ -26,8 +26,9 @@ extension GLSLType {
     }
 }
 
+public typealias Color = (r: Float, g: Float, b: Float, a: Float)
 public struct GLSLColor: GLSLType {
-    public typealias CPUCounterpart = (r: Float, g: Float, b: Float, a: Float)
+    public typealias CPUCounterpart = Color
     
     public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
         GPUPassFunctions.vec4Pass(GLKVector4Make(value.r, value.g, value.b, value.a), location: location)

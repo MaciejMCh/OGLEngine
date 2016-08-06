@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import GLKit
 
 protocol Mesh {
@@ -19,7 +18,7 @@ protocol Model {
 }
 
 protocol Colored {
-    var color: UIColor {get}
+    var color: Color {get}
 }
 
 protocol ColorMapped {
@@ -44,6 +43,10 @@ protocol ReflectiveSolid {
 
 protocol Material {
     var materialProperties: MaterialProperties {get}
+}
+
+protocol Emitter {
+    var emittingColor: Color {get}
 }
 
 class MaterialProperties {
@@ -107,4 +110,10 @@ struct SkyBoxRenderable: Mesh, ColorMapped {
 struct FrameBufferViewerRenderable: Mesh {
     let vao: VAO
     let frameBufferRenderedTexture: RenderedTexture
+}
+
+struct EmitterRenderable: Mesh, Model, Emitter {
+    var vao: VAO
+    var geometryModel: GeometryModel
+    var emittingColor: Color
 }

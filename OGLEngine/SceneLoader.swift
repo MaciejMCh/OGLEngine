@@ -24,10 +24,12 @@ struct LoadedGeometry {
 enum RenderableType {
     case Default
     case Reflective
+    case Emitter
     
     static func serialzie(string: String) -> RenderableType {
         switch string {
         case "reflective": return .Reflective
+        case "emitter": return .Emitter
         case "default": return .Default
         default: return .Default
         }
@@ -37,16 +39,22 @@ enum RenderableType {
 struct LoadedRenderable {
     let name: String
     let mesh: String
-    let material: String
+    let material: String!
     let geometry: LoadedGeometry
     let type: RenderableType
+    let color: Color!
     
     init(json: [String: AnyObject]) {
         self.name = json["name"] as! String
         self.mesh = json["mesh"] as! String
-        self.material = json["material"] as! String
+        self.material = json["material"] as? String
         self.geometry = LoadedGeometry(json: json["transformation"] as! [String: AnyObject])
         self.type = RenderableType.serialzie(json["type"] as! String)
+        if var color = json["color"] as? [Float] {
+            self.color = (r: color[0], g: color[1], b: color[2], a: color[3])
+        } else {
+            self.color = nil
+        }
     }
 }
 
@@ -68,10 +76,12 @@ extension Scene {
             var closeShotRenderables: [CloseShotRenderable] = []
             var mediumShotRenderables: [MediumShotRenderable] = []
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
+            var emitterRenderables: [EmitterRenderable] = []
             for loadedRenderable in loadedRenderables {
                 switch loadedRenderable.type {
                 case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
+                case .Emitter: emitterRenderables.append(EmitterRenderable(loadedRenderable: loadedRenderable))
                 }
             }
             
@@ -82,7 +92,15 @@ extension Scene {
             let camera = RemoteLookAtCamera()
             camera.lockAtPosition(GLKVector3Make(0, 0, 4))
             
-            return Scene(closeShots: closeShotRenderables, mediumShots: mediumShotRenderables, reflectiveSurfaces: reflectiveSurfaces, directionalLight: directionalLight, camera: camera)
+            var scene = Scene(
+                closeShots: closeShotRenderables,
+                mediumShots: mediumShotRenderables,
+                reflectiveSurfaces: reflectiveSurfaces,
+                emitters: emitterRenderables,
+                directionalLight: directionalLight,
+                camera: camera)
+            scene.idealRenderables = []
+            return scene
             
         } catch _ {
             return nil
@@ -132,5 +150,14 @@ extension ReflectiveSurfaceRenderable {
         self.vao = VAO(obj: obj)
         self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
         self.reflectionColorMap = RenderedTexture()
+    }
+}
+
+extension EmitterRenderable {
+    init(loadedRenderable: LoadedRenderable) {
+        let obj = OBJLoader.objFromFileNamed("3dAssets/meshes/" + loadedRenderable.mesh)
+        self.vao = VAO(obj: obj)
+        self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
+        self.emittingColor = loadedRenderable.color
     }
 }

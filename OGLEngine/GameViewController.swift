@@ -18,6 +18,7 @@ class GameViewController: GLKViewController {
     var skyBoxProgram: SkyBoxPipelineProgram!
     var frameBufferViewerProgram: FrameBufferViewerPipelineProgram!
     var lightingIdeaImplementationProgram: SmartPipelineProgram!
+    var emitterProgram: SmartPipelineProgram!
     
     var rayBoxMappingTestProgram: RayBoxMappingTestProgram!
     var rayBoxMappingTestRenderable: RayBoxMappingTestRenderable!
@@ -74,12 +75,12 @@ class GameViewController: GLKViewController {
 //        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
 //        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
-//        self.scene = Scene.loadScene("house_on_cliff")
+        self.scene = Scene.loadScene("emit")
 //        self.scene = Scene.MaterialsPreviewScene("Icosphere")
         
 //        let scene = Scene.MaterialsPreviewScene("Icosphere")
-        let scene = Scene.materialBallSceneWithMaterial("copper", creatorMode: true)
-        self.scene = scene
+//        let scene = Scene.materialBallSceneWithMaterial("copper", creatorMode: true)
+//        self.scene = scene
         self.scene.rayBoxColorMap = RayBox.instance.colorMap
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
@@ -103,6 +104,9 @@ class GameViewController: GLKViewController {
         self.frameBufferViewerProgram = FrameBufferViewerPipelineProgram()
         self.frameBufferViewerProgram.compile()
         
+        self.emitterProgram = DefaultPipelines.EmitterPipeline()
+        self.emitterProgram.compile()
+        
         glEnable(GLenum(GL_DEPTH_TEST))
         
         Renderer.closeShotProgram = closeShotProgram
@@ -112,6 +116,7 @@ class GameViewController: GLKViewController {
         Renderer.skyBoxProgram = skyBoxProgram
         Renderer.frameBufferViewerProgram = frameBufferViewerProgram
         Renderer.lightingIdeaImplementationProgram = lightingIdeaImplementationProgram
+        Renderer.emitterProgram = emitterProgram
     }
     
     func tearDownGL() {

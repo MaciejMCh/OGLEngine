@@ -26,7 +26,7 @@ struct Scene {
     
     var rayBoxColorMap: RenderedTexture!
     
-    init(closeShots: [CloseShotRenderable], mediumShots: [MediumShotRenderable], reflectiveSurfaces: [ReflectiveSurfaceRenderable], directionalLight: DirectionalLight, camera: Camera) {
+    init(closeShots: [CloseShotRenderable] = [], mediumShots: [MediumShotRenderable] = [], reflectiveSurfaces: [ReflectiveSurfaceRenderable] = [], emitters: [EmitterRenderable] = [], directionalLight: DirectionalLight, camera: Camera) {
         self.closeShots = closeShots
         self.mediumShots = mediumShots
         self.reflectiveSurfaces = reflectiveSurfaces
