@@ -45,7 +45,7 @@ struct Renderer {
         glUseProgram(self.reflectiveSurfaceProgram.glName)
         self.reflectiveSurfaceProgram.render(scene.reflectiveSurfaces, scene: scene)
         
-        // Temporary
+        // Temporary to see emitter
         glUseProgram(self.emitterProgram.glName)
         self.emitterProgram.render(scene.emitterRenderables, scene: scene)
     }
@@ -79,8 +79,12 @@ struct Renderer {
         focusDirection.applyViewPort()
 
         glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
+        
         glUseProgram(self.skyBoxProgram.glName)
         self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
+        
+        glUseProgram(self.emitterProgram.glName)
+        self.emitterProgram.render(scene.emitterRenderables, scene: rayScene)
     }
     
     static func renderFrameBufferPreview(scene: Scene) {

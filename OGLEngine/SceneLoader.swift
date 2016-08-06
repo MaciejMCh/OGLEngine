@@ -77,9 +77,12 @@ extension Scene {
             var mediumShotRenderables: [MediumShotRenderable] = []
             var reflectiveSurfaces: [ReflectiveSurfaceRenderable] = []
             var emitterRenderables: [EmitterRenderable] = []
+            var idealRenderables: [LighModelIdeaRenderable] = []
             for loadedRenderable in loadedRenderables {
                 switch loadedRenderable.type {
-                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+//                case .Default: mediumShotRenderables.append(MediumShotRenderable(loadedRenderable: loadedRenderable))
+//                case .Default: closeShotRenderables.append(CloseShotRenderable(loadedRenderable: loadedRenderable))
+                case .Default: idealRenderables.append(LighModelIdeaRenderable(loadedRenderable: loadedRenderable))
                 case .Reflective: reflectiveSurfaces.append(ReflectiveSurfaceRenderable(loadedRenderable: loadedRenderable))
                 case .Emitter: emitterRenderables.append(EmitterRenderable(loadedRenderable: loadedRenderable))
                 }
@@ -99,7 +102,7 @@ extension Scene {
                 emitterRenderables: emitterRenderables,
                 directionalLight: directionalLight,
                 camera: camera)
-            scene.idealRenderables = []
+            scene.idealRenderables = idealRenderables
             return scene
             
         } catch _ {
@@ -117,6 +120,22 @@ extension MaterialProperties {
         let fresnelA = json["fresnel_a"] as? Float ?? -1.0
         let fresnelB = json["fresnel_b"] as? Float ?? -1.0
         self.init(specularPower: specularPower, specularSharpness: specularSharpness, fresnelA: fresnelA, fresnelB: fresnelB)
+    }
+}
+
+extension LighModelIdeaRenderable {
+    convenience init(loadedRenderable: LoadedRenderable) {
+        let vao = VAO(obj: OBJLoader.objFromFileNamed("3dAssets/meshes/" + loadedRenderable.mesh))
+        let geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
+        
+        let colorMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/diffuse.png")
+        colorMap.bind()
+        let normalMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/normal.png")
+        normalMap.bind()
+        let specularMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/specular.png")
+        specularMap.bind()
+        let materialProperties = CreatingMaterialProperties()
+        self.init(vao: vao, geometryModel: geometryModel, colorMap: colorMap, normalMap: normalMap, specularMap: specularMap, rayBoxColorMap: RayBox.instance.colorMap, materialProperties: materialProperties)
     }
 }
 

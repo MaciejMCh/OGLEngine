@@ -141,7 +141,7 @@ class GameViewController: GLKViewController {
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
         Renderer.render(scene)
-//        Renderer.renderFrameBufferPreview(self.scene)
+        Renderer.renderFrameBufferPreview(self.scene)
     }
     
     func renderTexture() {

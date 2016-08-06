@@ -34,6 +34,7 @@
 		C23FC55B1CFDE73B00DE4A40 /* PhongReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */; };
 		C248E3E41D342617008A9E9D /* RayBoxMappingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248E3E31D342617008A9E9D /* RayBoxMappingTest.swift */; };
 		C248E3E61D3433DC008A9E9D /* GPUFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248E3E51D3433DC008A9E9D /* GPUFunctions.swift */; };
+		C24CC1961D566BD60013B5AE /* VectorGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24CC1951D566BD60013B5AE /* VectorGraphics.swift */; };
 		C25642841D0EDEDA0043EE6E /* TangentSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25642831D0EDEDA0043EE6E /* TangentSpace.swift */; };
 		C25A60721D2B9D410016FB7B /* SkyBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25A60711D2B9D410016FB7B /* SkyBox.swift */; };
 		C2611AE21D2C87C200447E37 /* CameraRotatedProjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2611AE11D2C87C200447E37 /* CameraRotatedProjection.swift */; };
@@ -149,6 +150,7 @@
 		C23FC55A1CFDE73B00DE4A40 /* PhongReflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongReflection.swift; sourceTree = "<group>"; };
 		C248E3E31D342617008A9E9D /* RayBoxMappingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayBoxMappingTest.swift; sourceTree = "<group>"; };
 		C248E3E51D3433DC008A9E9D /* GPUFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUFunctions.swift; sourceTree = "<group>"; };
+		C24CC1951D566BD60013B5AE /* VectorGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorGraphics.swift; sourceTree = "<group>"; };
 		C25642831D0EDEDA0043EE6E /* TangentSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangentSpace.swift; sourceTree = "<group>"; };
 		C25A60711D2B9D410016FB7B /* SkyBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBox.swift; sourceTree = "<group>"; };
 		C2611AE11D2C87C200447E37 /* CameraRotatedProjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraRotatedProjection.swift; sourceTree = "<group>"; };
@@ -364,6 +366,14 @@
 			name = Functionalities;
 			sourceTree = "<group>";
 		};
+		C24CC1941D566BAA0013B5AE /* VectorGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				C24CC1951D566BD60013B5AE /* VectorGraphics.swift */,
+			);
+			name = VectorGraphics;
+			sourceTree = "<group>";
+		};
 		C25A606E1D2B9C2B0016FB7B /* VAO */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +435,7 @@
 		C269D5E41CA89A4900E56E67 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				C24CC1941D566BAA0013B5AE /* VectorGraphics */,
 				C2BC701D1CF067F70037A143 /* Pipeline */,
 				C269D5E51CA89A5400E56E67 /* Core */,
 				C269D5EA1CA89ADE00E56E67 /* OBJ */,
@@ -963,6 +974,7 @@
 				C269D5D81CA898DD00E56E67 /* RemoteController.swift in Sources */,
 				C22DCFB01D2C1C0200D04268 /* SkyBoxPipeline.swift in Sources */,
 				C2611AE21D2C87C200447E37 /* CameraRotatedProjection.swift in Sources */,
+				C24CC1961D566BD60013B5AE /* VectorGraphics.swift in Sources */,
 				C263847D1D103928004BE6E1 /* RemoteLookAtCamera.swift in Sources */,
 				C23FC5581CFDE6FE00DE4A40 /* MediumShot.swift in Sources */,
 				C2E158201CFD9C4A00BB3805 /* PipelineVarying.swift in Sources */,
