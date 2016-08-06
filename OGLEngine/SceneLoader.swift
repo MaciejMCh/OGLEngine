@@ -96,7 +96,7 @@ extension Scene {
                 closeShots: closeShotRenderables,
                 mediumShots: mediumShotRenderables,
                 reflectiveSurfaces: reflectiveSurfaces,
-                emitters: emitterRenderables,
+                emitterRenderables: emitterRenderables,
                 directionalLight: directionalLight,
                 camera: camera)
             scene.idealRenderables = []
@@ -154,10 +154,12 @@ extension ReflectiveSurfaceRenderable {
 }
 
 extension EmitterRenderable {
-    init(loadedRenderable: LoadedRenderable) {
+    convenience init(loadedRenderable: LoadedRenderable) {
         let obj = OBJLoader.objFromFileNamed("3dAssets/meshes/" + loadedRenderable.mesh)
-        self.vao = VAO(obj: obj)
-        self.geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
-        self.emittingColor = loadedRenderable.color
+        let vao = VAO(obj: obj)
+        let geometryModel = AxesGeometryModel(position: loadedRenderable.geometry.position, axesRotation: loadedRenderable.geometry.orientation)
+        let emittingColor = loadedRenderable.color
+        
+        self.init(vao: vao, geometryModel: geometryModel, emittingColor: emittingColor)
     }
 }

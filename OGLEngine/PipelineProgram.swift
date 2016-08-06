@@ -37,30 +37,15 @@ extension PipelineProgram {
     func performDefaultPasses(renderable: RenderableType, scene: Scene) {
         self.defaultSceneBindings(scene)
         self.defaultElucidationBindings(scene.elucidation, scene: scene)
-        if let model = renderable as? Model {
-            self.defaultModelBindings(model, scene: scene)
-        }
-        if let colorMapped = renderable as? ColorMapped {
-            self.defaultColorMappedBindings(colorMapped)
-        }
-        if let normalMapped = renderable as? NormalMapped {
-            self.defaultNormalMappedBindings(normalMapped)
-        }
-        if let specularMapped = renderable as? SpecularMapped {
-            self.defaultSpecularMappedBindings(specularMapped)
-        }
-        if let reflectiveSurface = renderable as? ReflectiveSurface {
-            self.defaultReflectiveSurfaceBindings(reflectiveSurface)
-        }
-        if let skyBoxRenderable = renderable as? SkyBoxRenderable {
-            self.defaultSkyBoxBindings(skyBoxRenderable, scene: scene)
-        }
-        if let reflectiveSolid = renderable as? ReflectiveSolid {
-            self.defaultReflectiveSolidBindings(reflectiveSolid)
-        }
-        if let material = renderable as? Material {
-            self.defaultMaterialBindings(material)
-        }
+        if let model = renderable as? Model {self.defaultModelBindings(model, scene: scene)}
+        if let colorMapped = renderable as? ColorMapped {self.defaultColorMappedBindings(colorMapped)}
+        if let normalMapped = renderable as? NormalMapped {self.defaultNormalMappedBindings(normalMapped)}
+        if let specularMapped = renderable as? SpecularMapped {self.defaultSpecularMappedBindings(specularMapped)}
+        if let reflectiveSurface = renderable as? ReflectiveSurface {self.defaultReflectiveSurfaceBindings(reflectiveSurface)}
+        if let skyBoxRenderable = renderable as? SkyBoxRenderable {self.defaultSkyBoxBindings(skyBoxRenderable, scene: scene)}
+        if let reflectiveSolid = renderable as? ReflectiveSolid {self.defaultReflectiveSolidBindings(reflectiveSolid)}
+        if let material = renderable as? Material {self.defaultMaterialBindings(material)}
+        if let emitter = renderable as? Emitter {self.defaultEmitterBindings(emitter)}
     }
     
     mutating func compile() {

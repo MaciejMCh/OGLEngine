@@ -120,7 +120,7 @@ extension PipelineProgram {
         }
     }
     
-    func defaultMaterialBindings(material: Material)  {
+    func defaultMaterialBindings(material: Material) {
         if let specularPower = self.pipeline.uniform(GPUUniforms.specularPower) {
             specularPower.cpuVariableGetter = {material.materialProperties.specularPower}
         }
@@ -138,6 +138,12 @@ extension PipelineProgram {
     func defaultReflectiveSolidBindings(refleciveSolid: ReflectiveSolid) {
         if let rayBoxColorMap = self.pipeline.uniform(GPUUniforms.rayBoxColorMap) {
             rayBoxColorMap.cpuVariableGetter = {(refleciveSolid.rayBoxColorMap, 3)}
+        }
+    }
+    
+    func defaultEmitterBindings(emitter: Emitter) {
+        if let emissionColor = self.pipeline.uniform(GPUUniforms.emissionColor) {
+            emissionColor.cpuVariableGetter = {emitter.emittingColor}
         }
     }
 }

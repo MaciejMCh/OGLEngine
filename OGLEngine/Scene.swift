@@ -17,6 +17,7 @@ struct Scene {
     var mediumShots: [MediumShotRenderable]
     var reflectiveSurfaces: [ReflectiveSurfaceRenderable]
     var idealRenderables: [LighModelIdeaRenderable]!
+    var emitterRenderables: [EmitterRenderable]
     
     var directionalLight: DirectionalLight
     var camera: Camera
@@ -26,10 +27,11 @@ struct Scene {
     
     var rayBoxColorMap: RenderedTexture!
     
-    init(closeShots: [CloseShotRenderable] = [], mediumShots: [MediumShotRenderable] = [], reflectiveSurfaces: [ReflectiveSurfaceRenderable] = [], emitters: [EmitterRenderable] = [], directionalLight: DirectionalLight, camera: Camera) {
+    init(closeShots: [CloseShotRenderable] = [], mediumShots: [MediumShotRenderable] = [], reflectiveSurfaces: [ReflectiveSurfaceRenderable] = [], emitterRenderables: [EmitterRenderable] = [], directionalLight: DirectionalLight, camera: Camera) {
         self.closeShots = closeShots
         self.mediumShots = mediumShots
         self.reflectiveSurfaces = reflectiveSurfaces
+        self.emitterRenderables = emitterRenderables
         self.directionalLight = directionalLight
         self.camera = camera
         self.skyBox = SkyBoxRenderable()

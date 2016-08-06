@@ -44,6 +44,10 @@ struct Renderer {
         
         glUseProgram(self.reflectiveSurfaceProgram.glName)
         self.reflectiveSurfaceProgram.render(scene.reflectiveSurfaces, scene: scene)
+        
+        // Temporary
+        glUseProgram(self.emitterProgram.glName)
+        self.emitterProgram.render(scene.emitterRenderables, scene: scene)
     }
     
     static func renderReflected(scene: Scene, reflectionPlane: ReflectionPlane) {

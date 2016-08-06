@@ -13,6 +13,13 @@ protocol Mesh {
     var vao: VAO {get}
 }
 
+class BasicRenderable: Mesh {
+    var vao: VAO
+    init(vao: VAO) {
+        self.vao = vao
+    }
+}
+
 protocol Model {
     var geometryModel: GeometryModel {get}
 }
@@ -63,14 +70,29 @@ class MaterialProperties {
     }
 }
 
-struct LighModelIdeaRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped, ReflectiveSolid, Material {
-    let vao: VAO
-    let geometryModel: GeometryModel
-    let colorMap: Texture
-    let normalMap: Texture
-    let specularMap: Texture
-    let rayBoxColorMap: RenderedTexture
-    let materialProperties: MaterialProperties
+class LighModelIdeaRenderable: BasicRenderable, Model, ColorMapped, NormalMapped, SpecularMapped, ReflectiveSolid, Material {
+    var geometryModel: GeometryModel
+    var colorMap: Texture
+    var normalMap: Texture
+    var specularMap: Texture
+    var rayBoxColorMap: RenderedTexture
+    var materialProperties: MaterialProperties
+    
+    init(vao: VAO,
+         geometryModel: GeometryModel,
+         colorMap: Texture,
+         normalMap: Texture,
+         specularMap: Texture,
+         rayBoxColorMap: RenderedTexture,
+         materialProperties: MaterialProperties) {
+        self.geometryModel = geometryModel
+        self.colorMap = colorMap
+        self.normalMap = normalMap
+        self.specularMap = specularMap
+        self.rayBoxColorMap = rayBoxColorMap
+        self.materialProperties = materialProperties
+        super.init(vao: vao)
+    }
 }
 
 struct CloseShotRenderable: Mesh, Model, ColorMapped, NormalMapped, SpecularMapped {
@@ -112,8 +134,15 @@ struct FrameBufferViewerRenderable: Mesh {
     let frameBufferRenderedTexture: RenderedTexture
 }
 
-struct EmitterRenderable: Mesh, Model, Emitter {
-    var vao: VAO
+class EmitterRenderable: BasicRenderable, Model, Emitter {
     var geometryModel: GeometryModel
     var emittingColor: Color
+    
+    init(vao: VAO,
+         geometryModel: GeometryModel,
+         emittingColor: Color) {
+        self.geometryModel = geometryModel
+        self.emittingColor = emittingColor
+        super.init(vao: vao)
+    }
 }

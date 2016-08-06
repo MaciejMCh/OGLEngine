@@ -10,7 +10,7 @@ import Foundation
 import GLKit
 
 class SmartPipelineProgram: PipelineProgram {
-    typealias RenderableType = LighModelIdeaRenderable
+    typealias RenderableType = BasicRenderable
     var glName: GLuint = 0
     var pipeline: GPUPipeline
     

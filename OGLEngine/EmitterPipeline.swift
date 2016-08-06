@@ -14,7 +14,7 @@ extension DefaultPipelines {
         vertexScope ✍ OpenGLDefaultVariables.glPosition() ⬅ GPUUniforms.modelViewProjectionMatrix * GPUAttributes.position
         
         let fragmentScope = GPUScope()
-        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ Variable<GLSLColor>(name: "vColor")
+        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ Variable<GLSLColor>(name: "vEmissionColor")
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
         return program
