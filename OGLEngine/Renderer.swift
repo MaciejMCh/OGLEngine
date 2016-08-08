@@ -19,10 +19,12 @@ struct Renderer {
     static var lightingIdeaImplementationProgram: SmartPipelineProgram!
     static var emitterProgram: SmartPipelineProgram!
     
+    static var renderedCubeTexture: RenderedCubeTexture!
+    
     static func render(scene: Scene) {
-        scene.rayBoxColorMap.withFbo {
+//        scene.rayBoxColorMap.withFbo {
             Renderer.renderRayBox(scene, camera: scene.camera)
-        }
+//        }
         
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
@@ -76,15 +78,26 @@ struct Renderer {
         rayCamera.lookAt(focusDirection)
         var rayScene = scene
         rayScene.camera = rayCamera
-        focusDirection.applyViewPort()
-
-        glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
         
-        glUseProgram(self.skyBoxProgram.glName)
-        self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
+        var textureSide: CubeTextureSide! = nil
+        switch focusDirection {
+        case .Left: textureSide = CubeTextureSide.NegativeX
+        case .Right: textureSide = CubeTextureSide.PositiveX
+        case .Back: textureSide = CubeTextureSide.NegativeY
+        case .Forward: textureSide = CubeTextureSide.PositiveY
+        case .Down: textureSide = CubeTextureSide.NegativeZ
+        case .Up: textureSide = CubeTextureSide.PositiveZ
+        }
         
-        glUseProgram(self.emitterProgram.glName)
-        self.emitterProgram.render(scene.emitterRenderables, scene: rayScene)
+        renderedCubeTexture.withFbo(textureSide: textureSide) { 
+            glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
+            
+            glUseProgram(self.skyBoxProgram.glName)
+            self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
+            
+            glUseProgram(self.emitterProgram.glName)
+            self.emitterProgram.render(scene.emitterRenderables, scene: rayScene)
+        }
     }
     
     static func renderFrameBufferPreview(scene: Scene) {

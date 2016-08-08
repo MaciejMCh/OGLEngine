@@ -9,12 +9,12 @@
 import GLKit
 
 enum CubeTextureSide {
-    case NegativeX
     case PositiveX
-    case NegativeY
+    case NegativeX
     case PositiveY
-    case NegativeZ
+    case NegativeY
     case PositiveZ
+    case NegativeZ
     
     func glEnum() -> GLenum {
         switch self {
@@ -25,6 +25,21 @@ enum CubeTextureSide {
         case .NegativeZ: return GLenum(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z)
         case .PositiveZ: return GLenum(GL_TEXTURE_CUBE_MAP_POSITIVE_Z)
         }
+    }
+    
+    func cubeContextIndex() -> Int {
+        switch self {
+        case .PositiveX: return 0
+        case .NegativeX: return 1
+        case .PositiveY: return 2
+        case .NegativeY: return 3
+        case .PositiveZ: return 4
+        case .NegativeZ: return 5
+        }
+    }
+    
+    static func allSidesInOrder() -> [CubeTextureSide] {
+        return [.PositiveX, .NegativeX, .PositiveY, .NegativeY, .PositiveZ, .NegativeZ]
     }
 }
 

@@ -16,26 +16,27 @@ class RenderedCubeTexture: CubeTexture {
     let h = GLsizei(512)
     
     func bindFrameBuffers() {
-        bind(&sideFrameBuffers[0], textureSide: .NegativeX)
-        bind(&sideFrameBuffers[1], textureSide: .PositiveX)
-        bind(&sideFrameBuffers[2], textureSide: .NegativeY)
-        bind(&sideFrameBuffers[3], textureSide: .PositiveY)
-        bind(&sideFrameBuffers[4], textureSide: .NegativeZ)
-        bind(&sideFrameBuffers[5], textureSide: .PositiveZ)
+        glBindTexture(GLenum(GL_TEXTURE_CUBE_MAP), self.glName);
+        glTexParameteri(GLenum(GL_TEXTURE_CUBE_MAP), GLenum(GL_TEXTURE_WRAP_S), GL_CLAMP_TO_EDGE);
+        glTexParameteri(GLenum(GL_TEXTURE_CUBE_MAP), GLenum(GL_TEXTURE_WRAP_T), GL_CLAMP_TO_EDGE);
+        glTexParameteri(GLenum(GL_TEXTURE_CUBE_MAP), GLenum(GL_TEXTURE_MIN_FILTER), GL_NEAREST);
+        glTexParameteri(GLenum(GL_TEXTURE_CUBE_MAP), GLenum(GL_TEXTURE_MAG_FILTER), GL_NEAREST);
+
+        glGenFramebuffers(6, &sideFrameBuffers[0]);
+        
+        for side in CubeTextureSide.allSidesInOrder() {
+            glTexImage2D(side.glEnum(), 0, GL_RGBA, w, h, 0, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), nil);
+        }
+        for side in CubeTextureSide.allSidesInOrder() {
+            bind(&sideFrameBuffers[side.cubeContextIndex()], textureSide: side)
+        }
     }
     
     func withFbo(textureSide textureSide: CubeTextureSide, operations: ()->()) {
         var currentVboGlName = GLint()
         glGetIntegerv(GLenum(GL_FRAMEBUFFER_BINDING_OES), &currentVboGlName)
         
-        switch textureSide {
-        case .NegativeX: bindFrameBuffer(sideFrameBuffers[0])
-        case .PositiveX: bindFrameBuffer(sideFrameBuffers[1])
-        case .NegativeY: bindFrameBuffer(sideFrameBuffers[2])
-        case .PositiveY: bindFrameBuffer(sideFrameBuffers[3])
-        case .NegativeZ: bindFrameBuffer(sideFrameBuffers[4])
-        case .PositiveZ: bindFrameBuffer(sideFrameBuffers[5])
-        }
+        bindFrameBuffer(sideFrameBuffers[textureSide.cubeContextIndex()])
         operations()
         
         glBindFramebuffer(GLenum(GL_FRAMEBUFFER), GLuint(currentVboGlName))
@@ -50,8 +51,6 @@ class RenderedCubeTexture: CubeTexture {
     }
     
     func bind(frameBuffer: UnsafeMutablePointer<GLuint>, textureSide: CubeTextureSide) {
-        glGenFramebuffers(1, frameBuffer);
-        
         glBindFramebuffer(GLenum(GL_FRAMEBUFFER), frameBuffer.memory);
         glFramebufferTexture2D(GLenum(GL_FRAMEBUFFER), GLenum(GL_COLOR_ATTACHMENT0), textureSide.glEnum(), self.glName, 0);
         
@@ -60,10 +59,9 @@ class RenderedCubeTexture: CubeTexture {
         glBindRenderbuffer(GLenum(GL_RENDERBUFFER), depthbuffer);
         glRenderbufferStorage(GLenum(GL_RENDERBUFFER), GLenum(GL_DEPTH_COMPONENT16), w, h);
         glFramebufferRenderbuffer(GLenum(GL_FRAMEBUFFER), GLenum(GL_DEPTH_ATTACHMENT), GLenum(GL_RENDERBUFFER), depthbuffer);
-        
         let status = glCheckFramebufferStatus(GLenum(GL_FRAMEBUFFER));
         if(status != GLenum(GL_FRAMEBUFFER_COMPLETE)) {
-            NSLog("Framebuffer status: %x", Int(status));
+            NSLog("Framebuffer \(textureSide) status: \(status)");
         }
     }
 }

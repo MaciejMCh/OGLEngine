@@ -118,9 +118,10 @@ class GameViewController: GLKViewController {
         Renderer.lightingIdeaImplementationProgram = lightingIdeaImplementationProgram
         Renderer.emitterProgram = emitterProgram
         
-        let cubeTexture = CubeTexture()
-        cubeTexture.testColorBindings()
+        let cubeTexture = RenderedCubeTexture()
+        cubeTexture.bindFrameBuffers()
         scene.cubeTexture = cubeTexture
+        Renderer.renderedCubeTexture = cubeTexture
     }
     
     func tearDownGL() {
@@ -145,7 +146,7 @@ class GameViewController: GLKViewController {
     
     override func glkView(view: GLKView, drawInRect rect: CGRect) {
         Renderer.render(scene)
-        Renderer.renderFrameBufferPreview(self.scene)
+//        Renderer.renderFrameBufferPreview(self.scene)
     }
     
     func renderTexture() {
