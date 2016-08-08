@@ -76,6 +76,7 @@
 		C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */; };
 		C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */; };
 		C29DFAE91D06F8C00003B7A2 /* PhongV1PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */; };
+		C2A8F8241D58D32E0060E83E /* CubeTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A8F8231D58D32E0060E83E /* CubeTexture.swift */; };
 		C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */; };
 		C2AFAE661CFC4DFD00C2F8D0 /* PipelineUniform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */; };
 		C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */; };
@@ -196,6 +197,7 @@
 		C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.fsh; path = Shaders/ReflectiveSurface.fsh; sourceTree = "<group>"; };
 		C29DFAE61D06EB2E0003B7A2 /* PhongV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1.swift; sourceTree = "<group>"; };
 		C29DFAE81D06F8C00003B7A2 /* PhongV1PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV1PipelineProgram.swift; sourceTree = "<group>"; };
+		C2A8F8231D58D32E0060E83E /* CubeTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTexture.swift; sourceTree = "<group>"; };
 		C2AFAE611CFC4D0300C2F8D0 /* PipelineAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineAttribute.swift; sourceTree = "<group>"; };
 		C2AFAE651CFC4DFD00C2F8D0 /* PipelineUniform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineUniform.swift; sourceTree = "<group>"; };
 		C2AFAE671CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PipelineProgramDefaultImplementations.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 			children = (
 				C26EC56B1CE9E1BA005958C5 /* RenderedTexture */,
 				C269D5C81CA898DD00E56E67 /* Texture.swift */,
+				C2A8F8231D58D32E0060E83E /* CubeTexture.swift */,
 			);
 			name = Texture;
 			sourceTree = "<group>";
@@ -981,6 +984,7 @@
 				C248E3E41D342617008A9E9D /* RayBoxMappingTest.swift in Sources */,
 				C23F6DC81D4E95C10040629E /* MaterialBallScene.swift in Sources */,
 				C2B188F51CF1CCD6008BB626 /* PipelineOperators.swift in Sources */,
+				C2A8F8241D58D32E0060E83E /* CubeTexture.swift in Sources */,
 				C2AFAE681CFC86C300C2F8D0 /* PipelineProgramDefaultImplementations.swift in Sources */,
 				C29DFAE71D06EB2E0003B7A2 /* PhongV1.swift in Sources */,
 				C269D5DA1CA898DD00E56E67 /* Renderable.swift in Sources */,

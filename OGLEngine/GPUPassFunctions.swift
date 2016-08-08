@@ -47,4 +47,10 @@ struct GPUPassFunctions {
         glBindTexture(GLenum(GL_TEXTURE_2D), texture.glName);
         glUniform1i(location, 0 + index);
     }
+    
+    static func cubeTexturePass(texture: CubeTexture, index: GLint, location: GLint) {
+        glActiveTexture(GLenum(GL_TEXTURE0 + index));
+        glBindTexture(GLenum(GL_TEXTURE_CUBE_MAP), texture.glName);
+        glUniform1i(location, 0 + index);
+    }
 }

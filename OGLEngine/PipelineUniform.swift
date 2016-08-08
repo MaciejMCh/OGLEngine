@@ -56,6 +56,8 @@ struct GPUUniforms {
     static let fresnelA = GPUUniform<GLSLFloat>(name: "uFresnelA")
     static let fresnelB = GPUUniform<GLSLFloat>(name: "uFresnelB")
     static let emissionColor = GPUUniform<GLSLColor>(name: "uEmissionColor")
+    
+    static let cubeTexture = GPUUniform<GLSLCubeTexture>(name: "uCubeTexture")
 }
 
 struct UniformsCollection {

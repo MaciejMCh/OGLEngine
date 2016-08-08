@@ -276,6 +276,10 @@ public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Fun
     return Function<GLSLColor>(signature: "texture2D", arguments: [lhs, rhs])
 }
 
+public func ☒ (lhs: Evaluation<GLSLCubeTexture>, rhs: Evaluation<GLSLVec3>) -> Function<GLSLColor> {
+    return Function<GLSLColor>(signature: "textureCube", arguments: [lhs, rhs])
+}
+
 infix operator ^☒ { associativity left precedence 200 }
 public func ^☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Function<GLSLColor> {
     let u: Evaluation<GLSLFloat> = rhs .> "x"

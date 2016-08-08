@@ -103,6 +103,14 @@ public struct GLSLTexture: GLSLType {
     }
 }
 
+public struct GLSLCubeTexture: GLSLType {
+    public typealias CPUCounterpart = (texture: CubeTexture, index: GLint)
+    
+    public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        GPUPassFunctions.cubeTexturePass(value.texture, index: value.index, location: location)
+    }
+}
+
 public struct GLSLFloat: GLSLType {
     public typealias CPUCounterpart = Float
     

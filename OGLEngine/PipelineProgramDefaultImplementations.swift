@@ -70,6 +70,10 @@ extension PipelineProgram {
         if let lightHalfVector = self.pipeline.uniform(GPUUniforms.lightHalfVector) {
             lightHalfVector.cpuVariableGetter = {scene.directionalLight.halfVectorWithCamera(scene.camera)}
         }
+        
+        if let cubeTexture = self.pipeline.uniform(GPUUniforms.cubeTexture) {
+            cubeTexture.cpuVariableGetter = {(scene.cubeTexture, 4)}
+        }
     }
     
     func defaultModelBindings(model: Model, scene: Scene) {

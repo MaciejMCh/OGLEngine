@@ -117,6 +117,9 @@ class GameViewController: GLKViewController {
         Renderer.frameBufferViewerProgram = frameBufferViewerProgram
         Renderer.lightingIdeaImplementationProgram = lightingIdeaImplementationProgram
         Renderer.emitterProgram = emitterProgram
+        
+        let cubeTexture = CubeTexture()
+        scene.cubeTexture = cubeTexture
     }
     
     func tearDownGL() {

@@ -108,6 +108,7 @@ struct GLSLParser {
         
         case is Variable<GLSLColor>: return "vec4"
         case is Variable<GLSLTexture>: return "sampler2D"
+        case is Variable<GLSLCubeTexture>: return "samplerCube"
             
         default:
             assert(false)
