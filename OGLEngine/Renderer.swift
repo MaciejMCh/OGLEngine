@@ -65,29 +65,19 @@ struct Renderer {
     static func renderRayBox(scene: Scene, camera: Camera) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
-        renderRayWall(.Left, scene: scene, camera: camera)
-        renderRayWall(.Forward, scene: scene, camera: camera)
-        renderRayWall(.Back, scene: scene, camera: camera)
-        renderRayWall(.Right, scene: scene, camera: camera)
-        renderRayWall(.Down, scene: scene, camera: camera)
-        renderRayWall(.Up, scene: scene, camera: camera)
+        renderRayWall(.PositiveX, scene: scene, camera: camera)
+        renderRayWall(.NegativeX, scene: scene, camera: camera)
+        renderRayWall(.PositiveY, scene: scene, camera: camera)
+        renderRayWall(.NegativeY, scene: scene, camera: camera)
+        renderRayWall(.PositiveZ, scene: scene, camera: camera)
+        renderRayWall(.NegativeZ, scene: scene, camera: camera)
     }
     
-    static func renderRayWall(focusDirection: FocusDirection, scene: Scene, camera: Camera) {
+    static func renderRayWall(textureSide: CubeTextureSide, scene: Scene, camera: Camera) {
         let rayCamera = RayBoxCamera(eyePosition: camera.cameraPosition())
-        rayCamera.lookAt(focusDirection)
+        rayCamera.lookAt(textureSide)
         var rayScene = scene
         rayScene.camera = rayCamera
-        
-        var textureSide: CubeTextureSide! = nil
-        switch focusDirection {
-        case .Left: textureSide = CubeTextureSide.NegativeX
-        case .Right: textureSide = CubeTextureSide.PositiveX
-        case .Back: textureSide = CubeTextureSide.NegativeY
-        case .Forward: textureSide = CubeTextureSide.PositiveY
-        case .Down: textureSide = CubeTextureSide.NegativeZ
-        case .Up: textureSide = CubeTextureSide.PositiveZ
-        }
         
         renderedCubeTexture.withFbo(textureSide: textureSide) { 
             glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
