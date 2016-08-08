@@ -8,7 +8,27 @@
 
 import GLKit
 
-public struct CubeTexture {
+enum CubeTextureSide {
+    case NegativeX
+    case PositiveX
+    case NegativeY
+    case PositiveY
+    case NegativeZ
+    case PositiveZ
+    
+    func glEnum() -> GLenum {
+        switch self {
+        case .NegativeX: return GLenum(GL_TEXTURE_CUBE_MAP_NEGATIVE_X)
+        case .PositiveX: return GLenum(GL_TEXTURE_CUBE_MAP_POSITIVE_X)
+        case .NegativeY: return GLenum(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y)
+        case .PositiveY: return GLenum(GL_TEXTURE_CUBE_MAP_POSITIVE_Y)
+        case .NegativeZ: return GLenum(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z)
+        case .PositiveZ: return GLenum(GL_TEXTURE_CUBE_MAP_POSITIVE_Z)
+        }
+    }
+}
+
+public class CubeTexture {
     var glName: GLuint = 0
     
     init() {
@@ -17,34 +37,27 @@ public struct CubeTexture {
         glGenTextures(1, &glName)
         glBindTexture(GLenum(GL_TEXTURE_CUBE_MAP), glName)
         self.glName = glName
-        
-        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.redColor()), side: GLenum(GL_TEXTURE_CUBE_MAP_NEGATIVE_X)) // LT
-        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.magentaColor()), side: GLenum(GL_TEXTURE_CUBE_MAP_POSITIVE_Y)) // FT
-        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.blueColor()), side: GLenum(GL_TEXTURE_CUBE_MAP_POSITIVE_X)) // RT
-        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.cyanColor()), side: GLenum(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y)) // BK
-        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.greenColor()), side: GLenum(GL_TEXTURE_CUBE_MAP_POSITIVE_Z)) // UP
-        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.yellowColor()), side: GLenum(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z)) // DN
+    }
+    
+    func testColorBindings() {
+        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.redColor()), side: .NegativeX)
+        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.magentaColor()), side: .PositiveX)
+        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.blueColor()), side: .NegativeY)
+        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.cyanColor()), side: .PositiveY)
+        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.greenColor()), side: .NegativeZ)
+        bindTextureWithImage(ImageTexture.imageWithColor(UIColor.yellowColor()), side: .PositiveZ)
         
         glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GL_NEAREST)
     }
     
-    func bindTextureWithImage(image: UIImage, side: GLenum) {
-        // 1
+    func bindTextureWithImage(image: UIImage, side: CubeTextureSide) {
         let spriteImage: CGImageRef = image.CGImage!
-        // 2
         let width: size_t = CGImageGetWidth(spriteImage)
         let height: size_t = CGImageGetHeight(spriteImage)
         let spriteData = calloc(width * height * 4, sizeof(GLubyte))
         let spriteContext: CGContextRef = CGBitmapContextCreate(spriteData, width, height, 8, width * 4, CGImageGetColorSpace(spriteImage), CGImageAlphaInfo.PremultipliedLast.rawValue)!
-        // 3
         CGContextDrawImage(spriteContext, CGRectMake(0, 0, CGFloat(width), CGFloat(height)), spriteImage)
-        //        CGContextRelease(spriteContext)
-        // 4
-//        var texName: GLuint = 0
-//        glGenTextures(1, &texName)
-//        glBindTexture(GLenum(GL_TEXTURE_2D), texName)
-        
-        glTexImage2D(side, 0, GL_RGBA, GLsizei(width), GLsizei(height), 0, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), spriteData)
+        glTexImage2D(side.glEnum(), 0, GL_RGBA, GLsizei(width), GLsizei(height), 0, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), spriteData)
         free(spriteData)
     }
 }

@@ -119,6 +119,7 @@ class GameViewController: GLKViewController {
         Renderer.emitterProgram = emitterProgram
         
         let cubeTexture = CubeTexture()
+        cubeTexture.testColorBindings()
         scene.cubeTexture = cubeTexture
     }
     
