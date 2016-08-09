@@ -33,11 +33,13 @@ public class Evaluation<T: GLSLType>: AnyEvaluation {
 
 public protocol AnyVariable {
     var name: String {get}
+    var size: UInt {get}
     func createUniform() -> AnyGPUUniform
 }
 
 public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
     public var name: String
+    public var size: UInt
     
     init(name: String) {
         self.name = name

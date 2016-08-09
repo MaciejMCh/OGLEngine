@@ -56,6 +56,18 @@ protocol Emitter {
     var emittingColor: Color {get}
 }
 
+struct CubeTextureBlurringContext {
+    let blurringTexture: Texture
+    let topTexture: Texture
+    let leftTexture: Texture
+    let bottomTexture: Texture
+    let rightTexture: Texture
+}
+
+protocol CubeTextureBlur {
+    var blurringContext: CubeTextureBlurringContext {get}
+}
+
 class MaterialProperties {
     var specularPower: Float
     var specularSharpness: Float
@@ -143,6 +155,15 @@ class EmitterRenderable: BasicRenderable, Model, Emitter {
          emittingColor: Color) {
         self.geometryModel = geometryModel
         self.emittingColor = emittingColor
+        super.init(vao: vao)
+    }
+}
+
+class CubeMapBlurrer: BasicRenderable, CubeTextureBlur {
+    var blurringContext: CubeTextureBlurringContext
+    
+    init(vao: VAO, blurringContext: CubeTextureBlurringContext) {
+        self.blurringContext = blurringContext
         super.init(vao: vao)
     }
 }

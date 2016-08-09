@@ -133,7 +133,3 @@ public struct GLSLBool: GLSLType {
 public struct GLSLPlane: GLSLType {
     public typealias CPUCounterpart = (A: Float, B: Float, C: Float, D: Float)
 }
-
-public struct GLSLVectorGraphics: GLSLType {
-    public typealias CPUCounterpart = VectorGraphics
-}
