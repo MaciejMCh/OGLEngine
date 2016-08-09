@@ -57,15 +57,15 @@ protocol Emitter {
 }
 
 struct CubeTextureBlurringContext {
-    let blurringTexture: CubeTextureSide
-    let topTexture: CubeTextureSide
-    let leftTexture: CubeTextureSide
-    let bottomTexture: CubeTextureSide
-    let rightTexture: CubeTextureSide
+    let blurringTexture: Texture
+    let topTexture: Texture
+    let leftTexture: Texture
+    let bottomTexture: Texture
+    let rightTexture: Texture
 }
 
 protocol CubeTextureBlur {
-    var cubeTexture: CubeTexture {get}
+    var renderedCubeTexture: RenderedCubeTexture {get}
     var blurringContext: CubeTextureBlurringContext {get}
 }
 
@@ -161,11 +161,11 @@ class EmitterRenderable: BasicRenderable, Model, Emitter {
 }
 
 class CubeMapBlurrer: BasicRenderable, CubeTextureBlur {
-    var cubeTexture: CubeTexture
+    var renderedCubeTexture: RenderedCubeTexture
     var blurringContext: CubeTextureBlurringContext
     
-    init(vao: VAO, cubeTexture: CubeTexture, blurringContext: CubeTextureBlurringContext) {
-        self.cubeTexture = cubeTexture
+    init(vao: VAO, renderedCubeTexture: RenderedCubeTexture, blurringContext: CubeTextureBlurringContext) {
+        self.renderedCubeTexture = renderedCubeTexture
         self.blurringContext = blurringContext
         super.init(vao: vao)
     }

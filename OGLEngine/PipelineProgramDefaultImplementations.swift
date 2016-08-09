@@ -153,7 +153,7 @@ extension PipelineProgram {
     
     func defaultCubeTextureBlurrerBindings(cubeTextureBlurrer: CubeMapBlurrer) {
         if let currentTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Current) {
-            currentTexture.cpuVariableGetter = {(cubeTextureBlurrer.cubeTexture, side: .PositiveZ)}
+            currentTexture.cpuVariableGetter = {(cubeTextureBlurrer.renderedCubeTexture.sideTextures.first!, 0)}
         }
     }
 }

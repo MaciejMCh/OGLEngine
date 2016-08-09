@@ -11,6 +11,7 @@ import GLKit
 class RenderedCubeTexture: CubeTexture {
     
     private var sideFrameBuffers = Array<GLuint>(count: 6, repeatedValue: 0)
+    private(set) var sideTextures: [CubeSideTexture] = []
     
     let w = GLsizei(512)
     let h = GLsizei(512)
@@ -63,5 +64,13 @@ class RenderedCubeTexture: CubeTexture {
         if(status != GLenum(GL_FRAMEBUFFER_COMPLETE)) {
             NSLog("Framebuffer \(textureSide) status: \(status)");
         }
+    }
+}
+
+struct CubeSideTexture: Texture {
+    let glName: GLuint
+    let side: CubeTextureSide
+    func bind() {
+        
     }
 }

@@ -75,15 +75,16 @@ struct Renderer {
     }
     
     static func blurCubeTexture(input input: RenderedCubeTexture, output: RenderedCubeTexture, scene: Scene) {
+        let texture = input.sideTextures.first!
         let renderable = CubeMapBlurrer(
             vao: FullScreenVao.vao,
-            cubeTexture: input,
+            renderedCubeTexture: input,
             blurringContext: CubeTextureBlurringContext(
-                blurringTexture: .PositiveZ,
-                topTexture: .PositiveZ,
-                leftTexture: .PositiveZ,
-                bottomTexture: .PositiveZ,
-                rightTexture: .PositiveZ))
+                blurringTexture: texture,
+                topTexture: texture,
+                leftTexture: texture,
+                bottomTexture: texture,
+                rightTexture: texture))
         output.withFbo(textureSide: .PositiveZ) {
             glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
             glUseProgram(self.cubeTextureBlurrerProgram.glName)

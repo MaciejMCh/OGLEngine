@@ -295,10 +295,6 @@ public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Eva
     return monoSample
 }
 
-public func ☒ (lhs: Evaluation<GLSLCubeSideTexture>, rhs: Evaluation<GLSLVec2>) -> Function<GLSLColor> {
-    return Function<GLSLColor>(signature: "texture2D", arguments: [lhs, rhs])
-}
-
 // Field
 infix operator .> { associativity left precedence 200 }
 public func .> <T>(lhs: AnyEvaluation, rhs: String) -> FieldEvaluation<T> {
