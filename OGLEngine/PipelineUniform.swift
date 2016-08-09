@@ -58,6 +58,14 @@ struct GPUUniforms {
     static let emissionColor = GPUUniform<GLSLColor>(name: "uEmissionColor")
     
     static let cubeTexture = GPUUniform<GLSLCubeTexture>(name: "uCubeTexture")
+    
+    struct CubeTextures {
+        static let Current = GPUUniform<GLSLTexture>(name: "uCubeTextureCurrent")
+        static let Top = GPUUniform<GLSLTexture>(name: "uCubeTextureTop")
+        static let Left = GPUUniform<GLSLTexture>(name: "uCubeTextureLeft")
+        static let Bottom = GPUUniform<GLSLTexture>(name: "uCubeTextureBottom")
+        static let Right = GPUUniform<GLSLTexture>(name: "uCubeTextureRight")
+    }
 }
 
 struct UniformsCollection {

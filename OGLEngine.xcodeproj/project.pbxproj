@@ -26,6 +26,7 @@
 		C22DCFAE1D2C1A9F00D04268 /* skybox.obj in Resources */ = {isa = PBXBuildFile; fileRef = C22DCFAC1D2C1A9F00D04268 /* skybox.obj */; };
 		C22DCFB01D2C1C0200D04268 /* SkyBoxPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */; };
 		C22DCFB21D2C23E200D04268 /* SkyBoxPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */; };
+		C23DD40D1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23DD40C1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift */; };
 		C23F6DC81D4E95C10040629E /* MaterialBallScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F6DC71D4E95C10040629E /* MaterialBallScene.swift */; };
 		C23F6DCA1D4E9CFB0040629E /* material_surface.obj in Resources */ = {isa = PBXBuildFile; fileRef = C23F6DC91D4E9CFB0040629E /* material_surface.obj */; };
 		C23F6DCC1D4E9F8A0040629E /* material_core.obj in Resources */ = {isa = PBXBuildFile; fileRef = C23F6DCB1D4E9F8A0040629E /* material_core.obj */; };
@@ -144,6 +145,7 @@
 		C22DCFAC1D2C1A9F00D04268 /* skybox.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox.obj; path = Resources/SkyBox/skybox.obj; sourceTree = "<group>"; };
 		C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipeline.swift; sourceTree = "<group>"; };
 		C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipelineProgram.swift; sourceTree = "<group>"; };
+		C23DD40C1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTextureBlurrerPipeline.swift; sourceTree = "<group>"; };
 		C23F6DC71D4E95C10040629E /* MaterialBallScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialBallScene.swift; sourceTree = "<group>"; };
 		C23F6DC91D4E9CFB0040629E /* material_surface.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = material_surface.obj; path = Resources/MaterialBall/material_surface.obj; sourceTree = "<group>"; };
 		C23F6DCB1D4E9F8A0040629E /* material_core.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = material_core.obj; path = Resources/MaterialBall/material_core.obj; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				C219E3811D2F0DE10026678B /* RayBox.swift */,
 				C2D07D7E1D3D40080016CF4B /* LightingIdeaImplementation.swift */,
 				C2E7C3FC1D55D41900DC4AB6 /* EmitterPipeline.swift */,
+				C23DD40C1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift */,
 			);
 			name = Shaders;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				C269D5E01CA898DD00E56E67 /* Texture.swift in Sources */,
 				C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */,
 				C2229DB91D12F81F007F5856 /* ReflectedPipelineProgram.swift in Sources */,
+				C23DD40D1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift in Sources */,
 				C2D07D7F1D3D40080016CF4B /* LightingIdeaImplementation.swift in Sources */,
 				C2BD601D1CEB5E2400B51ECD /* RemoteProperties.swift in Sources */,
 				C2D07D7D1D3D3DFC0016CF4B /* SmartPipeline.swift in Sources */,

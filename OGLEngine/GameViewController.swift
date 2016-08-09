@@ -23,6 +23,8 @@ class GameViewController: GLKViewController {
     var rayBoxMappingTestProgram: RayBoxMappingTestProgram!
     var rayBoxMappingTestRenderable: RayBoxMappingTestRenderable!
     
+    var cubeTextureBlurrerProgram: SmartPipelineProgram!
+    
     var context: EAGLContext? = nil
     
     var scene: Scene! = nil
@@ -106,6 +108,9 @@ class GameViewController: GLKViewController {
         
         self.emitterProgram = DefaultPipelines.EmitterPipeline()
         self.emitterProgram.compile()
+        
+        self.cubeTextureBlurrerProgram = DefaultPipelines.CubeTextureBlurrer()
+        self.cubeTextureBlurrerProgram.compile()
         
         glEnable(GLenum(GL_DEPTH_TEST))
         

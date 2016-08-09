@@ -114,8 +114,6 @@ extension DefaultPipelines {
         fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ Variable<GLSLCubeTexture>(name: "uCubeTexture") ☒ fixedNormal
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
-        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
-        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
         return program
     }
 }
