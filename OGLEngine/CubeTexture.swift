@@ -8,7 +8,7 @@
 
 import GLKit
 
-enum CubeTextureSide {
+public enum CubeTextureSide {
     case PositiveX
     case NegativeX
     case PositiveY

@@ -18,13 +18,14 @@ struct Renderer {
     static var frameBufferViewerProgram: FrameBufferViewerPipelineProgram!
     static var lightingIdeaImplementationProgram: SmartPipelineProgram!
     static var emitterProgram: SmartPipelineProgram!
+    static var cubeTextureBlurrerProgram: SmartPipelineProgram!
     
     static var renderedCubeTexture: RenderedCubeTexture!
+    static var blurredCubeTexture: RenderedCubeTexture!
     
     static func render(scene: Scene) {
-//        scene.rayBoxColorMap.withFbo {
-            Renderer.renderRayBox(scene, camera: scene.camera)
-//        }
+        Renderer.renderRayBox(renderedCubeTexture, scene: scene, camera: scene.camera)
+        Renderer.blurCubeTexture(input: renderedCubeTexture, output: blurredCubeTexture, scene: scene)
         
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
@@ -62,24 +63,42 @@ struct Renderer {
         self.reflectedProgram.render(scene.reflecteds(), scene: scene)
     }
     
-    static func renderRayBox(scene: Scene, camera: Camera) {
+    static func renderRayBox(cubeTexture: RenderedCubeTexture, scene: Scene, camera: Camera) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
-        renderRayWall(.PositiveX, scene: scene, camera: camera)
-        renderRayWall(.NegativeX, scene: scene, camera: camera)
-        renderRayWall(.PositiveY, scene: scene, camera: camera)
-        renderRayWall(.NegativeY, scene: scene, camera: camera)
-        renderRayWall(.PositiveZ, scene: scene, camera: camera)
-        renderRayWall(.NegativeZ, scene: scene, camera: camera)
+        renderRayWall(cubeTexture, textureSide: .PositiveX, scene: scene, camera: camera)
+        renderRayWall(cubeTexture, textureSide: .NegativeX, scene: scene, camera: camera)
+        renderRayWall(cubeTexture, textureSide: .PositiveY, scene: scene, camera: camera)
+        renderRayWall(cubeTexture, textureSide: .NegativeY, scene: scene, camera: camera)
+        renderRayWall(cubeTexture, textureSide: .PositiveZ, scene: scene, camera: camera)
+        renderRayWall(cubeTexture, textureSide: .NegativeZ, scene: scene, camera: camera)
     }
     
-    static func renderRayWall(textureSide: CubeTextureSide, scene: Scene, camera: Camera) {
+    static func blurCubeTexture(input input: RenderedCubeTexture, output: RenderedCubeTexture, scene: Scene) {
+        let renderable = CubeMapBlurrer(
+            vao: FullScreenVao.vao,
+            cubeTexture: input,
+            blurringContext: CubeTextureBlurringContext(
+                blurringTexture: .PositiveZ,
+                topTexture: .PositiveZ,
+                leftTexture: .PositiveZ,
+                bottomTexture: .PositiveZ,
+                rightTexture: .PositiveZ))
+        output.withFbo(textureSide: .PositiveZ) {
+            glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
+            glUseProgram(self.cubeTextureBlurrerProgram.glName)
+            self.cubeTextureBlurrerProgram.render([renderable], scene: scene)
+        }
+        
+    }
+    
+    static func renderRayWall(cubeTexture: RenderedCubeTexture, textureSide: CubeTextureSide, scene: Scene, camera: Camera) {
         let rayCamera = RayBoxCamera(eyePosition: camera.cameraPosition())
         rayCamera.lookAt(textureSide)
         var rayScene = scene
         rayScene.camera = rayCamera
         
-        renderedCubeTexture.withFbo(textureSide: textureSide) { 
+        cubeTexture.withFbo(textureSide: textureSide) {
             glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
             
             glUseProgram(self.skyBoxProgram.glName)
@@ -92,12 +111,12 @@ struct Renderer {
     
     static func renderFrameBufferPreview(scene: Scene) {
         
-        self.frameBufferViewerProgram.renderable.frameBufferRenderedTexture.withFbo {
-            Renderer.renderRayBox(scene, camera: scene.camera)
-        }
-        
-        glUseProgram(self.frameBufferViewerProgram.glName)
-        self.frameBufferViewerProgram.render([self.frameBufferViewerProgram.renderable], scene: scene)
+//        self.frameBufferViewerProgram.renderable.frameBufferRenderedTexture.withFbo {
+//            Renderer.renderRayBox(scene, camera: scene.camera)
+//        }
+//        
+//        glUseProgram(self.frameBufferViewerProgram.glName)
+//        self.frameBufferViewerProgram.render([self.frameBufferViewerProgram.renderable], scene: scene)
     }
     
 }

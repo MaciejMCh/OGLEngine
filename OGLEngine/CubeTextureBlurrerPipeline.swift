@@ -18,6 +18,7 @@ extension DefaultPipelines {
         
         let fragmentScope = GPUScope()
         fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Current ☒ vTexel
+//        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ Primitive(value: (r: 0.0, 1.0, 0.0, 1.0))
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
         NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))

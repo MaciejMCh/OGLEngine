@@ -46,6 +46,7 @@ extension PipelineProgram {
         if let reflectiveSolid = renderable as? ReflectiveSolid {self.defaultReflectiveSolidBindings(reflectiveSolid)}
         if let material = renderable as? Material {self.defaultMaterialBindings(material)}
         if let emitter = renderable as? Emitter {self.defaultEmitterBindings(emitter)}
+        if let cubeMapBlurrer = renderable as? CubeMapBlurrer {self.defaultCubeTextureBlurrerBindings(cubeMapBlurrer)}
     }
     
     mutating func compile() {

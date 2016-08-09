@@ -27,6 +27,8 @@
 		C22DCFB01D2C1C0200D04268 /* SkyBoxPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */; };
 		C22DCFB21D2C23E200D04268 /* SkyBoxPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */; };
 		C23DD40D1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23DD40C1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift */; };
+		C23DD40F1D5A0E8000E70CA1 /* FullScreenVao.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23DD40E1D5A0E8000E70CA1 /* FullScreenVao.swift */; };
+		C23DD4111D5A114200E70CA1 /* full_screen.obj in Resources */ = {isa = PBXBuildFile; fileRef = C23DD4101D5A114200E70CA1 /* full_screen.obj */; };
 		C23F6DC81D4E95C10040629E /* MaterialBallScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23F6DC71D4E95C10040629E /* MaterialBallScene.swift */; };
 		C23F6DCA1D4E9CFB0040629E /* material_surface.obj in Resources */ = {isa = PBXBuildFile; fileRef = C23F6DC91D4E9CFB0040629E /* material_surface.obj */; };
 		C23F6DCC1D4E9F8A0040629E /* material_core.obj in Resources */ = {isa = PBXBuildFile; fileRef = C23F6DCB1D4E9F8A0040629E /* material_core.obj */; };
@@ -146,6 +148,8 @@
 		C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipeline.swift; sourceTree = "<group>"; };
 		C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipelineProgram.swift; sourceTree = "<group>"; };
 		C23DD40C1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTextureBlurrerPipeline.swift; sourceTree = "<group>"; };
+		C23DD40E1D5A0E8000E70CA1 /* FullScreenVao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenVao.swift; sourceTree = "<group>"; };
+		C23DD4101D5A114200E70CA1 /* full_screen.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = full_screen.obj; path = Resources/full_screen.obj; sourceTree = "<group>"; };
 		C23F6DC71D4E95C10040629E /* MaterialBallScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialBallScene.swift; sourceTree = "<group>"; };
 		C23F6DC91D4E9CFB0040629E /* material_surface.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = material_surface.obj; path = Resources/MaterialBall/material_surface.obj; sourceTree = "<group>"; };
 		C23F6DCB1D4E9F8A0040629E /* material_core.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = material_core.obj; path = Resources/MaterialBall/material_core.obj; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 			children = (
 				C269D5E11CA898E900E56E67 /* VAO.swift */,
 				C25A60711D2B9D410016FB7B /* SkyBox.swift */,
+				C23DD40E1D5A0E8000E70CA1 /* FullScreenVao.swift */,
 			);
 			name = VAO;
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				C23F6DC21D4E95990040629E /* MaterialBall */,
+				C23DD4101D5A114200E70CA1 /* full_screen.obj */,
 				C2C0BF3D1D2D9B330035D4A7 /* preview.obj */,
 				C22DCFAA1D2C1A6100D04268 /* SkyBox */,
 				C22824BE1CCD93AC006EBCE3 /* 3dAssets */,
@@ -768,6 +774,7 @@
 				C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */,
 				C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */,
 				C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */,
+				C23DD4111D5A114200E70CA1 /* full_screen.obj in Resources */,
 				C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
 				C269D59C1CA8981D00E56E67 /* LaunchScreen.storyboard in Resources */,
@@ -939,6 +946,7 @@
 				C27E42C81D07199200FC9632 /* PhongV2PipelineProgram.swift in Sources */,
 				C2B188F71CF1D3E3008BB626 /* PipelineDefaults.swift in Sources */,
 				C219E3821D2F0DE10026678B /* RayBox.swift in Sources */,
+				C23DD40F1D5A0E8000E70CA1 /* FullScreenVao.swift in Sources */,
 				C2631C321CB9B4860016B968 /* GPUPassFunctions.swift in Sources */,
 				C26A3F8C1CFEC8ED0080AE12 /* CloseShot.swift in Sources */,
 				C2AFAE621CFC4D0300C2F8D0 /* PipelineAttribute.swift in Sources */,

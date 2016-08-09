@@ -71,7 +71,10 @@ class GameViewController: GLKViewController {
     func setupGL() {
         EAGLContext.setCurrentContext(self.context)
         
-        DefaultPipelines.LightingIdeaImplementation()
+        FullScreenVao.setup()
+        
+//        DefaultPipelines.LightingIdeaImplementation()
+        
         
 //        let program = ReflectiveSurfacePipelineProgram()
 //        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
@@ -122,11 +125,18 @@ class GameViewController: GLKViewController {
         Renderer.frameBufferViewerProgram = frameBufferViewerProgram
         Renderer.lightingIdeaImplementationProgram = lightingIdeaImplementationProgram
         Renderer.emitterProgram = emitterProgram
+        Renderer.cubeTextureBlurrerProgram = cubeTextureBlurrerProgram
         
         let cubeTexture = RenderedCubeTexture()
         cubeTexture.bindFrameBuffers()
         scene.cubeTexture = cubeTexture
         Renderer.renderedCubeTexture = cubeTexture
+        
+        let blurredCubeTexture = RenderedCubeTexture()
+        blurredCubeTexture.bindFrameBuffers()
+        Renderer.blurredCubeTexture = blurredCubeTexture
+        
+        scene.cubeTexture = blurredCubeTexture
     }
     
     func tearDownGL() {

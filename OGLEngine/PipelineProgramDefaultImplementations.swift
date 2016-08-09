@@ -150,4 +150,10 @@ extension PipelineProgram {
             emissionColor.cpuVariableGetter = {emitter.emittingColor}
         }
     }
+    
+    func defaultCubeTextureBlurrerBindings(cubeTextureBlurrer: CubeMapBlurrer) {
+        if let currentTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Current) {
+            currentTexture.cpuVariableGetter = {(cubeTextureBlurrer.cubeTexture, side: .PositiveZ)}
+        }
+    }
 }
