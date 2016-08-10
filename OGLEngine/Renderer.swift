@@ -75,22 +75,18 @@ struct Renderer {
     }
     
     static func blurCubeTexture(input input: RenderedCubeTexture, output: RenderedCubeTexture, scene: Scene) {
-        let texture = input.sideTextures.first!
-        let renderable = CubeMapBlurrer(
-            vao: FullScreenVao.vao,
-            renderedCubeTexture: input,
-            blurringContext: CubeTextureBlurringContext(
-                blurringTexture: texture,
-                topTexture: texture,
-                leftTexture: texture,
-                bottomTexture: texture,
-                rightTexture: texture))
-        output.withFbo(textureSide: .PositiveZ) {
+        for side in CubeTextureSide.allSidesInOrder() {
+            blurCubeTextureSide(inputCubeTexture: input, outputCubeTexture: output, side: side, scene: scene)
+        }
+    }
+    
+    static func blurCubeTextureSide(inputCubeTexture inputCubeTexture: RenderedCubeTexture, outputCubeTexture: RenderedCubeTexture, side: CubeTextureSide, scene: Scene) {
+        let renderable = CubeMapBlurrer(vao: FullScreenVao.vao, renderedCubeTexture: inputCubeTexture, blurringContext: inputCubeTexture.blurringContextForSide(side))
+        outputCubeTexture.withFbo(textureSide: side) {
             glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
             glUseProgram(self.cubeTextureBlurrerProgram.glName)
             self.cubeTextureBlurrerProgram.render([renderable], scene: scene)
         }
-        
     }
     
     static func renderRayWall(cubeTexture: RenderedCubeTexture, textureSide: CubeTextureSide, scene: Scene, camera: Camera) {

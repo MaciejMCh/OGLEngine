@@ -95,6 +95,16 @@ class RenderedCubeTexture: CubeTexture {
             NSLog("Framebuffer \(textureSide) status: \(status)");
         }
     }
+    
+    func blurringContextForSide(side: CubeTextureSide) -> CubeTextureBlurringContext {
+        let texture = sideTextures.first!
+        return CubeTextureBlurringContext(
+            blurringTexture: sideTextures.getSide(side),
+            topTexture: texture,
+            leftTexture: texture,
+            bottomTexture: texture,
+            rightTexture: texture)
+    }
 }
 
 struct CubeSideTexture: Texture {
@@ -102,5 +112,16 @@ struct CubeSideTexture: Texture {
     let side: CubeTextureSide
     func bind() {
         
+    }
+}
+
+extension CollectionType where Self.Generator.Element == CubeSideTexture {
+    func getSide(side: CubeTextureSide) -> CubeSideTexture! {
+        for element in self {
+            if element.side == side {
+                return element
+            }
+        }
+        return nil
     }
 }
