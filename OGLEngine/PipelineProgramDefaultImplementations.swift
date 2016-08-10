@@ -155,5 +155,17 @@ extension PipelineProgram {
         if let currentTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Current) {
             currentTexture.cpuVariableGetter = {(cubeTextureBlurrer.blurringContext.blurringTexture, 0)}
         }
+        if let topTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Top) {
+            topTexture.cpuVariableGetter = {(cubeTextureBlurrer.blurringContext.topTexture, 1)}
+        }
+        if let leftTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Left) {
+            leftTexture.cpuVariableGetter = {(cubeTextureBlurrer.blurringContext.leftTexture, 2)}
+        }
+        if let bottomTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Bottom) {
+            bottomTexture.cpuVariableGetter = {(cubeTextureBlurrer.blurringContext.bottomTexture, 3)}
+        }
+        if let rightTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Right) {
+            rightTexture.cpuVariableGetter = {(cubeTextureBlurrer.blurringContext.rightTexture, 4)}
+        }
     }
 }

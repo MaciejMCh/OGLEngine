@@ -17,7 +17,7 @@ extension DefaultPipelines {
         vertexScope ✍ OpenGLDefaultVariables.glPosition() ⬅ GPUAttributes.position
         
         let fragmentScope = GPUScope()
-        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Current ☒ vTexel
+        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Top ☒ vTexel
 //        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ Primitive(value: (r: 0.0, 1.0, 0.0, 1.0))
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
