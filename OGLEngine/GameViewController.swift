@@ -40,7 +40,7 @@ class GameViewController: GLKViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.context = EAGLContext(API: .OpenGLES2)
+        self.context = EAGLContext(API: .OpenGLES3)
         
         if !(self.context != nil) {
             print("Failed to create ES context")
