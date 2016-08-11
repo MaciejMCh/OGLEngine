@@ -103,6 +103,7 @@ struct GLSLParser {
         case is Variable<GLSLVec3>: return "vec3"
         case is Variable<GLSLVec4>: return "vec4"
         
+        case is Variable<GLSLMat2>: return "mat2"
         case is Variable<GLSLMat3>: return "mat3"
         case is Variable<GLSLMat4>: return "mat4"
         

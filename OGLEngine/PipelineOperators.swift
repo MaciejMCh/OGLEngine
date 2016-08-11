@@ -264,6 +264,11 @@ public func < (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evalua
     return InfixFunction<GLSLBool>(operatorSymbol: "<", lhs: lhs, rhs: rhs)
 }
 
+infix operator .== { associativity left precedence 200 }
+public func .== <T>(lhs: Evaluation<T>, rhs: Evaluation<T>) -> Evaluation<GLSLBool> {
+    return InfixFunction<GLSLBool>(operatorSymbol: "==", lhs: lhs, rhs: rhs)
+}
+
 infix operator <| { associativity left precedence 200 }
 public func <| (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evaluation<GLSLFloat> {
     return Function<GLSLFloat>(signature: "min", arguments: [lhs, rhs])

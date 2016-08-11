@@ -59,6 +59,8 @@ struct GPUUniforms {
     
     static let cubeTexture = GPUUniform<GLSLCubeTexture>(name: "uCubeTexture")
     
+    static let index = GPUUniform<GLSLInt>(name: "uIndex")
+    
     struct CubeTextures {
         static let Current = GPUUniform<GLSLTexture>(name: "uCubeTextureCurrent")
         static let Top = GPUUniform<GLSLTexture>(name: "uCubeTextureTop")

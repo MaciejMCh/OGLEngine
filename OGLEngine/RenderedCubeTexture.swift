@@ -46,10 +46,7 @@ class RenderedCubeTexture: CubeTexture {
             let attachments: [GLenum] = [GLenum(GL_COLOR_ATTACHMENT0), GLenum(GL_COLOR_ATTACHMENT1)]
             glDrawBuffers(2, attachments)
             
-            glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_S), GL_CLAMP_TO_EDGE);
-            glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_WRAP_T), GL_CLAMP_TO_EDGE);
-            glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GL_NEAREST);
-            glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MAG_FILTER), GL_NEAREST);
+            glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GL_NEAREST)
             glTexImage2D(GLenum(GL_TEXTURE_2D), 0, GL_RGBA, w, h, 0, GLenum(GL_RGBA), GLenum(GL_UNSIGNED_BYTE), nil);
             glFramebufferTexture2D(GLenum(GL_FRAMEBUFFER), GLenum(GL_COLOR_ATTACHMENT1), GLenum(GL_TEXTURE_2D), t, 0);
             
@@ -97,20 +94,30 @@ class RenderedCubeTexture: CubeTexture {
     }
     
     func blurringContextForSide(side: CubeTextureSide) -> CubeTextureBlurringContext {
-        let texture = sideTextures.getSide(.NegativeY)
+        var topTexture = sideTextures.getSide(.NegativeY)
+        var leftTexture = sideTextures.getSide(.NegativeY)
+        var bottomTexture = sideTextures.getSide(.NegativeY)
+        var rightTexture = sideTextures.getSide(.NegativeY)
         
-        var topTexture: CubeSideTexture! = nil
         switch side {
-        case .PositiveX: topTexture = sideTextures.getSide(.NegativeY)
-        case .PositiveZ: topTexture = sideTextures.getSide(.NegativeY)
-        default: topTexture = CubeSideTexture(glName: 0, side: .NegativeZ)
+        case .PositiveZ:
+            topTexture = sideTextures.getSide(.NegativeY)
+            bottomTexture = sideTextures.getSide(.PositiveZ)
+            rightTexture = sideTextures.getSide(.PositiveX)
+            leftTexture = sideTextures.getSide(.NegativeX)
+        case .PositiveX:
+            topTexture = sideTextures.getSide(.NegativeY)
+            bottomTexture = sideTextures.getSide(.PositiveY)
+            rightTexture = sideTextures.getSide(.NegativeZ)
+            leftTexture = sideTextures.getSide(.PositiveZ)
+        default: break
         }
         return CubeTextureBlurringContext(
             blurringTexture: sideTextures.getSide(side),
             topTexture: topTexture,
-            leftTexture: texture,
-            bottomTexture: texture,
-            rightTexture: texture)
+            leftTexture: leftTexture,
+            bottomTexture: bottomTexture,
+            rightTexture: rightTexture)
     }
 }
 

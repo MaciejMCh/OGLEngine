@@ -105,6 +105,11 @@ public struct GLSLInt: GLSLType {
     public static func primitiveFace(primitive: CPUCounterpart) -> String {
         return "\(primitive)"
     }
+    
+    public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        GPUPassFunctions.intPass(value, location: location)
+    }
+    
 }
 
 public struct GLSLTexture: GLSLType {

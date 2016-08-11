@@ -74,6 +74,12 @@ extension PipelineProgram {
         if let cubeTexture = self.pipeline.uniform(GPUUniforms.cubeTexture) {
             cubeTexture.cpuVariableGetter = {(scene.cubeTexture, 4)}
         }
+        
+        if let index = self.pipeline.uniform(GPUUniforms.index) {
+            let i = Int(CACurrentMediaTime()) % 8
+            debugPrint("\(i)")
+            index.cpuVariableGetter = {i}
+        }
     }
     
     func defaultModelBindings(model: Model, scene: Scene) {
