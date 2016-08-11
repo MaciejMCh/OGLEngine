@@ -65,7 +65,21 @@ extension DefaultPipelines {
             "   }",
             "} else {",
             "   if (texel.x < 0.0) {",
-            "       wallIndex = 12;",
+            "       if (texel.x < texel.y) {",
+            "           wallIndex = 13;", // 6
+            "       } else {",
+            "           wallIndex = 13;", // 7
+            "       }",
+            "   } else {",
+            "       if (texel.x < 1.0) {",
+            "           wallIndex = 13;", // 8
+            "       } else {",
+            "           if (texel.x - 1.0 > -texel.y) {",
+            "               wallIndex = 13;", // 10
+            "           } else {",
+            "               wallIndex = 13;", // 9
+            "           }",
+            "       }",
             "   }",
             "}"
             
