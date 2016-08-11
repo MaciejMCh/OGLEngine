@@ -42,7 +42,7 @@ extension DefaultPipelines {
             "   transformationIndex = 0;",
             "}",
             
-            
+//            "wallIndex = 12;",
             "if (texel.y > 1.0) {",
             "   if(texel.x < 0.0) {",
             "       if(texel.y - 1.0 > -texel.x) {",
@@ -62,6 +62,12 @@ extension DefaultPipelines {
             "} else if (texel.y > 0.0) {",
             "   if (texel.x < 0.0) {",
             "       wallIndex = 13;", // 5
+            "   } else {",
+            "       if (texel.x > 1.0) {",
+            "           wallIndex = 13;", // 11
+            "       } else {",
+            "           wallIndex = 13;", // 12
+            "       }",
             "   }",
             "} else {",
             "   if (texel.x < 0.0) {",
