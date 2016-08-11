@@ -107,6 +107,14 @@ public func + (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLVec3>) -> InfixFun
     return InfixFunction<GLSLVec3>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
 }
 
+public func + (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLVec2>) -> InfixFunction<GLSLVec2> {
+    return InfixFunction<GLSLVec2>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
+}
+
+public func - (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLVec2>) -> InfixFunction<GLSLVec2> {
+    return InfixFunction<GLSLVec2>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
+}
+
 public func + (lhs: Evaluation<GLSLVec2>, rhs: Evaluation<GLSLFloat>) -> InfixFunction<GLSLVec2> {
     return InfixFunction<GLSLVec2>(operatorSymbol: "+", lhs: lhs, rhs: rhs)
 }
@@ -135,6 +143,10 @@ public func * (lhs: Evaluation<GLSLVec3>, rhs: Evaluation<GLSLFloat>) -> InfixFu
 infix operator * { associativity left precedence 140 }
 public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLVec4>) -> InfixFunction<GLSLVec4> {
     return InfixFunction<GLSLVec4>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
+}
+
+public func * (lhs: Evaluation<GLSLMat2>, rhs: Evaluation<GLSLVec2>) -> InfixFunction<GLSLVec2> {
+    return InfixFunction<GLSLVec2>(operatorSymbol: "*", lhs: lhs, rhs: rhs)
 }
 
 public func * (lhs: Evaluation<GLSLMat4>, rhs: Evaluation<GLSLMat4>) -> InfixFunction<GLSLMat4> {

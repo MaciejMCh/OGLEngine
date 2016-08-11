@@ -97,10 +97,17 @@ class RenderedCubeTexture: CubeTexture {
     }
     
     func blurringContextForSide(side: CubeTextureSide) -> CubeTextureBlurringContext {
-        let texture = sideTextures.first!
+        let texture = sideTextures.getSide(.NegativeY)
+        
+        var topTexture: CubeSideTexture! = nil
+        switch side {
+        case .PositiveX: topTexture = sideTextures.getSide(.NegativeY)
+        case .PositiveZ: topTexture = sideTextures.getSide(.NegativeY)
+        default: topTexture = CubeSideTexture(glName: 0, side: .NegativeZ)
+        }
         return CubeTextureBlurringContext(
             blurringTexture: sideTextures.getSide(side),
-            topTexture: texture,
+            topTexture: topTexture,
             leftTexture: texture,
             bottomTexture: texture,
             rightTexture: texture)

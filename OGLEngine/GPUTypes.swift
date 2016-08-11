@@ -71,6 +71,18 @@ public struct GLSLVec2: GLSLType {
     }
 }
 
+public struct GLSLMat2: GLSLType {
+    public typealias CPUCounterpart = GLKMatrix2
+    
+    public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        GPUPassFunctions.mat2Pass(value, location: location)
+    }
+    
+    public static func primitiveFace(primitive: CPUCounterpart) -> String {
+        return "mat2(\(primitive.m00), \(primitive.m01), \(primitive.m10), \(primitive.m11))"
+    }
+}
+
 public struct GLSLMat3: GLSLType {
     public typealias CPUCounterpart = GLKMatrix3
     
