@@ -31,6 +31,7 @@ extension DefaultPipelines {
         let wallIndex = Variable<GLSLInt>(name: "wallIndex")
         let transformationIndex = Variable<GLSLInt>(name: "transformationIndex")
         let uIndex = Variable<GLSLInt>(name: "uIndex")
+        let projecteeIndex = Variable<GLSLInt>(name: "projecteeIndex")
         
         fragmentScope ✍ FixedGPUInstruction(code: stringFromLines([
             "wallIndex = 10;",
@@ -42,78 +43,79 @@ extension DefaultPipelines {
             "   transformationIndex = 0;",
             "}",
             
-//            "wallIndex = 12;",
             "if (texel.y > 1.0) {",
             "   if(texel.x < 0.0) {",
             "       if(texel.y - 1.0 > -texel.x) {",
-            "           wallIndex = 13;", // 1
+            "           projecteeIndex = 1;",
             "       } else {",
-            "           wallIndex = 13;", // 0
+            "           projecteeIndex = 0;",
             "       }",
             "   } else if (texel.x < 1.0) {",
-            "       wallIndex = 13;", // 2
+            "       projecteeIndex = 2;",
             "   } else {",
             "       if (texel.y > texel.x) {",
-            "           wallIndex = 13;", // 3
+            "           projecteeIndex = 3;",
             "       } else {",
-            "           wallIndex = 13;", // 4
+            "           projecteeIndex = 4;",
             "       }",
             "   }",
             "} else if (texel.y > 0.0) {",
             "   if (texel.x < 0.0) {",
-            "       wallIndex = 13;", // 5
+            "       projecteeIndex = 5;",
             "   } else {",
             "       if (texel.x > 1.0) {",
-            "           wallIndex = 13;", // 11
+            "           projecteeIndex = 11;",
             "       } else {",
-            "           wallIndex = 13;", // 12
+            "           projecteeIndex = 12;",
             "       }",
             "   }",
             "} else {",
             "   if (texel.x < 0.0) {",
             "       if (texel.x < texel.y) {",
-            "           wallIndex = 13;", // 6
+            "           projecteeIndex = 6;",
             "       } else {",
-            "           wallIndex = 13;", // 7
+            "           projecteeIndex = 7;",
             "       }",
             "   } else {",
             "       if (texel.x < 1.0) {",
-            "           wallIndex = 13;", // 8
+            "           projecteeIndex = 8;",
             "       } else {",
             "           if (texel.x - 1.0 > -texel.y) {",
-            "               wallIndex = 13;", // 10
+            "               projecteeIndex = 10;",
             "           } else {",
-            "               wallIndex = 13;", // 9
+            "               projecteeIndex = 9;",
             "           }",
             "       }",
             "   }",
             "}"
-            
-//            "if (texel.x < 1.0) {",
-//            "   if (texel.x > 0.0) {",
-//            "       if (texel.y < 1.0) {",
-//            "           if (texel.y > 0.0) {",
-//            "               wallIndex = 0;",
-//            "               transformationIndex = 0;", // ok
-//            "           } else {",
-//            "               wallIndex = 3;",
-//            "               transformationIndex = 2;", // ok
-//            "           }",
-//            "       } else {",
-//            "           if (texel.y > 0.0) {",
-//            "               wallIndex = 1;",
-//            "               transformationIndex = 0;",
-//            "           } else {",
-////            "               wallIndex = 3;",
-//            "               transformationIndex = 2;",
-//            "           }",
-//            "       }",
-//            "   }",
-//            "}",
-            
-            ]), usedVariables: [wallIndex, texel, uIndex])
+            ]), usedVariables: [wallIndex, texel, uIndex, projecteeIndex])
         
         let texelTransformation = Variable<GLSLMat2>(name: "texelTransformation")
+        
+        
+        var iii = 0
+        let pros = [
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (10, 0),
+            (0, 0)]
+        for pro in pros {
+            fragmentScope ✍ ConditionInstruction(bool: projecteeIndex .== Primitive(value: iii), successInstructions: [
+                wallIndex ⬅ Primitive(value: pro.0),
+                transformationIndex ⬅ Primitive(value: pro.1)
+                ])
+            iii += 1
+        }
+        
         
         var i = 0
         let transforms = [
