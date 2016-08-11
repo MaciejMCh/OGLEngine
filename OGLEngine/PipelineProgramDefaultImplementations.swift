@@ -77,7 +77,7 @@ extension PipelineProgram {
         
         if let index = self.pipeline.uniform(GPUUniforms.index) {
             let i = Int(CACurrentMediaTime()) % 8
-            debugPrint("\(i)")
+//            debugPrint("\(i)")
             index.cpuVariableGetter = {i}
         }
     }
