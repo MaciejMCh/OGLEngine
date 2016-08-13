@@ -38,29 +38,97 @@ extension DefaultPipelines {
         fragmentScope ✍ FixedGPUInstruction(code: stringFromLines([
             "gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);",
             
-            "if ((texel.x > 0.0) && (texel.x < 1.0) && (texel.y > 0.0) && (texel.y < 1.0)) {",
-            "   gl_FragColor = texture2D(uCubeTextureCurrent, texel);",
-            "}",
+            
+            "int projecteeIndex = 100;",
+                        "if (texel.y > 1.0) {",
+                        "   if(texel.x < 0.0) {",
+                        "       if(texel.y - 1.0 > -texel.x) {",
+                        "           projecteeIndex = 1;",
+                        "       } else {",
+                        "           projecteeIndex = 0;",
+                        "       }",
+                        "   } else if (texel.x < 1.0) {",
+                        "       projecteeIndex = 2;",
+                        "   } else {",
+                        "       if (texel.y > texel.x) {",
+                        "           projecteeIndex = 3;",
+                        "       } else {",
+                        "           projecteeIndex = 4;",
+                        "       }",
+                        "   }",
+                        "} else if (texel.y > 0.0) {",
+                        "   if (texel.x < 0.0) {",
+                        "       projecteeIndex = 5;",
+                        "   } else {",
+                        "       if (texel.x > 1.0) {",
+                        "           projecteeIndex = 11;",
+                        "       } else {",
+                        "           projecteeIndex = 12;",
+                        "       }",
+                        "   }",
+                        "} else {",
+                        "   if (texel.x < 0.0) {",
+                        "       if (texel.x < texel.y) {",
+                        "           projecteeIndex = 6;",
+                        "       } else {",
+                        "           projecteeIndex = 7;",
+                        "       }",
+                        "   } else {",
+                        "       if (texel.x < 1.0) {",
+                        "           projecteeIndex = 8;",
+                        "       } else {",
+                        "           if (texel.x - 1.0 > -texel.y) {",
+                        "               projecteeIndex = 10;",
+                        "           } else {",
+                        "               projecteeIndex = 9;",
+                        "           }",
+                        "       }",
+                        "   }",
+                        "}",
+
             
             
             
-            "if (texel.y < 0.0) {",
-            "if (texel.x < texel.y) {return;}",
+            // 8
+            "if ((projecteeIndex == 7) || (projecteeIndex == 8) || (projecteeIndex == 9)) {",
             "   lowp float errY = -texel.y;",
-            "   lowp float tX = errY;",
-//            "   tX = (1.0 - errY) * ((texel.x - 0.5) * 2.0);",
-//            "   tX = tX * (texel.x / texel.y);",
-            
             "   lowp float zz = (texel.x - 0.5) / (texel.y - 0.5);",
             "   gl_FragColor = vec4(zz, 0.0, 0.0, 1.0);",
-            
-            "   tX = tX * zz;",
-            
-            
+            "   lowp float tX = errY * zz;",
             "   gl_FragColor = texture2D(uCubeTextureCurrent, vec2(texel.x + tX, errY));",
             "}",
-            ""
-            ]), usedVariables: [GPUUniforms.CubeTextures.Current])
+            
+            
+            // 2
+            "if ((projecteeIndex == 1) || (projecteeIndex == 2) || (projecteeIndex == 3)) {",
+            "   lowp float errY = -texel.y;",
+            "   lowp float zz = (texel.x - 0.5) / (texel.y - 0.5);",
+            "   gl_FragColor = vec4(zz, 0.0, 0.0, 1.0);",
+            "   lowp float tX = errY * zz;",
+            "   gl_FragColor = texture2D(uCubeTextureCurrent, vec2(texel.x + tX, errY));",
+            "}",
+            
+            // 5
+            "if ((projecteeIndex == 6) || (projecteeIndex == 5) || (projecteeIndex == 0)) {",
+            "   lowp float errX = -texel.x;",
+            "   lowp float zz = (texel.y - 0.5) / (texel.x - 0.5);",
+            "   gl_FragColor = vec4(zz, 0.0, 0.0, 1.0);",
+            "   lowp float tY = errX * zz;",
+            "   gl_FragColor = texture2D(uCubeTextureLeft, vec2(errX, texel.y + tY));",
+            "}",
+            
+            // 11
+            "if ((projecteeIndex == 10) || (projecteeIndex == 11) || (projecteeIndex == 4)) {",
+            "   lowp float errX = -texel.x;",
+            "   lowp float zz = (texel.y - 0.5) / (texel.x - 0.5);",
+            "   gl_FragColor = vec4(zz, 0.0, 0.0, 1.0);",
+            "   lowp float tY = errX * zz;",
+            "   gl_FragColor = texture2D(uCubeTextureLeft, vec2(errX, texel.y + tY));",
+            "}",
+            
+            
+            "texture2D(uCubeTextureCurrent, vec2(0.0, 0.0));"
+            ]), usedVariables: [GPUUniforms.CubeTextures.Current, GPUUniforms.CubeTextures.Left])
 //            "wallIndex = 10;",
 //            "transformationIndex = uIndex1;",
         
