@@ -14,6 +14,7 @@ class RemoteController : NSObject {
     
     var webSocketClient: WebSocket!
     var eventHandlers: [EventHandler] = []
+    private var remotePropertiesCache: RemoteProperties!
     
     override init() {
         super.init()
@@ -33,7 +34,9 @@ class RemoteController : NSObject {
                         eventSubject = RemoteKey.keyWithMessage(message)
                     }
                     else if message.hasPrefix("p") {
-                        eventSubject = RemoteProperties(jsonString: message.substringFromIndex(message.startIndex.advancedBy(2)))
+                        let remoteProperty = RemoteProperties(jsonString: message.substringFromIndex(message.startIndex.advancedBy(2)))
+                        self.remotePropertiesCache = remoteProperty
+                        eventSubject = remoteProperty
                     }
                     
                     if let eventSubject = eventSubject {
@@ -46,6 +49,18 @@ class RemoteController : NSObject {
             }
         } catch _ {
         }
+    }
+    
+    func integerNamed(name: String) -> Int {
+        if remotePropertiesCache == nil {return 0}
+        for property in remotePropertiesCache.properties {
+            if property.name == name {
+                if property.type == .Number {
+                    return Int(property.value as! NSNumber)
+                }
+            }
+        }
+        return 0
     }
     
     func addEventHandler(eventHandler: EventHandler) {

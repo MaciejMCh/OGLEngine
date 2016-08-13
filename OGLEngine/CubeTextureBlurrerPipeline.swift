@@ -30,12 +30,13 @@ extension DefaultPipelines {
         
         let wallIndex = Variable<GLSLInt>(name: "wallIndex")
         let transformationIndex = Variable<GLSLInt>(name: "transformationIndex")
-        let uIndex = Variable<GLSLInt>(name: "uIndex")
+        let uIndex1 = Variable<GLSLInt>(name: "uIndex1")
+        let uIndex2 = Variable<GLSLInt>(name: "uIndex2")
         let projecteeIndex = Variable<GLSLInt>(name: "projecteeIndex")
         
         fragmentScope ✍ FixedGPUInstruction(code: stringFromLines([
             "wallIndex = 10;",
-            "transformationIndex = uIndex;",
+            "transformationIndex = uIndex1;",
             
             
             "if ((texel.x > 0.0) && (texel.x < 1.0) && (texel.y > 0.0) && (texel.y < 1.0)) {",
@@ -88,26 +89,39 @@ extension DefaultPipelines {
             "       }",
             "   }",
             "}"
-            ]), usedVariables: [wallIndex, texel, uIndex, projecteeIndex])
+            ]), usedVariables: [wallIndex, texel, projecteeIndex])
         
         let texelTransformation = Variable<GLSLMat2>(name: "texelTransformation")
         
         
         var iii = 0
         let pros = [
+//            (2, 2),
+//            (10, 0),
+//            (1, 1),     // 2
+//            (10, 0),
+//            (10, 0),
+//            (2, 0),     // 5
+//            (10, 0),
+//            (10, 0),
+//            (3, 0),     // 8
+//            (10, 0),
+//            (10, 0),
+//            (4, 0),    // 11
+//            (0, 0)]
             (10, 0),
             (10, 0),
+            (1, 1),     // 2
             (10, 0),
             (10, 0),
+            (10, 0),     // 5
             (10, 0),
             (10, 0),
+            (10, 0),     // 8
             (10, 0),
             (10, 0),
-            (10, 0),
-            (10, 0),
-            (10, 0),
-            (10, 0),
-            (0, 0)]
+            (10, 0),    // 11
+            (10, 0)]
         for pro in pros {
             fragmentScope ✍ ConditionInstruction(bool: projecteeIndex .== Primitive(value: iii), successInstructions: [
                 wallIndex ⬅ Primitive(value: pro.0),
@@ -115,6 +129,11 @@ extension DefaultPipelines {
                 ])
             iii += 1
         }
+        // 2 5 8
+        fragmentScope ✍ ConditionInstruction(bool: projecteeIndex .== Primitive(value: 1), successInstructions: [
+            wallIndex ⬅ uIndex1,
+            transformationIndex ⬅ uIndex2
+            ])
         
         
         var i = 0
@@ -155,73 +174,6 @@ extension DefaultPipelines {
             OpenGLDefaultVariables.glFragColor() ⬅ Primitive(value: (r: 1.0, g: 1.0, b: 0.0, a: 1.0))])
         fragmentScope ✍ ConditionInstruction(bool: wallIndex .== Primitive(value: 13), successInstructions: [
             OpenGLDefaultVariables.glFragColor() ⬅ Primitive(value: (r: 0.5, g: 0.5, b: 0.0, a: 1.0))])
-        
-        
-        
-        
-        
-        
-//        for side in CubeTextureSide.allSidesInOrder() {
-//            ConditionInstruction(bool: <#T##Evaluation<GLSLBool>#>, successInstructions: <#T##[GPUInstruction]#>)
-//        }
-        
-//        fragmentScope ✍ ConditionInstruction(bool: wallIndex .== Primitive(value: 0),
-//                                               successInstructions: [
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Current ☒ texel
-//            ])
-//        
-//        // +Z
-//        fragmentScope ✍ ConditionInstruction(bool: wallIndex .== Primitive(value: 1),
-//                             successInstructions: [
-//                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Top ☒ texel
-//            ])
-//        fragmentScope ✍ ConditionInstruction(bool: wallIndex .== Primitive(value: 3),
-//                                               successInstructions: [
-//                                                texel ⬅ (Primitive(value: GLKMatrix2(m: (1, 0, 0, -1))) * originalTexel),
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Bottom ☒ texel
-//            ])
-//        fragmentScope ✍ ConditionInstruction(bool: wallIndex .== Primitive(value: 4),
-//                                               successInstructions: [
-//                                                texel ⬅ (Primitive(value: GLKMatrix2(m: (1, 0, 0, 1))) * originalTexel),
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Right ☒ texel
-//            ])
-//        fragmentScope ✍ ConditionInstruction(bool: wallIndex .== Primitive(value: 2),
-//                                               successInstructions: [
-//                                                texel ⬅ (Primitive(value: GLKMatrix2(m: (1, 0, 0, 1))) * originalTexel),
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Left ☒ texel
-//            ])
-//        
-//        
-//        fragmentScope ✍ ConditionInstruction(bool: wallIndex .== Primitive(value: 10),
-//                                               successInstructions: [
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ Primitive(value: (r: 1.0, g: 0.0, b: 0.0, a: 1.0))
-//            ])
-        
-//        // +X
-//        fragmentScope ✍ ConditionInstruction(bool: texelY > Primitive(value: 1.0),
-//                                               successInstructions: [
-//                                                texel ⬅ (Primitive(value: GLKMatrix2(m: (0, 1, -1, 0))) * originalTexel),
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Top ☒ texel
-//            ])
-//        fragmentScope ✍ ConditionInstruction(bool: texelY < Primitive(value: 0.0),
-//                                               successInstructions: [
-//                                                texel ⬅ (Primitive(value: GLKMatrix2(m: (0, -1, 1, 0))) * originalTexel),
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Bottom ☒ texel
-//            ])
-//        fragmentScope ✍ ConditionInstruction(bool: texelX > Primitive(value: 1.0),
-//                                               successInstructions: [
-//                                                texel ⬅ (Primitive(value: GLKMatrix2(m: (1, 0, 0, 1))) * originalTexel),
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Right ☒ texel
-//            ])
-//        fragmentScope ✍ ConditionInstruction(bool: texelX < Primitive(value: 0.0),
-//                                               successInstructions: [
-//                                                texel ⬅ (Primitive(value: GLKMatrix2(m: (1, 0, 0, 1))) * originalTexel),
-//                                                OpenGLDefaultVariables.glFragColor() ⬅ GPUUniforms.CubeTextures.Left ☒ texel
-//            ])
-        
-        
-        
-        
         
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)

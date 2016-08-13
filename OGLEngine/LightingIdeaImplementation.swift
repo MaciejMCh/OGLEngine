@@ -61,6 +61,9 @@ extension DefaultPipelines {
         fragmentScope ✍ normalMapSample ⬅ uNormalMap ☒ vTexel
         fragmentScope ✍ fixedNormal ⬅ ⤺normalMapSample
         fragmentScope ✍ fixedNormal ⬅ ^fixedNormal
+        
+        fragmentScope ✍ fixedNormal ⬅ Primitive(value: GLKVector3Make(0, 0, 1))
+        
         fragmentScope ✍ fixedNormal ⬅ vTBNMatrix * fixedNormal
         fragmentScope ✍ fixedNormal ⬅ ^fixedNormal
         

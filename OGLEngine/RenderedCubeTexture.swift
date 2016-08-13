@@ -102,7 +102,7 @@ class RenderedCubeTexture: CubeTexture {
         switch side {
         case .PositiveZ:
             topTexture = sideTextures.getSide(.NegativeY)
-            bottomTexture = sideTextures.getSide(.PositiveZ)
+            bottomTexture = sideTextures.getSide(.PositiveY)
             rightTexture = sideTextures.getSide(.PositiveX)
             leftTexture = sideTextures.getSide(.NegativeX)
         case .PositiveX:
