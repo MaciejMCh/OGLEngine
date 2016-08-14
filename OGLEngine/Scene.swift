@@ -23,7 +23,7 @@ struct Scene {
     var camera: Camera
     let elucidation = Elucidation()
     
-    var skyBox: SkyBoxRenderable
+    var skyBox: SkyBox
     
     var rayBoxColorMap: RenderedTexture!
     
@@ -37,7 +37,7 @@ struct Scene {
         self.emitterRenderables = emitterRenderables
         self.directionalLight = directionalLight
         self.camera = camera
-        self.skyBox = SkyBoxRenderable()
+        self.skyBox = SkyBox(name: "morning")
     }
     
     func reflecteds() -> [ReflectedRenderable] {

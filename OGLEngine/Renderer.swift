@@ -31,7 +31,7 @@ struct Renderer {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.skyBoxProgram.glName)
-        self.skyBoxProgram.render([scene.skyBox], scene: scene)
+        self.skyBoxProgram.render(scene.skyBox.allRenderables(), scene: scene)
         glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.mediumShotProgram.glName)
@@ -107,7 +107,7 @@ struct Renderer {
         
         cubeTexture.withFbo(textureSide: textureSide) {
             glUseProgram(self.skyBoxProgram.glName)
-            self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
+            self.skyBoxProgram.render(scene.skyBox.allRenderables(), scene: rayScene)
             glClear( GLbitfield(GL_DEPTH_BUFFER_BIT));
         }
     }

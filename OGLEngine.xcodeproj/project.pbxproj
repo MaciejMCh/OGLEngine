@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		194C9EFF7CA0CE4DFA1985B3 /* Pods_OGLEngineTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005F7C9A13A6586900D583C3 /* Pods_OGLEngineTests.framework */; };
 		78C17823B8A84D6C8961D173 /* Pods_OGLEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C37D1CBD8549EE642202A /* Pods_OGLEngine.framework */; };
+		C2011C161D6124DA0059E138 /* morning.skybox in Resources */ = {isa = PBXBuildFile; fileRef = C2011C151D6124DA0059E138 /* morning.skybox */; };
 		C20687EA1CF4AEEB008E8793 /* GPUTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20687E91CF4AEEB008E8793 /* GPUTypes.swift */; };
 		C20EA33A1CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */; };
 		C219E3821D2F0DE10026678B /* RayBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C219E3811D2F0DE10026678B /* RayBox.swift */; };
@@ -22,8 +23,6 @@
 		C228FF931D103DC9000D6414 /* SphericalLookAtCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */; };
 		C228FF951D10455C000D6414 /* OscilatingGeometryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C228FF941D10455C000D6414 /* OscilatingGeometryModel.swift */; };
 		C22D14EE1CBC0AA20052155B /* VisibleReflectionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */; };
-		C22DCFAD1D2C1A9F00D04268 /* skybox.png in Resources */ = {isa = PBXBuildFile; fileRef = C22DCFAB1D2C1A9F00D04268 /* skybox.png */; };
-		C22DCFAE1D2C1A9F00D04268 /* skybox.obj in Resources */ = {isa = PBXBuildFile; fileRef = C22DCFAC1D2C1A9F00D04268 /* skybox.obj */; };
 		C22DCFB01D2C1C0200D04268 /* SkyBoxPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */; };
 		C22DCFB21D2C23E200D04268 /* SkyBoxPipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */; };
 		C23DD40D1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23DD40C1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift */; };
@@ -74,6 +73,12 @@
 		C26EC56D1CE9E1E2005958C5 /* RenderedTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */; };
 		C27E42C41D07192000FC9632 /* PhongV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C31D07192000FC9632 /* PhongV2.swift */; };
 		C27E42C81D07199200FC9632 /* PhongV2PipelineProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */; };
+		C288FE5E1D6127A3009891E7 /* skybox_nx.obj in Resources */ = {isa = PBXBuildFile; fileRef = C288FE581D6127A3009891E7 /* skybox_nx.obj */; };
+		C288FE5F1D6127A3009891E7 /* skybox_ny.obj in Resources */ = {isa = PBXBuildFile; fileRef = C288FE591D6127A3009891E7 /* skybox_ny.obj */; };
+		C288FE601D6127A3009891E7 /* skybox_nz.obj in Resources */ = {isa = PBXBuildFile; fileRef = C288FE5A1D6127A3009891E7 /* skybox_nz.obj */; };
+		C288FE611D6127A3009891E7 /* skybox_px.obj in Resources */ = {isa = PBXBuildFile; fileRef = C288FE5B1D6127A3009891E7 /* skybox_px.obj */; };
+		C288FE621D6127A3009891E7 /* skybox_py.obj in Resources */ = {isa = PBXBuildFile; fileRef = C288FE5C1D6127A3009891E7 /* skybox_py.obj */; };
+		C288FE631D6127A3009891E7 /* skybox_pz.obj in Resources */ = {isa = PBXBuildFile; fileRef = C288FE5D1D6127A3009891E7 /* skybox_pz.obj */; };
 		C29755771CEA21E3001D8E6D /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29755761CEA21E3001D8E6D /* Renderer.swift */; };
 		C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */; };
 		C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */ = {isa = PBXBuildFile; fileRef = C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */; };
@@ -130,6 +135,7 @@
 		005F7C9A13A6586900D583C3 /* Pods_OGLEngineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OGLEngineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AE1173361AB75FF181AD82A /* Pods-OGLEngineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngineTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngineTests/Pods-OGLEngineTests.release.xcconfig"; sourceTree = "<group>"; };
 		1B06101BAF3DAF1D79A4A7C6 /* Pods-OGLEngine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OGLEngine.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OGLEngine/Pods-OGLEngine.debug.xcconfig"; sourceTree = "<group>"; };
+		C2011C151D6124DA0059E138 /* morning.skybox */ = {isa = PBXFileReference; lastKnownFileType = folder; name = morning.skybox; path = Resources/SkyBox/morning.skybox; sourceTree = "<group>"; };
 		C20687E91CF4AEEB008E8793 /* GPUTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUTypes.swift; sourceTree = "<group>"; };
 		C20EA3391CA9B86B0076F979 /* GLKitCantMultiplyMatrices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLKitCantMultiplyMatrices.swift; sourceTree = "<group>"; };
 		C219E3811D2F0DE10026678B /* RayBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RayBox.swift; sourceTree = "<group>"; };
@@ -143,8 +149,6 @@
 		C228FF921D103DC9000D6414 /* SphericalLookAtCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SphericalLookAtCamera.swift; sourceTree = "<group>"; };
 		C228FF941D10455C000D6414 /* OscilatingGeometryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OscilatingGeometryModel.swift; sourceTree = "<group>"; };
 		C22D14ED1CBC0AA20052155B /* VisibleReflectionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisibleReflectionContext.swift; sourceTree = "<group>"; };
-		C22DCFAB1D2C1A9F00D04268 /* skybox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skybox.png; path = Resources/SkyBox/skybox.png; sourceTree = "<group>"; };
-		C22DCFAC1D2C1A9F00D04268 /* skybox.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox.obj; path = Resources/SkyBox/skybox.obj; sourceTree = "<group>"; };
 		C22DCFAF1D2C1C0200D04268 /* SkyBoxPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipeline.swift; sourceTree = "<group>"; };
 		C22DCFB11D2C23E200D04268 /* SkyBoxPipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyBoxPipelineProgram.swift; sourceTree = "<group>"; };
 		C23DD40C1D5A08BE00E70CA1 /* CubeTextureBlurrerPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubeTextureBlurrerPipeline.swift; sourceTree = "<group>"; };
@@ -199,6 +203,12 @@
 		C26EC56C1CE9E1E2005958C5 /* RenderedTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderedTexture.swift; sourceTree = "<group>"; };
 		C27E42C31D07192000FC9632 /* PhongV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2.swift; sourceTree = "<group>"; };
 		C27E42C71D07199200FC9632 /* PhongV2PipelineProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhongV2PipelineProgram.swift; sourceTree = "<group>"; };
+		C288FE581D6127A3009891E7 /* skybox_nx.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox_nx.obj; path = Resources/SkyBox/skybox_nx.obj; sourceTree = "<group>"; };
+		C288FE591D6127A3009891E7 /* skybox_ny.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox_ny.obj; path = Resources/SkyBox/skybox_ny.obj; sourceTree = "<group>"; };
+		C288FE5A1D6127A3009891E7 /* skybox_nz.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox_nz.obj; path = Resources/SkyBox/skybox_nz.obj; sourceTree = "<group>"; };
+		C288FE5B1D6127A3009891E7 /* skybox_px.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox_px.obj; path = Resources/SkyBox/skybox_px.obj; sourceTree = "<group>"; };
+		C288FE5C1D6127A3009891E7 /* skybox_py.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox_py.obj; path = Resources/SkyBox/skybox_py.obj; sourceTree = "<group>"; };
+		C288FE5D1D6127A3009891E7 /* skybox_pz.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = skybox_pz.obj; path = Resources/SkyBox/skybox_pz.obj; sourceTree = "<group>"; };
 		C29755761CEA21E3001D8E6D /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		C297557C1CEA256F001D8E6D /* ReflectiveSurface.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.vsh; path = Shaders/ReflectiveSurface.vsh; sourceTree = "<group>"; };
 		C297557D1CEA256F001D8E6D /* ReflectiveSurface.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ReflectiveSurface.fsh; path = Shaders/ReflectiveSurface.fsh; sourceTree = "<group>"; };
@@ -322,8 +332,13 @@
 		C22DCFAA1D2C1A6100D04268 /* SkyBox */ = {
 			isa = PBXGroup;
 			children = (
-				C22DCFAB1D2C1A9F00D04268 /* skybox.png */,
-				C22DCFAC1D2C1A9F00D04268 /* skybox.obj */,
+				C288FE581D6127A3009891E7 /* skybox_nx.obj */,
+				C288FE591D6127A3009891E7 /* skybox_ny.obj */,
+				C288FE5A1D6127A3009891E7 /* skybox_nz.obj */,
+				C288FE5B1D6127A3009891E7 /* skybox_px.obj */,
+				C288FE5C1D6127A3009891E7 /* skybox_py.obj */,
+				C288FE5D1D6127A3009891E7 /* skybox_pz.obj */,
+				C2011C151D6124DA0059E138 /* morning.skybox */,
 			);
 			name = SkyBox;
 			sourceTree = "<group>";
@@ -762,23 +777,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22DCFAE1D2C1A9F00D04268 /* skybox.obj in Resources */,
+				C288FE5F1D6127A3009891E7 /* skybox_ny.obj in Resources */,
 				C269D5971CA8981D00E56E67 /* Main.storyboard in Resources */,
-				C22DCFAD1D2C1A9F00D04268 /* skybox.png in Resources */,
 				C269D5921CA8981D00E56E67 /* CloseShot.vsh in Resources */,
 				C297557F1CEA256F001D8E6D /* ReflectiveSurface.fsh in Resources */,
 				C2CD6A801CEC7B0D001F3A7E /* Reflected.fsh in Resources */,
 				C2C0BF3E1D2D9B330035D4A7 /* preview.obj in Resources */,
 				C22824BF1CCD93AC006EBCE3 /* 3dAssets in Resources */,
+				C288FE631D6127A3009891E7 /* skybox_pz.obj in Resources */,
+				C288FE611D6127A3009891E7 /* skybox_px.obj in Resources */,
 				C22824C51CCD96C0006EBCE3 /* MediumShot.fsh in Resources */,
 				C297557E1CEA256F001D8E6D /* ReflectiveSurface.vsh in Resources */,
 				C2CD6A7F1CEC7B0D001F3A7E /* Reflected.vsh in Resources */,
+				C288FE601D6127A3009891E7 /* skybox_nz.obj in Resources */,
 				C22824C41CCD96C0006EBCE3 /* MediumShot.vsh in Resources */,
 				C23DD4111D5A114200E70CA1 /* full_screen.obj in Resources */,
 				C269D5F11CA89B6E00E56E67 /* IPAddress in Resources */,
 				C269D5991CA8981D00E56E67 /* Assets.xcassets in Resources */,
 				C269D59C1CA8981D00E56E67 /* LaunchScreen.storyboard in Resources */,
 				C23F6DCA1D4E9CFB0040629E /* material_surface.obj in Resources */,
+				C288FE621D6127A3009891E7 /* skybox_py.obj in Resources */,
+				C2011C161D6124DA0059E138 /* morning.skybox in Resources */,
+				C288FE5E1D6127A3009891E7 /* skybox_nx.obj in Resources */,
 				C269D5901CA8981D00E56E67 /* CloseShot.fsh in Resources */,
 				C23F6DCC1D4E9F8A0040629E /* material_core.obj in Resources */,
 			);
