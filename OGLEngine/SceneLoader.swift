@@ -28,10 +28,12 @@ enum RenderableType {
     
     static func serialzie(string: String) -> RenderableType {
         switch string {
-        case "reflective": return .Reflective
+        case "REFLECTIVE_SURFACE": return .Reflective
         case "emitter": return .Emitter
-        case "default": return .Default
-        default: return .Default
+        case "REGULAR": return .Default
+        default:
+            assert(false, "unsuppoerted renderable type")
+            return .Default
         }
     }
 }
@@ -134,7 +136,7 @@ extension LighModelIdeaRenderable {
         normalMap.bind()
         let specularMap = ImageTexture(imageNamed: "3dAssets/materials/" + loadedRenderable.material + "/specular.png")
         specularMap.bind()
-        let materialProperties = CreatingMaterialProperties()
+        let materialProperties = MaterialProperties(materialName: loadedRenderable.material)
         self.init(vao: vao, geometryModel: geometryModel, colorMap: colorMap, normalMap: normalMap, specularMap: specularMap, rayBoxColorMap: RayBox.instance.colorMap, materialProperties: materialProperties)
     }
 }

@@ -73,18 +73,8 @@ class GameViewController: GLKViewController {
         
         FullScreenVao.setup()
         
-//        DefaultPipelines.LightingIdeaImplementation()
-        
-        
-//        let program = ReflectiveSurfacePipelineProgram()
-//        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
-//        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
-        
-//        self.scene = Scene.loadScene("emit")
-//        self.scene = Scene.MaterialsPreviewScene("Icosphere")
-        
-//        let scene = Scene.MaterialsPreviewScene("Icosphere")
-        scene = Scene.materialBallSceneWithMaterial("plastic", creatorMode: false)
+//        scene = Scene.materialBallSceneWithMaterial("wood", creatorMode: true)
+        scene = Scene.loadScene("emit")
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
         self.lightingIdeaImplementationProgram.compile()
