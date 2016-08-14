@@ -70,10 +70,13 @@ extension PipelineProgram {
         if let lightHalfVector = self.pipeline.uniform(GPUUniforms.lightHalfVector) {
             lightHalfVector.cpuVariableGetter = {scene.directionalLight.halfVectorWithCamera(scene.camera)}
         }
-        
-        if let cubeTexture = self.pipeline.uniform(GPUUniforms.cubeTexture) {
-            cubeTexture.cpuVariableGetter = {(scene.cubeTexture, 4)}
+        if let rayCubeTexture = self.pipeline.uniform(GPUUniforms.rayCubeTexture) {
+            rayCubeTexture.cpuVariableGetter = {(scene.rayCubeTexture, 4)}
         }
+        if let emissionCubeTexture = self.pipeline.uniform(GPUUniforms.emissionCubeTexture) {
+            emissionCubeTexture.cpuVariableGetter = {(scene.emissionCubeTexture, 5)}
+        }
+        
         
         if let index1 = self.pipeline.uniform(GPUUniforms.index1) {
             let i = RemoteController.controller.integerNamed("index1")
@@ -82,6 +85,10 @@ extension PipelineProgram {
         if let index2 = self.pipeline.uniform(GPUUniforms.index2) {
             let i = RemoteController.controller.integerNamed("index2")
             index2.cpuVariableGetter = {i}
+        }
+        if let float = self.pipeline.uniform(GPUUniforms.float) {
+            let f = RemoteController.controller.floatNamed("float")
+            float.cpuVariableGetter = {f}
         }
         
     }

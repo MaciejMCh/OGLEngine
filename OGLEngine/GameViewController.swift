@@ -115,10 +115,15 @@ class GameViewController: GLKViewController {
         Renderer.emitterProgram = emitterProgram
         Renderer.cubeTextureBlurrerProgram = cubeTextureBlurrerProgram
         
-        let cubeTexture = RenderedCubeTexture()
-        cubeTexture.bindFrameBuffers()
-        self.scene.cubeTexture = cubeTexture
-        Renderer.renderedCubeTexture = cubeTexture
+        let skyBoxCubeMap = RenderedCubeTexture()
+        skyBoxCubeMap.bindFrameBuffers()
+        self.scene.rayCubeTexture = skyBoxCubeMap
+        Renderer.skyBoxCubeMap = skyBoxCubeMap
+        
+        let emittersCubeMap = RenderedCubeTexture()
+        emittersCubeMap.bindFrameBuffers()
+        self.scene.emissionCubeTexture = emittersCubeMap
+        Renderer.emittersCubeMap = emittersCubeMap
         
     }
     

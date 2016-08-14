@@ -282,7 +282,7 @@ public func <| (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evalu
 
 infix operator |< { associativity left precedence 200 }
 public func |< (lhs: Evaluation<GLSLFloat>, rhs: Evaluation<GLSLFloat>) -> Evaluation<GLSLFloat> {
-    return Function<GLSLFloat>(signature: "min", arguments: [lhs, rhs])
+    return Function<GLSLFloat>(signature: "max", arguments: [lhs, rhs])
 }
 
 struct FloatFunctions {

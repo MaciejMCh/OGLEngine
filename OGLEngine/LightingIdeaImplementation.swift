@@ -89,7 +89,18 @@ extension DefaultPipelines {
         let reflectionColor = Variable<GLSLColor>(name: "reflectionColor")
         let ray = Variable<GLSLVec3>(name: "ray")
         fragmentScope ✍ ray ⬅ (viewVersor - (fixedNormal * ((fixedNormal ⋅ viewVersor) * Primitive(value: 2.0)))) * Primitive(value: -1.0)
-        fragmentScope ✍ reflectionColor ⬅ Variable<GLSLCubeTexture>(name: "uCubeTexture") ☒ ray
+        fragmentScope ✍ reflectionColor ⬅ GPUUniforms.rayCubeTexture ☒ ray
+        
+        // Emitters color
+        let emittersColor = Variable<GLSLColor>(name: "emittersColor")
+        fragmentScope ✍ emittersColor ⬅ GPUUniforms.emissionCubeTexture ☒ ray
+        let emitterDistance = Variable<GLSLFloat>(name: "emitterDistance")
+        fragmentScope ✍ emitterDistance ⬅ emittersColor .> "a"
+        fragmentScope ✍ emitterDistance ⬅ (Primitive(value: 1.0) - emitterDistance)
+        fragmentScope ✍ emitterDistance ⬅ emitterDistance * emitterDistance * (specularPower |< Primitive(value: 0.0))
+        fragmentScope ✍ emitterDistance ⬅ (Primitive(value: 1.0) - emitterDistance)
+        fragmentScope ✍ emitterDistance ⬅ emitterDistance |< Primitive(value: 0.0)
+        fragmentScope ✍ emittersColor ⬅ emittersColor * emitterDistance
         
         // Surface color
         let surfaceColor = Variable<GLSLColor>(name: "surfaceColor")
@@ -98,19 +109,20 @@ extension DefaultPipelines {
         let vFresnelA = Variable<GLSLFloat>(name: "vFresnelA")
         let vFresnelB = Variable<GLSLFloat>(name: "vFresnelB")
         let fresnelFactor = Variable<GLSLFloat>(name: "fresnelFactor")
+        
         // Fresnel factor
         fragmentScope ✍ fresnelFactor ⬅ (fixedNormal ⋅ viewVersor)
         fragmentScope ✍ fresnelFactor ⬅ ((fresnelFactor * vFresnelA) + vFresnelB)
         fragmentScope ✍ fresnelFactor ⬅ FloatFunctions.cut(fresnelFactor, from: 0.0, to: 1.0)
         fragmentScope ✍ fresnelFactor ⬅ (Primitive(value: 1.0) - fresnelFactor)
+        
         // Mix surface and reflection
-        let reflectionEmissiveness: Evaluation<GLSLFloat> = reflectionColor .> "a"
-        fragmentScope ✍ reflectivityFactor ⬅ ((specularSample * fresnelFactor) + reflectionEmissiveness)
+        fragmentScope ✍ reflectivityFactor ⬅ specularSample * fresnelFactor
         fragmentScope ✍ diffuseFactor  ⬅ (Primitive(value: 1.0) - reflectivityFactor)
         fragmentScope ✍ surfaceColor ⬅ ((reflectionColor * reflectivityFactor) + (diffuseColor * diffuseFactor))
         
         // Final color
-        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (surfaceColor + specularColor)
+        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (surfaceColor + specularColor + emittersColor)
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
         NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))

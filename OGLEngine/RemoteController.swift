@@ -63,6 +63,18 @@ class RemoteController : NSObject {
         return 0
     }
     
+    func floatNamed(name: String) -> Float {
+        if remotePropertiesCache == nil {return 0}
+        for property in remotePropertiesCache.properties {
+            if property.name == name {
+                if property.type == .Number {
+                    return Float(property.value as! NSNumber)
+                }
+            }
+        }
+        return 0
+    }
+    
     func addEventHandler(eventHandler: EventHandler) {
         self.eventHandlers.append(eventHandler)
     }

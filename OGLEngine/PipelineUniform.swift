@@ -57,11 +57,12 @@ struct GPUUniforms {
     static let fresnelB = GPUUniform<GLSLFloat>(name: "uFresnelB")
     static let emissionColor = GPUUniform<GLSLColor>(name: "uEmissionColor")
     
-    static let cubeTexture = GPUUniform<GLSLCubeTexture>(name: "uCubeTexture")
+    static let rayCubeTexture = GPUUniform<GLSLCubeTexture>(name: "uRayCubeTexture")
+    static let emissionCubeTexture = GPUUniform<GLSLCubeTexture>(name: "uEmissionCubeTexture")
     
     static let index1 = GPUUniform<GLSLInt>(name: "uIndex1")
     static let index2 = GPUUniform<GLSLInt>(name: "uIndex2")
-    
+    static let float = GPUUniform<GLSLFloat>(name: "uFloat")
     
     struct CubeTextures {
         static let Current = GPUUniform<GLSLTexture>(name: "uCubeTextureCurrent")

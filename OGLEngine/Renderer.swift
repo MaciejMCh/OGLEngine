@@ -20,10 +20,12 @@ struct Renderer {
     static var emitterProgram: SmartPipelineProgram!
     static var cubeTextureBlurrerProgram: SmartPipelineProgram!
     
-    static var renderedCubeTexture: RenderedCubeTexture!
+    static var skyBoxCubeMap: RenderedCubeTexture!
+    static var emittersCubeMap: RenderedCubeTexture!
     
     static func render(scene: Scene) {
-        Renderer.renderRayBox(renderedCubeTexture, scene: scene, camera: scene.camera)
+        Renderer.renderRayBox(skyBoxCubeMap, scene: scene, camera: scene.camera)
+        Renderer.renderEmissionBox(emittersCubeMap, scene: scene, camera: scene.camera)
         
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
@@ -62,6 +64,30 @@ struct Renderer {
         self.reflectedProgram.render(scene.reflecteds(), scene: scene)
     }
     
+    static func renderEmissionBox(cubeTexture: RenderedCubeTexture, scene: Scene, camera: Camera) {
+        glClearColor(0.0, 0.0, 0.0, 0.0)
+        glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
+        renderEmissionWall(cubeTexture, textureSide: .PositiveX, scene: scene, camera: camera)
+        renderEmissionWall(cubeTexture, textureSide: .NegativeX, scene: scene, camera: camera)
+        renderEmissionWall(cubeTexture, textureSide: .PositiveY, scene: scene, camera: camera)
+        renderEmissionWall(cubeTexture, textureSide: .NegativeY, scene: scene, camera: camera)
+        renderEmissionWall(cubeTexture, textureSide: .PositiveZ, scene: scene, camera: camera)
+        renderEmissionWall(cubeTexture, textureSide: .NegativeZ, scene: scene, camera: camera)
+    }
+    
+    static func renderEmissionWall(cubeTexture: RenderedCubeTexture, textureSide: CubeTextureSide, scene: Scene, camera: Camera) {
+        let rayCamera = RayBoxCamera(eyePosition: camera.cameraPosition())
+        rayCamera.lookAt(textureSide)
+        var rayScene = scene
+        rayScene.camera = rayCamera
+        
+        cubeTexture.withFbo(textureSide: textureSide) {
+            glUseProgram(self.emitterProgram.glName)
+            self.emitterProgram.render(scene.emitterRenderables, scene: rayScene)
+            glClear( GLbitfield(GL_DEPTH_BUFFER_BIT));
+        }
+    }
+    
     static func renderRayBox(cubeTexture: RenderedCubeTexture, scene: Scene, camera: Camera) {
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
@@ -71,6 +97,19 @@ struct Renderer {
         renderRayWall(cubeTexture, textureSide: .NegativeY, scene: scene, camera: camera)
         renderRayWall(cubeTexture, textureSide: .PositiveZ, scene: scene, camera: camera)
         renderRayWall(cubeTexture, textureSide: .NegativeZ, scene: scene, camera: camera)
+    }
+    
+    static func renderRayWall(cubeTexture: RenderedCubeTexture, textureSide: CubeTextureSide, scene: Scene, camera: Camera) {
+        let rayCamera = RayBoxCamera(eyePosition: camera.cameraPosition())
+        rayCamera.lookAt(textureSide)
+        var rayScene = scene
+        rayScene.camera = rayCamera
+        
+        cubeTexture.withFbo(textureSide: textureSide) {
+            glUseProgram(self.skyBoxProgram.glName)
+            self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
+            glClear( GLbitfield(GL_DEPTH_BUFFER_BIT));
+        }
     }
     
     static func blurCubeTexture(input input: RenderedCubeTexture, output: RenderedCubeTexture, scene: Scene) {
@@ -85,24 +124,6 @@ struct Renderer {
             glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
             glUseProgram(self.cubeTextureBlurrerProgram.glName)
             self.cubeTextureBlurrerProgram.render([renderable], scene: scene)
-        }
-    }
-    
-    static func renderRayWall(cubeTexture: RenderedCubeTexture, textureSide: CubeTextureSide, scene: Scene, camera: Camera) {
-        let rayCamera = RayBoxCamera(eyePosition: camera.cameraPosition())
-        rayCamera.lookAt(textureSide)
-        var rayScene = scene
-        rayScene.camera = rayCamera
-        
-        cubeTexture.withFbo(textureSide: textureSide) {
-            
-            glUseProgram(self.skyBoxProgram.glName)
-            self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
-            
-            glClear( GLbitfield(GL_DEPTH_BUFFER_BIT));
-            
-            glUseProgram(self.emitterProgram.glName)
-            self.emitterProgram.render(scene.emitterRenderables, scene: rayScene)
         }
     }
     
