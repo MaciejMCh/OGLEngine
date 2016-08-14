@@ -11,7 +11,17 @@ import GLKit
 class RenderedCubeTexture: CubeTexture {
     
     private var sideFrameBuffers = Array<GLuint>(count: 6, repeatedValue: 0)
-    private(set) var sideTextures: [CubeSideTexture] = []
+    var sideTextures: [CubeSideTexture] {
+        get {
+            if self.sideTextures.count == 0 {
+                produceSidesTextures()
+            }
+            return self.sideTextures
+        }
+        set {
+            sideTextures = newValue
+        }
+    }
     
     let w = GLsizei(512)
     let h = GLsizei(512)
@@ -31,7 +41,9 @@ class RenderedCubeTexture: CubeTexture {
         for side in CubeTextureSide.allSidesInOrder() {
             bind(&sideFrameBuffers[side.cubeContextIndex()], textureSide: side)
         }
-        
+    }
+    
+    func produceSidesTextures() {
         for side in CubeTextureSide.allSidesInOrder() {
             // Create and bind texture
             var t = GLuint()
@@ -56,7 +68,6 @@ class RenderedCubeTexture: CubeTexture {
             }
             self.sideTextures.append(CubeSideTexture(glName: t, side: side))
         }
-        
     }
     
     func withFbo(textureSide textureSide: CubeTextureSide, operations: ()->()) {
