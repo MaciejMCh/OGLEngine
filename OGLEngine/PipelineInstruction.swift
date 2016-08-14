@@ -100,6 +100,17 @@ public struct DiscardInstruction: GPUInstruction {
     }
 }
 
+public struct ReturnInstruction<T: GLSLType>: GPUInstruction {
+    let evaluation: Evaluation<T>
+    
+    public func glslRepresentation() -> String {
+        return "return \(evaluation.glslFace());"
+    }
+    public func variablesUsed() -> [AnyVariable] {
+        return evaluation.variablesUsed()
+    }
+}
+
 public struct ConditionInstruction: GPUInstruction {
     let bool: Evaluation<GLSLBool>
     let successInstructions: [GPUInstruction]

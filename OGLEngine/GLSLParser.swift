@@ -87,6 +87,7 @@ struct GLSLParser {
         case is GPUFunction<GLSLVoid>: return "void"
         case is GPUFunction<GLSLVec3>: return "lowp vec3"
         case is GPUFunction<GLSLVec2>: return "lowp vec2"
+        case is GPUFunction<GLSLColor>: return "lowp vec4"
         default:
             assert(false)
             return "unsupported type"
