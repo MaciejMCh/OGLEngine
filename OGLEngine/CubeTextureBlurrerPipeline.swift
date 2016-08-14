@@ -108,17 +108,13 @@ extension DefaultPipelines {
             "} else if (transformationIndex == 3) {",
             "   texel = -texel;",
             "} else if (transformationIndex == 4) {",
-            "   texel.x = texel.y;",
-            "   texel.y = texel.x;",
+            "   texel = vec2(texel.y ,texel.x);",
             "} else if (transformationIndex == 5) {",
-            "   texel.x = -texel.y;",
-            "   texel.y = texel.x;",
+            "   texel = vec2(-texel.y ,texel.x);",
             "} else if (transformationIndex == 6) {",
-            "   texel.x = texel.y;",
-            "   texel.y = -texel.x;",
+            "   texel = vec2(-texel.y ,-texel.x);",
             "} else if (transformationIndex == 7) {",
-            "   texel.x = -texel.y;",
-            "   texel.y = -texel.x;",
+            "   texel = vec2(texel.y ,-texel.x);",
             "}"
             ]), usedVariables: [texel, transformationIndex])
         

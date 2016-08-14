@@ -78,7 +78,7 @@ struct Renderer {
 //        for side in CubeTextureSide.allSidesInOrder() {
 //            blurCubeTextureSide(inputCubeTexture: input, outputCubeTexture: output, side: side, scene: scene)
 //        }
-        blurCubeTextureSide(inputCubeTexture: input, outputCubeTexture: output, side: .PositiveZ, scene: scene)
+        blurCubeTextureSide(inputCubeTexture: input, outputCubeTexture: output, side: .NegativeZ, scene: scene)
     }
     
     static func blurCubeTextureSide(inputCubeTexture inputCubeTexture: RenderedCubeTexture, outputCubeTexture: RenderedCubeTexture, side: CubeTextureSide, scene: Scene) {

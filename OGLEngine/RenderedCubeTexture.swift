@@ -98,22 +98,48 @@ class RenderedCubeTexture: CubeTexture {
         var leftTexture = sideTextures.getSide(.NegativeY)
         var bottomTexture = sideTextures.getSide(.NegativeY)
         var rightTexture = sideTextures.getSide(.NegativeY)
+        var transformations: (top: Int32, left: Int32, bottom: Int32, right: Int32) = (top: 0, left: 0, bottom: 0, right: 0)
         
         switch side {
-        case .PositiveZ:
-            topTexture = sideTextures.getSide(.NegativeY)
-            bottomTexture = sideTextures.getSide(.PositiveY)
-            rightTexture = sideTextures.getSide(.PositiveX)
-            leftTexture = sideTextures.getSide(.NegativeX)
         case .PositiveX:
+            transformations = (top: 7, left: 6, bottom: 0, right: 5)
             topTexture = sideTextures.getSide(.NegativeY)
             bottomTexture = sideTextures.getSide(.PositiveY)
             rightTexture = sideTextures.getSide(.NegativeZ)
             leftTexture = sideTextures.getSide(.PositiveZ)
-        default: break
+        case .NegativeX:
+            transformations = (top: 5, left: 4, bottom: 0, right: 2)
+            topTexture = sideTextures.getSide(.NegativeY)
+            bottomTexture = sideTextures.getSide(.PositiveY)
+            rightTexture = sideTextures.getSide(.PositiveZ)
+            leftTexture = sideTextures.getSide(.NegativeZ)
+        case .PositiveY:
+            transformations = (top: 3, left: 1, bottom: 7, right: 4)
+            topTexture = sideTextures.getSide(.PositiveZ)
+            bottomTexture = sideTextures.getSide(.NegativeZ)
+            rightTexture = sideTextures.getSide(.PositiveX)
+            leftTexture = sideTextures.getSide(.NegativeX)
+        case .NegativeY:
+            transformations = (top: 0, left: 2, bottom: 5, right: 6)
+            topTexture = sideTextures.getSide(.NegativeZ)
+            bottomTexture = sideTextures.getSide(.PositiveZ)
+            rightTexture = sideTextures.getSide(.PositiveX)
+            leftTexture = sideTextures.getSide(.NegativeX)
+        case .PositiveZ:
+            transformations = (top: 0, left: 1, bottom: 0, right: 2)
+            topTexture = sideTextures.getSide(.NegativeY)
+            bottomTexture = sideTextures.getSide(.PositiveY)
+            rightTexture = sideTextures.getSide(.PositiveX)
+            leftTexture = sideTextures.getSide(.NegativeX)
+        case .NegativeZ:
+            transformations = (top: 3, left: 2, bottom: 0, right: 2)
+            topTexture = sideTextures.getSide(.NegativeY)
+            bottomTexture = sideTextures.getSide(.PositiveY)
+            rightTexture = sideTextures.getSide(.NegativeX)
+            leftTexture = sideTextures.getSide(.PositiveX)
         }
         return CubeTextureBlurringContext(
-            transformations: (top: 0, left: 1, bottom: 0, right: 2),
+            transformations: transformations,
             blurringTexture: sideTextures.getSide(side),
             topTexture: topTexture,
             leftTexture: leftTexture,
