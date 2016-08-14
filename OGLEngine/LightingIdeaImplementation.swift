@@ -96,11 +96,7 @@ extension DefaultPipelines {
         fragmentScope ✍ emittersColor ⬅ GPUUniforms.emissionCubeTexture ☒ ray
         let emitterDistance = Variable<GLSLFloat>(name: "emitterDistance")
         fragmentScope ✍ emitterDistance ⬅ emittersColor .> "a"
-        fragmentScope ✍ emitterDistance ⬅ (Primitive(value: 1.0) - emitterDistance)
-        fragmentScope ✍ emitterDistance ⬅ emitterDistance * emitterDistance * (specularPower |< Primitive(value: 0.0))
-        fragmentScope ✍ emitterDistance ⬅ (Primitive(value: 1.0) - emitterDistance)
-        fragmentScope ✍ emitterDistance ⬅ emitterDistance |< Primitive(value: 0.0)
-        fragmentScope ✍ emittersColor ⬅ emittersColor * emitterDistance
+        fragmentScope ✍ emittersColor ⬅ emittersColor * (emitterDistance ^ specularPower) * specularWidth
         
         // Surface color
         let surfaceColor = Variable<GLSLColor>(name: "surfaceColor")
