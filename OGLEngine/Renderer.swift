@@ -30,6 +30,7 @@ struct Renderer {
         
         glUseProgram(self.skyBoxProgram.glName)
         self.skyBoxProgram.render([scene.skyBox], scene: scene)
+        glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
         
         glUseProgram(self.mediumShotProgram.glName)
         self.mediumShotProgram.render(scene.mediumShots, scene: scene)
@@ -94,10 +95,11 @@ struct Renderer {
         rayScene.camera = rayCamera
         
         cubeTexture.withFbo(textureSide: textureSide) {
-            glClear(GLbitfield(GL_DEPTH_BUFFER_BIT));
             
             glUseProgram(self.skyBoxProgram.glName)
             self.skyBoxProgram.render([scene.skyBox], scene: rayScene)
+            
+            glClear( GLbitfield(GL_DEPTH_BUFFER_BIT));
             
             glUseProgram(self.emitterProgram.glName)
             self.emitterProgram.render(scene.emitterRenderables, scene: rayScene)

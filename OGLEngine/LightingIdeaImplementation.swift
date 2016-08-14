@@ -104,7 +104,8 @@ extension DefaultPipelines {
         fragmentScope ✍ fresnelFactor ⬅ FloatFunctions.cut(fresnelFactor, from: 0.0, to: 1.0)
         fragmentScope ✍ fresnelFactor ⬅ (Primitive(value: 1.0) - fresnelFactor)
         // Mix surface and reflection
-        fragmentScope ✍ reflectivityFactor ⬅ specularSample * fresnelFactor
+        let reflectionEmissiveness: Evaluation<GLSLFloat> = reflectionColor .> "a"
+        fragmentScope ✍ reflectivityFactor ⬅ ((specularSample * fresnelFactor) + reflectionEmissiveness)
         fragmentScope ✍ diffuseFactor  ⬅ (Primitive(value: 1.0) - reflectivityFactor)
         fragmentScope ✍ surfaceColor ⬅ ((reflectionColor * reflectivityFactor) + (diffuseColor * diffuseFactor))
         

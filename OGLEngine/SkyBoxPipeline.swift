@@ -98,8 +98,7 @@ extension DefaultScopes {
         globalScope ⟿↘ vTexel
         globalScope ⥥ uColorMap
         globalScope ↳ MainGPUFunction(scope: mainScope)
-        
-        mainScope ✍ glFragColor ⬅ uColorMap ☒ vTexel
+        mainScope ✍ glFragColor ⬅ VecInits.fixedAlphaColor(uColorMap ☒ vTexel, alpha: Primitive(value: 0.0))
         
         return globalScope
     }

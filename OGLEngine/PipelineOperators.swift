@@ -224,6 +224,12 @@ struct VecInits {
         let centered = halfed + Primitive(value: 0.5)
         return centered
     }
+    
+    static func fixedAlphaColor(color: Evaluation<GLSLColor>, alpha: Evaluation<GLSLFloat>) -> Evaluation<GLSLColor> {
+        let trimmedAlpha = Function<GLSLVec3>(signature: "vec3", arguments: [color])
+        let overwrittenAlpha = Function<GLSLColor>(signature: "vec4", arguments: [trimmedAlpha, alpha])
+        return overwrittenAlpha
+    }
 }
 
 prefix func ⤺ (vector: Evaluation<GLSLVec3>) -> Function<GLSLColor> {

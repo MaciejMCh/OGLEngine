@@ -52,11 +52,7 @@ extension DefaultPipelines {
             "gl_FragColor = blurredColor / \(samplesCount).0;"
             ]), usedVariables: [])
         
-//        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (cubeMapColorWithTexel .< [texel])
-        
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
-//        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
-//        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
         return program
     }
 }
