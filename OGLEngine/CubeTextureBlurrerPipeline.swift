@@ -99,13 +99,10 @@ extension DefaultPipelines {
             ]), usedVariables: [GPUUniforms.CubeTextures.Current, GPUUniforms.CubeTextures.Left, projecteeIndex])
         
         
-        [0, 1, 0, 2]
+//        [0, 1, 0, 2]
+        fragmentScope ✍ transformationIndex ⬅ GPUUniforms.sideTexturesTransformations .| projecteeIndex
+        
         fragmentScope ✍ FixedGPUInstruction(code: stringFromLines([
-            "if (projecteeIndex == 4) {",
-            "   transformationIndex = uIndex1;",
-            "}",
-            
-            
             "if (transformationIndex == 1) {",
             "   texel.x = -texel.x;",
             "} else if (transformationIndex == 2) {",

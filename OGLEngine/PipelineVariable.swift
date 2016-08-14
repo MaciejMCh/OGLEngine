@@ -129,3 +129,12 @@ extension InfixFunction: GPUInstruction {
         return variables
     }
 }
+
+public class IntArrayVariable: Variable<GLSLIntArray> {
+    var size: UInt
+    
+    init(name: String, size: UInt) {
+        self.size = size
+        super.init(name: name)
+    }
+}

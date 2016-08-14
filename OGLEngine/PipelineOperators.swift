@@ -323,3 +323,9 @@ infix operator .< { associativity left precedence 200 }
 public func .< <T>(lhs: GPUFunction<T>, rhs: [AnyVariable]) -> Evaluation<T> {
     return Function<T>(signature: lhs.signature, arguments: rhs.map{$0 as! AnyEvaluation})
 }
+
+// Array element
+infix operator .| { associativity left precedence 200 }
+public func .| (lhs: IntArrayVariable, rhs: Evaluation<GLSLInt>) -> ArrayElementEvaluation<GLSLInt> {
+    return ArrayElementEvaluation(arrayVariable: lhs, index: rhs)
+}

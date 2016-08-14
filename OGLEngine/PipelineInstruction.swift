@@ -85,6 +85,29 @@ public class FieldEvaluation<T: GLSLType>: Evaluation<T>, GPUInstruction {
     }
 }
 
+public class ArrayElementEvaluation<T: GLSLType>: Evaluation<T>, GPUInstruction {
+    var arrayVariable: IntArrayVariable
+    var index: Evaluation<GLSLInt>
+    
+    init(arrayVariable: IntArrayVariable, index: Evaluation<GLSLInt>) {
+        self.arrayVariable = arrayVariable
+        self.index = index
+    }
+    
+    public override func glslFace() -> String {
+        return "\(arrayVariable.name)[\(index.glslFace())]"
+    }
+    
+    public func glslRepresentation() -> String {
+        return glslFace()
+    }
+    
+    public func variablesUsed() -> [AnyVariable] {
+        return [arrayVariable] + index.variablesUsed()
+    }
+}
+
+
 public struct DiscardInstruction: GPUInstruction {
     public func glslRepresentation() -> String {
         return "discard;"

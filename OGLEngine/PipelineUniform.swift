@@ -70,6 +70,7 @@ struct GPUUniforms {
         static let Bottom = GPUUniform<GLSLTexture>(name: "uCubeTextureBottom")
         static let Right = GPUUniform<GLSLTexture>(name: "uCubeTextureRight")
     }
+    static let sideTexturesTransformations = IntArrayVariable(name: "uSideTexturesTransformations", size: 4)
 }
 
 struct UniformsCollection {
