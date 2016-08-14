@@ -162,6 +162,14 @@ extension PipelineProgram {
     }
     
     func defaultCubeTextureBlurrerBindings(cubeTextureBlurrer: CubeMapBlurrer) {
+        if let sideTexturesTransformations = self.pipeline.uniform(GPUUniforms.sideTexturesTransformations) {
+            let array = [
+                cubeTextureBlurrer.blurringContext.transformations.top,
+                cubeTextureBlurrer.blurringContext.transformations.left,
+                cubeTextureBlurrer.blurringContext.transformations.bottom,
+                cubeTextureBlurrer.blurringContext.transformations.right]
+            sideTexturesTransformations.cpuVariableGetter = {array}
+        }
         if let currentTexture = self.pipeline.uniform(GPUUniforms.CubeTextures.Current) {
             currentTexture.cpuVariableGetter = {(cubeTextureBlurrer.blurringContext.blurringTexture, 0)}
         }

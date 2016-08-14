@@ -287,6 +287,11 @@ struct FloatFunctions {
     }
 }
 
+// Int operations
+public func - (lhs: Evaluation<GLSLInt>, rhs: Evaluation<GLSLInt>) -> InfixFunction<GLSLInt> {
+    return InfixFunction<GLSLInt>(operatorSymbol: "-", lhs: lhs, rhs: rhs)
+}
+
 // Texture operations
 infix operator ☒ { associativity left precedence 200 }
 public func ☒ (lhs: Evaluation<GLSLTexture>, rhs: Evaluation<GLSLVec2>) -> Function<GLSLColor> {

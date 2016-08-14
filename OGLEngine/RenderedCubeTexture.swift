@@ -113,6 +113,7 @@ class RenderedCubeTexture: CubeTexture {
         default: break
         }
         return CubeTextureBlurringContext(
+            transformations: (top: 0, left: 1, bottom: 0, right: 2),
             blurringTexture: sideTextures.getSide(side),
             topTexture: topTexture,
             leftTexture: leftTexture,

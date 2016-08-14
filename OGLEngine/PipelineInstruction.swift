@@ -38,24 +38,7 @@ public struct GPUDeclaration: GPUInstruction {
     }
     
     public func glslRepresentation() -> String {
-        var access = ""
-        switch self.accessKind {
-        case .Attribute: access = "attribute "
-        case .Uniform: access = "uniform "
-        case .Varying: access = "varying "
-        case .Local: access = ""
-        }
-        let precision = self.precision != nil ? GLSLParser.precision(self.precision!) : ""
-        let type = GLSLParser.variableType(self.variable)
-        let name = self.variable.name
-        var result = access + " " + precision + " " + type + " " + name + ";"
-        
-        // Trim
-        result = result.stringByReplacingOccurrencesOfString("   ", withString: " ")
-        result = result.stringByReplacingOccurrencesOfString("  ", withString: " ")
-        result = result.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
-        return result
+        return variable.declaration(access: accessKind, precision: precision)
     }
     
     public func variablesUsed() -> [AnyVariable] {

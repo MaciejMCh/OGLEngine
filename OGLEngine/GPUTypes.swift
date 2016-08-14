@@ -152,5 +152,9 @@ public struct GLSLPlane: GLSLType {
 }
 
 public struct GLSLIntArray: GLSLType {
-    public typealias CPUCounterpart = [Int]
+    public typealias CPUCounterpart = [Int32]
+    
+    public static func passValueToGPU(value: CPUCounterpart, location: GLint) {
+        GPUPassFunctions.intArrayPass(value, location: location)
+    }
 }

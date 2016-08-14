@@ -57,6 +57,7 @@ protocol Emitter {
 }
 
 struct CubeTextureBlurringContext {
+    let transformations: (top: Int32, left: Int32, bottom: Int32, right: Int32)
     let blurringTexture: Texture
     let topTexture: Texture
     let leftTexture: Texture

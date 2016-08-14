@@ -34,6 +34,7 @@ public class Evaluation<T: GLSLType>: AnyEvaluation {
 public protocol AnyVariable {
     var name: String {get}
     func createUniform() -> AnyGPUUniform
+    func declaration(access access: GPUVariableAccessKind, precision: GPUVariablePrecision?) -> String
 }
 
 public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
@@ -50,6 +51,26 @@ public class Variable<T: GLSLType>: Evaluation<T>, AnyVariable {
     public func createUniform() -> AnyGPUUniform {
         let name = "u" + self.name.substringFromIndex(self.name.startIndex.advancedBy(1))
         return GPUUniform<T>(name: name)
+    }
+    
+    public func declaration(access accessKind: GPUVariableAccessKind, precision: GPUVariablePrecision?) -> String {
+        var access = ""
+        switch accessKind {
+        case .Attribute: access = "attribute "
+        case .Uniform: access = "uniform "
+        case .Varying: access = "varying "
+        case .Local: access = ""
+        }
+        let precision = precision != nil ? GLSLParser.precision(precision!) : ""
+        let type = GLSLParser.variableType(self)
+        var result = access + " " + precision + " " + type + " " + name + ";"
+        
+        // Trim
+        result = result.stringByReplacingOccurrencesOfString("   ", withString: " ")
+        result = result.stringByReplacingOccurrencesOfString("  ", withString: " ")
+        result = result.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        return result
     }
 }
 
@@ -136,5 +157,11 @@ public class IntArrayVariable: Variable<GLSLIntArray> {
     init(name: String, size: UInt) {
         self.size = size
         super.init(name: name)
+    }
+    
+    public override func declaration(access accessKind: GPUVariableAccessKind, precision: GPUVariablePrecision?) -> String {
+        var declaration = Variable<GLSLInt>(name: name).declaration(access: accessKind, precision: precision)
+        declaration = declaration.stringByReplacingOccurrencesOfString(";", withString: "[\(size)];")
+        return declaration
     }
 }

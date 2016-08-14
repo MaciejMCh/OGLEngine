@@ -112,8 +112,6 @@ struct GLSLParser {
         case is Variable<GLSLTexture>: return "sampler2D"
         case is Variable<GLSLCubeTexture>: return "samplerCube"
             
-        case is IntArrayVariable: return "int"      
-            
         default:
             assert(false)
             return "unsupported type"

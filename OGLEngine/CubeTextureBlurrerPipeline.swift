@@ -98,9 +98,7 @@ extension DefaultPipelines {
             "}"
             ]), usedVariables: [GPUUniforms.CubeTextures.Current, GPUUniforms.CubeTextures.Left, projecteeIndex])
         
-        
-//        [0, 1, 0, 2]
-        fragmentScope ✍ transformationIndex ⬅ GPUUniforms.sideTexturesTransformations .| projecteeIndex
+        fragmentScope ✍ transformationIndex ⬅ (GPUUniforms.sideTexturesTransformations .| (projecteeIndex - Primitive(value: 1)))
         
         fragmentScope ✍ FixedGPUInstruction(code: stringFromLines([
             "if (transformationIndex == 1) {",
@@ -122,7 +120,7 @@ extension DefaultPipelines {
             "   texel.x = -texel.y;",
             "   texel.y = -texel.x;",
             "}"
-            ]), usedVariables: [texel, transformationIndex, GPUUniforms.index1])
+            ]), usedVariables: [texel, transformationIndex])
         
         let samplers = [GPUUniforms.CubeTextures.Current,
                         GPUUniforms.CubeTextures.Bottom,
