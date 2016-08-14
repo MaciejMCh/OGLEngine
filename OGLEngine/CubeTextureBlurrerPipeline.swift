@@ -55,8 +55,8 @@ extension DefaultPipelines {
 //        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (cubeMapColorWithTexel .< [texel])
         
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
-        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
-        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
+//        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
+//        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
         return program
     }
 }

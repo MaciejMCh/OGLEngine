@@ -80,13 +80,11 @@ class GameViewController: GLKViewController {
 //        NSLog("\n" + GLSLParser.vertexShader(program.pipeline.vertexShader))
 //        NSLog("\n\n\n\n" + GLSLParser.fragmentShader(program.pipeline.fragmentShader))
         
-        self.scene = Scene.loadScene("emit")
+//        self.scene = Scene.loadScene("emit")
 //        self.scene = Scene.MaterialsPreviewScene("Icosphere")
         
 //        let scene = Scene.MaterialsPreviewScene("Icosphere")
-//        let scene = Scene.materialBallSceneWithMaterial("copper", creatorMode: true)
-//        self.scene = scene
-        self.scene.rayBoxColorMap = RayBox.instance.colorMap
+        scene = Scene.materialBallSceneWithMaterial("plastic", creatorMode: false)
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
         self.lightingIdeaImplementationProgram.compile()
@@ -129,14 +127,9 @@ class GameViewController: GLKViewController {
         
         let cubeTexture = RenderedCubeTexture()
         cubeTexture.bindFrameBuffers()
-        scene.cubeTexture = cubeTexture
+        self.scene.cubeTexture = cubeTexture
         Renderer.renderedCubeTexture = cubeTexture
         
-        let blurredCubeTexture = RenderedCubeTexture()
-        blurredCubeTexture.bindFrameBuffers()
-        Renderer.blurredCubeTexture = blurredCubeTexture
-        
-        scene.cubeTexture = blurredCubeTexture
     }
     
     func tearDownGL() {

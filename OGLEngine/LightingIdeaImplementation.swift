@@ -61,9 +61,6 @@ extension DefaultPipelines {
         fragmentScope ✍ normalMapSample ⬅ uNormalMap ☒ vTexel
         fragmentScope ✍ fixedNormal ⬅ ⤺normalMapSample
         fragmentScope ✍ fixedNormal ⬅ ^fixedNormal
-        
-        fragmentScope ✍ fixedNormal ⬅ Primitive(value: GLKVector3Make(0, 0, 1))
-        
         fragmentScope ✍ fixedNormal ⬅ vTBNMatrix * fixedNormal
         fragmentScope ✍ fixedNormal ⬅ ^fixedNormal
         
@@ -90,9 +87,9 @@ extension DefaultPipelines {
         
         // Reflection color
         let reflectionColor = Variable<GLSLColor>(name: "reflectionColor")
-        let rayBoxTexelWithNormal = DefaultGPUFunction.rayBoxTexelWithNormal()
-        fragmentScope ↳ rayBoxTexelWithNormal
-        fragmentScope ✍ reflectionColor ⬅ GPUUniforms.rayBoxColorMap ☒ (rayBoxTexelWithNormal .< [fixedNormal])
+        let ray = Variable<GLSLVec3>(name: "ray")
+        fragmentScope ✍ ray ⬅ (viewVersor - (fixedNormal * ((fixedNormal ⋅ viewVersor) * Primitive(value: 2.0)))) * Primitive(value: -1.0)
+        fragmentScope ✍ reflectionColor ⬅ Variable<GLSLCubeTexture>(name: "uCubeTexture") ☒ ray
         
         // Surface color
         let surfaceColor = Variable<GLSLColor>(name: "surfaceColor")
@@ -114,9 +111,9 @@ extension DefaultPipelines {
         // Final color
         fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ (surfaceColor + specularColor)
         
-        fragmentScope ✍ OpenGLDefaultVariables.glFragColor() ⬅ Variable<GLSLCubeTexture>(name: "uCubeTexture") ☒ fixedNormal
-        
         let program = SmartPipelineProgram(vertexScope: vertexScope, fragmentScope: fragmentScope)
+        NSLog("\n" + GLSLParser.scope(program.pipeline.vertexShader.function.scope!))
+        NSLog("\n" + GLSLParser.scope(program.pipeline.fragmentShader.function.scope!))
         return program
     }
 }

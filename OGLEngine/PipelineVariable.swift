@@ -134,7 +134,7 @@ public class InfixFunction<ReturnType: GLSLType>: Evaluation<ReturnType> {
     }
     
     public override func glslFace() -> String {
-        return self.lhs.glslFace() + " " + self.operatorSymbol + " " + self.rhs.glslFace()
+        return "(\(lhs.glslFace()) \(operatorSymbol) \(rhs.glslFace()))"
     }
 }
 

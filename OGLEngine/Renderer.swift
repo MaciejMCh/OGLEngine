@@ -21,11 +21,9 @@ struct Renderer {
     static var cubeTextureBlurrerProgram: SmartPipelineProgram!
     
     static var renderedCubeTexture: RenderedCubeTexture!
-    static var blurredCubeTexture: RenderedCubeTexture!
     
     static func render(scene: Scene) {
         Renderer.renderRayBox(renderedCubeTexture, scene: scene, camera: scene.camera)
-        Renderer.blurCubeTexture(input: renderedCubeTexture, output: blurredCubeTexture, scene: scene)
         
         glClearColor(0.65, 0.65, 0.65, 1.0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT) | GLbitfield(GL_DEPTH_BUFFER_BIT));
