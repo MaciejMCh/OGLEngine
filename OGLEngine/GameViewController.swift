@@ -73,8 +73,8 @@ class GameViewController: GLKViewController {
         
         FullScreenVao.setup()
         
-//        scene = Scene.materialBallSceneWithMaterial("copper", creatorMode: true)
-        scene = Scene.loadScene("emit")
+        scene = Scene.materialBallSceneWithMaterial("copper", creatorMode: false)
+//        scene = Scene.loadScene("emit")
         
         self.lightingIdeaImplementationProgram = DefaultPipelines.LightingIdeaImplementation()
         self.lightingIdeaImplementationProgram.compile()
